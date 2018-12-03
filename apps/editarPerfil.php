@@ -1,21 +1,24 @@
 <?php 
 session_start();
-//curso 1
-$curso="Matemáticas";
-$curso="";
-$leccionRealizada=1; // varaiable dependera del uso en la base de datos
-$leccionPendiente=4; // variable dependera del uso en la bd 
+
 
 require("../conection/conexion.php");
 
 $_SESSION['idUsuario'];
 
+/*-------*/
+$_SESSION["imgPerfil"];
+
+@$nivel1="../app/";
+
+if(empty($_SESSION["imgPerfil"])){
+ $imgPerfilVeri="../img/profile.png";
+}else{
+$imgPerfilVeri=$_SESSION["imgPerfil"];
+
+}
 
 
-//$sql1 = ("SELECT * FROM registrocl2p2 where idIntento=:idIntento");
-//$obtenerMatriz=$dbConn->prepare($sql1);
-//$obtenerMatriz->bindParam(':idIntento', $_GET['idIntento'], PDO::PARAM_INT); 
-//$obtenerMatriz->execute();
 
 //variables de niveles
 $nivelPrimaria=1;
@@ -24,43 +27,22 @@ $nivelDiver=3;
 
 //Buscar todos los cursos de este usuario primaria
 
-$q1 = ("SELECT * FROM cursos where idDocente=:idUsuario and nivel=:nivel");
-$cursosPrimaria=$dbConn->prepare($q1);
-$cursosPrimaria->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
-$cursosPrimaria->bindParam(':nivel',$nivelPrimaria, PDO::PARAM_INT); 
-$cursosPrimaria->execute();
-
-//Buscar todos los cursos de este usuario Basicos
-
-$q2= ("SELECT * FROM cursos where idDocente=:idUsuario and nivel=:nivel");
-$cursoBasico=$dbConn->prepare($q2);
-$cursoBasico->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
-$cursoBasico->bindParam(':nivel',$nivelBasico, PDO::PARAM_INT); 
-$cursoBasico->execute();
-
-
-//Buscar todos los cursos de este usuario Diversificado
-
-$q3 = ("SELECT * FROM cursos where idDocente=:idUsuario and nivel=:nivel");
-$cursoDiver=$dbConn->prepare($q3);
-$cursoDiver->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
-$cursoDiver->bindParam(':nivel',$nivelDiver, PDO::PARAM_INT); 
-$cursoDiver->execute();
 
 
 
-//funcion encargada de asignar imagen segun primer letra del nombre del curso
+
+
 
  ?>
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
-    <title><?php echo $_SESSION["nombre"]; ?> | Mis Perfil</title>
+    <title><?php echo $_SESSION["nombre"]; ?> | Mi Perfil</title>
  
     <!-- CSS de Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -137,7 +119,7 @@ transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
          <div class="col-md-12 sombra" style="height:600px; margin-left:0px; margin-right: 70px; margin-bottom: 50px;">
           <form method="post" action="actualizarPerfil.php" enctype="multipart/form-data" accept="image-*">
-          <img style="float: left; margin-top: 20px;" src="../img/profile.png" width="100" height="100"><br><br><br><br><br><br><br><br>
+          <img style="float: left; margin-top: 20px;" src="<?php echo $imgPerfilVeri; ?>" width="100" height="100"><br><br><br><br><br><br><br><br>
           <input type="file" name="fotoPerfilUsuario" style="opacity: 0;  margin-top: -15%; cursor: pointer; width: 100px; height: 100px; position: absolute; margin-left: 0px;"  >
             
           <h4 style="text-align: left">Nombre</h4>

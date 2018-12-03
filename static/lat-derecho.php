@@ -1,11 +1,21 @@
 <?php
 @session_start();
+$_SESSION["imgPerfil"];
 
+if(empty($_SESSION["imgPerfil"])){
+ $imgPerfilVeri="background-image:url(../img/profile.png)";
+}else{
+   $imgPerfilVeri="background-image:url(".@$nivel1.$_SESSION["imgPerfil"].")";
+
+
+}
+
+echo @$imgPerfilVeri;
 
 ?>
 <style type="text/css">
   
-  .perfil{
+.perfil{
 
  background-size: 100px;
  background-repeat: no-repeat;
@@ -18,7 +28,6 @@
     -o-transition:.2s ease-in-out;
     transition: .2s ease-in-out;
   margin-bottom: 40px;
-
 }
 
 .perfil:hover{
@@ -58,14 +67,7 @@ width: 181px;
 			<div class="col-md-2 col-xs-2 lat-derecho">
         <div class="profile">
          
-          <div class="col-md-2 perfil" style="<?php
-
-            if(!empty($_SESSION["imgPerfil"])){
-
-
-           $img="background-image:url('../img/profile.png')"; echo $img; } else{
-             $img=$_SESSION["imgPerfil"]; echo $img;
-           } ?>">
+          <div class="col-md-2 perfil" style="background-image:url(../apps/imgPerfil/1/jose manuel/logos.png)">
                     <a href="../apps/editarPerfil.php">
                       <div class="piePerfil text-center" style="width: 100px; margin-top: -25px;">
                         <h5 style="margin-top: -10px;"><strong>Editar Perfil</strong></h5>
