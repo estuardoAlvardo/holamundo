@@ -5,12 +5,11 @@ $_SESSION["imgPerfil"];
 if(empty($_SESSION["imgPerfil"])){
  $imgPerfilVeri="background-image:url(../img/profile.png)";
 }else{
-   $imgPerfilVeri="background-image:url(".@$nivel1.$_SESSION["imgPerfil"].")";
-
+   $imgPerfilVeri="background-image:url(../apps".@$nivel1."/".$_SESSION["imgPerfil"].")";
 
 }
 
-echo @$imgPerfilVeri;
+//echo $imgPerfilVeri;
 
 ?>
 <style type="text/css">
@@ -67,7 +66,7 @@ width: 181px;
 			<div class="col-md-2 col-xs-2 lat-derecho">
         <div class="profile">
          
-          <div class="col-md-2 perfil" style="background-image:url(../apps/imgPerfil/1/jose manuel/logos.png)">
+          <div class="col-md-2 perfil" style="<?php echo $imgPerfilVeri; ?>">
                     <a href="../apps/editarPerfil.php">
                       <div class="piePerfil text-center" style="width: 100px; margin-top: -25px;">
                         <h5 style="margin-top: -10px;"><strong>Editar Perfil</strong></h5>

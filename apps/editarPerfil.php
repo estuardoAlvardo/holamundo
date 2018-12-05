@@ -9,7 +9,7 @@ $_SESSION['idUsuario'];
 /*-------*/
 $_SESSION["imgPerfil"];
 
-@$nivel1="../app/";
+//@$nivel1="../app/";
 
 if(empty($_SESSION["imgPerfil"])){
  $imgPerfilVeri="../img/profile.png";
@@ -61,6 +61,8 @@ $nivelDiver=3;
     
  <!-- jquery funcional -->
     <script src='../js/jquery.min.js'></script>
+
+
 
   </head>
   <body class="txt-fuente">
@@ -119,9 +121,13 @@ transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
          <div class="col-md-12 sombra" style="height:600px; margin-left:0px; margin-right: 70px; margin-bottom: 50px;">
           <form method="post" action="actualizarPerfil.php" enctype="multipart/form-data" accept="image-*">
-          <img style="float: left; margin-top: 20px;" src="<?php echo $imgPerfilVeri; ?>" width="100" height="100"><br><br><br><br><br><br><br><br>
-          <input type="file" name="fotoPerfilUsuario" style="opacity: 0;  margin-top: -15%; cursor: pointer; width: 100px; height: 100px; position: absolute; margin-left: 0px;"  >
-            
+          <img  style="float: left; margin-top: 40px;" src="<?php echo $imgPerfilVeri; ?>" width="100" height="100"><br><br><br><br><br><br><br><br>
+          
+          <h4 style="margin-top: -150px;">Cambiar por</h4>
+            <img id="blah" src="http://placehold.it/100" alt="your image" width="100" height="100" style="margin-top: 0px;" />
+          
+          <input  type="file" onchange="readURL(this);" name="fotoPerfilUsuario" style="opacity: 0;  margin-top: -15%; cursor: pointer; width: 100px; height: 100px; position: absolute; margin-left: 0px;"  ><br><br>
+          
           <h4 style="text-align: left">Nombre</h4>
           <input class="input-lg inputGeneral" type="text" name="nombreActualizar"  value="<?php echo $_SESSION["nombre"]; ?>" /><br><br><br>
 
@@ -159,7 +165,20 @@ transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
  
     <!-- Librería jQuery requerida por los plugins de JavaScript -->
     <script src="../js/jquery-3.2.1.js"></script>
+<script type="text/javascript">
+  function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
     <!-- Todos los plugins JavaScript de Bootstrap (también puedes
          incluir archivos JavaScript individuales de los únicos
          plugins que utilices) -->
