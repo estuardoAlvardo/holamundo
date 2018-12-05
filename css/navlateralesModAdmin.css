@@ -88,7 +88,7 @@ body{
 .mst-navegacion{
   text-align: center;
   height: 100px;
-  background:rgb(54, 171, 203);
+  background-color: #f1c40f;
   box-shadow: 10px 0px 20px;
   z-index: 5;
 }
@@ -114,11 +114,6 @@ font-family: 'Nunito Sans', sans-serif;*/
   background-size: contain;
 }
 
-.txt-mod-rol{
- margin-top:-15px;
- text-align: right;
- color:white;
-}
 
 
 /*CONTENIDO LATERAL DERECHO*/

@@ -1,5 +1,5 @@
  <?php
-$nameCole="Nombre de la Institucion";
+$nameCole="Colegio la Preparatoria";
 
   ?> 
 <!--NAVEGACION CONTENIDO FIJO -->
@@ -8,9 +8,11 @@ $nameCole="Nombre de la Institucion";
 	 <div class="row">
 	     <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12  mst-navegacion">
            <div class="col-md-12">
-              <h1 class="txt-fuente txt-colegio"><?php echo $nameCole; ?></h1>
-              <a href="#" ><img class="img-responsive btn-logo"  src="../img/image.png"/></a>                
-              <h4 class="txt-fuente txt-mod-rol"></h4>
+              <!-- en produccion se cambiara en base si el logo no tiene nombre 
+              <h1 class="txt-fuente txt-colegio" style="float:right;"><?php echo $nameCole; ?></h1>
+               -->
+              <a href="#" ><img style="margin:10px;" class="img-responsive" src="../img/logos.jpg" width="280" height="100"></a>                
+              
           </div>  
       </div>
 	 </div>

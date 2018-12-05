@@ -210,13 +210,17 @@ $cursoDiver->execute();
 
 <!--CENTRANDO CONTENIDO ROL 1 -->
 <div class="col-md-8 col-xs-8 pag-center">
+         <div class="col-md-12" style="">
+              <h3 class="text-center">Calendario de Actividades</h3>
+         </div>
         <div class="tabbable-panel" style="margin-top: 100px;">
         <div class="tabbable-line">
           <ul class="nav nav-tabs ">
             <li class="active">
               <a href="#tab_default_1" data-toggle="tab">
-              Calendario de Actividades </a>
+               </a>
             </li>
+            <!--
             <li>
               <a href="#tab_default_2" data-toggle="tab">
               Horarios </a>
@@ -225,13 +229,16 @@ $cursoDiver->execute();
               <a href="#tab_default_3" data-toggle="tab">
               Horarios de examen </a>
             </li>
+          -->
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab_default_1">
                <div id='calendar' class="col-md-11" style="margin-top: 50px;"></div>
             
             </div>
-            <div class="tab-pane" id="tab_default_2">
+
+
+<div class="tab-pane" id="tab_default_2">
             <table class="table">
     <thead>
       <tr>
