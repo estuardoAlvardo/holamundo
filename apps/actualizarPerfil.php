@@ -9,7 +9,7 @@ require("../conection/conexion.php");
 @$_POST['apellidoActualizar'];
 
 (string)$foto=$_FILES['fotoPerfilUsuario']['name'];
-(string)$ruta=$_FILES['fotoPerfilUsuario']['tmp_name'];
+(string)$ruta=$_FILES['fotoPerfilUsuario']['tmp_name']; 
 $directorio= "imgPerfil/".$_SESSION["idUsuario"];
 $destino= "imgPerfil/".$_SESSION["idUsuario"]."/".$foto;
 

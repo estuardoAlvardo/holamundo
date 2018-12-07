@@ -9,7 +9,8 @@ if(empty($_SESSION["imgPerfil"])){
 
 }
 
-//echo $imgPerfilVeri;
+ 
+
 
 ?>
 <style type="text/css">
