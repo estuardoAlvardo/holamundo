@@ -14,6 +14,20 @@ $misDocumentos=$dbConn->prepare($q1);
 $misDocumentos->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
 $misDocumentos->execute();
 
+//Buscar totos los archivos compartidos conmigo
+
+$q2 = ("SELECT * FROM atomodrivecompartir where idUsuarioCompartir=:idUsuario");
+$compartidosConmigo=$dbConn->prepare($q2);
+$compartidosConmigo->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
+$compartidosConmigo->execute();
+
+//Buscar totos que comparti
+$q5 = ("SELECT * FROM atomodrivecompartir where idUsuarioPropietario=:idUsuario");
+$compartidocon=$dbConn->prepare($q5);
+$compartidocon->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
+$compartidocon->execute();
+
+
 
 ?>
 
@@ -107,8 +121,7 @@ $misDocumentos->execute();
             
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="margin-left:50px;">
               <li "><a href="#" class="btnSubir">subir archivo</a></li>
-              <li><a href="#">Crear Carpeta</a></li>
-              <li><a href="#">Subir Carpeta</a></li>              
+              <li><a href="#">Subir Varios Archivos</a></li>              
             </ul>
           </div>
         </div>
@@ -141,8 +154,8 @@ $misDocumentos->execute();
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="margin-left: 50%;">
                           <li><a href="atomoDriveDescargar.php?file=<?php echo $row1['nombreArchivo']; ?>&id=<?php echo $_SESSION['idUsuario']; ?>">Descargar</a></li>
-                          <li><a href="#" onclick="compartir();">Compartir</a></li>
-                          <li><a href="#">Mover</a></li>            
+                          <li><a href="#" id="<?php echo $row1['idArchivo']; ?>" onclick="compartir(this.id);">Compartir</a></li>
+                          <li><a href="#" id="<?php echo $row1['idArchivo']; ?>" onclick="eliminarArchivosss(this.id);">Eliminar</a></li>  
                         </ul>
                         </div>
                     </td>
@@ -159,113 +172,121 @@ $misDocumentos->execute();
         <div>
                   <table class="table table-hover">
                 <thead>
-                  <tr>
+                        
+                  <tr>                      
                    
-                    <th scope="col">Nombre</th>
+                    <th scope="col">Nombre Archivo</th>
                     <th scope="col">Propietario</th>
                     <th scope="col">Tamaño Archivo</th>
                   </tr>
                 </thead>
+                  <?php     while($row2=$compartidosConmigo->fetch(PDO::FETCH_ASSOC)){
+
+                $q3 = ("SELECT * FROM atomodrive where idArchivo=:idArchivo");
+                $detalleArchivoCompartir=$dbConn->prepare($q3);
+                $detalleArchivoCompartir->bindParam(':idArchivo',$row2['idArchivo'], PDO::PARAM_INT); 
+                $detalleArchivoCompartir->execute();
+
+               while($row3=$detalleArchivoCompartir->fetch(PDO::FETCH_ASSOC)){
+
+
+                $q4 = ("SELECT * FROM usuarios where idUsuario=:idUsuario");
+                $detalleUsuarioCompartio=$dbConn->prepare($q4);
+                $detalleUsuarioCompartio->bindParam(':idUsuario',$row3['idUsuario'], PDO::PARAM_INT); 
+                $detalleUsuarioCompartio->execute();
+
+                while($row4=$detalleUsuarioCompartio->fetch(PDO::FETCH_ASSOC)){
+
+
+                 ?>
                 <tbody class="text-left">
                   <tr>                    
-                    <td>texto-comunicacion-y-lenguaje-1er_grado.pdf
+                    <td><?php echo $row3['nombreArchivo']; ?>
                        <div class="dropdown botonAgg botonAgg-1" >
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: #8e44ad; color: white; border:white;">
                           
                           <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="margin-left: 50%;">
-                          <li><a href="#">Compartir</a></li>
-                          <li><a href="#">Mover</a></li>            
+                          <li><a href="atomoDriveDescargar.php?file=<?php echo $row3['nombreArchivo']; ?>&id=<?php echo $row3['idUsuario']; ?>">Descargar</a></li>
+                          <li><a href="#" id="<?php echo $row2['idArchivo']; ?>" onclick="eliminarCompartir(this.id);">Eliminar</a></li>            
                         </ul>
                         </div>
                     </td>
-                    <td>yo</td>
-                    <td>150 Kb</td>
+                    <td><?php echo $row4['nombre']." ".$row4['apellido']; ?></td>
+                    <td><?php echo $row3['peso']; ?></td>
                   </tr>
-                  <tr>                    
-                    <td>Orden_Pago_Jéssica-Morales.pdf
-                       <div class="dropdown botonAgg botonAgg-1" >
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: #8e44ad; color: white; border:white;">
-                          
-                          <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="margin-left: 50%;">
-                          <li><a href="#">Compartir</a></li>
-                          <li><a href="#">Mover</a></li>            
-                        </ul>
-                        </div>
-                    </td>
-                    <td>yo</td>
-                    <td>663 Kb</td>
-                  </tr>
-                  
+                    <?php } 
+                  }
+
+                }
+                   ?>         
                 </tbody>
               </table>
         </div><br>
 
-        <h4 class="text-left col-md-3 botonAgg-1" style="background-color: #16a085; color: white; border-radius: 50px;">Coordinación <i class="glyphicon glyphicon-transfer"></i></h4><br><br><hr>
+        <h4 class="text-left col-md-3 botonAgg-1" style="background-color: #16a085; color: white; border-radius: 50px;">Compartidos con: <i class="glyphicon glyphicon-transfer"></i></h4><br><br><hr>
         <div>
                  <table class="table table-hover">
                 <thead>
                   <tr>
                    
-                    <th scope="col">Nombre</th>
+                    <th scope="col">Nombre Archivo</th>
                     <th scope="col">Propietario</th>
+                    <th scope="col">Se compartio a:</th>
                     <th scope="col">Tamaño Archivo</th>
                   </tr>
                 </thead>
                 <tbody class="text-left">
+                  <?php while($row5=$compartidocon->fetch(PDO::FETCH_ASSOC)){                
+                     
+                      //en este ciclo accedo a la tabla atomodrivecompartir
+                       $q6 = ("SELECT * FROM usuarios where idUsuario=:idUsuario");
+                      $usuarioCompartido=$dbConn->prepare($q6);
+                      $usuarioCompartido->bindParam(':idUsuario',$row5['idUsuarioCompartir'], PDO::PARAM_INT); 
+                      $usuarioCompartido->execute();
+
+                      while($row6=$usuarioCompartido->fetch(PDO::FETCH_ASSOC)){
+                                             
+                      //en este ciclo accedo a la tabla usuarios
+
+                      $q7 = ("SELECT * FROM atomodrive where idArchivo=:idArchivo");
+                      $detalleComparti=$dbConn->prepare($q7);
+                      $detalleComparti->bindParam(':idArchivo',$row5['idArchivo'], PDO::PARAM_INT); 
+                      $detalleComparti->execute();
+                       while($row7=$detalleComparti->fetch(PDO::FETCH_ASSOC)){
+                      
+                       //en este cilo accedo a la tabla atomodrive
+                    
+                 ?> 
                   <tr>                    
-                    <td>texto-comunicacion-y-lenguaje-1er_grado.pdf
+                    <td><?php echo $row7['nombreArchivo']; ?>
                        <div class="dropdown botonAgg botonAgg-1" >
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: #16a085; color: white; border:white;">
                           
                           <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="margin-left: 50%;">
-                          <li><a href="#">Compartir</a></li>
-                          <li><a href="#">Mover</a></li>            
+                          <li><a href="#" id="<?php echo $row5['idArchivo']; ?>" onclick="eliminarCompartirA(this.id);">Eliminar</a></li>             
                         </ul>
                         </div>
                     </td>
                     <td>yo</td>
-                    <td>150 Kb</td>
+                    <td><?php echo $row6['nombre']." ".$row6['apellido']; ?></td>
+                    <td><?php echo $row7['peso']; ?></td>
                   </tr>
-                  <tr>                    
-                    <td>Orden_Pago_Jéssica-Morales.pdf
-                       <div class="dropdown botonAgg botonAgg-1" >
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: #16a085; color: white; border:white;">
-                          
-                          <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="margin-left: 50%;">
-                          <li><a href="#">Compartir</a></li>
-                          <li><a href="#">Mover</a></li>            
-                        </ul>
-                        </div>
-                    </td>
-                    <td>yo</td>
-                    <td>663 Kb</td>
-                  </tr>
-                  
+                  <?php     }
+                        }
+                    }
+                     ?>
                 </tbody>
+
               </table>
         </div><br>
+      </div>
 
-         <h4 class="text-left col-md-3 botonAgg-1" style="background-color: #16a085; color: white; border-radius: 50px;">Orientación <i class="glyphicon glyphicon-transfer"></i></h4><br><br><hr>
-         <div>
-         Ningun archivo compartidos con orientacion.
-        </div><br>
+      
 
-         <h4 class="text-left col-md-3 botonAgg-1" style="background-color: #16a085; color: white; border-radius: 50px;">Secretaria <i class="glyphicon glyphicon-transfer"></i></h4><br><br><hr>
-         <div>
-         Ningun archivo compartidos con Secretaria
-        </div><br>
-
-        
-
-		</div>
 		   <div id="crearLeccion"  class="miVentanaCss">
             <div class="row">
               <div class="col-md-11 text-left" style=" margin-left:0; padding-bottom:5px; ">
@@ -273,47 +294,114 @@ $misDocumentos->execute();
                 <br><br>                
                   <label style="color: black;" class="col-sm-12 control-label archivoSelec" style="text-align: center; display: none;"></label>  
                  <br>
-                  
-                                   
-                </form>
+                              
               </div>
             </div>
             <br> 
             <div class="row" >
               <div class="col-md-5"></div>
               <input style="  background-color: #2980b9; border:1px solid #2980b9; padding: 2px; border-radius: 5px;" type="submit" name="enviar" value="GUARDAR" class="col-md-3 botonAgg-1"> 
-            <button class="col-md-3 botonAgg-1" onclick="ocultarLeccion()" style="margin-left:10px; background-color: #e74c3c; border:1px solid #e74c3c; padding: 2px; border-radius: 5px; ">CANCELAR</button>  
-            
-            </div>       
-     
+              </form>
+            <button class="col-md-3 botonAgg-1" onclick="ocultarLeccion()" style="margin-left:10px; background-color: #e74c3c; border:1px solid #e74c3c; padding: 2px; border-radius: 5px; ">CANCELAR</button>            
+            </div>    
       </div>
+
+
+      <div id="eliminarArchivo"  class="miVentanaCss" style="background-color: #e74c3c;">
+            <div class="row">
+              <div class="col-md-11 text-left" style=" margin-left:0; padding-bottom:5px; ">
+                <h4 class="text-center">¿Deseas Eliminar el archivo?</h4>                              
+              <form action="atomDriveEliminar.php?primaryTable=1" method="post">
+                <input style="margin-left: 30px; display: none;" class="col-md-6 form-control seleccionado" type="text"  name="idArchivoEliminar" id="rellenarEliminar"  required><br> 
+                                               
+              </div>
+            </div>
+            <br> 
+            <div class="row" >
+              <div class="col-md-5"></div>
+              <input style="  background-color: #2980b9; border:1px solid #2980b9; padding: 2px; border-radius: 5px;" type="submit" name="enviar2" value="Si quiero eliminar" class="col-md-3 botonAgg-1"> 
+              </form>
+            <button class="col-md-3 botonAgg-1" onclick="ocultarEliminarA()" style="margin-left:10px; background-color: #e67e22; border:1px solid #e67e22; padding: 2px; border-radius: 5px; ">CANCELAR</button>            
+            </div>    
+      </div>
+
+      <div id="eliminarCompartir"  class="miVentanaCss" style="background-color: #e74c3c;">
+            <div class="row">
+              <div class="col-md-11 text-left" style=" margin-left:0; padding-bottom:5px; ">
+                <h4 class="text-center">¿Deseas Eliminar el archivo compartido conmigo?</h4>                              
+              <form action="atomDriveEliminar.php?primaryTable=2" method="post">
+                <input style="margin-left: 30px; display: none;" class="col-md-6 form-control seleccionado" type="text"  name="idArchivoEliminar" id="rellenarEliminarC"  required><br> 
+                                               
+              </div>
+            </div>
+            <br> 
+            <div class="row" >
+              <div class="col-md-5"></div>
+              <input style="  background-color: #2980b9; border:1px solid #2980b9; padding: 2px; border-radius: 5px;" type="submit" name="enviar2" value="Si quiero eliminar" class="col-md-3 botonAgg-1"> 
+              </form>
+            <button class="col-md-3 botonAgg-1" onclick="ocultarEliminarC()" style="margin-left:10px; background-color: #e67e22; border:1px solid #e67e22; padding: 2px; border-radius: 5px; ">CANCELAR</button>            
+            </div>    
+      </div>
+
+
+            <div id="eliminarCompartirA"  class="miVentanaCss" style="background-color: #e74c3c;">
+            <div class="row">
+              <div class="col-md-11 text-left" style=" margin-left:0; padding-bottom:5px; ">
+                <h4 class="text-center">¿Deseas Eliminar el archivo que has compartido?</h4>                              
+              <form action="atomDriveEliminar.php?primaryTable=2" method="post">
+                <input style="margin-left: 30px; display: none;" class="col-md-6 form-control seleccionado" type="text"  name="idArchivoEliminar" id="rellenarEliminarA"  required><br> 
+                                               
+              </div>
+            </div>
+            <br> 
+            <div class="row" >
+              <div class="col-md-5"></div>
+              <input style="  background-color: #2980b9; border:1px solid #2980b9; padding: 2px; border-radius: 5px;" type="submit" name="enviar2" value="Si quiero eliminar" class="col-md-3 botonAgg-1"> 
+              </form>
+            <button class="col-md-3 botonAgg-1" onclick="ocultarEliminarA()" style="margin-left:10px; background-color: #e67e22; border:1px solid #e67e22; padding: 2px; border-radius: 5px; ">CANCELAR</button>            
+            </div>    
+      </div>
+
+
 
 
          <div id="compartir"  class="miVentanaCss" style=" background-color: #16a085;">
             <div class="row">
               <div class="col-md-11 text-left" style=" margin-left:0; padding-bottom:5px; ">
-                <h4 class="text-center">Ingresa el correo para compartir :) </h4>
-                <br>               
-                   <input style="margin-left: 30px;" class=" col-md-6 form-control" type="text"  name="nombreLeccion" placeholder="Ingrese Correo" required><br>                  
-             
-              </div>
-            </div>
-            <br> 
-            <div class="row" >
-              <div class="col-md-5"></div>
-              <input style="  background-color: #2980b9; border:1px solid #2980b9; padding: 2px; border-radius: 5px;" type="submit" name="enviar" value="GUARDAR" class="col-md-3 botonAgg-1"> 
-            <button class="col-md-3 botonAgg-1" onclick="ocultarCompartir()" style="margin-left:10px; background-color: #e74c3c; border:1px solid #e74c3c; padding: 2px; border-radius: 5px; ">CANCELAR</button>  
-            
-            </div>       
-     
-      </div>  
-          
-      </div>
-              <script type="text/javascript">
-            $('.btnSubir').click(function(event) {
+                <h4 class="text-center">Selecciona la carpeta o ingresa correo</h4>
+                <br> 
+                <div style="margin-left: 35px;">
+                  <!-- oculto para alumno mostrar para otros roles--->
+                <label id="1" class="radio-inline botonAgg-1 col-md-4" name="1" onclick="seleccionarCarpeta(this.id);" style="border-radius:10px; background-color:#eb2f06; display: none;">Coordinación</label>
+               <label id="2" class="radio-inline botonAgg-1 col-md-3" name="2" onclick="seleccionarCarpeta(this.id)" style="border-radius:10px; background-color:#eb2f06; display: none;"> Orientación </label>
+               <label id="3" class="radio-inline botonAgg-1 col-md-3" name="3" onclick="seleccionarCarpeta(this.id)"  style="border-radius:10px; background-color:#eb2f06; display: none;">Secretaria</label>
+               <!-- oculto para alumno mostrar para otros roles--->
+              <form action="atomDriveCompartir.php" method="post">
+                  <input type="radio" id="11" name="carpetasD" value="Coordinacion" style="display:none;">
+                  <input type="radio" id="22" name="carpetasD" value="Orientacion" style="display: none;" >
+                  <input type="radio" id="33" name="carpetasD" value="Secretaria" style="display: none">
+                 </div> 
+                  <br>
+                  <br>
+                  <input type="text" name="idArchivoEnviar" id="archivoId" style="display: none;">
+                   <input style="margin-left: 30px;" class="col-md-6 form-control seleccionado" type="text"  name="correo" placeholder="Ingrese Correo" required><br> 
+                <div class="row" style="margin-top: 50px;" >
+                <div class="col-md-5"></div>              
+                  <input style="  background-color: #2980b9; border:1px solid #2980b9; padding: 2px; border-radius: 5px;" type="submit" name="enviar" value="COMPARTIR" class="col-md-3 botonAgg-1"> 
+                </form>
+                <button class="col-md-3 botonAgg-1" onclick="ocultarCompartir()" style="margin-left:10px; background-color: #e74c3c; border:1px solid #e74c3c; padding: 2px; border-radius: 5px; ">CANCELAR</button>               
+            </div>  
+          </div> 
+        </div>         
+     </div>  
+    </div>
+              
+
+<script type="text/javascript">
+         $('.btnSubir').click(function(event) {
          $('.subirArchivo').click();
         });
-            //capture selected filename
+            //capture selected filename 
         $('.subirArchivo').change(function(click) {
           var body =  document.getElementById('fondoModal');
             var ventana = document.getElementById('crearLeccion');
@@ -336,13 +424,17 @@ $misDocumentos->execute();
           }
 
 
-  function compartir(){
-    var body =  document.getElementById('fondoModal');
+  function compartir(clicked_id){
+
+            var archivo=clicked_id;
+            //alert(archivo);
+            var body =  document.getElementById('fondoModal');
             var ventana = document.getElementById('compartir');
             ventana.style.marginTop = "100px";
             ventana.style.left = ((document.body.clientWidth-500) / 2) +  "px";
             ventana.style.display = 'block';
             body.style.filter="blur(10px)";
+            $("#archivoId").val(archivo);
 
   }  
   function ocultarCompartir()
@@ -353,8 +445,121 @@ $misDocumentos->execute();
              
               ventana.style.display = 'none';
               body.style.filter="blur(0px)";
-          }      
+          }   
 
+   //funciones para compartir archivo
+   
+  function seleccionarCarpeta(clicked_id){
+
+     var carpeta=clicked_id;
+     var nuevaCarpeta=parseInt(carpeta);
+      //alert(nuevaCarpeta);
+
+    if(nuevaCarpeta==1){
+      var nombreCarpeta="coordinacion";
+      $('.seleccionado').val("@"+nombreCarpeta);
+      $('input:radio[name=carpetasD]')[0].checked = true;
+    }
+    if(nuevaCarpeta==2){
+      var nombreCarpeta="orientacion";
+      $('.seleccionado').val("@"+nombreCarpeta);
+      $('input:radio[name=carpetasD]')[1].checked = true;
+    }
+    if(nuevaCarpeta==3) {
+      var nombreCarpeta="secretaria";
+      $('.seleccionado').val("@"+nombreCarpeta);
+      $('input:radio[name=carpetasD]')[2].checked = true;
+    }
+   }   
+
+
+   function eliminarArchivosss(clicked_id){
+    
+    
+
+          var idNewid=clicked_id;
+            //alert(archivo);
+            var body =  document.getElementById('fondoModal');
+            var ventana = document.getElementById('eliminarArchivo');
+            ventana.style.marginTop = "100px";
+            ventana.style.left = ((document.body.clientWidth-500) / 2) +  "px";
+            ventana.style.display = 'block';
+            body.style.filter="blur(10px)";
+           $("#rellenarEliminar").val(idNewid);
+
+           
+      
+
+       } 
+
+
+   function ocultarEliminarA(){
+
+      var body =  document.getElementById('fondoModal');
+              var ventana = document.getElementById('eliminarArchivo');
+             
+              ventana.style.display = 'none';
+              body.style.filter="blur(0px)";
+   } 
+
+
+   function eliminarCompartir(clicked_id){
+    
+    
+
+          var idNew1=clicked_id;
+            //alert(archivo);
+            var body =  document.getElementById('fondoModal');
+            var ventana = document.getElementById('eliminarCompartir');
+            ventana.style.marginTop = "100px";
+            ventana.style.left = ((document.body.clientWidth-500) / 2) +  "px";
+            ventana.style.display = 'block';
+            body.style.filter="blur(10px)";
+           $("#rellenarEliminarC").val(idNew1);
+
+           
+      
+
+       } 
+
+
+   function ocultarEliminarC(){
+
+             var body =  document.getElementById('fondoModal');
+              var ventana = document.getElementById('eliminarCompartir');
+             
+              ventana.style.display = 'none';
+              body.style.filter="blur(0px)";
+   }           
+
+   function eliminarCompartirA(clicked_id){
+    
+    
+
+          var idNew2=clicked_id;
+            //alert(archivo);
+            var body =  document.getElementById('fondoModal');
+            var ventana = document.getElementById('eliminarCompartirA');
+            ventana.style.marginTop = "100px";
+            ventana.style.left = ((document.body.clientWidth-500) / 2) +  "px";
+            ventana.style.display = 'block';
+            body.style.filter="blur(10px)";
+           $("#rellenarEliminarA").val(idNew2);
+
+           
+      
+
+       } 
+
+
+   function ocultarEliminarA(){
+
+             var body =  document.getElementById('fondoModal');
+              var ventana = document.getElementById('eliminarCompartirA');
+             
+              ventana.style.display = 'none';
+              body.style.filter="blur(0px)";
+   }    
         </script>
 
 
