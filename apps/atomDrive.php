@@ -4,7 +4,7 @@ session_start();
 
 require("../conection/conexion.php");
 
-$_SESSION['idUsuario'];
+
 
 
 //Buscar todos los cursos de este usuario primaria

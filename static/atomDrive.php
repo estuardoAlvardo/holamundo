@@ -6,6 +6,8 @@ $curso="";
 $leccionRealizada=1; // varaiable dependera del uso en la base de datos
 $leccionPendiente=4; // variable dependera del uso en la bd 
 
+$_SESSION["idUsuario"];
+
 require("../conection/conexion.php");
 
 $_SESSION['idUsuario'];

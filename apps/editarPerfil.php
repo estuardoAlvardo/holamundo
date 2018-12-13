@@ -129,10 +129,10 @@ transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
          <div class="col-md-12 sombra" style="min-height:600px; margin-left:0px; margin-right: 70px; margin-bottom: 50px;">
           <img src="../img/edicion.gif" width="50" height="50" style="float: right;">
           <form method="post" action="actualizarPerfil.php" enctype="multipart/form-data" accept="image-*">
-          <img class="card-1"  style="float: left; margin-top: 40px;" src="<?php echo $imgPerfilVeri; ?>" width="100" height="100"><br><br><br><br><br><br><br><br>
+          <img class="card-1"  style="float: left; margin-top: 40px; border-radius: 10px;" src="<?php echo $imgPerfilVeri; ?>" width="100" height="100"><br><br><br><br><br><br><br><br>
           
           <h4  class="cambioV" style="margin-top: -150px; margin-right:400px; display: none;">imagen preparada</h4>
-            <img   id="blah" class="cambioV" src="http://placehold.it/100" alt="your image" width="100" height="100" style="margin-top: 0px; margin-left: -400px; display: none;" />
+            <img   id="blah" class="cambioV" src="http://placehold.it/100" alt="your image" width="100" height="100" style="margin-top: 0px; margin-left: -400px; display: none; border-radius: 10px;" />
           
           <input  type="file" onclick="func1();" onchange="readURL(this);" name="fotoPerfilUsuario" style="opacity:0;  margin-top: -15%; cursor: pointer; width: 100px; height: 100px; position: absolute; margin-left: 0px;"  ><br><br>
           

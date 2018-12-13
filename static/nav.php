@@ -1,6 +1,6 @@
  <?php
 $nameCole="Colegio la Preparatoria";
-
+$_SESSION['tipoUsuario'];
   ?> 
 <!--NAVEGACION CONTENIDO FIJO -->
 
@@ -11,7 +11,9 @@ $nameCole="Colegio la Preparatoria";
               <!-- en produccion se cambiara en base si el logo no tiene nombre 
               <h1 class="txt-fuente txt-colegio" style="float:right;"><?php echo $nameCole; ?></h1>
                -->
-              <a href="#" ><img style="margin:10px;" class="img-responsive" src="../img/logos.jpg" width="280" height="100"></a>                
+             
+              <a href="#" ><img style="margin:10px;" class="img-responsive" src="../img/logos.jpg" width="280" height="100"></a>   
+
               
           </div>  
       </div>

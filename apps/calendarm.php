@@ -8,58 +8,18 @@ $leccionPendiente=4; // variable dependera del uso en la bd
 
 require("../conection/conexion.php");
 
-$_SESSION['idUsuario'];
+$_SESSION['tipoUsuario'];
 
-
-
-//$sql1 = ("SELECT * FROM registrocl2p2 where idIntento=:idIntento");
-//$obtenerMatriz=$dbConn->prepare($sql1);
-//$obtenerMatriz->bindParam(':idIntento', $_GET['idIntento'], PDO::PARAM_INT); 
-//$obtenerMatriz->execute();
-
-//variables de niveles
-$nivelPrimaria=1;
-$nivelBasico=2;
-$nivelDiver=3;
-
-//Buscar todos los cursos de este usuario primaria
-
-$q1 = ("SELECT * FROM cursos where idDocente=:idUsuario and nivel=:nivel");
-$cursosPrimaria=$dbConn->prepare($q1);
-$cursosPrimaria->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
-$cursosPrimaria->bindParam(':nivel',$nivelPrimaria, PDO::PARAM_INT); 
-$cursosPrimaria->execute();
-
-//Buscar todos los cursos de este usuario Basicos
-
-$q2= ("SELECT * FROM cursos where idDocente=:idUsuario and nivel=:nivel");
-$cursoBasico=$dbConn->prepare($q2);
-$cursoBasico->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
-$cursoBasico->bindParam(':nivel',$nivelBasico, PDO::PARAM_INT); 
-$cursoBasico->execute();
-
-
-//Buscar todos los cursos de este usuario Diversificado
-
-$q3 = ("SELECT * FROM cursos where idDocente=:idUsuario and nivel=:nivel");
-$cursoDiver=$dbConn->prepare($q3);
-$cursoDiver->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
-$cursoDiver->bindParam(':nivel',$nivelDiver, PDO::PARAM_INT); 
-$cursoDiver->execute();
-
-
-
-//funcion encargada de asignar imagen segun primer letra del nombre del curso
 
  ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
-    <title><?php echo $_SESSION["nombre"]; ?> | Mis Cursos</title>
+    <title><?php echo $_SESSION["nombre"]; ?> | Mis Actividades</title>
  
     <!-- CSS de Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -88,8 +48,11 @@ $cursoDiver->execute();
 <script>
 
   $(document).ready(function() {
+  var tipoUsuario= $('#obtenerUsuairio').val();
+  
+    if(tipoUsuario==2){
 
-    $('#calendar').fullCalendar({
+      $('#calendar').fullCalendar({
         header:{
           left:'today,prev,next',
           center:'title',
@@ -145,8 +108,56 @@ $cursoDiver->execute();
 
       
     });
+      
+    }
+
+    if(tipoUsuario=1){
+     $('#calendar').fullCalendar({
+        header:{
+          left:'today,prev,next',
+          center:'title',
+          right: 'month, agendaWeek, agendaDay'
+        },        
+        eventClick:function(calEvent,jsEvent,view){
+           $("#btnAgregar").prop('disabled',true);
+          $("#btnModificar").prop('disabled',false);
+          $("#btnBorrar").prop('disabled',false);
+
+
+          $('#id').val(calEvent.id);
+          $('#titulo').val(calEvent.title);
+          $('#descripcion').val(calEvent.descripcion);
+          var fechaHora=calEvent.start._i.split(" ");          
+          $('#fecha').val(fechaHora[0]);
+          $('#hora').val(fechaHora[1]);
+          $('#color').val(calEvent.color);
+          $('#crearEvento').modal();
+
+        },
+        editable:true,
+        eventDrop:function(calEvent){
+          $('#id').val(calEvent.id);
+          $('#titulo').val(calEvent.title);
+          $('#descripcion').val(calEvent.descripcion);
+          var fechaHora=calEvent.start.format().split("T");          
+          $('#fecha').val(fechaHora[0]);
+          $('#hora').val(fechaHora[1]);
+          $('#color').val(calEvent.color);
+          datos();
+          enviarDatos('modificar',NuevoEvento,true);
+
+        }
+        
+
+      
+    });
+
+    }
+
+ 
 
   });
+
 
 </script>
 <style>
@@ -212,6 +223,7 @@ $cursoDiver->execute();
 <div class="col-md-8 col-xs-8 pag-center">
          <div class="col-md-12" style="">
               <h3 class="text-center">Calendario de Actividades</h3>
+              <input type="text" id="obtenerUsuairio" name="idUsuario" value="<?php echo $_SESSION['tipoUsuario']; ?>" style="display: none;">
          </div>
         <div class="tabbable-panel" style="margin-top: 100px;">
         <div class="tabbable-line">
@@ -237,171 +249,10 @@ $cursoDiver->execute();
             
             </div>
 
-
-<div class="tab-pane" id="tab_default_2">
-            <table class="table">
-    <thead>
-      <tr>
-        <th>Horario</th>
-        <th>Domingo</th>
-        <th>Lunes</th>
-        <th>Martes</th>
-        <th>Miercoles</th>
-        <th>Jueves</th>
-        <th>Viernes</th>
-        <th>Sabado</th>        
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>8:00 am</td>
-        <td>--</td>
-        <td>Matematicas</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>--</td>
-      </tr>      
-      <tr class="success">
-          <td>9:00 am</td>
-        <td>--</td>
-        <td>Matematicas</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>--</td>
-      </tr>
-      <tr class="danger">
-        <td>10:00 am</td>
-        <td>--</td>
-        <td>Matematicas</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>--</td>
-      </tr>
-      <tr class="info">
-        <td>11:00 am</td>
-        <td>--</td>
-        <td>Matematicas</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>--</td>
-      </tr>
-      <tr class="warning">
-        <td>12:00 am</td>
-        <td>--</td>
-        <td>Matematicas</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>--</td>
-      </tr>
-      <tr class="active">
-        <td>1:00 pm</td>
-        <td>--</td>
-        <td>Matematicas</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>--</td>
-      </tr>
-    </tbody>
-  </table>
-
-              
-            </div>
-            <div class="tab-pane" id="tab_default_3">
-            <table class="table">
-    <thead>
-      <tr>
-        <th>Horario</th>
-        <th>Domingo</th>
-        <th>Lunes</th>
-        <th>Martes</th>
-        <th>Miercoles</th>
-        <th>Jueves</th>
-        <th>Viernes</th>
-        <th>Sabado</th>        
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>8:00 am</td>
-        <td>--</td>
-        <td>Matematicas</td>
-        <td>Sociales</td>
-        <td>--</td>
-        <td>Sociales</td>
-        <td>--</td>
-        <td>--</td>
-      </tr>      
-      <tr class="success">
-          <td>9:00 am</td>
-        <td>--</td>
-        <td>--</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>---</td>
-        <td>Sociales</td>
-        <td>--</td>
-      </tr>
-      <tr class="danger">
-        <td>10:00 am</td>
-        <td>--</td>
-        <td>Matematicas</td>
-        <td>---</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>--</td>
-        <td>--</td>
-      </tr>
-      <tr class="info">
-        <td>11:00 am</td>
-        <td>--</td>
-        <td>Matematicas</td>
-        <td>Sociales</td>
-        <td>--</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>--</td>
-      </tr>
-      <tr class="warning">
-        <td>12:00 am</td>
-        <td>--</td>
-        <td>--</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>--</td>
-        <td>Sociales</td>
-        <td>--</td>
-      </tr>
-      <tr class="active">
-        <td>1:00 pm</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>Sociales</td>
-        <td>Sociales</td>
-        <td>--</td>
-        <td>--</td>
-      </tr>
-    </tbody>
-  </table>
-              
-            </div>
           </div>
         </div>
-      </div>
- 
-<div/>
+      </div> 
+  <div/>
 
 </div>
 

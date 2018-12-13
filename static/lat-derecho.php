@@ -62,6 +62,11 @@ color:white;
 padding-top: -13px;
 width: 181px;
 }
+
+
+.card1100{
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
 </style>
 <!--LATERAL DERECHO CONTENIDO FIJO -->
 			<div class="col-md-2 col-xs-2 lat-derecho">
@@ -94,9 +99,10 @@ width: 181px;
           <div class="item  active"  >
             <div class="row" >
               
-              <div class="col-md-12" style = "width:100%">
-                <div class="alert alert-info">
-					Aqui mandamos un Mensaje directo a todos los estudiantes
+              <div class="col-md-12" style = "width:100%;">
+                <div class="alert alert-default botonAgg card1100" style="width: 100%;  background-color: #f1c40f;">
+					<h4>Circular Direccion</h4>
+          <div>este es un mensaje enviar por dirección</div>
 
                 </div>
               </div>        
@@ -106,8 +112,9 @@ width: 181px;
             <div class="row">
               
               <div class="col-md-12"  style = "width:100%">
-                <div class="alert alert-success">
-					Aqui mandamos un Mensaje directo a todos los maestros
+                <div class="alert alert-default botonAgg card1100" style=" background-color:#e67e22;">
+      					<h4>Circular Docente</h4>
+                <p>este es un mensaje enviar por dirección</p>
 
                 </div>
               </div>        
@@ -117,16 +124,18 @@ width: 181px;
             <div class="row">
               
               <div class="col-md-12"  style = "width:100%">
-                <div class="alert alert-warning">
-					Aqui mandamos un Mensaje directo a todos los maestros
+                <div class="alert alert-default botonAgg card1100" style=" background-color:#d35400;">
+					<h4>Circular para Padres</h4>
+                <p> es un mensaje enviar por direccióneste es un mensaje enviar por dirección</p>
 
                 </div>
               </div>      
             </div>
           </div>
         </div>
-        <a data-slide="prev" href="#media" class="left carousel-control" style="margin-top:100%; margin-left:30%;">‹</a>
-        <a data-slide="next" href="#media" class="right carousel-control" style="margin-top:100%; margin-right:40%;">›</a>
+       
+        <a data-slide="prev" href="#media" class="left carousel-control" style="margin-top:30px; margin-left:30%;">‹</a>
+        <a data-slide="next" href="#media" class="right carousel-control" style="margin-top:30px; margin-right:40%;">›</a>
       </div>                          
  
  
