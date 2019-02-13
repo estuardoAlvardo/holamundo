@@ -85,7 +85,7 @@ $actividadTarea=$dbConn->prepare($q5);
               <!-- //NAVEGACION CONTENIDO FIJO -->
 
               <!-- LATERAL IZQUIERDO CONTENIDO FIJO -->
-               <?php include '../static/lat-izquierdo.php'; ?>
+               <?php include '../static/lat-izquierdo.php';  $nivel=1; directoriosNiveles($nivel);?>
               <!-- //LATERAL IZQUIERDO CONTENIDO FIJO -->
 
               <!--CENTRANDO CONTENIDO ROL 1 -->
@@ -148,10 +148,10 @@ $actividadTarea=$dbConn->prepare($q5);
                 <?php while($row1=$datosCurso->fetch(PDO::FETCH_ASSOC)){                
                   if(empty($row1['portada'])){
                  ?> 
-                <div class="portadaCurso col-md-6" style="height: 370px;">                
-                      <img src="img/subirPortada.png" width="100" height="100" style="margin-left: -50px; margin-top: 40%; cursor: pointer;">
+                <div class="portadaCurso col-md-6" style="height: 370px; background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);">                
+                      <img src="../img/subirPortada.png" width="100" height="100" style="margin-left: -50px; margin-top: 40%; cursor: pointer; ">
                       <form action="subirImagen.php" method="post" enctype="multipart/form-data" accept="image-*">
-                          <input type="file" name="portada" style="opacity: 0;  margin-top: -6%; cursor: pointer; width: 100px; height: 100px; position: absolute; margin-left: -70px;" required >
+                          <input type="file" name="portada" style="opacity:0;  margin-top: -16%; cursor: pointer; width: 100px; height: 100px; position: absolute; margin-left:110px;" required >
                           <input type="text" name="idDocente" value="<?php echo $_SESSION['idUsuario'];  ?>" style="display: none"> 
                           <input type="text" name="nombreCurso" value="<?php echo $_GET['nombreCurso'];  ?>" style="display: none">
                           <input type="text" name="idCurso" value="<?php echo $_GET['idCurso'];  ?>" style="display: none"><br><br><br><br>
@@ -212,7 +212,7 @@ $actividadTarea=$dbConn->prepare($q5);
 
 
             <div class=" col-md-1" style="margin-top: 50px;">
-              <img  class="plus" src="img/plus.png" width="60" height="60" style="" title="Crear Una lección" onclick="crearLeccion()"> 
+              <img  class="plus" src="../img/plus.png" width="60" height="60" style="" title="Crear Una lección" onclick="crearLeccion()"> 
               <br>
               <br>
               <a href="../cursosDocente/misCursos.php" class="btn btn-warning">Volver al curso</a>          
@@ -513,8 +513,9 @@ $actividadTarea=$dbConn->prepare($q5);
                 </form>
               </div>
             </div>
-            <br>            
-            <button class="btn btn-danger" onclick="ocultarVentana2()" style="margin-left:85%; margin-top:-100px;">cerrar</button>           
+            <br>  
+                   
+            <button class="btn btn-danger"  onclick="ocultarVentana3()" style="margin-left:85%; margin-top:50px;">cerrar</button>           
         </div>  
 
           <div id="recursos"  class="miVentanaCss" style="background-image: linear-gradient(to top, #f43b47 0%, #453a94 100%);" >
@@ -610,8 +611,8 @@ $actividadTarea=$dbConn->prepare($q5);
       var body =  document.getElementById('fondoModal');
         var ventana = document.getElementById('miVentana');
         ventana.style.marginTop = "50px";
-        ventana.style.width="900px";
-        ventana.style.left = ((document.body.clientWidth-900) / 2) +  "px";
+        ventana.style.width="800px";
+        ventana.style.left = ((document.body.clientWidth-800) / 2) +  "px";
         ventana.style.display = 'block';
         body.style.filter="blur(10px)";        
         var idLeccionEn =clicked_id;
@@ -643,7 +644,7 @@ function ocultarVentana()
 }
 
 
-function ocultarVentana2()
+function ocultarVentana3()
 {
   var body =  document.getElementById('fondoModal');
     var ventana = document.getElementById('crearLeccion');

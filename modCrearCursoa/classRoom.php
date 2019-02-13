@@ -83,7 +83,7 @@ $actividadTarea=$dbConn->prepare($q5);
               <!-- //NAVEGACION CONTENIDO FIJO -->
 
               <!-- LATERAL IZQUIERDO CONTENIDO FIJO -->
-               <?php include '../static/lat-izquierdo.php'; ?>
+               <?php include '../static/lat-izquierdo.php'; $nivel=1; directoriosNiveles($nivel);?>
               <!-- //LATERAL IZQUIERDO CONTENIDO FIJO -->
 
               <!--CENTRANDO CONTENIDO ROL 1 -->

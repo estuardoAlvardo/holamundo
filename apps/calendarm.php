@@ -117,30 +117,27 @@ $_SESSION['tipoUsuario'];
           left:'today,prev,next',
           center:'title',
           right: 'month, agendaWeek, agendaDay'
-        },        
+        },
+        events:'http://localhost/calendar/eventos.php',        
         eventClick:function(calEvent,jsEvent,view){
-           $("#btnAgregar").prop('disabled',true);
-          $("#btnModificar").prop('disabled',false);
-          $("#btnBorrar").prop('disabled',false);
-
-
-          $('#id').val(calEvent.id);
-          $('#titulo').val(calEvent.title);
-          $('#descripcion').val(calEvent.descripcion);
+           $('#myModal').modal();
+         // $('#id').val(calEvent.id);
+          $('#tituloEvento1').text("Evento: "+calEvent.title);
+          $('#descripcion11').text("Descripcion Evento: "+calEvent.descripcion);
           var fechaHora=calEvent.start._i.split(" ");          
-          $('#fecha').val(fechaHora[0]);
-          $('#hora').val(fechaHora[1]);
-          $('#color').val(calEvent.color);
-          $('#crearEvento').modal();
+          $('#fechaNoti').text("Evento creado el: "+fechaHora[0]);
+          $('#horaNoti').text(" A las: "+fechaHora[1]);
+          //$('#color').val(calEvent.color);
+         
 
         },
-        editable:true,
+        editable:false,
         eventDrop:function(calEvent){
           $('#id').val(calEvent.id);
           $('#titulo').val(calEvent.title);
           $('#descripcion').val(calEvent.descripcion);
           var fechaHora=calEvent.start.format().split("T");          
-          $('#fecha').val(fechaHora[0]);
+          $('#fecha ').val(fechaHora[0]);
           $('#hora').val(fechaHora[1]);
           $('#color').val(calEvent.color);
           datos();
@@ -212,11 +209,11 @@ $_SESSION['tipoUsuario'];
 </head>
 <body class="txt-fuente">
   <!--NAVEGACION CONTENIDO FIJO -->
-<?php include '../static/nav.php'; ?>
+<?php include '../static/nav.php';$nivell=1; directorioNivelesNav($nivell); ?>
 <!-- //NAVEGACION CONTENIDO FIJO -->
 
 <!-- LATERAL IZQUIERDO CONTENIDO FIJO -->
- <?php include '../static/lat-izquierdo.php'; ?>
+ <?php include '../static/lat-izquierdo.php'; $nivel=1; directoriosNiveles($nivel)?>
 <!-- //LATERAL IZQUIERDO CONTENIDO FIJO -->
 
 <!--CENTRANDO CONTENIDO ROL 1 -->
@@ -253,10 +250,32 @@ $_SESSION['tipoUsuario'];
         </div>
       </div> 
   <div/>
+    <div id="myModal" class="modal fade" role="dialog" style="background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 id="tituloEvento1" class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+        <p id="descripcion11">Evento no localizado</p>
+      </div>
+      <div class="modal-footer">
+        <p id="fechaNoti" style="float:left;"></p>
+        <p id="horaNoti" style="float:left; margin-left:20px;"></p>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- eliminar desde aqui -->
 
 </div>
 
-  
+
 
 <div id="crearEvento" class="modal fade" role="dialog" style="background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);">
   <div class="modal-dialog">
@@ -315,8 +334,21 @@ $_SESSION['tipoUsuario'];
         <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
        </form>
       </div>
+
+
+
+
+
     </div>
+
+
+
   </div>
+
+
+
+
+
   
 <script type="text/javascript">
 
@@ -397,7 +429,7 @@ function datos(){
 </div>
 </div>
 <!--LATERAL DERECHO CONTENIDO FIJO -->
-    <?php include '../static/lat-derecho.php'; ?>
+    <?php include '../static/lat-derecho.php'; $nivelll=1; directoriosNivelesDer($nivelll); ?>
  <!-- //LATERAL IZQUIERDO CONTENIDO FIJO -->  
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>

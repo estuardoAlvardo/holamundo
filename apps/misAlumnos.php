@@ -6,50 +6,17 @@ $curso="";
 $leccionRealizada=1; // varaiable dependera del uso en la base de datos
 $leccionPendiente=4; // variable dependera del uso en la bd 
 
-require("../../conection/conexion.php");
+require("../conection/conexion.php");
 
 $_SESSION['idUsuario'];
 
-
-
-//$sql1 = ("SELECT * FROM registrocl2p2 where idIntento=:idIntento");
-//$obtenerMatriz=$dbConn->prepare($sql1);
-//$obtenerMatriz->bindParam(':idIntento', $_GET['idIntento'], PDO::PARAM_INT); 
-//$obtenerMatriz->execute();
 
 //variables de niveles
 $nivelPrimaria=1;
 $nivelBasico=2;
 $nivelDiver=3;
 
-//Buscar todos los cursos de este usuario primaria
 
-$q1 = ("SELECT * FROM cursos where idDocente=:idUsuario and nivel=:nivel");
-$cursosPrimaria=$dbConn->prepare($q1);
-$cursosPrimaria->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
-$cursosPrimaria->bindParam(':nivel',$nivelPrimaria, PDO::PARAM_INT); 
-$cursosPrimaria->execute();
-
-//Buscar todos los cursos de este usuario Basicos
-
-$q2= ("SELECT * FROM cursos where idDocente=:idUsuario and nivel=:nivel");
-$cursoBasico=$dbConn->prepare($q2);
-$cursoBasico->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
-$cursoBasico->bindParam(':nivel',$nivelBasico, PDO::PARAM_INT); 
-$cursoBasico->execute();
-
-
-//Buscar todos los cursos de este usuario Diversificado
-
-$q3 = ("SELECT * FROM cursos where idDocente=:idUsuario and nivel=:nivel");
-$cursoDiver=$dbConn->prepare($q3);
-$cursoDiver->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
-$cursoDiver->bindParam(':nivel',$nivelDiver, PDO::PARAM_INT); 
-$cursoDiver->execute();
-
-
-
-//funcion encargada de asignar imagen segun primer letra del nombre del curso
 
  ?>
 
@@ -63,10 +30,10 @@ $cursoDiver->execute();
     <title><?php echo $_SESSION["nombre"]; ?> | Mis Cursos</title>
  
     <!-- CSS de Bootstrap -->
-    <link href="../../css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="../../css/navLateralesModPedagogico.css" rel="stylesheet" media="screen">
-    <link href="../../css/centroPagina.css" rel="stylesheet" media="screen">
-    <link href="../../css/rol5FuncCursos.css" rel="stylesheet" media="screen">
+    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="../css/navLateralesModPedagogico.css" rel="stylesheet" media="screen">
+    <link href="../css/centroPagina.css" rel="stylesheet" media="screen">
+    <link href="../css/rol5FuncCursos.css" rel="stylesheet" media="screen">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"><!-- habilitar font famili font-family: 'Ubuntu', sans-serif;-->
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Ubuntu" rel="stylesheet"><!-- habilitar font famili font-family: 'Indie Flower', cursive;-->
 
@@ -76,20 +43,20 @@ $cursoDiver->execute();
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css">
-     <!-- jquery funcional -->
+    
+ <!-- jquery funcional -->
     <script src='../js/jquery.min.js'></script>
-
 
   </head>
   <body class="txt-fuente">
 
   
 <!--NAVEGACION CONTENIDO FIJO -->
-<?php include '../nav.php'; ?>
+<?php include '../static/nav.php'; $nivell=1; directorioNivelesNav($nivell);?>
 <!-- //NAVEGACION CONTENIDO FIJO -->
 
 <!-- LATERAL IZQUIERDO CONTENIDO FIJO -->
- <?php include '../lat-izquierdo.php'; ?>
+ <?php include '../static/lat-izquierdo.php'; $nivel=1; directoriosNiveles($nivel); ?>
 <!-- //LATERAL IZQUIERDO CONTENIDO FIJO -->
 
 <!--CENTRANDO CONTENIDO ROL 1 -->
@@ -115,15 +82,19 @@ $cursoDiver->execute();
    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
+.card-3 {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
  </style>
 
 
 
- 			<div class="col-md-8 col-xs-8 pag-center">
+      <div class="col-md-8 col-xs-8 pag-center">
          <div class="col-md-12" style=" margin-bottom: 50px;">
               <h3 class="text-center">Mis Alumnos</h3>
          </div>
-         <div>
+          <div>
             <form method="post" action="" " class="form-inline form-filtro " id="formulario">
                   <div class="form-group">
                     <label class="sr-only" for="filtro-tipo">Nivel</label>
@@ -182,10 +153,10 @@ $cursoDiver->execute();
                   </div>
                 </form>
          </div>
+         <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px;">Reporte Uso Plataforma</div>
+         <button class="btn btn-default botonAgg botonAgg-1" type="button"style="margin-left:510px;background-color: #c0392b; color: white; border:white;">PDF</button>
+         <button class="btn btn-default botonAgg botonAgg-1" type="button"style="background-color: #16a085; color: white; border:white;">EXCEL</button>
 
-          <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px;">Reporte Uso Plataforma</div>
-            <button class="btn btn-default botonAgg botonAgg-1" type="button"style="margin-left:510px;background-color: #c0392b; color: white; border:white;">PDF</button>
-            <button class="btn btn-default botonAgg botonAgg-1" type="button"style="background-color: #16a085; color: white; border:white;">EXCEL</button>
 
           <div class="col-md-12 sombra" style=" min-height:100px; margin-bottom: 30px; ">
 
@@ -225,13 +196,10 @@ $cursoDiver->execute();
                       </tbody>
                     </table>         
           </div> 
-
-
-            <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px;">Reporte Asistencia</div>
+          <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px;">Reporte Asistencia Presencial</div>
             <button class="btn btn-default botonAgg botonAgg-1" type="button"style="margin-left:510px;background-color: #c0392b; color: white; border:white;">PDF</button>
             <button class="btn btn-default botonAgg botonAgg-1" type="button"style="background-color: #16a085; color: white; border:white;">EXCEL</button>
-
-          <div class="col-md-12 sombra" style=" min-height:100px; margin-bottom: 30px; overflow-x: scroll;   ">
+                      <div class="col-md-12 sombra" style=" min-height:100px; margin-bottom: 30px; overflow-x: scroll;   ">
 
                     <table class="table table-hover col-md-11" id="ejemplo">
                       <thead>
@@ -273,6 +241,8 @@ $cursoDiver->execute();
           </div> 
 
 
+         
+
 
        
      
@@ -281,18 +251,20 @@ $cursoDiver->execute();
 <!--//CENTRANDO CONTENIDO ROL 1 -->
 
 <!--LATERAL DERECHO CONTENIDO FIJO -->
-		<?php include '../lat-derecho.php'; ?>
+    <?php include '../static/lat-derecho.php'; $nivelll=1; directoriosNivelesDer($nivelll); ?>
  <!-- //LATERAL IZQUIERDO CONTENIDO FIJO -->  
 
  
     <!-- Librería jQuery requerida por los plugins de JavaScript -->
-    <script src="../../js/jquery-3.2.1.js"></script>
+    <script src="../js/jquery-3.2.1.js"></script>
 
     <!-- Todos los plugins JavaScript de Bootstrap (también puedes
          incluir archivos JavaScript individuales de los únicos
          plugins que utilices) -->
-    <script src="../../js/bootstrap.min.js"></script>
-<script type="text/javascript">
+    <script src="../js/bootstrap.min.js"></script>
+
+  </body>
+  <script type="text/javascript">
               var grado=0;
               var nivel=0;
               var prueba=0;
@@ -1248,5 +1220,4 @@ $cursoDiver->execute();
 
 
             </script>
-  </body>
 </html>

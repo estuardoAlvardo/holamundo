@@ -19,6 +19,19 @@ $obtenerUsuario = $dbConn->prepare($sql1);
 $obtenerUsuario->bindParam(':usuario', $_POST['txtUsuario'], PDO::PARAM_INT); 
 $obtenerUsuario->execute();
 
+$sql2 = ("SELECT * FROM atomobullying");
+$buscarBullying = $dbConn->prepare($sql2);
+$buscarBullying->execute();
+$total=$buscarBullying->rowCount();
+
+if($total>0){
+
+	$_SESSION['reporteBullying1']=$total;
+}elseif($total==null){
+$_SESSION['reporteBullying1']=0;
+}
+
+
 
 
 while ($row=$obtenerUsuario->fetch(PDO::FETCH_ASSOC)){

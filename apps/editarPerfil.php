@@ -69,11 +69,11 @@ $nivelDiver=3;
 
   
 <!--NAVEGACION CONTENIDO FIJO -->
-<?php include '../static/nav.php'; ?>
+<?php include '../static/nav.php'; $nivell=1; directorioNivelesNav($nivell); ?>
 <!-- //NAVEGACION CONTENIDO FIJO -->
 
 <!-- LATERAL IZQUIERDO CONTENIDO FIJO -->
- <?php include '../static/lat-izquierdo.php'; ?>
+ <?php include '../static/lat-izquierdo.php'; $nivel=1; directoriosNiveles($nivel); ?>
 <!-- //LATERAL IZQUIERDO CONTENIDO FIJO -->
 
 <!--CENTRANDO CONTENIDO ROL 1 -->
@@ -167,7 +167,7 @@ transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 <!--//CENTRANDO CONTENIDO ROL 1 -->
 
 <!--LATERAL DERECHO CONTENIDO FIJO -->
-		<?php include '../static/lat-derecho.php'; ?>
+		<?php include '../static/lat-derecho.php'; $nivelll=1; directoriosNivelesDer($nivelll); ?>
  <!-- //LATERAL IZQUIERDO CONTENIDO FIJO -->  
 
  

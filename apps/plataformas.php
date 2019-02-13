@@ -82,11 +82,11 @@ $cursoDiver->execute();
 
   
 <!--NAVEGACION CONTENIDO FIJO -->
-<?php include '../nav.php'; ?>
+<?php include '../nav.php'; $nivell=1; directorioNivelesNav($nivell); ?>
 <!-- //NAVEGACION CONTENIDO FIJO -->
 
 <!-- LATERAL IZQUIERDO CONTENIDO FIJO -->
- <?php include '../lat-izquierdo.php'; ?>
+ <?php include '../lat-izquierdo.php'; $nivel=1; directoriosNiveles($nivel);?>
 <!-- //LATERAL IZQUIERDO CONTENIDO FIJO -->
 
 <!--CENTRANDO CONTENIDO ROL 1 -->
@@ -201,7 +201,7 @@ $cursoDiver->execute();
 <!--//CENTRANDO CONTENIDO ROL 1 -->
 
 <!--LATERAL DERECHO CONTENIDO FIJO -->
-		<?php include '../lat-derecho.php'; ?>
+		<?php include '../lat-derecho.php'; $nivelll=1; directoriosNivelesDer($nivelll); ?>
  <!-- //LATERAL IZQUIERDO CONTENIDO FIJO -->  
 
  
