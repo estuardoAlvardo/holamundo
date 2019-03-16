@@ -32,14 +32,14 @@ $mostrarContenido->execute();
     <link href="../../../css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="../../../css/navLateralesModPedagogico.css" rel="stylesheet" media="screen">
     <link href="../../../css/centroPagina.css" rel="stylesheet" media="screen">
-    <link href="css/rol5FuncCursos.css" rel="stylesheet" media="screen">
+    <link href="../../../css/rol5FuncCursos.css" rel="stylesheet" media="screen">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"><!-- habilitar font famili font-family: 'Ubuntu', sans-serif;-->
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Ubuntu" rel="stylesheet"><!-- habilitar font famili font-family: 'Indie Flower', cursive;-->
 
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Nunito+Sans|Ubuntu" rel="stylesheet">
  
     <!-- librerias para el funcionamiento del calendario -->
-     <!-- JQUERY FUNCIONAL -->
+
     <script src='../../../js/jquery.min.js'></script>
     <!-- LIBRERIAS RECONOCIMIENTO DE VOZ -->
   
@@ -549,6 +549,6 @@ background: linear-gradient(to right, #240b36, #c31432); /* W3C, IE 10+/ Edge, F
     <!-- Todos los plugins JavaScript de Bootstrap (también puedes
          incluir archivos JavaScript individuales de los únicos
          plugins que utilices) -->
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="../../../js/bootstrap.min.js"></script>
   </body>
 </html>

@@ -18,7 +18,7 @@ function directorioNivelesNav($nivell){
               <h1 class="txt-fuente txt-colegio" style="float:right;"><?php echo $nameCole; ?></h1>
                -->
              
-              <a href="../cursoAlumno/misCursos.php" ><img style="margin:10px;" class="img-responsive" src="../img/logos.jpg" width="280" height="100"></a>   
+              <a href="../cursosAlumno/misCursos.php" ><img style="margin:10px;" class="img-responsive" src="../img/logos.jpg" width="280" height="100"></a>   
 
               
           </div>  
@@ -63,7 +63,7 @@ function directorioNivelesNav($nivell){
               <h1 class="txt-fuente txt-colegio" style="float:right;"><?php echo $nameCole; ?></h1>
                -->
              
-              <a href="../../cursoAlumno/misCursos.php" ><img style="margin:10px;" class="img-responsive" src="../../img/logos.jpg" width="280" height="100"></a>   
+              <a href="../../cursosAlumno/misCursos.php" ><img style="margin:10px;" class="img-responsive" src="../../img/logos.jpg" width="280" height="100"></a>   
 
               
           </div>  
@@ -99,7 +99,7 @@ function directorioNivelesNav($nivell){
               <h1 class="txt-fuente txt-colegio" style="float:right;"><?php echo $nameCole; ?></h1>
                -->
              
-              <a href="../../../cursoAlumno/misCursos.php" ><img style="margin:10px;" class="img-responsive" src="../../../img/logos.jpg" width="280" height="100"></a>   
+              <a href="../../../cursosAlumno/misCursos.php" ><img style="margin:10px;" class="img-responsive" src="../../../img/logos.jpg" width="280" height="100"></a>   
 
               
           </div>  

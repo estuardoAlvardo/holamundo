@@ -1,20 +1,23 @@
 <?php 
 session_start();
 
-require("../../conection/conexion.php");
-
-$_SESSION['idUsuario'];
-$unidad1=1;
-
-
-//mostrar contenido
-$q1 = ("SELECT * FROM contenido where unidad=:unidad");
-$mostrarContenido=$dbConn->prepare($q1);
-$mostrarContenido->bindParam(':unidad',$unidad1, PDO::PARAM_INT); 
-$mostrarContenido->execute();
+require("../../conection/conexion2.php");
 
 
 
+      $q1 = ("SELECT * FROM atomolector where idLectura=:idLectura");
+      $mostrarLectura=$dbConn->prepare($q1);
+      $mostrarLectura->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT); 
+      $mostrarLectura->execute();
+
+
+      $q2 = ("SELECT * FROM registropruebacomprension where idLectura=:idLectura and idUsuario=:idUsuario");
+      $buscarIntentos=$dbConn->prepare($q2);
+      $buscarIntentos->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
+      $buscarIntentos->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);  
+      $buscarIntentos->execute();
+      $hayIntentos=$buscarIntentos->rowCount();
+   
 
 
  ?>
@@ -73,6 +76,11 @@ $mostrarContenido->execute();
     margin-left: 55%;
     margin-top: 60%;
   }
+
+  .cajaDescripcion{
+                     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+                     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+                    }
 </style>
 
 
@@ -83,32 +91,67 @@ $mostrarContenido->execute();
       <div class="col-md-8 col-xs-8 pag-center">
          <div class="col-md-12" style="margin-top: 60px;">
               <h3 class="text-center">LECTURA PRIMERO PRIMARIA</h3><br>
-              <a href="pisa1p.php" class="btn align-center botonAgg-1" style="color: white; background-color:#3498db; ">¡Termine de Leer!</a>
+               <?php while(@$row1=$mostrarLectura->fetch(PDO::FETCH_ASSOC)){   ?>
+              <a href="pisa1p.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#3498db; ">¡Termine de Leer!</a>
          </div>
+
+
  
 <div class="row sectionDinamico masCentrado">
 
 
-            <div class="col-md-11">
+           <div class="col-md-11">
               <div class="flipbook-viewport">
                 <div class="container">
                   <div class="flipbook">
-                    <div style="background-image:url(../portada-inicio.jpg)"></div>
-                    <div style="background-image:url(../1p/lect-1-p1.jpg)"></div>
-                    <div style="background-image:url(../1p/lect-1-p2.jpg)"></div>
-                    <div style="background-image:url(../1p/lect-1-p3.jpg)"></div>
-                    <div style="background-image:url(../1p/lect-1-p4.jpg)"></div>
-                    <div style="background-image:url(../contraportada-fin.jpg)"></div>
+                    <div style="background-image:url(<?php echo "../../".$row1['rutaPasta']."/1.jpg"; ?>)"></div>
+                    <?php for($inc=1; $inc<=$row1['cantidadFicheros'];$inc++){ ?>
+                    <div style="background-image:url(<?php echo "../../".$row1['rutaLectura']."/".$inc.".jpg";  ?>)"></div>
+                  <?php } ?>
+                    <div style="background-image:url(<?php echo "../../".$row1['rutaPasta']."/2.jpg"; ?>)"></div>
                   
                   </div>
                 </div>
               </div>
+  
+<?php  }?>
 
-                          
+</div>
+ </div>
 
-                
-            
-            </div>
+  <div  class="col-md-12 cajaDescripcion" style="margin-top: -220px;" >
+              <h3 class="text-center">MIS INTENTOS</h3><br>
+               <table class="table table-hover" >
+                    <thead>
+                      <tr>
+                        <th style="text-align: center;">Intento</th>
+                        <th style="text-align: center;">Nivel Obtenido</th>
+                        <th style="text-align: center;">Fecha Registro</th>
+                        <th style="text-align: center;">Ver Detalles</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                       <?php if($hayIntentos==0){ ?>
+                         <tr>      
+                        <td colspan="4">¡No hay Intentos! </td>
+ 
+                      </tr>
+
+                       <?php  }else{ while($row2=$buscarIntentos->fetch(PDO::FETCH_ASSOC)){
+                          @$i+=1;
+                        ?>
+                      <tr>      
+                        <td><?php echo $i; ?></td>
+                        <td><?php echo $row2['nivelObtenido']; ?></td>
+                        <td><?php echo $row2['fechaRegistro']." ".$row2['horaRegistro']; ?></td>
+                        <td><a href="resultado.php?intentoABuscar=<?php echo $row2['idRegistro'];?>&idLectura=<?php echo $row2['idLectura']; ?>&idUsuario=<?php echo $_SESSION['idUsuario'];?>&intento=<?php echo $i; ?>" class="btn botonAgg-1" style="color: white; background-color: #2ecc71;">Ver</a></td>   
+                      </tr>
+                    <?php    } }  ?>
+                    </tbody>
+                  </table>
+         </div>
+
 
    <script type="text/javascript">
     
@@ -155,7 +198,6 @@ yepnope({
             </script>
           
     
-          </div>
         </div>
 
 <!--//CENTRANDO CONTENIDO ROL 1 -->

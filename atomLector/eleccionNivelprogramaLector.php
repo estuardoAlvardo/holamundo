@@ -316,7 +316,7 @@ padding-top: -30px;
      <p>Pre-Escolar</p>
       <div class="row" style="padding-left: 40px;">
     
-    <a href="p1/lecturas1erop.php" style="color: white;"><div class="col-md-2 btnGrado">Inicial</div></a>
+    <a href="lecturas1erop.php" style="color: white;"><div class="col-md-2 btnGrado">Inicial</div></a>
     <div class="col-md-1"></div>
     <div class="col-md-2 btnGrado">Pre-Kinder</div>
     <div class="col-md-1"></div>
@@ -328,7 +328,7 @@ padding-top: -30px;
     <p>Primaria</p>
   <div class="row" style="padding-left: 40px;">
     
-    <a href="p1/lecturas1erop.php" style="color: white;"><div class="col-md-2 btnGrado">1ero Primaria</div></a>
+    <a href="comprensionLectora.php?gradoB=1" style="color: white;"><div class="col-md-2 btnGrado">1ero Primaria</div></a>
     <div class="col-md-1"></div>
     <div class="col-md-2 btnGrado" >2do Primaria</div>
     <div class="col-md-1"></div>

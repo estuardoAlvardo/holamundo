@@ -298,31 +298,31 @@ function datos(){
 
           <?php if($_SESSION['tipoUsuario']==1){  ?>
 
-        <a href="../apps/calendarm.php" ><img class="img-responsive" src="../img/calendario.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 50px;" />           
+        <a href="../../apps/calendarm.php" ><img class="img-responsive" src="../../img/calendario.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 50px;" />           
           </a>
           <h5 style="color: white; margin-left: 20px;" class="text-left">Calendario</h5>
 
 
 
-          <a href="../apps/atomDrive.php"><img class="img-responsive" src="../img/atomDrive.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />           
+          <a href="../../apps/atomDrive.php"><img class="img-responsive" src="../../img/atomDrive.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />           
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left">AtomDrive</h5>
 
-          <a href="../apps/misNotas.php"><img class="img-responsive" src="../img/reportes.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 50px;" />            
+          <a href="../../apps/misNotas.php"><img class="img-responsive" src="../../img/reportes.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 50px;" />            
           </a>
           <h5 style="color: white; margin-left: 20px;" class="text-left">Mis notas</h5>
 
 
 
-          <a href="../apps/streamingCanales.php"><img class="img-responsive" src="../img/streaming.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />           
+          <a href="../../apps/streamingCanales.php"><img class="img-responsive" src="../../img/streaming.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />           
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left">Streaming</h5>
 
-          <a href="../apps/bullying.php"><img class="img-responsive" src="../img/alert.png" style="max-width:50px; max-height: 50px; margin-left:10px; margin-top: 30px;" title="Bullyng"/>           
+          <a href="../../apps/bullying.php"><img class="img-responsive" src="../../img/alert.png" style="max-width:50px; max-height: 50px; margin-left:10px; margin-top: 30px;" title="Bullyng"/>           
           </a>
           <h5 style="color: white; margin-left: 20px;" class="text-left" >Bullyng</h5>
 
-          <a href="#" data-toggle="modal" data-target="#plataformas"><img class="img-responsive" src="../img/otras.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />            
+          <a href="#" data-toggle="modal" data-target="#plataformas"><img class="img-responsive" src="../../img/otras.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />            
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left">Plataformas</h5>
            <?php  } if($_SESSION['tipoUsuario']==2){  ?>
@@ -558,31 +558,31 @@ function datos(){
 
           <?php if($_SESSION['tipoUsuario']==1){  ?>
 
-        <a href="../apps/calendarm.php" ><img class="img-responsive" src="../img/calendario.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 50px;" />           
+        <a href="../../../apps/calendarm.php" ><img class="img-responsive" src="../../../img/calendario.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 50px;" />           
           </a>
           <h5 style="color: white; margin-left: 20px;" class="text-left">Calendario</h5>
 
 
 
-          <a href="../apps/atomDrive.php"><img class="img-responsive" src="../img/atomDrive.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />           
+          <a href="../../../apps/atomDrive.php"><img class="img-responsive" src="../../../img/atomDrive.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />           
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left">AtomDrive</h5>
 
-          <a href="../apps/misNotas.php"><img class="img-responsive" src="../img/reportes.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 50px;" />            
+          <a href="../../../apps/misNotas.php"><img class="img-responsive" src="../../../img/reportes.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 50px;" />            
           </a>
           <h5 style="color: white; margin-left: 20px;" class="text-left">Mis notas</h5>
 
 
 
-          <a href="../apps/streamingCanales.php"><img class="img-responsive" src="../img/streaming.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />           
+          <a href="../../apps/streamingCanales.php"><img class="img-responsive" src="../../../img/streaming.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />           
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left">Streaming</h5>
 
-          <a href="../apps/bullying.php"><img class="img-responsive" src="../img/alert.png" style="max-width:50px; max-height: 50px; margin-left:10px; margin-top: 30px;" title="Bullyng"/>           
+          <a href="../../../apps/bullying.php"><img class="img-responsive" src="../../../img/alert.png" style="max-width:50px; max-height: 50px; margin-left:10px; margin-top: 30px;" title="Bullyng"/>           
           </a>
           <h5 style="color: white; margin-left: 20px;" class="text-left" >Bullyng</h5>
 
-          <a href="#" data-toggle="modal" data-target="#plataformas"><img class="img-responsive" src="../img/otras.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />            
+          <a href="#" data-toggle="modal" data-target="#plataformas"><img class="img-responsive" src="../../../img/otras.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />            
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left">Plataformas</h5>
            <?php  } if($_SESSION['tipoUsuario']==2){  ?>

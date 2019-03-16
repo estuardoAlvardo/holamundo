@@ -342,11 +342,11 @@ if($_SESSION['tipoUsuario']==1){
         <div class="profile">
          
           <div class="col-md-2 perfil" style="<?php echo $imgPerfilVeri; ?>">
-                    <a href="../apps/editarPerfil.php">
+                    <a href="../../apps/editarPerfil.php">
                       <div class="piePerfil text-center" style="width: 100px; margin-top: -25px;">
                         <h5 style="margin-top: -10px;"><strong>Editar Perfil</strong></h5>
                         <br>
-                        <img src="../img/ir.png" width="50" height="50" style="margin-top: -10px;">
+                        <img src="../../img/ir.png" width="50" height="50" style="margin-top: -10px;">
                         
                       </div>
                       
@@ -359,7 +359,7 @@ if($_SESSION['tipoUsuario']==1){
           <h5 class="txt-fuente txt-nombre" s><?php echo "Apellido: ".$_SESSION["apellido"]; ?></h5> 
           <h5 class="txt-fuente txt-nombre"><?php echo "Grado: ".@$_SESSION['nombreGrado']." ".@$_SESSION["nivel"]; ?></h5> 
           <h5 class="txt-fuente txt-nombre"><?php echo "Sección: ".@$_SESSION['seccion']?></h5> 
-          <a href="../conection/logout.php"><img class="img-responsive img-logout" src="../img/of.png" title="SALIR" /></a>
+          <a href="../../conection/logout.php"><img class="img-responsive img-logout" src="../../img/of.png" title="SALIR" /></a>
 </div>
 
  
@@ -580,11 +580,11 @@ if($_SESSION['tipoUsuario']==1){
         <div class="profile">
          
           <div class="col-md-2 perfil" style="<?php echo $imgPerfilVeri; ?>">
-                    <a href="../../../apps/editarPerfil.php">
+                    <a href="../../../../apps/editarPerfil.php">
                       <div class="piePerfil text-center" style="width: 100px; margin-top: -25px;">
                         <h5 style="margin-top: -10px;"><strong>Editar Perfil</strong></h5>
                         <br>
-                        <img src="../../../img/ir.png" width="50" height="50" style="margin-top: -10px;">
+                        <img src="../../../../img/ir.png" width="50" height="50" style="margin-top: -10px;">
                         
                       </div>
                       
@@ -597,7 +597,7 @@ if($_SESSION['tipoUsuario']==1){
           <h5 class="txt-fuente txt-nombre" s><?php echo "Apellido: ".$_SESSION["apellido"]; ?></h5> 
           <h5 class="txt-fuente txt-nombre"><?php echo "Grado: ".@$_SESSION['nombreGrado']." ".@$_SESSION["nivel"]; ?></h5> 
           <h5 class="txt-fuente txt-nombre"><?php echo "Sección: ".@$_SESSION['seccion']?></h5> 
-          <a href="../../../conection/logout.php"><img class="img-responsive img-logout" src="../../img/of.png" title="SALIR" /></a>
+          <a href="../../../../conection/logout.php"><img class="img-responsive img-logout" src="../../../img/of.png" title="SALIR" /></a>
 </div>
 
  

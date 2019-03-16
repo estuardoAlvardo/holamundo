@@ -188,6 +188,26 @@ padding-top: -30px;
   color: #36abcb;
  }
 
+ .cajaCards{
+                      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+                      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+                      border-radius: 5px;
+                      height: 100px; 
+                      margin-bottom: 20px;
+                      padding-top: 10px;
+                      color: black;
+                    }
+
+                    .cajaCards:hover{
+                       box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+                       background: #642B73;  /* fallback for old browsers */
+                      background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */
+                      background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                      color: white;
+                      font-size: bold;
+                      padding-top: 10px;
+
+                    }
 
 
  </style>
@@ -305,6 +325,44 @@ padding-top: -30px;
                         </div>
                    </div>
                   </a> --->
+
+                  <div class="col-md-11">
+                     <h3 class="text-left" style="">Areas Principales | Según CNB</h3><hr>
+                    <div class="row">
+                      <div class="col-md-1"></div>
+                      <a href="../atomoCnb/1p/Lenguaje1/eleccionNivel.php?curso=1
+                      "><div class="col-md-2 cajaCards" style="">
+                        <p>Comunicación Y  Lenguaje | L1</p>
+                      </div></a>
+                      <div class="col-md-1"></div>
+                      <div class="col-md-2 cajaCards" style="">
+                        <p>Comunicación Y  Lenguaje | L2</p>
+                      </div>
+                      <div class="col-md-1"></div>
+                      <div class="col-md-2 cajaCards" style="">
+                        <p>Comunicación Y  Lenguaje | L3</p>
+                      </div>
+                      <div class="col-md-1"></div>
+                      <div class="col-md-2 cajaCards" style="">
+                         <p>Medio Social y Natural</p>
+                      </div>
+                      <div class="col-md-1"></div>
+                      <div class="col-md-2 cajaCards" style="">
+                         <p>Formación Ciuadana</p>
+                      </div>
+                      <div class="col-md-1"></div>
+                       <div class="col-md-2 cajaCards" style="">
+                         <p>Matemáticas</p>                        
+                      </div>
+                       <div class="col-md-1"></div>
+                       <a href="../atomLector/comprensionLectora.php?curso=7&gradoB=<?php echo $_SESSION['grado'];?>">
+                       <div class="col-md-2 cajaCards" style="">
+                         <p>Programa Lector</p>                        
+                      </div></a>
+                  </div>
+                </div>
+
+
       
 
           <div class="col-md-11">
