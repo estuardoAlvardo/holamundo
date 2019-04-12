@@ -1,11 +1,13 @@
 <?php 
 session_start();
-require("../../conection/conexion2.php");
+require("../../conection/conexion.php");
   $_GET['noLectura'];
-  $sq1 = ("SELECT *  FROM atomolector as lectura join cuestionario as cues on lectura.idLectura=cues.idLectura join itemopcionmultiple as item on item.idCuestionario=cues.idCuestionario where lectura.idLectura=:idLectura");
+  $fundamento="pisa";
+  $sq1 = ("SELECT *  FROM atomolector as lectura join cuestionario as cues on lectura.idLectura=cues.idLectura join itemopcionmultiple as item on item.idCuestionario=cues.idCuestionario where lectura.idLectura=:idLectura AND fundamento=:fundamento");
     $obtenerCuestionario = $dbConn->prepare($sq1);
-     $obtenerCuestionario->bindparam(':idLectura', $_GET['noLectura']);
-    $obtenerCuestionario->execute();
+    $obtenerCuestionario->bindparam(':idLectura', $_GET['noLectura'],PDO::PARAM_INT);
+    $obtenerCuestionario->bindparam(':fundamento', $fundamento,PDO::PARAM_STR);
+     $obtenerCuestionario->execute();
     $consulta=$obtenerCuestionario->rowCount();
     
    
@@ -310,7 +312,9 @@ input#fort:checked ~ label  {
           </div> 
         
       </div>
-  <?php } ?>    
+  <?php } ?>   
+
+   
 <form action="controllador/calificarOpcionMultiple.php" method="post" id="cuestionarioEnviar">
 
 <?php while(@$row1=$obtenerCuestionario->fetch(PDO::FETCH_ASSOC)){  
@@ -318,6 +322,7 @@ input#fort:checked ~ label  {
  ?>
     
 <div class="card col-md-12">
+  <div class="col-md-12" style="height: 20px; background-color: #16a085; border-radius: 5px;  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); color: white;"><?php echo "Capacidad Lectora a obtener: ".$row1['capacidad'] ?></div>
   <div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: rgb(54, 171, 203); position: absolute; margin-top: 15%; margin-left: 90%;" ><?php echo @$noPregunta; ?></div>
   <h4 style="text-align: center;"><?php echo "Pregunta no.".$noPregunta.": ".$row1['pregunta']; ?></h4>
   

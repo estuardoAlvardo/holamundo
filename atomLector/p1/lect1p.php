@@ -1,8 +1,9 @@
 <?php 
 session_start();
 
-require("../../conection/conexion2.php");
-
+require("../../conection/conexion.php");
+  $pisa='pisa';
+  $cnb='cnb';
 
 
       $q1 = ("SELECT * FROM atomolector where idLectura=:idLectura");
@@ -10,14 +11,59 @@ require("../../conection/conexion2.php");
       $mostrarLectura->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT); 
       $mostrarLectura->execute();
 
+      $_SESSION['gradoEnviar']=$_GET['idLectura'];
 
-      $q2 = ("SELECT * FROM registropruebacomprension where idLectura=:idLectura and idUsuario=:idUsuario");
-      $buscarIntentos=$dbConn->prepare($q2);
-      $buscarIntentos->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
-      $buscarIntentos->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);  
-      $buscarIntentos->execute();
-      $hayIntentos=$buscarIntentos->rowCount();
+         //buscar id= cuestionario pisa y id CUestionario cnb para mostrar intentos por metodologia
+
+             //--pisa   
+                $q4= ("SELECT idCuestionario FROM cuestionario WHERE fundamento=:fundamento AND idLectura=:idLectura");
+
+                $idPisa=$dbConn->prepare($q4);
+                $idPisa->bindParam(':fundamento',$pisa, PDO::PARAM_INT);
+                $idPisa->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
+                $idPisa->execute();
+
+                while(@$fila1=$idPisa->fetch(PDO::FETCH_ASSOC)){ 
+                  $_SESSION['idPisa']=$fila1['idCuestionario'];
+                  
+                }
+
+                //--cnb   
+                $q4= ("SELECT idCuestionario FROM cuestionario WHERE fundamento=:fundamento AND idLectura=:idLectura");
+
+                $idPisa=$dbConn->prepare($q4);
+                $idPisa->bindParam(':fundamento',$cnb, PDO::PARAM_INT);
+                $idPisa->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
+                $idPisa->execute();
+                
+                while(@$fila1=$idPisa->fetch(PDO::FETCH_ASSOC)){ 
+                  $_SESSION['idCnb']=$fila1['idCuestionario'];
+                  
+                }
+
+
+
    
+
+//OBTENEMOS INTENTOS SEGUN PISA
+
+      $q2 = ("SELECT * FROM registropruebacomprension as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario and registro.nivelObtenido!='' ");
+      $buscarIntentosPisa=$dbConn->prepare($q2);
+      $buscarIntentosPisa->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
+        $buscarIntentosPisa->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
+      $buscarIntentosPisa->bindParam(':idCuestionario',$_SESSION['idPisa'], PDO::PARAM_STR);  
+      $buscarIntentosPisa->execute();
+      $hayIntentos1=$buscarIntentosPisa->rowCount();
+
+ //OBTENEMOS INTENTOS SEGUN CNB  
+
+      $q3 = ("SELECT * FROM registropruebacomprension as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario and registro.nivelObtenido=''");
+      $buscarIntentosCnb=$dbConn->prepare($q3);
+      $buscarIntentosCnb->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
+      $buscarIntentosCnb->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);  
+      $buscarIntentosCnb->bindParam(':idCuestionario',$_SESSION['idCnb'], PDO::PARAM_STR); 
+      $buscarIntentosCnb->execute();
+      $hayIntentos2=$buscarIntentosCnb->rowCount();
 
 
  ?>
@@ -74,7 +120,7 @@ require("../../conection/conexion2.php");
 <style type="text/css">
   .masCentrado{
     margin-left: 55%;
-    margin-top: 60%;
+    margin-top: 65%;
   }
 
   .cajaDescripcion{
@@ -89,17 +135,23 @@ require("../../conection/conexion2.php");
 
 
       <div class="col-md-8 col-xs-8 pag-center">
+
          <div class="col-md-12" style="margin-top: 60px;">
-              <h3 class="text-center">LECTURA PRIMERO PRIMARIA</h3><br>
-               <?php while(@$row1=$mostrarLectura->fetch(PDO::FETCH_ASSOC)){   ?>
-              <a href="pisa1p.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#3498db; ">¡Termine de Leer!</a>
+          <?php while(@$row1=$mostrarLectura->fetch(PDO::FETCH_ASSOC)){   ?>
+              <h3 class="text-center">Lectura: <?php echo $row1['nombreLectura']; ?></h3><br> 
+              <hr>
+              <h4>Actividades Lectoras</h4>              
+              <a href="pisa1p.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#3498db; ">Prueba Comprensión - Segun Pisa</a>
+              <a href="cnb.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#27ae60; ">Prueba Comprensión - Segun CNB</a>             
+              <a href="glosario.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#ff4757; ">Glosario</a>
+               <a href="cuentame.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#e67e22; ">Con tus palabras</a>
+              <a href="personajes.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#f1c40f; ">Identificar Personaje</a>
+              <hr>
          </div>
 
 
  
 <div class="row sectionDinamico masCentrado">
-
-
            <div class="col-md-11">
               <div class="flipbook-viewport">
                 <div class="container">
@@ -114,13 +166,13 @@ require("../../conection/conexion2.php");
                 </div>
               </div>
   
-<?php  }?>
+        <?php  }?>
 
-</div>
+        </div>
  </div>
 
   <div  class="col-md-12 cajaDescripcion" style="margin-top: -220px;" >
-              <h3 class="text-center">MIS INTENTOS</h3><br>
+              <h3 class="text-center">MIS INTENTOS SEGÚN PISA</h3><br>
                <table class="table table-hover" >
                     <thead>
                       <tr>
@@ -132,18 +184,18 @@ require("../../conection/conexion2.php");
                     </thead>
                     <tbody>
 
-                       <?php if($hayIntentos==0){ ?>
+                       <?php if($hayIntentos1==0){ ?>
                          <tr>      
                         <td colspan="4">¡No hay Intentos! </td>
  
                       </tr>
 
-                       <?php  }else{ while($row2=$buscarIntentos->fetch(PDO::FETCH_ASSOC)){
+                       <?php  }else{ while($row2=$buscarIntentosPisa->fetch(PDO::FETCH_ASSOC)){
                           @$i+=1;
                         ?>
-                      <tr>      
+                      <tr style="text-align: center;">      
                         <td><?php echo $i; ?></td>
-                        <td><?php echo $row2['nivelObtenido']; ?></td>
+                        <td ><?php echo $row2['nivelObtenido']; ?></td>
                         <td><?php echo $row2['fechaRegistro']." ".$row2['horaRegistro']; ?></td>
                         <td><a href="resultado.php?intentoABuscar=<?php echo $row2['idRegistro'];?>&idLectura=<?php echo $row2['idLectura']; ?>&idUsuario=<?php echo $_SESSION['idUsuario'];?>&intento=<?php echo $i; ?>" class="btn botonAgg-1" style="color: white; background-color: #2ecc71;">Ver</a></td>   
                       </tr>
@@ -152,9 +204,68 @@ require("../../conection/conexion2.php");
                   </table>
          </div>
 
+         <div  class="col-md-12 cajaDescripcion" style="margin-top: 20px;" >
+              <h3 class="text-center">MIS INTENTOS SEGÚN CNB</h3><br>
+               <table class="table table-hover" >
+                    <thead>
+                      <tr style="text-align:center;">
+                        <th>Intento</th>
+                        <th>Punteo Obtenido</th>
+                        <th>Fecha Registro</th>
+                        <th>Ver Detalles</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                       <?php if($hayIntentos2==0){ ?>
+                         <tr>      
+                        <td colspan="4">¡No hay Intentos! </td>
+ 
+                      </tr>
+
+                       <?php  }else{ while($row3=$buscarIntentosCnb->fetch(PDO::FETCH_ASSOC)){
+                          @$e+=1;
+                        ?>
+                      <tr style="text-align: center;">      
+                        <td><?php echo $e; ?></td>
+                        <td><?php echo $row3['totalObtenido']; ?></td>
+                        <td><?php echo $row3['fechaRegistro']." ".$row3['horaRegistro']; ?></td>
+                        <td><a href="resultadoCnb.php?intentoABuscar=<?php echo $row3['idRegistro'];?>&idLectura=<?php echo $row3['idLectura']; ?>&idUsuario=<?php echo $_SESSION['idUsuario'];?>&intento=<?php echo $e; ?>" class="btn botonAgg-1" style="color: white; background-color: #2ecc71;">Ver</a></td>   
+                      </tr>
+                    <?php    } }  ?>
+                    </tbody>
+                  </table>
+         </div>
+
+
 
    <script type="text/javascript">
-    
+   
+     function startArtyom(){
+
+    artyom.initialize({
+        lang: "es-ES",
+        continuous:true,// Reconoce 1 solo comando y para de escuchar
+              listen:true, // Iniciar !
+              debug:true, // Muestra un informe en la consola
+              speed:1 // Habla normalmente
+      });
+  
+    };
+
+    function informacion(){
+            startArtyom();
+            artyom.say("Veo que tienes dudas al momento de leer tus resultados. Estoy para servirte yo te explicare. En la primer caja llamada Datos de Lectura encontraras tus datos, la fecha y la hora en la que realizaste la prueba, en el recuadro que tiene por nombre, Nivel obtenido en la escala Pisa, está tú resultado total, esté es el nivel que alcanzaste, si quieres saber que destrezas posees dale clic.Por favor baja un poco hasta ver El enunciado Detalle de resultado. Este es el detalle de la prueba que realizaste, se detalla cada pregunta y no solo eso, también detalla si obtuviste los créditos estarán de color verde si los obtuviste y de color rojo si no lo obtuviste, aquí no se manejan puntos son créditos que obtienes según tú nivel. Te pediré de favor que bajes con el maus, Si bajas hasta encontrar los gráficos este detallara que capacidades lograste de una manera mas visual. Espero halla resuelto tus dudas.");
+            finAsistente();
+
+          }
+
+
+        function finAsistente(){
+    artyom.fatality();// Detener cualquier instancia previa
+  }    
+
+//FUNCIONES PARA EBOOK
 function loadApp() {
 
   // Create the flipbook
@@ -180,7 +291,13 @@ function loadApp() {
 
       autoCenter: true
 
+   
   });
+
+
+
+
+
 }
 
 // Load the HTML4 version if there's not CSS transform
@@ -193,9 +310,7 @@ yepnope({
   complete: loadApp
 });
 
-
-
-            </script>
+  </script>
           
     
         </div>

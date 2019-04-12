@@ -1,6 +1,7 @@
 <?php 
 session_start();
-require("../../conection/conexion2.php");
+$fundamento="pisa";
+require("../../conection/conexion.php");
 $_GET['idLectura'];
 $_GET['idUsuario'];
 @$_GET['intentoABuscar'];
@@ -31,9 +32,10 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
    
       
       //obtenemos todos los datos  
-     $sq2 = ("SELECT  * from registropruebacomprension as registro join atomolector as lectura on  registro.idLectura=lectura.idLectura join cuestionario as cues on cues.idLectura =registro.idLectura join itemopcionmultiple as preguntas on preguntas.idCuestionario=cues.idCuestionario where registro.idRegistro=:idRegistro");
+     $sq2 = ("SELECT  * from registropruebacomprension as registro join atomolector as lectura on  registro.idLectura=lectura.idLectura join cuestionario as cues on cues.idLectura =registro.idLectura join itemopcionmultiple as preguntas on preguntas.idCuestionario=cues.idCuestionario where registro.idRegistro=:idRegistro and cues.fundamento=:fundamento");
       $obtenerItems = $dbConn->prepare($sq2);
-      $obtenerItems->bindparam(':idRegistro',$_SESSION['ultimoIntento']);  
+      $obtenerItems->bindparam(':idRegistro',$_SESSION['ultimoIntento'],PDO::PARAM_INT);  
+      $obtenerItems->bindparam(':fundamento',$fundamento,PDO::PARAM_STR); 
       $obtenerItems->execute();
 
      //obtenemos datos para detalle
@@ -43,9 +45,10 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
       $obtenerDetalle->execute();
 
       //para graficos
-       $sq4 = ("SELECT  * from registropruebacomprension as registro join atomolector as lectura on  registro.idLectura=lectura.idLectura join cuestionario as cues on cues.idLectura =registro.idLectura join itemopcionmultiple as preguntas on preguntas.idCuestionario=cues.idCuestionario where registro.idRegistro=:idRegistro");
+       $sq4 = ("SELECT  * from registropruebacomprension as registro join atomolector as lectura on  registro.idLectura=lectura.idLectura join cuestionario as cues on cues.idLectura =registro.idLectura join itemopcionmultiple as preguntas on preguntas.idCuestionario=cues.idCuestionario where registro.idRegistro=:idRegistro and cues.fundamento=:fundamento");
       $detalleGrafico  = $dbConn->prepare($sq4);
-      $detalleGrafico->bindparam(':idRegistro',$_SESSION['ultimoIntento']);  
+      $detalleGrafico->bindparam(':idRegistro',$_SESSION['ultimoIntento'],PDO::PARAM_INT);
+      $detalleGrafico->bindparam(':fundamento',$fundamento,PDO::PARAM_STR);   
       $detalleGrafico->execute();
 
    
@@ -167,21 +170,19 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
  </style>
 
 
-
 	<div class="col-md-8 col-xs-8 pag-center">
       <div class="col-md-12" style="">
           <div class="card-style" style="width:60px; height: 60px; border-radius:100px; border:4px solid #f39c12; margin-left: 90%; margin-top: 20px; color: #d35400; cursor:pointer; position: absolute; z-index:6;" onclick="informacion();" title="¿Cómo Funciona?"><h1 style="margin-top:7px;">?</h1></div></div>
 
 
          <div class="col-md-12" style="margin-top: 60px;">
-              <h3 class="text-center">Resultado Prueba </h3><br>
+              <h3 class="text-center">Resultado Prueba según Estándares Pisa </h3><br>
               <a href="../comprensionLectora.php?gradoB=<?php echo $_SESSION['gradoEnviar']; ?>" class="btn botonAgg-1" style="color: white; background-color: #3498db;">Mis Lecturas</a>
-             <a class="btn botonAgg-1" style="color: white; background-color: #2ecc71;" style="">Incrementar Bocabulario</a>
-
+             
               <div class="col-md-12 cajaDescripcion" style="min-height:200px; margin-top: 20px;">
                 <?php  while(@$row4=$obtenerDetalle->fetch(PDO::FETCH_ASSOC)){
                        $_SESSION['gradoEnviar']=$row4['grado'];
-
+                       
 
                     $_SESSION['nivelObtenido']=$row4['nivelObtenido'];
                  ?>

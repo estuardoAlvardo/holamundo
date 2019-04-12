@@ -316,13 +316,12 @@ padding-top: -30px;
      <p>Pre-Escolar</p>
       <div class="row" style="padding-left: 40px;">
     
-    <a href="lecturas1erop.php" style="color: white;"><div class="col-md-2 btnGrado">Inicial</div></a>
+    
+     <a href="inicialComprension.php?gradoB=13" style="color: white;"><div class="col-md-2 btnGrado">Pre-Kinder</div></a>
     <div class="col-md-1"></div>
-    <div class="col-md-2 btnGrado">Pre-Kinder</div>
+    <a href="inicialComprension.php?gradoB=14" style="color: white;"><div class="col-md-2 btnGrado">Kinder</div></a>
     <div class="col-md-1"></div>
-    <div class="col-md-2 btnGrado">Kinder</div>
-    <div class="col-md-1"></div>
-    <div class="col-md-2 btnGrado" >Preparatoria</div>
+    <a href="inicialComprension.php?gradoB=15" style="color: white;"><div class="col-md-2 btnGrado" >Preparatoria</div></a>
     <div class="col-md-1"></div>
     </div>
     <p>Primaria</p>
@@ -330,34 +329,34 @@ padding-top: -30px;
     
     <a href="comprensionLectora.php?gradoB=1" style="color: white;"><div class="col-md-2 btnGrado">1ero Primaria</div></a>
     <div class="col-md-1"></div>
-    <div class="col-md-2 btnGrado" >2do Primaria</div>
+   <a href="comprensionLectora.php?gradoB=2" style="color: white;"> <div class="col-md-2 btnGrado" >2do Primaria</div></a>
     <div class="col-md-1"></div>
-    <div class="col-md-2 btnGrado">3ero Primaria</div>
+    <a href="comprensionLectora.php?gradoB=3" style="color: white;"> <div class="col-md-2 btnGrado">3ero Primaria</div></a>
     <div class="col-md-1"></div>
-    <div class="col-md-2 btnGrado" >4to Primaria</div>
+    <a href="comprensionLectora.php?gradoB=4" style="color: white;"> <div class="col-md-2 btnGrado" >4to Primaria</div></a>
     <div class="col-md-1"></div>
-    <div class="col-md-2 btnGrado" >5to Primaria</div>
+     <a href="comprensionLectora.php?gradoB=5" style="color: white;"><div class="col-md-2 btnGrado" >5to Primaria</div></a>
     <div class="col-md-1"></div>
-    <div class="col-md-2 btnGrado" ">6to Primaria</div>
+     <a href="comprensionLectora.php?gradoB=6" style="color: white;"><div class="col-md-2 btnGrado">6to Primaria</div></a>
   </div>
      <p>Básicos</p>
   <div class="row" style="padding-left: 40px;">
     
-    <div class="col-md-2 btnGrado" >1ero Básicos</div>
+    <a href="comprensionLectora.php?gradoB=7" style="color: white;"><div class="col-md-2 btnGrado" >1ero Básicos</div></a>
     <div class="col-md-1"></div>
-    <div class="col-md-2 btnGrado" >2do Básicos</div>
+     <a href="comprensionLectora.php?gradoB=8" style="color: white;"><div class="col-md-2 btnGrado" >2do Básicos</div></a>
     <div class="col-md-1"></div>
-    <div class="col-md-2 btnGrado">3ero Básicos</div>
+    <a href="comprensionLectora.php?gradoB=9" style="color: white;"> <div class="col-md-2 btnGrado">3ero Básicos</div></a>
    
   </div>
        <p>Diversificado</p>
   <div class="row" style="padding-left: 40px;">
     
-    <div class="col-md-2 btnGrado" >4to Diver</div>
+    <a href="comprensionLectora.php?gradoB=10" style="color: white;"> <div class="col-md-2 btnGrado" >4to Diver</div></a>
     <div class="col-md-1"></div>
-    <div class="col-md-2 btnGrado" >5to Diver</div>
+     <a href="comprensionLectora.php?gradoB=11" style="color: white;"><div class="col-md-2 btnGrado" >5to Diver</div></a>
     <div class="col-md-1"></div>
-    <div class="col-md-2 btnGrado">6to Diver</div>
+     <a href="comprensionLectora.php?gradoB=12" style="color: white;"><div class="col-md-2 btnGrado">6to Diver</div></a>
    
   </div>
 

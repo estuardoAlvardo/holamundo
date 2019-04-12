@@ -1,10 +1,10 @@
 <?php 
 session_start();
-require("../../conection/conexion2.php");
+require("../../conection/conexion.php");
 
 $_SESSION['idUsuario'];
 $_GET['idLectura'];
-
+$_GET['numeroLectura'];
 
 $sql1 = ("SELECT * FROM atomolectorvelocidad where noLectura=:noLectura and idUsuario=:idUsuario ");
 $obtenerIntentos = $dbConn->prepare($sql1);
@@ -55,6 +55,8 @@ $detalleLectura->bindParam(':idUsuario', $_SESSION['idUsuario'], PDO::PARAM_INT)
 $detalleLectura->execute();
 
 }
+
+
 
  ?>
 
@@ -203,7 +205,9 @@ $detalleLectura->execute();
     height: 400px; 
 }
  </style>
-
+ <script type="text/javascript">
+   document.oncontextmenu = function(){return false}
+ </script>
 
  			<div class="col-md-8 col-xs-8 pag-center">
         <div class="col-md-12" style="">
@@ -225,10 +229,10 @@ $detalleLectura->execute();
 
           ?> 
           <div class="col-md-12" style="margin-top: -20px; margin-bottom: 80px;">
-         <img src="<?php echo "../../".$obj1['rutaLectura']."/".$_GET['idLectura']; ?>.gif" style=" box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); border-radius: 20px;">
-         <p id="numeroLectura" style="display: none;"><?php echo $obj1['idLectura'] ?></p>
-         <p id="palabrasLecturabd" style="display: none;"><?php echo $obj1['cantidadPalabras'] ?></p>
-         
+         <img src="<?php echo "../../".$obj1['rutaLectura']."/".$_GET['numeroLectura']; ?>.gif" style=" box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); border-radius: 20px;">
+         <p id="numeroLectura" style="display: none;"><?php echo $obj1['idLectura']; ?></p>
+         <p id="palabrasLecturabd" style="display: none;"><?php echo $obj1['cantidadPalabras']; ?></p>
+       
          </div>
        <?php } ?>
 

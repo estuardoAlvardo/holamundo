@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require("../../../conection/conexion2.php");
+require("../../../conection/conexion.php");
 
 echo $_SESSION["idUsuario"]."<br>";
 echo "No NoLectura: ".$_POST['lectura']."<br>";

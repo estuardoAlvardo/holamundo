@@ -1,0 +1,3 @@
+lect1 = genero lectura
+lect2 = genero no literario
+lect3= genero novela

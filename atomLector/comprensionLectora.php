@@ -1,7 +1,7 @@
 <?php 
 session_start();
 
-require("../conection/conexion2.php");
+require("../conection/conexion.php");
     
   if(empty($_GET['curso'])){
 
@@ -39,12 +39,15 @@ require("../conection/conexion2.php");
     $mostrarVelocidadLectora->execute();
     $lecturasEncontradas=$mostrarVelocidadLectora->rowCount();
 
-    //ver si las lecturas ya fueron leidas y resueltas
+    //ver si las lecturas ya fueron leidas y resuelto el cuestionario
 
-
+      $q3= ("SELECT * FROM atomolector AS lecturas JOIN registropruebacomprension AS registro ON lecturas.idLectura=registro.idLectura WHERE registro.idUsuario=:idUsuario");
+      $hizoCuestionario=$dbConn->prepare($q3);
+      $hizoCuestionario->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
+      $hizoCuestionario->execute();
+      $hayRegistroCuestionario=$hizoCuestionario->rowCount();
 
      
-
 
 
 
@@ -113,7 +116,7 @@ require("../conection/conexion2.php");
 
               <div class="row">
               <?php while(@$row1=$mostrarLectura->fetch(PDO::FETCH_ASSOC)){ ?>
-               <a href="p1/lect1p.php?idLectura=<?php echo $row1['idLectura'];?>">
+               <a href="p1/lect1p.php?idLectura=<?php echo $row1['idLectura']; ?>">
                 <div class="col-md-5 estiloProducto" style="min-height:150px; margin-bottom: 20px;">
                 <div class="row" style="background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);">
 
@@ -127,34 +130,38 @@ require("../conection/conexion2.php");
                     <h5 style="text-align: left;"><?php echo "Descripción: ".$row1['descripcion']; ?></h5>
                     <h5 style="text-align: left;"><?php echo "Edad: ".$row1['edadLectura']; ?></h5>
 
-                     <?php 
-                       $q3 = ("SELECT idRegistro from registropruebacomprension where idLectura=:idLectura");
-                         $buscarIntentos=$dbConn->prepare($q3);
-                         $buscarIntentos->bindParam(':idLectura',$row1['idLectura'], PDO::PARAM_INT); 
-                         $buscarIntentos->execute();
-                         $sihay=$buscarIntentos->rowCount();
-                       
-                         if($sihay==0){                    
-
-                      ?>
-                    <img src="enviado1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:23%;">
-                    <?php } else{ while(@$row2=$buscarIntentos->fetch(PDO::FETCH_ASSOC)){
-                        if(@$row2['idRegistro']!=null){ ?>
-                      <img src="leido1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:23%;">
-                    <?php } } } ?>
+                    
+                    <img id="<?php echo 'envi1'.$row1['idLectura']; ?>" src="enviado1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:23%;">
+                  
+                    <img id="<?php echo 'lei1'.$row1['idLectura']; ?>" src="leido1.png" style=" display:none; width: 40px; height: 40px; position:absolute; margin-top: -14%; margin-left:66%;">
+                  
                   </div>
 
                 </div>                 
                </div>
              </a>
              <div class="col-md-1"></div>
-            <?php } ?>
+            <?php }  ?>
                
              </div><br>
 
 
          </div>
-         
+        
+
+<!-- AQUI VERIFICAMOS SI YA REALIZO ALGUNA LECTURA Y CAMBIAMOS ESTILOS TARJETAS -->
+
+        <input id="cantidadIteracion" type="text" name="cantidadRealizada" value="<?php echo $hayRegistroCuestionario; ?>" style="display: none;">
+        <?php while(@$row5=$hizoCuestionario->fetch(PDO::FETCH_ASSOC)){ @$m+=1; ?>
+
+          <input id="<?php echo "cambiar".$m; ?>" type="text" name="cambiarcolor" value="<?php echo "id".$row5['idLectura']; ?>" style="display: none;">
+        <?php } ?> 
+
+<!-- AQUI VERIFICAMOS SI YA REALIZO ALGUNA LECTURA  Y CAMBIAMOS ESTILOS TARJETAS -->
+
+
+
+
 
 
          <div class="col-md-12" style="margin-top:40px;">
@@ -169,7 +176,7 @@ require("../conection/conexion2.php");
                ?> 
 
 
-               <a href="p1/velocidad1p.php?idLectura=<?php echo $row2['idLectura']; ?>"><div class="col-md-5 estiloProducto" style="min-height:150px; margin-left: 10px; margin-left: 20px; margin-bottom: 20px;">
+               <a href="p1/velocidad1p.php?idLectura=<?php echo $row2['idLectura'];?>&numeroLectura=<?php echo $i;?>"><div class="col-md-5 estiloProducto" style="min-height:150px; margin-left: 10px; margin-left: 20px; margin-bottom: 20px;">
                 <div class="row" style="background-image:linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); ">
 
                   <div class="col-md-5" style=" min-height:150px; 
@@ -180,13 +187,11 @@ require("../conection/conexion2.php");
                     <h5 style="text-align: left;"><?php echo "Genero: ".$row2['genero']; ?></h5>
                     <h5 style="text-align: left;"><?php echo "Descripción: ".$row2['descripcion']; ?></h5>
                     <h5 style="text-align: left;"><?php echo "Edad".$row2['edadLectura']; ?></h5>
-                    <?php if($row2['intentos']>=1){ ?>
-
-                    <img src="leido1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:23%;">
-                  <?php }else{ ?>
-                      <img src="enviado1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:23%;">
-                    <?php } ?>
-
+                                       
+                  
+                    <img id="" src="enviado1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:23%;">
+                  
+                    <img src="leido1.png" style="display:none; width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:23%;">
 
                   </div>
 
@@ -268,6 +273,27 @@ require("../conection/conexion2.php");
 
       
 <script type="text/javascript">
+
+  //fraccion de codigo para cambiar de color las cards --> inicio
+  var iteracion = $('#cantidadIteracion').val();
+  
+  for(var i=1; i<=iteracion; i++ ){
+
+
+     var cardCambiar= $('#cambiar'+i).val(); //obtenemos el id como no puede ser numero le agregamos una palabra
+     var idModificar= cardCambiar.substring(2,10); // quitamos la palabra y nos queda el id modificar
+  
+      $('#envi1'+idModificar).css('display','none');
+       $('#lei1'+idModificar).css('display','block');
+  }
+//fraccion de codigo para cambiar de color las cards --> fin
+
+
+
+
+
+
+
 
         function ejecucion(){
           startArtyom();

@@ -1,11 +1,13 @@
 <?php 
 session_start();
-require("../../../conection/conexion2.php");
+require("../../../conection/conexion.php");
 
 //obtener items
-$sq1 = ("SELECT *  FROM atomolector as lectura join cuestionario as cues on lectura.idLectura=cues.idLectura join itemopcionmultiple as item on item.idCuestionario=cues.idCuestionario where lectura.idLectura=:idLectura");
+$fundamento="pisa";
+$sq1 = ("SELECT *  FROM atomolector as lectura join cuestionario as cues on lectura.idLectura=cues.idLectura join itemopcionmultiple as item on item.idCuestionario=cues.idCuestionario where lectura.idLectura=:idLectura AND fundamento=:fundamento");
     $obtenerCuestionario = $dbConn->prepare($sq1);
-     $obtenerCuestionario->bindparam(':idLectura',$_POST['idLecturaEnviado']);
+     $obtenerCuestionario->bindparam(':idLectura',$_POST['idLecturaEnviado'],PDO::PARAM_INT);
+     $obtenerCuestionario->bindparam(':fundamento', $fundamento,PDO::PARAM_STR);
     $obtenerCuestionario->execute();
 
 

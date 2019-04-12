@@ -190,6 +190,9 @@ switch ($_SESSION["tipoUsuario"]) {
 	case 3:
 		header("location:../cursosCoordinacion/misCursos.php");	
 		break;
+	case 7:
+		header("location:../zdesarrollador/importUser.php");	
+		break;
 	
 	default:
 		header("location:../cursosPadres/misCursos.php");

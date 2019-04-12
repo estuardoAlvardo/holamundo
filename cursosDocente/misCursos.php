@@ -88,232 +88,11 @@ $cursoDiver->execute();
 <!--CENTRANDO CONTENIDO ROL 1 -->
  <style type="text/css">
    
-   .cursoN{
-
- background-size: 160px;
-
- background-repeat: no-repeat;
-  height: 178px;
-  margin-left: 50px;
-  border-radius: 15px;
-   -webkit-transition: .2s ease-in-out;
-    -moz-transition: .2s ease-in-out;
-    -o-transition:.2s ease-in-out;
-    transition: .2s ease-in-out;
-  margin-bottom: 40px;
-
-}
-
-.cursoN:hover{
-
-  -webkit-box-shadow: 0px 3px 30px 0px rgba(0,0,0,0.75);
-}
-
-
-.pieCurso{ 
-  width:181px;
-  height:56px;
-  margin-left: -15px;
-  margin-top: 123px;
-  padding-top: 20px;
-  padding-left: 5px;
-  border-radius: 0px 0px 15px 15px;
-   -webkit-transition: .2s ease-in-out;
-    -moz-transition: .2s ease-in-out;
-    -o-transition:.2s ease-in-out;
-    transition: .2s ease-in-out;
-    overflow: hidden;
-    background-color: rgba(10,38,64,0.5);
-    color: white;
-    
-}
-.pieCurso:hover{
-background-color: rgba(10,38,64,0.7);
-height:178px;
-margin-top: 0px;
-border-radius:15px;
-color:white;
-padding-top: -13px;
-width: 181px;
-}
-
-.contenedorCurso{
-  background-color:white;
-    margin-top: 40px;
-    height:200px;
-    margin-left: 2%;
-    -webkit-border-radius:5px;
-    -o-border-radius:5px;
-    -moz-border-radius:5px;
-    padding: 0px;
-
- -webkit-box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-  -moz-box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-  -ms-box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-  -o-box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-
-
-
-  -webkit-transition: 0.3s ease;
-  -moz-transition: 0.3s ease;
-  -ms-transition: 0.3s ease;
-  -o-transition: 0.3s ease;
-  transition: 0.3s ease;
-   
-    
-    }
-
-
-.contenedorCurso:hover{
--moz-box-shadow: 0px 3px 8px #000000;
--webkit-box-shadow: 0px 3px 8px #000000;
-box-shadow: 0px 3px 8px #000000;
- }
-    
-.pieCurso2{
-  background-color: #36abcb;
-  height: 60px;
-  top: 116px;
-padding-top: -30px;
-  }
-.pieCurso2 h4{
-   text-align: center;
-   color: white;
-   padding-top: -5%;
-   margin-top:120px;
-}
-
-
- .contenedorCurso p{
-  padding:3px;
-  color: #36abcb;
- }
-
-
-
- </style>
-
-
- 			<div class="col-md-8 col-xs-8 pag-center">
-         <div class="col-md-12" style="">
-              <h3 class="text-center">Mis cursos</h3>
-         </div>
-
- <!--        
-           <a href="../smartbook1p/fichaMs.php" class="hoverE">
-                    <div class="col-md-2 contenedorCurso">
-                      <p class="text-right"><?php echo "Lecciones: ".$leccionRealizada."/".$leccionPendiente;  ?></p>
-                            <div class="col-md-1 item2">
-                               <div class="img-responsive sinfondo2"> 
-                                  <img class="img-fondo2" src="img/iconos/clase1.png">
-                                </div> 
-                              </div>
-                         <div class="pieCurso2 img-responsive" style="">
-                            <h4>Medio Social y Natural</h4>
-                        </div>
-                    </div>
-                  </a>
-             <a href="../smartbook1p/fichaFc.php" class="hoverE">
-                    <div class="col-md-2 contenedorCurso">
-                      <p class="text-right"><?php echo "Lecciones: ".$leccionRealizada."/".$leccionPendiente;  ?></p>
-                            <div class="col-md-1 item2">
-                               <div class="img-responsive sinfondo2"> 
-                                  <img class="img-fondo2" src="img/iconos/clase1.png">
-                                </div> 
-                              </div>
-                         <div class="pieCurso2 img-responsive">
-                            <h4>Formación Ciudadana</h4>
-                        </div>
-                    </div>
-                  </a>
-                  <a href="../smartbook1p/fichaL1.php" class="hoverE">
-                    <div class="col-md-2 contenedorCurso">
-                      <p class="text-right"><?php echo "Lecciones: ".$leccionRealizada."/".$leccionPendiente;  ?></p>
-                            <div class="col-md-1 item2">
-                               <div class="img-responsive sinfondo2"> 
-                                  <img class="img-fondo2" src="img/iconos/clase1.png">
-                                </div> 
-                              </div>
-                         <div class="pieCurso2 img-responsive">
-                            <h4>Comunicación y Lenguaje L1</h4>
-                        </div>
-                   </div>
-                   </a>
-                   <a href="../smartbook1p/fichaL2.php" class="hoverE">
-                    <div class="col-md-2 contenedorCurso">
-                      <p class="text-right"><?php echo "Lecciones: ".$leccionRealizada."/".$leccionPendiente;  ?></p>
-                            <div class="col-md-1 item2">
-                               <div class="img-responsive sinfondo2"> 
-                                  <img class="img-fondo2" src="img/iconos/clase1.png">
-                                </div> 
-                              </div>
-                         <div class="pieCurso2 img-responsive">
-                            <h4>Idioma Maya L2</h4>
-                        </div>
-                   </div>
-                  </a>
-                   <a href="../smartbook1p/fichaL3.php" class="hoverE">
-                    <div class="col-md-2 contenedorCurso">
-                      <p class="text-right"><?php echo "Lecciones: ".$leccionRealizada."/".$leccionPendiente;  ?></p>
-                            <div class="col-md-1 item2">
-                               <div class="img-responsive sinfondo2"> 
-                                  <img class="img-fondo2" src="img/iconos/clase1.png">
-                                </div> 
-                              </div>
-                         <div class="pieCurso2 img-responsive">
-                            <h4>Idioma Ingles L3</h4>
-                        </div>
-                   </div>
-                   </a>
-
-                    <a href="../smartbook1p/fichaMat.php" class="hoverE">
-                   <div class="col-md-2 contenedorCurso">
-                      <p class="text-right"><?php echo "Lecciones: ".$leccionRealizada."/".$leccionPendiente;  ?></p>
-                            <div class="col-md-1 item2">
-                               <div class="img-responsive sinfondo2"> 
-                                  <img class="img-fondo2" src="img/iconos/clase1.png">
-                                </div> 
-                              </div>
-                         <div class="pieCurso2 img-responsive">
-                            <h4>Matemáticas</h4>
-                        </div>
-                   </div>
-                   </a>
-
-                   <a href="../smartbook1p/fichaArt.php" class="hoverE">
-                   <div class="col-md-2 contenedorCurso">
-                      <p class="text-right"><?php echo "Lecciones: ".$leccionRealizada."/".$leccionPendiente;  ?></p>
-                            <div class="col-md-1 item2">
-                               <div class="img-responsive sinfondo2"> 
-                                  <img class="img-fondo2" src="img/iconos/clase1.png">
-                                </div> 
-                              </div>
-                         <div class="pieCurso2 img-responsive">
-                            <h4>Expresión Artistica</h4>
-                        </div>
-                   </div>
-                 </a>
-                 <a href="../smartbook1p/fichaFis.php" class="hoverE">
-                    <div class="col-md-2 contenedorCurso">
-                      <i class="flaticon-premium premium"></i>
-                      <p class="text-right"><?php echo "Lecciones: ".$leccionRealizada."/".$leccionPendiente;  ?></p>
-                            <div class="col-md-1 item2">
-                               <div class="img-responsive sinfondo2"> 
-                                  <img class="img-fondo2" src="img/iconos/clase1.png">
-                                </div> 
-                              </div>
-                         <div class="pieCurso2 img-responsive">
-                            <h4>Educación Física</h4>
-                        </div>
-                   </div>
-                  </a> --->
-                  <style type="text/css">
-                    .cajaCards{
+.cajaCards{
                       box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
                       transition: all 0.3s cubic-bezier(.25,.8,.25,1);
                       border-radius: 5px;
-                      height: 100px; 
+                      height: 150px; 
                       margin-bottom: 20px;
                       padding-top: 10px;
                       color: black;
@@ -329,461 +108,209 @@ padding-top: -30px;
                       padding-top: 10px;
 
                     }
-                  </style>
 
-                  <div class="col-md-11">
-                     <h3 class="text-left" style="">Areas Principales | Según CNB</h3><hr>
-                    <div class="row">
-                      <div class="col-md-1"></div>
-                      <a href="../atomoCnb/1p/Lenguaje1/eleccionNivel.php?curso=1
-                      "><div class="col-md-2 cajaCards" style="">
-                        <p>Comunicación Y  Lenguaje | L1</p>
-                      </div></a>
-                      <div class="col-md-1"></div>
-                      <div class="col-md-2 cajaCards" style="">
-                        <p>Comunicación Y  Lenguaje | L2</p>
+/* card material design style*/
+
+.card {
+  display: inline-block;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  margin: 20px;
+  position: relative;
+  margin-bottom: 50px;
+  transition: all .2s ease-in-out;
+  text-decoration: none;
+  color: black; 
+}
+
+.card:hover {
+  /*box-shadow: 0 5px 22px 0 rgba(0,0,0,.25);*/
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  
+}
+
+.image {
+  height: 150px;
+  opacity: .7;
+  overflow: hidden;
+  transition: all .2s ease-in-out;
+   background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */
+   background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.image:hover,
+.card:hover .image {
+  height: 150px;
+  opacity: 1;
+}
+
+.text {
+  background: #FFF;
+  padding: 20px;
+  min-height: 200px;
+}
+
+.text p {
+  margin-bottom: 0px;
+}
+
+.fab {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: absolute;
+  margin-top: -50px;
+  right: 20px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, .3);
+  color: #fff;
+  font-size: 48px;
+  line-height: 48px;
+  text-align: center;
+  background: #0066A2;
+  -webkit-transition: -webkit-transform .2s ease-in-out;
+  transition: transform .2s ease-in-out;
+}
+
+.fab:hover {
+  background: #549D3C;
+  cursor: pointer;
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+ </style>
+
+
+ 			<div class="col-md-8 col-xs-8 pag-center">
+         <div class="col-md-12" style="">
+              <h3 class="text-center">Mis cursos</h3>
+         </div>
+
+ 
+            <h3 class="text-left" style="">Areas Principales | Según CNB</h3><hr>
+           
+
+             <div class="row">
+                <a href="../atomLector/eleccionNivelprogramaLector.php?curso=7
+                                ">
+                  <div class="col-md-4" style="">
+                    <div class="card">
+
+                      <div class="image" >
+                        <img  src="../img/programaLector.png" width="60%">
                       </div>
-                      <div class="col-md-1"></div>
-                      <div class="col-md-2 cajaCards" style="">
-                        <p>Comunicación Y  Lenguaje | L3</p>
+
+                      <div class="text">
+                        
+                        
+                        <h3>Programa Lector</h3>
+                        <p style="text-align: left;">Incrementa tú nivel lector, tú velocidad y fluidez con el programa lector de AtomoLMS.</p>
+
                       </div>
-                      <div class="col-md-1"></div>
-                      <div class="col-md-2 cajaCards" style="">
-                         <p>Medio Social y Natural</p>
-                      </div>
-                      <div class="col-md-1"></div>
-                      <div class="col-md-2 cajaCards" style="">
-                         <p>Formación Ciuadana</p>
-                      </div>
-                      <div class="col-md-1"></div>
-                       <div class="col-md-2 cajaCards" style="">
-                         <p>Matemáticas</p>                        
-                      </div>
-                       <div class="col-md-1"></div>
-                       <a href="../atomLector/eleccionNivelprogramaLector.php?curso=7
-                      ">
-                       <div class="col-md-2 cajaCards" style="">
-                         <p>Programa Lector</p>                        
-                      </div></a>
+
+                    </div>
                   </div>
-                </div>
+              </a>
+                <a href="../atomoCnb/1p/Lenguaje1/eleccionNivel.php?curso=1">
+                   <div class="col-md-4">
+                    <div class="card">
+
+                      <div class="image" >
+                        <img  src="../img/comunicacion.jpg" width="110%">
+                      </div>
+
+                      <div class="text">
+                        
+                       
+
+                        <h3>Comunicación y Lenguaje L1</h3>
+                        <p style="text-align: left;">Desarrolla tus competencias y habilidades comunicativas.</p>
+
+                      </div>
+
+                    </div>
+                  </div> 
+                </a>
+                 <a href="../atomoCnb/1p/Lenguaje1/eleccionNivel.php?curso=1">
+                   <div class="col-md-4">
+                    <div class="card">
+
+                      <div class="image" >
+                        <img  src="../img/mate2.jpg" width="100%">
+                      </div>
+
+                      <div class="text">
+                        <h3>Matemáticas </h3>
+                        <p style="text-align: left;">Desarrolla tus competencias y habilidades matematicas.</p>
+
+                      </div>
+
+                    </div>
+                  </div> 
+                </a>
+                 <a href="../atomoCnb/1p/Lenguaje1/eleccionNivel.php?curso=1">
+                   <div class="col-md-4">
+                    <div class="card">
+
+                      <div class="image" >
+                        <img  src="../img/medioSocial.jpg" width="130%">
+                      </div>
+
+                      <div class="text">
+                        <h3>Medio Social y Natural </h3>
+                        <p style="text-align: left;">Desarrolla tus competencias y habilidades matematicas.</p>
+
+                      </div>
+
+                    </div>
+                  </div> 
+                </a>
+                <a href="../atomoCnb/1p/Lenguaje1/eleccionNivel.php?curso=1">
+                   <div class="col-md-4">
+                    <div class="card">
+
+                      <div class="image" >
+                        <img  src="../img/expresionArtistica.jpg" width="130%">
+                      </div>
+
+                      <div class="text">
+                        <h3>Expresión Artistica </h3>
+                        <p style="text-align: left;">Desarrolla tus competencias y habilidades matematicas.</p>
+
+                      </div>
+
+                    </div>
+                  </div> 
+                </a>
+                <a href="../atomoCnb/1p/Lenguaje1/eleccionNivel.php?curso=1">
+                   <div class="col-md-4">
+                    <div class="card">
+
+                      <div class="image" >
+                        <img  src="../img/formacionCiudadana.jpg" width="100%">
+                      </div>
+
+                      <div class="text">
+                        <h3>Formación Ciudadana</h3>
+                        <p style="text-align: left;">Desarrolla tus competencias y habilidades matematicas.</p>
+
+                      </div>
+
+                    </div>
+                  </div> 
+                </a>
+              </div>
+      
 
 
-<div class="col-md-11"><br><br>
-  <h3 class="text-left" style="">Otros Cursos</h3><hr>
-</div>
-
-           <div class="col-md-2 cursoN" style="background-image:url('../img/add.jpg'); margin-top: 70px;">
-
-                          <a href="../modCrearCurso/addCurso.php" class="linkCurso">
-                            <div class="pieCurso text-center" style="width: 148px;" >
-                            <h5><strong>Nuevo Curso</strong></h5>
-                            <br>
-                            <p class="textGrado">Agregar Curso
-                            </p>
-                            <img src="../img/ir.png" width="50" height="50" style="margin-top: 10px;">
 
 
-                          </div>                        
-                          </a>
-             </div><br>
             
 
-          <div class="col-md-11">
-              <h5 class="text-left" style="">Primaria</h5><hr>
-                <div class="row">
-
-                  <?php while(@$row21=$cursosPrimaria->fetch(PDO::FETCH_ASSOC)){ 
-
-                    $row21['nombreCurso'];
-                  
-
-                  if(@$row21['grado']==1){
-                    $nombreGrado="1ero";
-                  }
-                  if(@$row21['grado']==2){
-                    $nombreGrado="2do";
-                  } 
-                  if(@$row21['grado']==3){
-                    $nombreGrado="3ero";
-                  } 
-                  if(@$row21['grado']==4){
-                    $nombreGrado="4to";
-                  } 
-                  if(@$row21['grado']==5){
-                    $nombreGrado="5to";
-                  }                       
-                  if(@$row21['grado']==6){
-                    $nombreGrado="6to";
-                  } 
 
 
-                    $letra=substr(@$row21['nombreCurso'],0,1);
-
-                    if(strnatcasecmp($letra,'a')==0){
-                      $img="background-image:url('../abecedario/a.jpg')";
-                    }
-
-                    if(strnatcasecmp($letra,'b')==0){
-                      $img="background-image:url('../abecedario/b.jpg')";
-                    }
-
-                    if(strnatcasecmp($letra,'c')==0){
-                      $img="background-image:url('../abecedario/c.jpg')";
-                    }
-
-                    if(strnatcasecmp($letra,'d')==0){
-                      $img="background-image:url('../abecedario/d.jpg')";
-                    }
-
-                    if(strnatcasecmp($letra,'e')==0){
-                      $img="background-image:url('../abecedario/e.jpg')";
-                    }
-
-                    if(strnatcasecmp($letra,'f')==0){
-                      $img="background-image:url('../abecedario/f.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'g')==0){
-                      $img="background-image:url('../abecedario/g.jpg')";
-                    }
-
-                    if(strnatcasecmp($letra,'i')==0){
-                      $img="background-image:url('../abecedario/i.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'j')==0){
-                      $img="background-image:url('../abecedario/j.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'k')==0){
-                      $img="background-image:url('../abecedario/k.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'l')==0){
-                      $img="background-image:url('../abecedario/l.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'m')==0){
-                      $img="background-image:url('../abecedario/m.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'n')==0){
-                      $img="background-image:url('../abecedario/n.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'ñ')==0){
-                      $img="background-image:url('../abecedario/ñ.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'o')==0){
-                      $img="background-image:url('../abecedario/o.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'p')==0){
-                      $img="background-image:url('../abecedario/p.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'q')==0){
-                      $img="background-image:url('../abecedario/q.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'r')==0){
-                      $img="background-image:url('../abecedario/r.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'s')==0){
-                      $img="background-image:url('../abecedario/s.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'t')==0){
-                      $img="background-image:url('../abecedario/t.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'u')==0){
-                      $img="background-image:url('../abecedario/u.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'v')==0){
-                      $img="background-image:url('../abecedario/v.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'w')==0){
-                      $img="background-image:url('../abecedario/w.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'x')==0){
-                      $img="background-image:url('../abecedario/x.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'y')==0){
-                      $img="background-image:url('../abecedario/y.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'z')==0){
-                      $img="background-image:url('../abecedario/z.jpg')";
-                    }
-
-
-                    ?>
-
-
-                  <div class="col-md-2 cursoN" style="<?php echo $img; ?>">
-                    <a href="<?php echo '../modCrearCurso/classRoom.php?nombreCurso='.@$row21['nombreCurso'].'&nombreGrado='.$nombreGrado.'&seccion='.@$row21['seccion'].'&idCurso='.@$row21['idCurso'].'&nivel='.@$row21['nivel'].'&grado='.@$row21['grado'].'&portada='.@$row21['portada']; ?>" class="linkCurso">
-                      <div class="pieCurso text-center" style="width: 135px;">
-                        <h5 style="margin-top: -10px;"><strong><?php echo @$row21['nombreCurso'] ?></strong></h5>
-                        <br>
-                        <p >Grado: <?php echo $nombreGrado; ?><br>
-                             seccion: <?php echo @$row21['seccion']; ?>
-                        </p>
-                        <img src="../img/ir.png" width="50" height="50" style="margin-top: -10px;">
-                      </div>
-                      
-                        </a>
-                </div>
-                <?php } ?>
-                   
-                </div>
-              </div>
-
-              <div class="col-md-11">
-              <h5 class="text-left" style="margin-top: 10px;">Basicos</h5><hr>
-                <div class="row">
-                  <?php while(@$row22=$cursoBasico->fetch(PDO::FETCH_ASSOC)){ 
-
-                    @$row22['nombreCurso'];
-                  
-
-                  if(@$row22['grado']==1){
-                    $nombreGrado="1ero <br>";
-                  }
-                  if(@$row22['grado']==2){
-                    $nombreGrado="2do <br>";
-                  } 
-                  if(@$row22['grado']==3){
-                    $nombreGrado="3ero <br>";
-                  } 
-                    
-
-
-                    $letra=substr(@$row22['nombreCurso'],0,1);
-
-                    if(strnatcasecmp($letra,'a')==0){
-                      $img="background-image:url('../abecedario/a.jpg')";
-                    }
-
-                    if(strnatcasecmp($letra,'b')==0){
-                      $img="background-image:url('../abecedario/b.jpg')";
-                    }
-
-                    if(strnatcasecmp($letra,'c')==0){
-                      $img="background-image:url('../abecedario/c.jpg')";
-                    }
-
-                    if(strnatcasecmp($letra,'d')==0){
-                      $img="background-image:url('../abecedario/d.jpg')";
-                    }
-
-                    if(strnatcasecmp($letra,'e')==0){
-                      $img="background-image:url('../abecedario/e.jpg')";
-                    }
-
-                    if(strnatcasecmp($letra,'f')==0){
-                      $img="background-image:url('../abecedario/f.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'g')==0){
-                      $img="background-image:url('../abecedario/g.jpg')";
-                    }
-
-                    if(strnatcasecmp($letra,'i')==0){
-                      $img="background-image:url('../abecedario/i.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'j')==0){
-                      $img="background-image:url('../abecedario/j.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'k')==0){
-                      $img="background-image:url('../abecedario/k.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'l')==0){
-                      $img="background-image:url('../abecedario/l.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'m')==0){
-                      $img="background-image:url('../abecedario/m.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'n')==0){
-                      $img="background-image:url('../abecedario/n.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'ñ')==0){
-                      $img="background-image:url('../abecedario/ñ.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'o')==0){
-                      $img="background-image:url('../abecedario/o.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'p')==0){
-                      $img="background-image:url('../abecedario/p.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'q')==0){
-                      $img="background-image:url('../abecedario/q.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'r')==0){
-                      $img="background-image:url('../abecedario/r.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'s')==0){
-                      $img="background-image:url('../abecedario/s.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'t')==0){
-                      $img="background-image:url('../abecedario/t.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'u')==0){
-                      $img="background-image:url('../abecedario/u.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'v')==0){
-                      $img="background-image:url('../abecedario/v.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'w')==0){
-                      $img="background-image:url('../abecedario/w.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'x')==0){
-                      $img="background-image:url('../abecedario/x.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'y')==0){
-                      $img="background-image:url('../abecedario/y.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'z')==0){
-                      $img="background-image:url('../abecedario/z.jpg')";
-                    }
-
-
-                    ?>  
-                  <div class="col-md-2 cursoN" style="<?php echo $img; ?>">
-                    <a href="<?php echo '../modCrearCurso/classRoom.php?nombreCurso='.@$row22['nombreCurso'].'&nombreGrado='.$nombreGrado.'&seccion='.@$row22['seccion'].'&idCurso='.@$row22['idCurso'].'&nivel='.@$row22['nivel'].'&grado='.@$row22['grado'].'&portada='.@$row22['portada']; ?>" class="linkCurso">
-                      <div class="pieCurso text-center" style="width: 135px;">
-                        <h5><strong><?php echo @$row22['nombreCurso']; ?></strong></h5>
-                        <br>
-                        <p>Grado: <?php echo $nombreGrado; ?>
-                             seccion: <?php echo @$row22['seccion']; ?>
-                        </p>
-                        <img src="../img/ir.png" width="50" height="50" style="margin-top: -10px;">
-                      </div>
-                      
-                        </a>
-                      </div>
-
-                      <?php } ?>
-
-                     
-                    
-                </div>
-              </div> 
-
-              <div class="col-md-11">
-              <h5 class="text-left" style="margin-top: 10px;">Diversificado</h5><hr>
-                <div class="row">
-
-                  <?php while(@$row23=$cursoDiver->fetch(PDO::FETCH_ASSOC)){ 
-
-                    @$row23['nombreCurso'];
-                  
-
-                  if(@$row23['grado']==1){
-                    $nombreGrado="4to <br>";
-                  }
-                  if(@$row23['grado']==2){
-                    $nombreGrado="5to <br>";
-                  } 
-                  if(@$row23['grado']==3){
-                    $nombreGrado="6to <br>";
-                  } 
-                    
-
-
-                    $letra=substr(@$row23['nombreCurso'],0,1);
-
-                    if(strnatcasecmp($letra,'a')==0){
-                      $img="background-image:url('../abecedario/a.jpg')";
-                    }
-
-                    if(strnatcasecmp($letra,'b')==0){
-                      $img="background-image:url('../abecedario/b.jpg')";
-                    }
-
-                    if(strnatcasecmp($letra,'c')==0){
-                      $img="background-image:url('../abecedario/c.jpg')";
-                    }
-
-                    if(strnatcasecmp($letra,'d')==0){
-                      $img="background-image:url('../abecedario/d.jpg')";
-                    }
-
-                    if(strnatcasecmp($letra,'e')==0){
-                      $img="background-image:url('../abecedario/e.jpg')";
-                    }
-
-                    if(strnatcasecmp($letra,'f')==0){
-                      $img="background-image:url('../abecedario/f.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'g')==0){
-                      $img="background-image:url('../abecedario/g.jpg')";
-                    }
-
-                    if(strnatcasecmp($letra,'i')==0){
-                      $img="background-image:url('../abecedario/i.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'j')==0){
-                      $img="background-image:url('../abecedario/j.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'k')==0){
-                      $img="background-image:url('../abecedario/k.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'l')==0){
-                      $img="background-image:url('../abecedario/l.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'m')==0){
-                      $img="background-image:url('../abecedario/m.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'n')==0){
-                      $img="background-image:url('../abecedario/n.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'ñ')==0){
-                      $img="background-image:url('../abecedario/ñ.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'o')==0){
-                      $img="background-image:url('../abecedario/o.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'p')==0){
-                      $img="background-image:url('../abecedario/p.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'q')==0){
-                      $img="background-image:url('../abecedario/q.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'r')==0){
-                      $img="background-image:url('../abecedario/r.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'s')==0){
-                      $img="background-image:url('../abecedario/s.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'t')==0){
-                      $img="background-image:url('../abecedario/t.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'u')==0){
-                      $img="background-image:url('../abecedario/u.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'v')==0){
-                      $img="background-image:url('../abecedario/v.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'w')==0){
-                      $img="background-image:url('../abecedario/w.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'x')==0){
-                      $img="background-image:url('../abecedario/x.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'y')==0){
-                      $img="background-image:url('../abecedario/y.jpg')";
-                    }
-                    if(strnatcasecmp($letra,'z')==0){
-                      $img="background-image:url('../abecedario/z.jpg')";
-                    }
-
-
-                    ?>  
-                  <div class="col-md-2 cursoN" style="<?php echo $img; ?>">
-                    <a href="<?php echo '../modCrearCurso/classRoom.php?nombreCurso='.@$row23['nombreCurso'].'&nombreGrado='.$nombreGrado.'&seccion='.@$row23['seccion'].'&idCurso='.@$row23['idCurso'].'&nivel='.@$row23['nivel'].'&grado='.@$row23['grado'].'&portada='.@$row23['portada']; ?>" class="linkCurso">
-                      <div class="pieCurso text-center" style="width: 135px;">
-                        <h5><strong><?php echo @$row23['nombreCurso']; ?></strong></h5>
-                        <br>
-                        <p>Grado: <?php echo $nombreGrado; ?>
-                             seccion: <?php echo @$row23['seccion']; ?>
-                        </p>
-                        <img src="../img/ir.png" width="50" height="50" style="margin-top: -10px;">
-                      </div>
-                      
-                        </a>
-                      </div>
-                      <?php } ?>
-                    
-                </div>
-              </div>   
+     
           
       </div>
 <!--//CENTRANDO CONTENIDO ROL 1 -->
