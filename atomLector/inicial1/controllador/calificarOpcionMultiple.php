@@ -10,7 +10,7 @@ $sq1 = ("SELECT *  FROM atomolector as lectura join cuestionario as cues on lect
 
 
 //insertar cuestionario
- $sq2 = ("INSERT INTO registropruebacomprension(idLectura,idUsuario,tiempo,fechaRegistro,horaRegistro,rPregunta1,rPregunta2,rPregunta3, rPregunta4,rPregunta5,rPregunta6,rPregunta7, rPregunta8, rPregunta9, rPregunta10,totalObtenido, nivelObtenido) VALUES(:idLectura,:idUsuario,:tiempo,:fechaRegistro,:horaRegistro,:rPregunta1,:rPregunta2,:rPregunta3, :rPregunta4,:rPregunta5,:rPregunta6,:rPregunta7, :rPregunta8, :rPregunta9, :rPregunta10,:totalObtenido, :nivelObtenido)");
+ $sq2 = ("INSERT INTO registropruebacomprension(idLectura,idUsuario,tiempo,fechaRegistro,horaRegistro,rPregunta1,rPregunta2,rPregunta3, rPregunta4,rPregunta5,totalObtenido, nivelObtenido) VALUES(:idLectura,:idUsuario,:tiempo,:fechaRegistro,:horaRegistro,:rPregunta1,:rPregunta2,:rPregunta3, :rPregunta4,:rPregunta5,:totalObtenido, :nivelObtenido)");
      $insertarCuestionario = $dbConn->prepare($sq2);
 
 

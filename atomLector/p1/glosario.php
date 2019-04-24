@@ -13,6 +13,8 @@ require("../../conection/conexion.php");
       $yaRealizo->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
       $yaRealizo->execute();
       $hayRegistros=$yaRealizo->rowCount();
+
+
  ?>
 
 
@@ -497,9 +499,24 @@ That part is just for the form
           <input type="text" name="nombre" id="nombre" value="<?php echo $_SESSION['nombre']; ?>" style="display: none;">
 
          <div class="row">
+            <h4>Progresión de Aprendizaje</h4>
+            <?php  for($bucle=1; $bucle<=$hayRegistros; $bucle++){ 
+              @$porcentaje+=10;
+              }
+              ?>
+              <div class="progress">
+              <div class="progress-bar progress-bar-striped" role="progressbar"  style="width: <?php echo @$porcentaje."%"; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php echo @$porcentaje."%"; ?> </div>
+            </div>
+
+        
+
+            
+
+
          <?php while(@$row1=$mostrarGlosario->fetch(PDO::FETCH_ASSOC)){?> 
-              <div class="col-md-3 cardGlosario" id="<?php echo 'card'.$row1['idPalabras']; ?>" style="background-color:#3498db; color: white; height:200px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
+              <div class="col-md-3 cardGlosario" id="<?php echo 'card'.$row1['idPalabras']; ?>" style="background-color:#3498db; color: white; height:240px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
                 <div style="width: 100%; height:150; padding: 0px 0px; border-radius: 5px; ">
+                  <h5 style="text-align: right;"><?php echo "Pts:".$row1['ponderacionPalabra'] ?></h5>
                   <h3><?php echo $row1['concepto']; ?></h3>
 
                 <p> <?php echo  $row1['definicion']; ?></p>

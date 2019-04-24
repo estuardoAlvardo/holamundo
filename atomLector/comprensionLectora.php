@@ -47,11 +47,7 @@ require("../conection/conexion.php");
       $hizoCuestionario->execute();
       $hayRegistroCuestionario=$hizoCuestionario->rowCount();
 
-     
-
-
-
-
+   
  ?>
 
 
@@ -297,7 +293,7 @@ require("../conection/conexion.php");
 
         function ejecucion(){
           startArtyom();
-          artyom.say("Hola Miss Yesy, buenos días, soy tu asistente, estoy para ayudarte, y me da mucho gusto que estés aquí, te dare algunas sugerencias didácticas y algunos tips, para apoyar a tus alumnos y explotar lo mejor de ellos.");
+          artyom.say("Hola, buenos días, soy tu asistente, estoy para ayudarte, y me da mucho gusto que estés aquí, te dare algunas sugerencias didácticas y algunos tips, para apoyar a tus alumnos y explotar lo mejor de ellos.");
           document.getElementById("dormida").style.display="none";
           document.getElementById("despierta").style.display="block";
           

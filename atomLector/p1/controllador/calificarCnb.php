@@ -1,9 +1,11 @@
 <?php 
 session_start();
 require("../../../conection/conexion.php");
+$_POST['intento'];
 $fundamento='cnb';
 $fecha_actual=date("d/m/Y");
  $hora_actual=date('h:i:s');
+ $total=0;
 //obtener items
 
 $sq1 = ("SELECT *  FROM atomolector as lectura join cuestionario as cues on lectura.idLectura=cues.idLectura join itemopcionmultiple as item on item.idCuestionario=cues.idCuestionario where lectura.idLectura=:idLectura AND fundamento=:fundamento");
@@ -14,7 +16,7 @@ $sq1 = ("SELECT *  FROM atomolector as lectura join cuestionario as cues on lect
 
 
 //insertar quiz
- $sq2 = ("INSERT INTO   registropruebacomprension(idLectura,idUsuario,tiempo,fechaRegistro,horaRegistro,rPregunta1,rPregunta2,rPregunta3, rPregunta4,rPregunta5,rPregunta6,rPregunta7,rPregunta8,rPregunta9,rPregunta10,totalObtenido) VALUES(:idLectura,:idUsuario,:tiempo,:fechaRegistro,:horaRegistro,:rPregunta1,:rPregunta2,:rPregunta3, :rPregunta4,:rPregunta5,:rPregunta6,:rPregunta7,:rPregunta8,:rPregunta9,:rPregunta10,:totalObtenido)");
+ $sq2 = ("INSERT INTO   registropruebacomprension(idLectura,idUsuario,tiempo,fechaRegistro,horaRegistro,rPregunta1,rPregunta2,rPregunta3, rPregunta4,rPregunta5,rPregunta6,rPregunta7,rPregunta8,rPregunta9,rPregunta10,totalObtenido,intento) VALUES(:idLectura,:idUsuario,:tiempo,:fechaRegistro,:horaRegistro,:rPregunta1,:rPregunta2,:rPregunta3, :rPregunta4,:rPregunta5,:rPregunta6,:rPregunta7,:rPregunta8,:rPregunta9,:rPregunta10,:totalObtenido,:intento)");
      $insertarCuestionario = $dbConn->prepare($sq2);
 /*
 //datos recibidos
@@ -37,6 +39,7 @@ $insertarCuestionario->bindparam(':idUsuario',$_POST['idUsuario']);
 $insertarCuestionario->bindparam(':tiempo',$_POST['tiempo']);
 $insertarCuestionario->bindparam(':fechaRegistro',$fecha_actual);
 $insertarCuestionario->bindparam(':horaRegistro',$hora_actual);
+$insertarCuestionario->bindparam(':intento',$_POST['intento']);
 
 
 

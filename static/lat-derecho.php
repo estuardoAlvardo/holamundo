@@ -187,7 +187,7 @@ if($_SESSION['tipoUsuario']==1){
             <input type="text" class="form-control" name="tituloCircular" placeholder="Titulo Circular" required><br>
              <textarea type="text" class="form-control" name="circular" placeholder="Cuerpo de la circular" required></textarea> <br>
               
-             <input class="btn botonAgg botonAgg-1" type="submit" value="Crear Circular"  style="background-color: rgb(54, 171, 203); color: white; border:white; float: right; margin-top: 40px; ">
+             <input class="btn botonAgg botonAgg-1"  type="submit" value="Crear Circular"  style="background-color: rgb(54, 171, 203); color: white; border:white; float: right; margin-top: 40px; ">
           </form>
         </div>
         <div class="modal-footer">
@@ -236,7 +236,7 @@ if($_SESSION['tipoUsuario']==1){
           <h5 class="txt-fuente txt-nombre" s><?php echo "Apellido: ".$_SESSION["apellido"]; ?></h5> 
           <h5 class="txt-fuente txt-nombre"><?php echo "Grado: ".@$_SESSION['nombreGrado']." ".@$_SESSION["nivel"]; ?></h5> 
           <h5 class="txt-fuente txt-nombre"><?php echo "Sección: ".@$_SESSION['seccion']?></h5> 
-          <a href="../conection/logout.php"><img class="img-responsive img-logout" src="../img/of.png" title="SALIR" /></a>
+          <a href="../conection/logout.php" id="salirIa"><img class="img-responsive img-logout" src="../img/of.png" title="SALIR" /></a>
 </div>
 
  
@@ -283,7 +283,7 @@ if($_SESSION['tipoUsuario']==1){
         <a data-slide="prev" href="#media" class="left carousel-control" style="margin-top:30px; margin-left:20%;">‹</a>
         <a data-slide="next" href="#media" class="right carousel-control" style="margin-top:30px; margin-right:35%;">›</a>
         <br>
-         <button class="btn botonAgg botonAgg-1"  type="button" id="dropdownMenu1" data-toggle="modal" data-target="#myModal" aria-haspopup="true" aria-expanded="true" style="background-color: rgb(54, 171, 203); color: white; border:white;">Crear Circular</button>
+         <button class="btn botonAgg botonAgg-1" id="" type="button" id="dropdownMenu1" data-toggle="modal" data-target="#myModal" aria-haspopup="true" aria-expanded="true" style="background-color: rgb(54, 171, 203); color: white; border:white;">Crear Circular</button>
       </div>                          
  
  <!-- Modal -->
@@ -471,10 +471,10 @@ if($_SESSION['tipoUsuario']==1){
 
 
           <h5 class="txt-fuente txt-nombre" style="margin-top: 50px;"><?php echo "Nombre: ".$_SESSION["nombre"]; ?></h5>
-          <h5 class="txt-fuente txt-nombre" s><?php echo "Apellido: ".$_SESSION["apellido"]; ?></h5> 
+          <h5 class="txt-fuente txt-nombre"><?php echo "Apellido: ".$_SESSION["apellido"]; ?></h5> 
           <h5 class="txt-fuente txt-nombre"><?php echo "Grado: ".@$_SESSION['nombreGrado']." ".@$_SESSION["nivel"]; ?></h5> 
           <h5 class="txt-fuente txt-nombre"><?php echo "Sección: ".@$_SESSION['seccion']?></h5> 
-          <a href="../../conection/logout.php"><img class="img-responsive img-logout" src="../../img/of.png" title="SALIR" /></a>
+          <a href="../../conection/logout.php" id="salirIa"><img class="img-responsive img-logout" src="../../img/of.png" title="SALIR" /></a>
 </div>
 
  

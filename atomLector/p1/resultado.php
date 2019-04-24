@@ -44,12 +44,14 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
       $obtenerDetalle->bindparam(':idRegistro',$_SESSION['ultimoIntento']);  
       $obtenerDetalle->execute();
 
-      //para graficos
+      //para graficos indicadores de logro
        $sq4 = ("SELECT  * from registropruebacomprension as registro join atomolector as lectura on  registro.idLectura=lectura.idLectura join cuestionario as cues on cues.idLectura =registro.idLectura join itemopcionmultiple as preguntas on preguntas.idCuestionario=cues.idCuestionario where registro.idRegistro=:idRegistro and cues.fundamento=:fundamento");
       $detalleGrafico  = $dbConn->prepare($sq4);
       $detalleGrafico->bindparam(':idRegistro',$_SESSION['ultimoIntento'],PDO::PARAM_INT);
       $detalleGrafico->bindparam(':fundamento',$fundamento,PDO::PARAM_STR);   
       $detalleGrafico->execute();
+
+   
 
    
 
@@ -259,6 +261,7 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
          <div class="row" style="margin-top: 30px;">
             <div class="col-md-1"></div>
          <div id="container" class="col-md-9 cajaDescripcion" style="margin-bottom: 30px;"></div>
+          
  </div>
          
   
@@ -268,14 +271,8 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
 
 
 <script language="Javascript"  type="text/javascript">
-  
-  
    
- 
-  
-
-  
-   //graficos
+   //graficos pisa
 
 Highcharts.chart('container', {
     chart: {
@@ -346,9 +343,12 @@ Highcharts.chart('container', {
 
         }
     ]
-});      //fin graficos
+});      //fin graficos pisa
 
  
+
+
+  
 //ia 
 
    function startArtyom(){

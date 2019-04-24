@@ -6,33 +6,53 @@ $time = time();
  ?>
 
 <!-- LATERAL IZQUIERDO CONTENIDO FIJO -->
+  
+    <script src="../js/artyom/artyom.min.js"></script>
+  <script src="../js/artyom/artyom.window.js"></script>
+  <script src="../js/artyom/artyomCommands.js"></script>
+
 <style>
 
-  #calendar {
-    max-width: 900px;
-    margin: 0 auto;
-  }
 
+
+.recodinggN {
+ 
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+transition: all .2s ease-in-out;
+}
+
+.recodinggN:hover {
+  /*box-shadow: 0 5px 22px 0 rgba(0,0,0,.25);*/
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  
+}
 </style>
+
+
+
+
  <div class="row cont-page">
 
+<p id="userIa" style="display: none;"><?php echo $_SESSION['nombre']; ?></p>
+<p id="tipoUserIa" style="display: none;"><?php echo $_SESSION['tipoUsuario']; ?></p>
 
 <?php function directoriosNiveles($nivel){
   if($nivel==1){ // este nivel es el que todas las paginas tienen si no hay mas directorios
 
  ?>
-
-
-
-
       <div class="col-md-2 col-xs-2 lat-izquierdo">
 
       	
         <img class="img-responsive btn-back" src="../img/back3.png" title="atras" onclick="history.back(-1)"  />
 
         
+        <h5 style="color:white; margin-left: 10px; margin-top: 50px;">Asistente de voz</h5>
 
-        <div class="text-center col-md-12" style="margin-left:5px; margin-top: 50%;">
+        <div class="recodinggN" id="microOn" title="Que quieres hacer.." style="cursor: pointer; padding-top:3px;  width: 50px; height: 50px; border-radius: 100%; margin-top: 30px; background-color: #3498db; margin-left: 40%;" onclick="inicio(this.id)"><img src="../img/micro.png" width="40" height="40" ></div>
+
+        <div id="microOf" class="recodinggN" title="Graba el concepto" style="cursor: pointer; padding-top:3px;  width: 50px; height: 50px; border-radius: 100%; margin-top: 30px; background-color: #F72626; margin-left: 40%; display: none" onclick="finGrabacion(this.id)"><img src="../img/microOf.png" width="40" height="40" ></div>
+
+        <div class="text-center col-md-12" style="margin-left:5px; margin-top: 20%;">
         	<h5 style="color:white; margin-left: 10px;">Mis apps</h5>
 
           <?php if($_SESSION['tipoUsuario']==1){  ?>
@@ -98,7 +118,9 @@ $time = time();
           </a><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: rgb(54, 171, 203); position: absolute; margin-top: -60px; margin-left: -32px;" ><?php echo @$_SESSION['reporteBullying1']; ?></div>
           <h5 style="color: white; margin-left: 20px;" class="text-left" >Bullyng</h5>
 
-          
+
+
+ 
 
             
 
@@ -535,6 +557,8 @@ function datos(){
   });
 
 
+
+
 </script>
 
 
@@ -806,5 +830,335 @@ function datos(){
         </div>
   </div>
 <?php }} ?>
+
+
+
+<script type="text/javascript">
+          //asistente
+ function startArtyom(){
+
+    artyom.initialize({
+        lang: "es-ES",
+        continuous:true,// Reconoce 1 solo comando y para de escuchar
+              listen:true, // Iniciar !
+              debug:true, // Muestra un informe en la consola
+              speed:1 // Habla normalmente
+      });
   
+    };
+
+ function finAsistente(){
+    artyom.fatality();// Detener cualquier instancia previa
+  }    
+
+function inicio(){
+             var tipoUsuario= $('#tipoUserIa').text();
+
+             if(tipoUsuario==1){
+               iaEstudiante();
+             }
+             if(tipoUsuario==2){
+               iaDocente();
+             }
+            //enviar idPalabra seleccionada para registrarlo en la base de datos          
+            startArtyom(); 
+                    
+            $('#microOn').css("display","none");
+            $('#microOf').css("display","block"); 
+           
+};
+    
+  
+
+function finGrabacion(clicked_id){
+   var texto = $("#span-preview").text();
+   var ocultar= clicked_id;
+   var mostrar= ocultar.substring(2,6); 
+
+ $('#microOn').css("display","block");
+  $('#microOf').css("display","none");  
+  
+  //confirmar guardado de grabacion
+  $("#activarNoti").click();
+    finAsistente();
+}
+
+
+
+//buscamos tipo usuario para mandar comandos
+
+
+
+function iaDocente(){
+ var nombreUser= $('#userIa').text();
+
+  //grupo 1 conociendo a lola 
+ //grupo 2 despedidad cortar grabacion
+ //grupo 3 ir a lecturas comprension y rapides
+ //grupo 4 ver reportes 
+ //grupo 5 ver actividades
+ //grupo 6 atomDrive
+ //grupo 7 asistencia
+ //grupo 8 reporte de bullyng
+ //grupo 9 crear circular
+  //grupo 10 perfil
+ //grupo 11 salir de la plataforma
+
+
+
+
+  artyom.addCommands([
+      {
+        indexes:['cómo te llamas','qué eres','no sé qué decir','hola hola', 'hola'],//grupo 1
+        action: function(i){
+          if (i==0) {
+            artyom.say("Hola"+nombreUser+", mi nombre es lola y estoy para servirte.");
+          }
+          if (i==1) {
+            artyom.say("soy una parte muy básica de inteligencia artificial.");
+          }
+          if (i==2) {
+            artyom.say("muy bien te dare algunos comandos para poder realizar,realizar lecturas, ver notas, ver actividades, mejorar mi velocidad, mejorar mi comprensión, entre otras si quieres saber mas dí. ayuda ");
+          }
+
+          if (i==3) {
+            artyom.say("hola me alegra que estes de buen humor!! ");
+          }
+           if (i==4) {
+            artyom.say("Hola"+nombreUser+", mi nombre es lola y estoy para servirte.");
+          }
+          
+        }
+      },
+      {
+        //grupo 2
+        indexes:['me voy','chau','adiós','fin grabación', 'no quiero decir nada', 'no quiero mas comandos', 'mejor uso el maus', 'apagar','salir','exit'],
+        action: function(){
+          artyom.say("Está bién te escucho luego.");
+           $('#microOn').css("display","block");
+          $('#microOf').css("display","none");
+         artyom.fatality();
+
+        }
+      },
+      {
+        //grupo 3
+        indexes:['lecturas','quiero leer','ver mis lecturas', 'ver lecturas rápidas','ver lecturas','ir a lecturas','abrir lecturas','lecturas rápidas','comprensión lectora',],
+        action: function(){
+          artyom.say("Abriendo lecturas, por favor tienes que elegir grado por ser docente");
+          window.open("http://localhost/atomolms/atomLector/eleccionNivelprogramaLector.php?curso=7",'_blank')
+
+        }
+      },
+      {
+        //grupo 4 
+        indexes:['ver reportes','reportes','reportes de lecturas', 'notas','ver notas','ver avances de lectura','sacar reportes','ir a reportes'],
+        action: function(){
+          artyom.say("Abriendo área de reportes, elije grado y sección para ver el avance lector");
+          window.open("http://localhost/atomolms/apps/reportes.php",'_blank')
+
+        }
+      },
+      {
+        //grupo 5 
+        indexes:['ver actividades','actividades','mis actividades', 'calendario','ver calendario','ir a calendario','fechas importantes','crear actividad','nueva actividad'],
+        action: function(){
+          artyom.say("Abriendo calendario de actividades, si quieres ver una actividad dale click, crea una nueva actividad dándole clic al día.");
+          window.open("http://localhost/atomolms/apps/calendarm.php",'_blank')
+
+        }
+      },
+      {
+        //grupo 6 
+        indexes:['guardar archivos','mis documentos','subir archivo', 'compartir archivo','mis archivos','archivos','compartir archivos','borrar un archivo','atomDrive', 'atomodrive','drive','abrir drive','abrir atomodrive', 'atom drive'],
+        action: function(){
+          artyom.say("Abriendo AtomDrive, para subir un documento dale clic al botón nuevo y subir archivo, puedes compartir tus archivos, y ver archivos que han compartido contigo.");
+          window.open("http://localhost/atomolms/apps/atomDrive.php",'_blank')
+
+        }
+      },
+      {
+        //grupo 7
+        indexes:['ver asistencia','asistencia','ir a asistencia', 'ver faltas','ver conectividad','reporte de asistencia','ausencia','actividad plataforma','conectiviadad plataforma'],
+        action: function(){
+          artyom.say("Abriendo reporte de asistencia, elije el grado, sección y mes para ver la asistencia presencial, también podrás ver el reporte de uso de la plataforma.");
+          window.open("http://localhost/atomolms/apps/misAlumnos.php",'_blank')
+
+        }
+      },
+      {
+        //grupo 8
+        indexes:['bullying','reporte bullying','ver incidencias', 'reporte de agresión','agreciones','controlar bullying','reporte de agreciones'],
+        action: function(){
+          artyom.say("Abriendo reporte de bullying, encontraras en este apartado, los datos de personas que valientemente reportan las agreciones que suceden en el plantel educativo, con esta información podremos actuar y combatir el bullying.");
+          window.open("http://localhost/atomolms/apps/reportbullying.php",'_blank')
+
+        }
+      },
+      {
+        //grupo 9
+        indexes:['crear circular','madar circular','circulares','circular'],
+        action: function(){
+          artyom.say("Abriendo área de circulares, crea la circular y mandacelo a  quienes tú quieras.");
+           $('#myModal').modal('show');
+
+
+        }
+      },
+      {
+        //grupo 10
+        indexes:['editar perfil','perfil','ver perfil','ir a perfil','quiero ver mi perfil'],
+        action: function(){
+          artyom.say("Abriendo tú perfil, en el podras editar nombre y apellido, hay datos que están bloqueados por tu seguridad");
+           window.open("http://localhost/atomolms/apps/editarPerfil.php",'_blank')
+
+
+        }
+      },
+      {
+        //grupo 11
+        indexes:['cerrar sesión','salir de la plataforma','terminar sesión','finalizar sesión','cerrar plataforma'],
+        action: function(){
+          artyom.say("Saliendo de la plataforma, espero escucharte pronto, hasta luego.");
+          window.location.replace("http://localhost/atomolms/index.html");
+          
+            artyom.fatality();
+
+        }
+      }
+
+    ]); 
+
+
+}
+
+function iaEstudiante(){
+ var nombreUser= $('#userIa').text();
+
+  //grupo 1 conociendo a lola 
+ //grupo 2 despedidad cortar grabacion
+ //grupo 3 ir a lecturas comprension y rapides
+ //grupo 4 ver reportes 
+ //grupo 5 ver actividades
+ //grupo 6 atomDrive
+ //grupo 7 asistencia
+ //grupo 8 reporte de bullyng
+ //grupo 9 crear circular
+  //grupo 10 perfil
+ //grupo 11 salir de la plataforma
+
+
+
+
+  artyom.addCommands([
+      {
+        indexes:['cómo te llamas','qué eres','no sé qué decir','hola hola', 'hola'],//grupo 1
+        action: function(i){
+          if (i==0) {
+            artyom.say("Hola"+nombreUser+", mi nombre es lola y estoy para servirte.");
+          }
+          if (i==1) {
+            artyom.say("soy una parte muy básica de inteligencia artificial.");
+          }
+          if (i==2) {
+            artyom.say("muy bien te dare algunos comandos para poder realizar,realizar lecturas, ver notas, ver actividades, mejorar mi velocidad, mejorar mi comprensión, entre otras si quieres saber mas dí. ayuda ");
+          }
+
+          if (i==3) {
+            artyom.say("hola me alegra que estes de buen humor!! ");
+          }
+           if (i==4) {
+            artyom.say("Hola"+nombreUser+", mi nombre es lola y estoy para servirte.");
+          }
+          
+        }
+      },
+      {
+        //grupo 2
+        indexes:['me voy','chau','adiós','fin grabación', 'no quiero decir nada', 'no quiero mas comandos', 'mejor uso el maus', 'apagar','salir','exit'],
+        action: function(){
+          artyom.say("Está bién te escucho luego.");
+           $('#microOn').css("display","block");
+          $('#microOf').css("display","none");
+         artyom.fatality();
+
+        }
+      },
+      {
+        //grupo 3
+        indexes:['lecturas','quiero leer','ver mis lecturas', 'ver lecturas rápidas','ver lecturas','ir a lecturas','abrir lecturas','lecturas rápidas','comprensión lectora',],
+        action: function(){
+          artyom.say("Abriendo lecturas, elije la lectura que quieres realizar, mejora tú comprensión y tu velocidad.");
+          window.open("http://localhost/atomolms/atomLector/comprensionLectora.php?curso=7&gradoB=1",'_blank')
+
+        }
+      },
+      {
+        //grupo 4 
+        indexes:['ver reportes','reportes','reportes de lecturas', 'notas','ver notas','ver avances de lectura','sacar reportes','ir a reportes'],
+        action: function(){
+          artyom.say("Abriendo tús notas, en esta área podrás ver tú avance lector ");
+          window.open("http://localhost/atomolms/apps/misNotas.php",'_blank')
+
+        }
+      },
+      {
+        //grupo 5 
+        indexes:['ver actividades','actividades','mis actividades', 'calendario','ver calendario','ir a calendario','fechas importantes','crear actividad','nueva actividad'],
+        action: function(){
+          artyom.say("Abriendo calendario de actividades, si quieres ver una actividad dale click, crea una nueva actividad dándole clic al día.");
+          window.open("http://localhost/atomolms/apps/calendarm.php",'_blank')
+
+        }
+      },
+      {
+        //grupo 6 
+        indexes:['guardar archivos','mis documentos','subir archivo', 'compartir archivo','mis archivos','archivos','compartir archivos','borrar un archivo','atomDrive', 'atomodrive','drive','abrir drive','abrir atomodrive', 'atom drive'],
+        action: function(){
+          artyom.say("Abriendo AtomDrive, para subir un documento dale clic al botón nuevo y subir archivo, puedes compartir tus archivos, y ver archivos que han compartido contigo.");
+          window.open("http://localhost/atomolms/apps/atomDrive.php",'_blank')
+
+        }
+      },
+      {
+        //grupo 8
+        indexes:['bullying','reportar agresión','agresión','agreciones','controlar bullying','reporte de agreciones'],
+        action: function(){
+          artyom.say("Abriendo área de bullying, podrás reportar cualquier agresión, ayudanos a tener un centro educativo sano.");
+          window.open("http://localhost/atomolms/apps/bullying.php",'_blank')
+
+        }
+      },
+      {
+        //grupo 10
+        indexes:['editar perfil','perfil','ver perfil','ir a perfil','quiero ver mi perfil'],
+        action: function(){
+          artyom.say("Abriendo tú perfil, en el podras editar nombre y apellido, hay datos que están bloqueados por tu seguridad");
+           window.open("http://localhost/atomolms/apps/editarPerfil.php",'_blank')
+
+
+        }
+      },
+      {
+        //grupo 11
+        indexes:['cerrar sesión','salir de la plataforma','terminar sesión','finalizar sesión','cerrar plataforma'],
+        action: function(){
+          artyom.say("Saliendo de la plataforma, espero escucharte pronto, hasta luego.");
+          window.location.replace("http://localhost/atomolms/index.html");
+          
+            artyom.fatality();
+
+        }
+      }
+
+    ]); 
+
+
+}
+
+
+
+
+
+        </script>    
 <!-- //LATERAL IZQUIERDO CONTENIDO FIJO -->

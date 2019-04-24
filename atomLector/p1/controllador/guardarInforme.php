@@ -31,7 +31,7 @@ $actualizarLeido->execute();
 
 
 
-header("location:../velocidad1p.php?idLectura=".$_POST['lectura']);
+header("location:../velocidad1p.php?idLectura=".$_POST['lectura']."&numeroLectura=".$_POST['lectura']);
 
 
 

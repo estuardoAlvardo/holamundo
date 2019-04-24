@@ -1,12 +1,13 @@
 <?php 
 session_start();
+require("../conection/conexion.php");
 //curso 1
 $curso="Matemáticas";
 $curso="";
 $leccionRealizada=1; // varaiable dependera del uso en la base de datos
 $leccionPendiente=4; // variable dependera del uso en la bd 
 
-require("../../conection/conexion.php");
+
 
 $_SESSION['idUsuario'];
 
@@ -63,10 +64,10 @@ $cursoDiver->execute();
     <title><?php echo $_SESSION["nombre"]; ?> | Mis Cursos</title>
  
     <!-- CSS de Bootstrap -->
-    <link href="../../css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="../../css/navLateralesModPedagogico.css" rel="stylesheet" media="screen">
-    <link href="../../css/centroPagina.css" rel="stylesheet" media="screen">
-    <link href="../../css/rol5FuncCursos.css" rel="stylesheet" media="screen">
+    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="../css/navLateralesModPedagogico.css" rel="stylesheet" media="screen">
+    <link href="../css/centroPagina.css" rel="stylesheet" media="screen">
+    <link href="../css/rol5FuncCursos.css" rel="stylesheet" media="screen">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"><!-- habilitar font famili font-family: 'Ubuntu', sans-serif;-->
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Ubuntu" rel="stylesheet"><!-- habilitar font famili font-family: 'Indie Flower', cursive;-->
 
@@ -85,11 +86,11 @@ $cursoDiver->execute();
 
   
 <!--NAVEGACION CONTENIDO FIJO -->
-<?php include '../nav.php'; $nivell=1; directorioNivelesNav($nivell); ?>
+<?php include '../static/nav.php'; $nivell=1; directorioNivelesNav($nivell); ?>
 <!-- //NAVEGACION CONTENIDO FIJO -->
 
 <!-- LATERAL IZQUIERDO CONTENIDO FIJO -->
- <?php include '../lat-izquierdo.php'; $nivel=1; directoriosNiveles($nivel); ?>
+ <?php include '../static/lat-izquierdo.php'; $nivel=1; directoriosNiveles($nivel); ?>
 <!-- //LATERAL IZQUIERDO CONTENIDO FIJO -->
 
 <!--CENTRANDO CONTENIDO ROL 1 -->
@@ -299,17 +300,17 @@ $cursoDiver->execute();
 <!--//CENTRANDO CONTENIDO ROL 1 -->
 
 <!--LATERAL DERECHO CONTENIDO FIJO -->
-		<?php include '../lat-derecho.php'; $nivelll=1; directoriosNivelesDer($nivelll); ?>
+		<?php include '../static/lat-derecho.php'; $nivelll=1; directoriosNivelesDer($nivelll); ?>
  <!-- //LATERAL IZQUIERDO CONTENIDO FIJO -->  
 
  
     <!-- Librería jQuery requerida por los plugins de JavaScript -->
-    <script src="../../js/jquery-3.2.1.js"></script>
+    <script src="../js/jquery-3.2.1.js"></script>
 
     <!-- Todos los plugins JavaScript de Bootstrap (también puedes
          incluir archivos JavaScript individuales de los únicos
          plugins que utilices) -->
-    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 <script type="text/javascript">
               var grado=0;
               var nivel=0;

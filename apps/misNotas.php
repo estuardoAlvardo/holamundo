@@ -1,57 +1,34 @@
 <?php 
 session_start();
-//curso 1
-$curso="Matemáticas";
-$curso="";
-$leccionRealizada=1; // varaiable dependera del uso en la base de datos
-$leccionPendiente=4; // variable dependera del uso en la bd 
 
 require("../conection/conexion.php");
 
 $_SESSION['idUsuario'];
+$_SESSION['grado'];
+
+
+//seleccionamos todas las lecturas de comprension lectora, esta es la maestra
+//esta mostrara todas las pruebas de compnresion primer intento
+$q1=("SELECT * ,registropruebacomprension.idRegistro as registroCnb FROM registropruebacomprension join atomolector on registropruebacomprension.idLectura=atomolector.idLectura join registropruebapersonajes on registropruebapersonajes.idLectura=atomolector.idLectura join contuspalabras on contuspalabras.idLectura=atomolector.idLectura where registropruebacomprension.idUsuario=:idUsuario and nivelObtenido='' AND registropruebapersonajes.idUsuario=:idUsuario and contuspalabras.idUsuario=:idUsuario AND registropruebacomprension.intento=1");
+$mostrarLecturas=$dbConn->prepare($q1);
+$mostrarLecturas->bindParam(':idUsuario', $_SESSION['idUsuario'], PDO::PARAM_INT);
+$mostrarLecturas->execute();
+$totalEncontrado=$mostrarLecturas->rowCount();
 
 
 
-//$sql1 = ("SELECT * FROM registrocl2p2 where idIntento=:idIntento");
-//$obtenerMatriz=$dbConn->prepare($sql1);
-//$obtenerMatriz->bindParam(':idIntento', $_GET['idIntento'], PDO::PARAM_INT); 
-//$obtenerMatriz->execute();
 
-//variables de niveles
-$nivelPrimaria=1;
-$nivelBasico=2;
-$nivelDiver=3;
+//mostramos las lecturas de velocidad
 
-//Buscar todos los cursos de este usuario primaria
+/*
+SELECT * FROM atomolectorvelocidad JOIN velocidadLectora on atomolectorvelocidad.noLectura=velocidadLectora.idLectura where idUsuario=17 and intento=1 and idLectura=2
+*/
 
-$q1 = ("SELECT * FROM cursos where idDocente=:idUsuario and nivel=:nivel");
-$cursosPrimaria=$dbConn->prepare($q1);
-$cursosPrimaria->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
-$cursosPrimaria->bindParam(':nivel',$nivelPrimaria, PDO::PARAM_INT); 
-$cursosPrimaria->execute();
-
-//Buscar todos los cursos de este usuario Basicos
-
-$q2= ("SELECT * FROM cursos where idDocente=:idUsuario and nivel=:nivel");
-$cursoBasico=$dbConn->prepare($q2);
-$cursoBasico->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
-$cursoBasico->bindParam(':nivel',$nivelBasico, PDO::PARAM_INT); 
-$cursoBasico->execute();
-
-
-//Buscar todos los cursos de este usuario Diversificado
-
-$q3 = ("SELECT * FROM cursos where idDocente=:idUsuario and nivel=:nivel");
-$cursoDiver=$dbConn->prepare($q3);
-$cursoDiver->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
-$cursoDiver->bindParam(':nivel',$nivelDiver, PDO::PARAM_INT); 
-$cursoDiver->execute();
-
-
-
-//funcion encargada de asignar imagen segun primer letra del nombre del curso
-
- ?>
+$consulta1=("SELECT * FROM atomolectorvelocidad JOIN velocidadLectora on atomolectorvelocidad.noLectura=velocidadLectora.idLectura where idUsuario=1 and intento=1;");
+$mostrarVelocidad=$dbConn->prepare($consulta1);
+$mostrarVelocidad->bindParam(':idUsuario', $_SESSION['idUsuario'], PDO::PARAM_INT);
+$mostrarVelocidad->execute();
+?>
 
 
 <!DOCTYPE html>
@@ -60,7 +37,7 @@ $cursoDiver->execute();
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
-    <title><?php echo $_SESSION["nombre"]; ?> | Mis Cursos</title>
+    <title><?php echo $_SESSION["nombre"]; ?> | Mis Notas</title>
  
     <!-- CSS de Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -124,52 +101,122 @@ $cursoDiver->execute();
               <h3 class="text-center">Mis Notas</h3>
          </div>
 
-          <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px;">Lenguaje Reporte</div>
+          <div class="col-md-12 sombra text-left" style="height:25px; margin-bottom: 15px;">Reporte Comprensión / <strong>*Nota: tienes que terminar todas las actividades de la lectura</strong></div>
             <button class="btn btn-default botonAgg botonAgg-1" type="button"style="margin-left:510px;background-color: #c0392b; color: white; border:white;">PDF</button>
             <button class="btn btn-default botonAgg botonAgg-1" type="button"style="background-color: #16a085; color: white; border:white;">EXCEL</button>
 
           <div class="col-md-12 sombra" style=" min-height:100px; margin-bottom: 30px; ">
 
                     <table class="table table-hover" id="ejemplo">
-                      <thead>
+                      <thead style="text-align: center;">
                         <tr>
-                          <th scope="col">Alumno</th>
-                          <th scope="col">Actividad Realizadas</th>
-                          <th scope="col">zona / 60</th>
-                          <th scope="col">Examen / 40</th>
+                          <th scope="col">Lectura</th>
+                          <th scope="col">Prueba Comprensión CNB</th>
+                          <th scope="col">Prueba Comprensión PISA</th>
+                          <th scope="col">Glosario</th>
+                          <th scope="col">Con Tus Palabras</th>
+                          <th scope="col">Pruebas Identificar Personajes</th>
+                           <th scope="col">Total Lectura</th>
                         </tr>
                       </thead>
                       <tbody class="text-left">
+                        <?php
+//mostramos los datos del glosario
+$q2=("SELECT *, SUM(palabrasglosario.ponderacionPalabra) as sumaPalabras from registroglosario JOIN glosario on registroglosario.idGlosario=glosario.idglosario JOIN palabrasglosario on palabrasglosario.idPalabras=registroglosario.idPalabra where idLectura=:idLectura and idUsuario=:idUsuario;");
+$mostrarSumaPalabras=$dbConn->prepare($q2);
+$mostrarSumaPalabras->bindParam(':idUsuario', $_SESSION['idUsuario'], PDO::PARAM_INT);
+
+//mostrar datos de pisa
+$q4=("SELECT *, COUNT(*) as recuentoFilas FROM registropruebacomprension join atomolector on registropruebacomprension.idLectura=atomolector.idLectura where registropruebacomprension.idUsuario=:idUsuario and nivelObtenido!='' AND registropruebacomprension.idLectura=:idLectura GROUP BY registropruebacomprension.idLectura HAVING COUNT(*) > 1 ORDER BY registropruebacomprension.idLectura");
+$mostrarPisa=$dbConn->prepare($q4);
+$mostrarPisa->bindParam(':idUsuario', $_SESSION['idUsuario'], PDO::PARAM_INT);
+
+
+                        while($row1=$mostrarLecturas->fetch(PDO::FETCH_ASSOC)){
+                          //mostrar pruebas cnb que realizo el alumno en por lectura
+                          $mostrarSumaPalabras->bindParam(':idLectura', $row1['idLectura'], PDO::PARAM_INT);
+                          $mostrarSumaPalabras->execute();
+
+                          $mostrarPisa->bindParam(':idLectura', $row1['idLectura'], PDO::PARAM_INT);
+                          $mostrarPisa->execute();
+
+                      while($row2=$mostrarSumaPalabras->fetch(PDO::FETCH_ASSOC)){
+
+                        while($row3=$mostrarPisa->fetch(PDO::FETCH_ASSOC)){
+
+                        ?>
                         <tr>     
-                          <td>Estuardo Alvarado Gonzalez</td>
-                          <td>10 
+                          <td><strong><?php echo  @$row1['nombreLectura']; ?></strong></td>
+                          <td>
                             <div class="dropdown botonAgg botonAgg-1" >
-                              <a href="reportesDetalles.php">
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
+                              <a href="../atomLector/p1/resultadoCnb.php?intentoABuscar=<?php echo $row1['registroCnb']; ?>&idLectura=<?php echo $row1['idLectura']; ?>&idUsuario=<?php echo $_SESSION['idUsuario']; ?>&intento=<?php echo 1; ?>" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;"><?php $_SESSION['actCnb']=$row1['totalObtenido']; echo $row1['totalObtenido']; ?> Detalle
+                        </button></a>                       
+                        </div>
+                          </td>
+                          <td>
+                           <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="../atomLector/p1/resultado.php?idLectura=<?php echo $row3['idLectura']; ?>&idUsuario=<?php echo $row3['idUsuario']; ?>" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #3498db; color: white; border:white;"><?php echo $row3['nivelObtenido']; ?> Detalle
                         </button></a>
                         
                         </div>
+
                           </td>
-                          <td>10</td>
-                          <td>30</td>
-                        </tr>
-                        <tr>             
-                          <td>Jessica Estefania Morales Garcia</td>
-                          <td>5
-                                <div class="dropdown botonAgg botonAgg-1" >
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
-                        </button>
+                          <td>
+                           <div class="dropdown botonAgg botonAgg-1">
+                              <a href="../atomLector/p1/glosario.php?noLectura=<?php echo $row2['idLectura']; ?>" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;"><?php $_SESSION['actPalabras']=$row2['sumaPalabras']; echo $row2['sumaPalabras']; ?> Detalle
+                        </button></a>
                         
                         </div>
-                           </td>
-                          <td>20</td>
-                          <td>40</td>
-                        </tr>            
+
+                          </td>
+                           <td>
+                           <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="../atomLector/p1/cuentame.php?noLectura=<?php echo $row3['idLectura']; ?>" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #3498db; color: white; border:white;"><?php if($row1['grabacion']!=''){ echo "Finalizado";} ?> Detalle
+                        </button></a>
+                        
+                        </div>
+
+                          </td>
+                            <td>
+                           <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="../atomLector/p1/personajes.php?noLectura=<?php echo $row2['idLectura']; ?>" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;"><?php $_SESSION['actPersonaje']=$row1['totalResultado']; echo $row1['totalResultado']; ?> Detalle
+                        </button></a>
+                        
+                        </div>
+
+                          </td>
+                             <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><?php $promedio= (($_SESSION['actCnb']+$_SESSION['actPalabras']+$_SESSION['actPersonaje'])/3); echo round($promedio, 0, PHP_ROUND_HALF_DOWN); 
+                             $sumaPromedio=0;
+                              $sumaPromedio+=$promedio;
+                              $_SESSION['promedioFinal']=$sumaPromedio/$totalEncontrado;
+
+                             ?></div></td>
+
+
+                        </tr>
+
+                        <?php } } } ?> 
+                       <tr>
+                         <td colspan="3">Promedio Total Comprensión</td>
+                         
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><?php echo round($_SESSION['promedioFinal'], 0, PHP_ROUND_HALF_DOWN); ?></div></td>
+                       </tr>     
                       </tbody>
                     </table>         
           </div> 
 
-          <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px;">Matemáticas Reporte</div>
+
+
+
+          <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px;">Reporte Velocidad y Fluidez</div>
           <button class="btn btn-default botonAgg botonAgg-1" type="button"style="margin-left:510px;background-color: #c0392b; color: white; border:white;">PDF</button>
             <button class="btn btn-default botonAgg botonAgg-1" type="button"style="background-color: #16a085; color: white; border:white;">EXCEL</button>
 
@@ -177,83 +224,33 @@ $cursoDiver->execute();
 
                     <table class="table table-hover" id="ejemplo">
                       <thead>
+                      
                         <tr>
-                          <th scope="col">Alumno</th>
-                          <th scope="col">Actividad Realizadas</th>
-                          <th scope="col">zona / 60</th>
-                          <th scope="col">Examen / 40</th>
+                          <th scope="col">Lectura</th>
+                          <th scope="col">Fluidez</th>
+                          <th scope="col">Velocidad (palabras por Minuto)</th>
+                          <th scope="col">Ver detalle de prueba</th>
                         </tr>
                       </thead>
                       <tbody class="text-left">
+                     <?php   while($buscar=$mostrarVelocidad->fetch(PDO::FETCH_ASSOC)){ 
+                      ?>
                         <tr>     
-                          <td>Estuardo Alvarado Gonzalez</td>
-                          <td>10 
-                              <div class="dropdown botonAgg botonAgg-1" >
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
-                        </button>
-                        
-                        </div>
+                          <td><?php echo $buscar['nombreLectura']; ?></td>
+                          <td><?php similar_text($buscar['fluidez'], $buscar['lectura'],$porcentaje); echo round($porcentaje,0);?>
+                       
                           </td>
-                          <td>60</td>
-                          <td>40</td>
-                        </tr>
-                        <tr>             
-                          <td>Jessica Estefania Morales Garcia</td>
-                          <td>5
-                                <div class="dropdown botonAgg botonAgg-1" >
+                          <td><?php echo $buscar['velocidadLectora']; ?></td>
+                          <td><div class="dropdown botonAgg botonAgg-1">
+                              <a href="../atomLector/p1/velocidad1p.php?idLectura=<?php echo $buscar['noLectura'];?>&intento100=<?php echo $buscar['intento']; ?>&numeroLectura=<?php echo $buscar['noLectura']; ?>#detalleLecturaAqui">
                         <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
-                        </button>
+                        </button></a>
                         
-                        </div>
-                           </td>
-                          <td>20</td>
-                          <td>40</td>
-                        </tr>            
-                      </tbody>
-                    </table>         
-          </div>
-
-
-          <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px;">Software 1</div>
-          <button class="btn btn-default botonAgg botonAgg-1" type="button"style="margin-left:510px;background-color: #c0392b; color: white; border:white;">PDF</button>
-            <button class="btn btn-default botonAgg botonAgg-1" type="button"style="background-color: #16a085; color: white; border:white;">EXCEL</button>
-
-          <div class="col-md-12 sombra" style=" min-height:100px;  margin-bottom: 50px;">
-
-                    <table class="table table-hover" id="ejemplo">
-                      <thead>
-                        <tr>
-                          <th scope="col">Alumno</th>
-                          <th scope="col">Actividad Realizadas</th>
-                          <th scope="col">zona / 60</th>
-                          <th scope="col">Examen / 40</th>
+                        </div></td>
                         </tr>
-                      </thead>
-                      <tbody class="text-left">
-                        <tr>     
-                          <td>Estuardo Alvarado Gonzalez</td>
-                          <td>10 
-                              <div class="dropdown botonAgg botonAgg-1" >
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
-                        </button>
-                        
-                        </div>
-                          </td>
-                          <td>60</td>
-                          <td>40</td>
-                        </tr>
-                        <tr>             
-                          <td>Jessica Estefania Morales Garcia</td>
-                          <td>5
-                                <div class="dropdown botonAgg botonAgg-1" >
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
-                        </button>
-                        
-                        </div>
-                           </td>
-                          <td>20</td>
-                          <td>40</td>
-                        </tr>            
+                    <?php } ?>
+  
+                            
                       </tbody>
                     </table>         
           </div>      

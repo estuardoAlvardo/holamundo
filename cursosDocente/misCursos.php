@@ -288,7 +288,7 @@ $cursoDiver->execute();
                     <div class="card">
 
                       <div class="image" >
-                        <img  src="../img/formacionCiudadana.jpg" width="100%">
+                        <img  src="../img/formacion.jpg" width="100%">
                       </div>
 
                       <div class="text">

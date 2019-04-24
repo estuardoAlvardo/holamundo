@@ -54,8 +54,10 @@ require("../../conection/conexion.php");
       $buscarIntentosPisa->bindParam(':idCuestionario',$_SESSION['idPisa'], PDO::PARAM_STR);  
       $buscarIntentosPisa->execute();
       $hayIntentos1=$buscarIntentosPisa->rowCount();
-
+      
  //OBTENEMOS INTENTOS SEGUN CNB  
+
+
 
       $q3 = ("SELECT * FROM registropruebacomprension as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario and registro.nivelObtenido=''");
       $buscarIntentosCnb=$dbConn->prepare($q3);
@@ -66,6 +68,25 @@ require("../../conection/conexion.php");
       $hayIntentos2=$buscarIntentosCnb->rowCount();
 
 
+  //validamos si hay intentos en caso de que no halla mandamos incrementamos 1 
+      
+
+
+      if($hayIntentos1==0){
+          $hayIntentos1=1;
+      }else{
+        $hayIntentos1+=1;
+
+      }
+
+      if($hayIntentos2==0){
+         $hayIntentos2=1;
+
+      }else{
+        $hayIntentos2+=1;
+      }
+
+      
  ?>
 
 
@@ -141,8 +162,8 @@ require("../../conection/conexion.php");
               <h3 class="text-center">Lectura: <?php echo $row1['nombreLectura']; ?></h3><br> 
               <hr>
               <h4>Actividades Lectoras</h4>              
-              <a href="pisa1p.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#3498db; ">Prueba Comprensión - Segun Pisa</a>
-              <a href="cnb.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#27ae60; ">Prueba Comprensión - Segun CNB</a>             
+              <a href="pisa1p.php?noLectura=<?php echo $row1['idLectura']; ?>&intento=<?php echo $hayIntentos1; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#3498db; ">Prueba Comprensión - Segun Pisa</a>
+              <a href="cnb.php?noLectura=<?php echo $row1['idLectura']; ?>&intento=<?php echo $hayIntentos2; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#27ae60; ">Prueba Comprensión - Segun CNB</a>             
               <a href="glosario.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#ff4757; ">Glosario</a>
                <a href="cuentame.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#e67e22; ">Con tus palabras</a>
               <a href="personajes.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#f1c40f; ">Identificar Personaje</a>

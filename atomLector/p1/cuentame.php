@@ -11,6 +11,14 @@ require("../../conection/conexion.php");
       $yaRealizo->execute();
       $hayRegistros=$yaRealizo->rowCount();
 
+
+      $q3= ("SELECT * FROM contuspalabras JOIN atomolector ON contuspalabras.idLectura=atomolector.idLectura WHERE atomolector.idLectura=:idLectura AND contuspalabras.idUsuario=:idUsuario");
+      $mostrarGrabacion=$dbConn->prepare($q3);
+      $mostrarGrabacion->bindParam(':idLectura',$_GET['noLectura'], PDO::PARAM_INT);
+      $mostrarGrabacion->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
+      $mostrarGrabacion->execute();
+   
+
  ?>
 
 
@@ -524,9 +532,13 @@ That part is just for the form
                 <div style="width: 100%; height:150; padding: 0px 0px; border-radius: 5px; ">
                   <h3>¡FELICIDADES HAS LOGRADO TERMINAR ÉSTA ACTIVIDAD!</h3>
                   <span style="color: white; font-size: 13pt;"></span>
+                  <?php  while($row3=$mostrarGrabacion->fetch(PDO::FETCH_ASSOC)){
+ ?>
                 
+                <h3 style="color: black;"><?php echo '"'.$row3['grabacion'].'"'; ?></h3>
+              <?php } ?>
                 </div>
-                <div class="recodinggN" id="microOn" title="Felicidades :)" style="cursor: pointer; padding-top:3px;  width: 50px; height: 50px; border-radius: 100%; margin-top: 80px; background-color: #3498db; margin-left: 48%;" ><img src="../../img/star.png" width="40" height="40" ></div>
+                <div class="recodinggN" id="microOn" title="Felicidades :)" style="cursor: pointer; padding-top:3px;  width: 50px; height: 50px; border-radius: 100%; margin-top: 30px; background-color: #3498db; margin-left: 48%;" ><img src="../../img/star.png" width="40" height="40" ></div>
                 
               </div>
             <?php } ?>

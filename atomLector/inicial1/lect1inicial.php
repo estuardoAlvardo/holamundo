@@ -13,12 +13,31 @@ require("../../conection/conexion.php");
       $_SESSION['gradoEnviar']=$_GET['idLectura'];
    
 
-      $q2 = ("SELECT * FROM registropruebacomprension where idLectura=:idLectura and idUsuario=:idUsuario");
-      $buscarIntentos=$dbConn->prepare($q2);
-      $buscarIntentos->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
-      $buscarIntentos->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);  
-      $buscarIntentos->execute();
-      $hayIntentos=$buscarIntentos->rowCount();
+//buscar id= cuestionario pisa y id CUestionario cnb para mostrar intentos por metodologia
+      $pisa='pisa';
+             //--pisa   
+                $q4= ("SELECT idCuestionario FROM cuestionario WHERE fundamento=:fundamento AND idLectura=:idLectura");
+
+                $idPisa=$dbConn->prepare($q4);
+                $idPisa->bindParam(':fundamento',$pisa, PDO::PARAM_INT);
+                $idPisa->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
+                $idPisa->execute();
+
+                while(@$fila1=$idPisa->fetch(PDO::FETCH_ASSOC)){ 
+                  $_SESSION['idPisa']=$fila1['idCuestionario'];
+                  
+                }
+
+
+      //OBTENEMOS INTENTOS SEGUN PISA
+
+      $q2 = ("SELECT * FROM registropruebacomprension as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario and registro.nivelObtenido!='' ");
+      $buscarIntentosPisa=$dbConn->prepare($q2);
+      $buscarIntentosPisa->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
+        $buscarIntentosPisa->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
+      $buscarIntentosPisa->bindParam(':idCuestionario',$_SESSION['idPisa'], PDO::PARAM_STR);  
+      $buscarIntentosPisa->execute();
+      $hayIntentos1=$buscarIntentosPisa->rowCount();
 
  ?>
 
@@ -95,15 +114,15 @@ require("../../conection/conexion.php");
               <hr>
               <h4>Actividades Lectoras</h4>              
               <a href="pruebaC.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#3498db; ">Prueba Comprensión</a>
-              <a href="pisa1p.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#3498db; ">Actividad Vocabulario</a>
-              <a href="pisa1p.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#3498db; ">Glosario</a>
-              <a href="pisa1p.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#3498db; ">Identificar Personaje</a>
+              <a href="glosario.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white;background-color:#ff4757; ">Actividad Vocabulario</a>
+             <a href="personajes.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#e67e22;">Conoce A los Personajes</a>
+             <a href="cuentame.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#f1c40f;">Con tus propias palabras</a>
               <hr>
               
          </div>
 
- <audio controls style="">
-                  <source src="../1in/lect1/audio/lect1-hadaobediencia.mp3" type="audio/mp3" />
+                <audio controls  style="border-radius: 25px;" class="cajaDescripcion">
+                  <source src="<?php echo $row1['audio']; ?>" type="audio/mp3" />
                 </audio> 
 
  
@@ -127,8 +146,8 @@ require("../../conection/conexion.php");
         </div>
  </div>
 
-  <div  class="col-md-12 cajaDescripcion" style="margin-top: -230px;" >
-              <h3 class="text-center">MIS INTENTOS</h3><br>
+    <div  class="col-md-12 cajaDescripcion" style="margin-top: -220px;" >
+              <h3 class="text-center">MIS INTENTOS SEGÚN PISA</h3><br>
                <table class="table table-hover" >
                     <thead>
                       <tr>
@@ -140,13 +159,22 @@ require("../../conection/conexion.php");
                     </thead>
                     <tbody>
 
-                       
-                      <tr>      
+                       <?php if($hayIntentos1==0){ ?>
+                         <tr>      
                         <td colspan="4">¡No hay Intentos! </td>
  
                       </tr>
 
-                       
+                       <?php  }else{ while($row2=$buscarIntentosPisa->fetch(PDO::FETCH_ASSOC)){
+                          @$i+=1;
+                        ?>
+                      <tr style="text-align: center;">      
+                        <td><?php echo $i; ?></td>
+                        <td ><?php echo $row2['nivelObtenido']; ?></td>
+                        <td><?php echo $row2['fechaRegistro']." ".$row2['horaRegistro']; ?></td>
+                        <td><a href="resultado.php?intentoABuscar=<?php echo $row2['idRegistro'];?>&idLectura=<?php echo $row2['idLectura']; ?>&idUsuario=<?php echo $_SESSION['idUsuario'];?>&intento=<?php echo $i; ?>" class="btn botonAgg-1" style="color: white; background-color: #2ecc71;">Ver</a></td>   
+                      </tr>
+                    <?php    } }  ?>
                     </tbody>
                   </table>
          </div>

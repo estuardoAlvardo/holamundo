@@ -26,13 +26,55 @@ if(empty($_GET['curso'])){
 
     $q1 = ("SELECT * FROM atomolector where grado=:grado");
     $mostrarLectura=$dbConn->prepare($q1);
-    $mostrarLectura->bindParam(':grado',$gradoBuscar, PDO::PARAM_STR); 
+    $mostrarLectura->bindParam(':grado',$gradoBuscar, PDO::PARAM_INT); 
     $mostrarLectura->execute();
 
 
   @$_GET['curso'];
 
-    
+  //mostramos las vocales
+  $objBuscar='vocal';
+ $q2 = ("SELECT * FROM aprendizajePreescolar where grado=:grado and descripcion=:descripcion");
+    $mostrarVocales=$dbConn->prepare($q2);
+    $mostrarVocales->bindParam(':grado',$gradoBuscar, PDO::PARAM_INT); 
+    $mostrarVocales->bindParam(':descripcion',$objBuscar, PDO::PARAM_STR); 
+    $mostrarVocales->execute();
+
+
+ 
+// funcion para ver las semanas de un año
+/*
+setlocale(LC_TIME, "es_ES"); 
+
+function WeekToDate ($week, $year) 
+{ 
+$Jan1 = mktime (1, 1, 1, 1, 1, $year); 
+$iYearFirstWeekNum = (int) strftime("%W",mktime (1, 1, 1, 1, 1, $year)); 
+
+if ($iYearFirstWeekNum == 1) 
+{ 
+//$week = $week - 1; 
+} 
+
+$weekdayJan1 = date ('w', $Jan1); 
+$FirstMonday = strtotime(((4-$weekdayJan1)%7-3) . ' days', $Jan1); 
+$CurrentMondayTS = strtotime(($week) . ' weeks', $FirstMonday); 
+return ($CurrentMondayTS); 
+} 
+$iYear = '2019'; 
+for ($i = 1; $i <= 52; $i++) { 
+
+$sStartTS = WeekToDate ($i, $iYear); 
+$sLunes = date ("Y-m-d", $sStartTS); 
+list($year,$mon,$day) = explode('-',$sLunes); 
+$sDomingo = date('Y-m-d',mktime(0,0,0,$mon,$day+6,$year));     
+echo 'Semana: '.$i.'  de  '.$sLunes.' al '.$sDomingo;  
+echo '<br>';    
+} 
+
+
+*/
+
 ?>
 
 
@@ -142,142 +184,28 @@ if(empty($_GET['curso'])){
 
 
          <div class="col-md-12" style="margin-top:40px;">
-              <h4 class="text-left">Vocales</h4><hr>
+              <h4 class="text-left">Aprendo las Vocales</h4><hr>
          </div>
 
          <div class="row" style="margin-bottom: 50px;">
-              
-               <a href="p1/velocidad1p.php?idLectura=<?php echo $row2['idLectura'];?>&numeroLectura=<?php echo $i;?>"><div class="col-md-5 estiloProducto" style="min-height:150px; margin-left: 10px; margin-left: 20px; margin-bottom: 20px;">
+             <?php while(@$row2=$mostrarVocales->fetch(PDO::FETCH_ASSOC)){ ?> 
+               <a href="inicial1/vocales.php?gradoB=<?php echo $gradoBuscar; ?>&idObjeto=<?php echo $row2['idAprendizaje']; ?>"><div class="col-md-5 estiloProducto" style="min-height:150px; margin-left: 10px; margin-left: 20px; margin-bottom: 20px;">
                 <div class="row" style="background-image:linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); ">
 
                   <div class="col-md-5" style=" min-height:150px; 
-                  background-image: url('1in/vocales/a/a.png'); background-size: 65%; background-repeat:no-repeat; ">                                  
+                  background-image: url(<?php echo '1in/vocales/'.$row2['objetoAprendizaje'].'/'.$row2['objetoAprendizaje'].'.png' ?>); background-size: 65%; background-repeat:no-repeat; ">                                  
                   </div>
                   <div class="col-md-7" style=" min-height: 150px; color: black;">
-                    <h4 >Vocal "A-a"</h4>
-                    <h5 style="text-align: left;">genero</h5>
-                    <h5 style="text-align: left;">Descripcion</h5>
-                    <h5 style="text-align: left;">Edad</h5>
-                    
+                    <h4 style="font-size: 22pt; " ><?php echo 'Vocal '.strtoupper($row2['objetoAprendizaje']).' - '.$row2['objetoAprendizaje']; ?></h4>
+                    <h3 style="text-align: left; font-size: 10pt;"><strong>Descripción:</strong> Aprende la vocal "<?php echo $row2['objetoAprendizaje']; ?>" con los ejercicios y actividades.</h3>
 
-                    <img src="leido1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:23%;">             
+                    <img src="leido1.png" style="width: 40px; height: 40px; position:absolute; margin-top:-2%; margin-left:23%;">             
                 </div>
 
                 </div>
                  
                </div></a>
-               <a href="p1/velocidad1p.php?idLectura=<?php echo $row2['idLectura'];?>&numeroLectura=<?php echo $i;?>"><div class="col-md-5 estiloProducto" style="min-height:150px; margin-left: 10px; margin-left: 20px; margin-bottom: 20px;">
-                <div class="row" style="background-image:linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); ">
-
-                  <div class="col-md-5" style=" min-height:150px; 
-                  background-image: url('1in/vocales/e/e.png'); background-size: 65%; background-repeat:no-repeat; ">                                  
-                  </div>
-                  <div class="col-md-7" style=" min-height: 150px; color: black;">
-                    <h4 >Vocal "E-e"</h4>
-                    <h5 style="text-align: left;">genero</h5>
-                    <h5 style="text-align: left;">Descripcion</h5>
-                    <h5 style="text-align: left;">Edad</h5>
-                    
-
-                    <img src="leido1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:23%;">             
-                </div>
-
-                </div>
-                 
-               </div></a>
-               <a href="p1/velocidad1p.php?idLectura=<?php echo $row2['idLectura'];?>&numeroLectura=<?php echo $i;?>"><div class="col-md-5 estiloProducto" style="min-height:150px; margin-left: 10px; margin-left: 20px; margin-bottom: 20px;">
-                <div class="row" style="background-image:linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); ">
-
-                  <div class="col-md-5" style=" min-height:150px; 
-                  background-image: url('1in/vocales/i/i.png'); background-size: 65%; background-repeat:no-repeat; ">                                  
-                  </div>
-                  <div class="col-md-7" style=" min-height: 150px; color: black;">
-                    <h4 >"Voval I-i"</h4>
-                    <h5 style="text-align: left;">genero</h5>
-                    <h5 style="text-align: left;">Descripcion</h5>
-                    <h5 style="text-align: left;">Edad</h5>
-                    
-
-                    <img src="leido1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:23%;">             
-                </div>
-
-                </div>
-                 
-               </div></a>
-               <a href="p1/velocidad1p.php?idLectura=<?php echo $row2['idLectura'];?>&numeroLectura=<?php echo $i;?>"><div class="col-md-5 estiloProducto" style="min-height:150px; margin-left: 10px; margin-left: 20px; margin-bottom: 20px;">
-                <div class="row" style="background-image:linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); ">
-
-                  <div class="col-md-5" style=" min-height:150px; 
-                  background-image: url('1in/vocales/o/o.png'); background-size: 65%; background-repeat:no-repeat; ">                                  
-                  </div>
-                  <div class="col-md-7" style=" min-height: 150px; color: black;">
-                    <h4 >"Vocal O-o"</h4>
-                    <h5 style="text-align: left;">genero</h5>
-                    <h5 style="text-align: left;">Descripcion</h5>
-                    <h5 style="text-align: left;">Edad</h5>
-                    
-
-                    <img src="leido1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:23%;">             
-                </div>
-
-                </div>
-                 
-               </div></a>
-               <a href="p1/velocidad1p.php?idLectura=<?php echo $row2['idLectura'];?>&numeroLectura=<?php echo $i;?>"><div class="col-md-5 estiloProducto" style="min-height:150px; margin-left: 10px; margin-left: 20px; margin-bottom: 20px;">
-                <div class="row" style="background-image:linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); ">
-
-                  <div class="col-md-5" style=" min-height:150px; 
-                  background-image: url('1in/vocales/u/u.png'); background-size: 65%; background-repeat:no-repeat; ">                                  
-                  </div>
-                  <div class="col-md-7" style=" min-height: 150px; color: black;">
-                    <h4 >"Vocal U-u"</h4>
-                    <h5 style="text-align: left;">genero</h5>
-                    <h5 style="text-align: left;">Descripcion</h5>
-                    <h5 style="text-align: left;">Edad</h5>
-                    
-
-                    <img src="leido1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:23%;">             
-                </div>
-
-                </div>
-                 
-               </div></a>
-          
-
-         </div>
-
-          <div class="col-md-12" style="margin-top:40px;">
-              <h4 class="text-left">Número</h4><hr>
-         </div>
-
-         <div class="row" style="margin-bottom: 50px;">
-              
-               <a href="p1/velocidad1p.php?idLectura=<?php echo $row2['idLectura'];?>&numeroLectura=<?php echo $i;?>"><div class="col-md-5 estiloProducto" style="min-height:150px; margin-left: 10px; margin-left: 20px; margin-bottom: 20px;">
-                <div class="row" style="background-image:linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); ">
-
-                  <div class="col-md-5" style=" min-height:150px; 
-                  background-image: url(); background-size: 70%; background-repeat:no-repeat; ">                                  
-                  </div>
-                  <div class="col-md-7" style=" min-height: 150px; color: black;">
-                    <h4 >Nombre Lectura</h4>
-                    <h5 style="text-align: left;">genero</h5>
-                    <h5 style="text-align: left;">Descripcion</h5>
-                    <h5 style="text-align: left;">Edad</h5>
-                    
-
-                    <img src="leido1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:23%;">
-                 
-                     
-                    
-
-
-                  </div>
-
-                </div>
-                 
-               </div></a>
-
-
+             <?php } ?>  
          </div>
 
             <div class="col-md-12" style="margin-top:40px;">

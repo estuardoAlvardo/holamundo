@@ -3,7 +3,7 @@ session_start();
 $fundamento="cnb";
 require("../../conection/conexion.php");
 $_GET['idLectura'];
-$_GET['idUsuario'];
+@$_GET['idUsuario'];
 @$_GET['intentoABuscar'];
 @$_GET['intento'];
 
@@ -13,8 +13,9 @@ $_GET['idUsuario'];
 @$_GET['intento'];
 @$_GET['intentoABuscar'];
 
-
 $_SESSION['ultimoIntento']=$_GET['intentoABuscar'];
+
+
 }else if(@$_GET['intentoABuscar']==null){
 @$_GET['intento']=1;
 
@@ -45,15 +46,71 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
       $obtenerDetalle->bindparam(':fundamento',$fundamento);  
       $obtenerDetalle->execute();
 
-      //para graficos
+      //para graficos indicador de logro
        $sq4 = ("SELECT  * from registropruebacomprension as registro join atomolector as lectura on  registro.idLectura=lectura.idLectura join cuestionario as cues on cues.idLectura =registro.idLectura join itemopcionmultiple as preguntas on preguntas.idCuestionario=cues.idCuestionario where registro.idRegistro=:idRegistro and cues.fundamento=:fundamento");
       $detalleGrafico  = $dbConn->prepare($sq4);
       $detalleGrafico->bindparam(':idRegistro',$_SESSION['ultimoIntento'],PDO::PARAM_INT);
       $detalleGrafico->bindparam(':fundamento',$fundamento,PDO::PARAM_STR);   
       $detalleGrafico->execute();
 
-   
 
+          //para graficos competencia
+
+
+
+       $sq5 = ("SELECT * from registropruebacomprension as registro join atomolector as lectura on registro.idLectura=lectura.idLectura join cuestionario as cues on cues.idLectura =registro.idLectura join itemopcionmultiple as preguntas on preguntas.idCuestionario=cues.idCuestionario where registro.idRegistro=:idRegistro and cues.fundamento=:fundamento");
+      $detalleCompetencia  = $dbConn->prepare($sq5);
+      $detalleCompetencia->bindparam(':idRegistro',$_SESSION['ultimoIntento'],PDO::PARAM_INT);
+      $detalleCompetencia->bindparam(':fundamento',$fundamento,PDO::PARAM_STR);   
+      $detalleCompetencia->execute();
+
+
+while(@$row6=$detalleCompetencia->fetch(PDO::FETCH_ASSOC)){
+  @$o+=1;
+  
+  if($row6['rPregunta'.$o]==$row6['respuestaCorrecta']){   
+ 
+   switch ($row6['procesoComprension']) {
+     case 'Interpretativa':
+        
+       $punteoInter=25;
+       @$sumaInter+=$punteoInter;
+
+     
+       break;
+     case 'Argumentativa':
+   
+      $punteoArg=25;
+      @$sumaArg+=$punteoArg;
+
+       break;
+       case 'Propositiva':
+
+       $punetoPro=50;
+      @$sumaPro+=$punetoPro;
+       break;
+     
+     default:
+
+       break;
+   }
+
+
+
+}else{}
+
+}
+
+if(empty($sumaPro)){
+  $sumaPro=0;
+}
+if(empty($sumaArg)){
+  $sumaArg=0;
+}
+
+if(empty($sumaInter)){
+  $sumaInter=0;
+}
 
 
  ?>
@@ -265,6 +322,7 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
          <div class="row" style="margin-top: 30px;">
             <div class="col-md-1"></div>
          <div id="container" class="col-md-9 cajaDescripcion" style="margin-bottom: 30px;"></div>
+         <div id="competencia" class="col-md-9 cajaDescripcion" style="margin-left: 9%; margin-bottom: 30px;"></div>
  </div>
          
   
@@ -275,13 +333,7 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
 
 <script language="Javascript"  type="text/javascript">
   
-  
-   
- 
-  
-
-  
-   //graficos
+   //graficos indicador de logro
 
 Highcharts.chart('container', {
     chart: {
@@ -342,9 +394,7 @@ Highcharts.chart('container', {
                   "drilldown": "Lectura" },';
                  }
                  ?>
-                
-                   
-                
+                         
                
 
             ]
@@ -352,7 +402,89 @@ Highcharts.chart('container', {
 
         }
     ]
-});      //fin graficos
+});      //fin graficos indicador de logro
+
+
+
+   //graficos estado de competencia
+
+Highcharts.chart('competencia', {
+    chart: {
+        type: 'cylinder',
+        options3d: {
+            enabled: true,
+            alpha: 15,
+            beta: 15,
+            depth: 50,
+            viewDistance: 25
+        }
+    },
+    title: {
+        text: 'Grafico de Competencias Lectoras'
+    },
+    subtitle: {
+        text: 'Capacidades Lectoras'
+    },
+    xAxis: {
+        type: 'category'
+    },
+    yAxis: {
+        title: {
+            text: 'Competencias Lectoras CNB'
+        }
+
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true,
+                format: '{point.y:.1f}%'
+            }
+        }
+    },
+
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> en total<br/>'
+    },
+
+    "series": [
+        {
+            "name": "Capacidades Lectoras",
+            "colorByPoint": true,
+            "data": [
+    <?php 
+
+
+
+
+
+               
+                  echo '{ "name": "Interpretativo",
+                  "y":'.@$sumaInter.',
+                  "drilldown": "Lectura" },';
+
+                  echo '{ "name": "Argumentativo",
+                  "y":'.@$sumaArg.',
+                  "drilldown": "Lectura" },';
+
+                  echo '{ "name": "Propositivo",
+                  "y":'.@$sumaPro.',
+                  "drilldown": "Lectura" },';
+                
+                 ?>             
+
+            ]
+
+
+        }
+    ]
+});      //fin graficos estado de competencia
+
 
  
 //ia 

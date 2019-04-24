@@ -341,17 +341,17 @@ input#fort:checked ~ label  {
         <div class="col-md-12 card-style reporteQuiz" style="min-height: 200px; margin-top: 50px; background-color: #3498db; color: white;">
            <h3>Tú resultado obtenido en está actividad es de: </h3>
            <div id="" class="recodinggN" title="Felicidades!" style="padding-top:3px;  width: 50px; height: 50px; border-radius: 100%; margin-top: -30px; background-color:#9b59b6; margin-left: 95%; display: block;"><img src="../../img/star.png" width="40" height="40" ></div>
-          
-           <div class="recodinggN" style="margin-left:40%;height: 150px; width: 150px; border-radius: 100px; background-color: #2ecc71; color: white; font-size: 15pt; font-weight: bold; margin-bottom: 20px;"><h3 style="padding-top: 60px;">80 puntos.</h3></div>
+          <?php  while(@$fila=$realizoActividad->fetch(PDO::FETCH_ASSOC)){ @$m+=1;
+                $_SESSION['punetoTotaln']=$fila['totalResultado'];
+
+             ?>
+           <div class="recodinggN" style="margin-left:40%;height: 150px; width: 150px; border-radius: 100px; background-color: #2ecc71; color: white; font-size: 15pt; font-weight: bold; margin-bottom: 20px;"><h3 style="padding-top: 60px;"><?php echo $_SESSION['punetoTotaln']."pts"; ?></h3></div>
          </div>
 
          <div class="col-md-12 recodinggN reporteQuiz" style="min-height: 200px; margin-top: 30px;">
 
           <h3>Retroalimentación</h3>
-              <?php  while(@$fila=$realizoActividad->fetch(PDO::FETCH_ASSOC)){ @$m+=1;
-
-
-             ?>
+              
           <div style="text-align: left;">  
           <h4>Se registro la prueba: <?php echo $fila['fechaRegistro']." ".$fila['horaRegistro']; ?> </h4>
           <h4>Tiempo usado en evaluación: <?php echo $fila['tiempo']; ?> </h4>

@@ -20,39 +20,21 @@ $obtenernoIntento->bindParam(':idUsuario', $_SESSION['idUsuario'], PDO::PARAM_IN
 $obtenernoIntento->execute();
 $hayIntento=$obtenernoIntento->rowCount();
 
-
-
-
-
-$sql3 = ("SELECT * FROM velocidadLectora where idLectura=:noLectura");
+$sql3 = ("SELECT * FROM velocidadlectora where idLectura=:noLectura");
 $obtenerLectura = $dbConn->prepare($sql3);
 $obtenerLectura->bindParam(':noLectura', $_GET['idLectura'], PDO::PARAM_INT); 
 $obtenerLectura->execute();
 
 //consulta mostrar detalle recursiva a esta pagina
-
-
 if(!empty(@$_GET['intento100']) and !empty(@$_GET['idLectura'])){
 
-  $sql4 = ("SELECT * FROM atomolectorvelocidad where noLectura=:noLectura and intento=:intento and idUsuario=:idUsuario");
+  $sql4 = ("SELECT * FROM atomolectorvelocidad where noLectura=:noLectura and intento=:intento and idUsuario=:idUsuario LIMIT 1");
 $detalleLectura = $dbConn->prepare($sql4);
 $detalleLectura->bindParam(':noLectura', $_GET['idLectura'], PDO::PARAM_INT);
 $detalleLectura->bindParam(':intento', $_GET['intento100'], PDO::PARAM_INT); 
 $detalleLectura->bindParam(':idUsuario', $_SESSION['idUsuario'], PDO::PARAM_INT); 
 $detalleLectura->execute();
 $columnasEncontradas= $detalleLectura->rowCount();
-  
-  
-
-
-
-}{
-  $sql4 = ("SELECT * FROM atomolectorvelocidad where noLectura=:noLectura and intento=:intento and idUsuario=:idUsuario");
-$detalleLectura = $dbConn->prepare($sql4);
-$detalleLectura->bindParam(':noLectura', $_GET['idLectura'], PDO::PARAM_INT);
-$detalleLectura->bindParam(':intento', $_GET['intento100'], PDO::PARAM_INT); 
-$detalleLectura->bindParam(':idUsuario', $_SESSION['idUsuario'], PDO::PARAM_INT); 
-$detalleLectura->execute();
 
 }
 
@@ -258,7 +240,7 @@ $detalleLectura->execute();
       <td><?php echo $row1['intento']?></td>
       <td><?php echo $row1['velocidadLectora']."/pm"?></td>
       <td><?php if($row1['tiempoSeg']>=60){ $tiempo =$row1['tiempoSeg']/60; echo $tiempo."min";  }else{echo $row1['tiempoSeg']."seg"; } ?></td>
-      <td><a href="velocidad1p.php?idLectura=<?php echo $row1['noLectura'];?>&intento100=<?php echo $row1['intento']; ?>#detalleLecturaAqui" class="btn botonAgg-1" style="color: white; background-color: #2ecc71;">Ver</a></td>   
+      <td><a href="velocidad1p.php?idLectura=<?php echo $row1['noLectura'];?>&intento100=<?php echo $row1['intento']; ?>&numeroLectura=<?php echo $_GET['numeroLectura']; ?>#detalleLecturaAqui" class="btn botonAgg-1" style="color: white; background-color: #2ecc71;">Ver</a></td>   
     </tr>
   <?php } ?>
   </tbody>
@@ -285,8 +267,11 @@ $detalleLectura->execute();
 
 
 
+<?php if(empty($_GET['intento100'])){ ?>
+
+<?php }else{ ?>
 <!-- MODULO DE REPORTES INICIO -->
- 
+
     <div class="col-md-12" style="margin-top: 50px;">
      
    <?php while($obj2=$detalleLectura->fetch(PDO::FETCH_ASSOC)){  
@@ -298,15 +283,13 @@ $detalleLectura->execute();
           <span id="detalleLecturaAqui" style="display: block;"></span>
            <h3 >Detalle de la Lectura</h3>
            <button class="btn botonAgg-1" style="color: white; background-color: #3498db;">PDF</button>
-          <a href="velocidad1p.php?idLectura=<?php echo $_GET['idLectura'];?>" class="btn botonAgg-1" style="color: white; background-color: #e74c3c;">Volver</a>
+          <a href="velocidad1p.php?idLectura=<?php echo $_GET['idLectura'];?>&numeroLectura=<?php echo $_GET['numeroLectura']; ?>" class="btn botonAgg-1" style="color: white; background-color: #e74c3c;">Volver</a>
           <h4 style="font-weight: bold; text-align: left;margin-left: 50px;">No Lectura: <?php echo " ".$obj2['noLectura']; ?></h4>
          <h4 style="font-weight: bold; text-align: left;margin-left: 50px;">Intento:<?php   echo " ".$obj2['intento'];   ?></h4>
          <h4 style="font-weight: bold; text-align: left;margin-left: 50px;">Tiempo:<?php
          if($obj2['tiempoSeg']<=60){ echo " ".$obj2['tiempoSeg']."seg";}else{ echo " ".$obj2['tiempoSeg']."min";}  ?></h4>
          <h4 style="font-weight: bold;text-align: left;margin-left: 50px;">Palabras por Minuto: <?php echo " ".$obj2['velocidadLectora']; ?></h4>
-
-
-         
+       
 
 
   <div class="col-md-12">   
@@ -419,10 +402,13 @@ $obj2['fluidez']."<br>";
 
 </script>
 <?php } ?>
-</div>    
+</div>  
+
+  <!-- MODULO DE REPORTES FIN -->
+<?php } ?>
 
   
-  <!-- MODULO DE REPORTES FIN -->
+
  </div>
 
 <script type="text/javascript">

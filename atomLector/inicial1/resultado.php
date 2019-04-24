@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require("../../conection/conexion2.php");
+require("../../conection/conexion.php");
 $_GET['idLectura'];
 $_GET['idUsuario'];
 @$_GET['intentoABuscar'];
@@ -176,7 +176,7 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
          <div class="col-md-12" style="margin-top: 60px;">
               <h3 class="text-center">Resultado Prueba </h3><br>
               <a href="../comprensionLectora.php?gradoB=<?php echo $_SESSION['gradoEnviar']; ?>" class="btn botonAgg-1" style="color: white; background-color: #3498db;">Mis Lecturas</a>
-             <a class="btn botonAgg-1" style="color: white; background-color: #2ecc71;" style="">Incrementar Bocabulario</a>
+             
 
               <div class="col-md-12 cajaDescripcion" style="min-height:200px; margin-top: 20px;">
                 <?php  while(@$row4=$obtenerDetalle->fetch(PDO::FETCH_ASSOC)){
