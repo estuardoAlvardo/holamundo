@@ -39,6 +39,7 @@ $insertarCuestionario->bindparam(':horaRegistro',$hora_actual);
 
 
     @$i+=1;
+    echo $i;
 
     if(empty($_POST['name'.$i])){
         
@@ -116,6 +117,7 @@ if(@$totalPisa>=698){
 
 $nivelObtenido;
 $insertarCuestionario->bindparam(':nivelObtenido',$nivelObtenido);
+
  $insertarCuestionario->execute();
 header("location:../resultado.php?idLectura=".$_POST['idLecturaEnviado']."&idUsuario=".$_POST['idUsuario']);
 

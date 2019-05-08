@@ -125,7 +125,7 @@ $cursoDiver->execute();
               <h3 class="text-center">Atom Reportes</h3>
          </div>
          <div class=" col-xs-12" style="height:50px; margin-bottom: 50px;">
-             <form method="post" action="" " class="form-inline form-filtro " id="formulario">
+             <form method="post" action="" class="form-inline form-filtro " id="formulario">
                   <div class="form-group">
                     <label class="sr-only" for="filtro-tipo">Nivel</label>
                     <select class="form-control" name="nivel" id="Nivel" style="margin-left: 20px">
@@ -154,14 +154,24 @@ $cursoDiver->execute();
                       <option value="4">d</option>
                       <option value="5">e</option>
                     </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="sr-only" for="filtro-tipo">Semana</label>
+                    <select class="form-control" name="seccion" id="seccion" style="margin-left: 20px">
+                      <option value="0">Semana</option>
+                      <?php for($o=1; $o<=45; $o++ ){ ?>
+                        <option value="1"><?php echo 'semana '.$o ?></option>
+                      <?php } ?>
+                    </select>
                   </div><br><br>
-                  <div class="form-group" style="margin-left: 62%; margin-top: -100px;">
-                    <button type="button"  class="btn btn-primary"  onclick="enviar()" target="_blank" >Buscar</button>
+
+                  <div class="form-group" style="margin-left: 77%; margin-top: -100px;">
+                    <button type="button"  class="btn btn-default botonAgg botonAgg-1" style="background-color: #3498db; border:1px solid #3498db; color:white;"  onclick="enviar()" target="_blank" >Buscar</button>
                   </div>
                 </form> <br><br>
            
          </div>
-          <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px;">Lenguaje Reporte</div>
+          <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px; background-color: #2980b9; color: white; border-radius: 5px;">Lecturas Diarias</div>
             <button class="btn btn-default botonAgg botonAgg-1" type="button"style="margin-left:510px;background-color: #c0392b; color: white; border:white;">PDF</button>
             <button class="btn btn-default botonAgg botonAgg-1" type="button"style="background-color: #16a085; color: white; border:white;">EXCEL</button>
 
@@ -171,15 +181,19 @@ $cursoDiver->execute();
                       <thead>
                         <tr>
                           <th scope="col">Alumno</th>
-                          <th scope="col">Actividad Realizadas</th>
-                          <th scope="col">zona / 60</th>
-                          <th scope="col">Examen / 40</th>
+                          <th scope="col">Semana</th>
+                          <th scope="col">Lunes</th>
+                          <th scope="col">Martes</th>
+                          <th scope="col">Miercoles</th>
+                          <th scope="col">Jueves</th>
+                          <th scope="col">Viernes</th>
+                          <th scope="col">Avance Semanal</th>
                         </tr>
                       </thead>
                       <tbody class="text-left">
                         <tr>     
-                          <td>Estuardo Alvarado Gonzalez</td>
-                          <td>10 
+                          <td>Jose Manuel</td>
+                          <td>1
                             <div class="dropdown botonAgg botonAgg-1" >
                               <a href="reportesDetalles.php">
                         <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
@@ -187,71 +201,293 @@ $cursoDiver->execute();
                         
                         </div>
                           </td>
-                          <td>10</td>
-                          <td>30</td>
+                          <td> <div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><span class="glyphicon glyphicon-ok"></span></td>
+                          <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><span class="glyphicon glyphicon-ok"></span></td>
+                            <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><span class="glyphicon glyphicon-ok"></span></td>
+                              <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><span class="glyphicon glyphicon-ok"></span></td>
+                                <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color:  #e74c3c; margin-top:0px; margin-left:0px;" ><span class="glyphicon glyphicon-warning-sign"></span></td>
+                                  <td>90%</td>
                         </tr>
-                        <tr>             
-                          <td>Jessica Estefania Morales Garcia</td>
-                          <td>5
-                                <div class="dropdown botonAgg botonAgg-1" >
+                        <tr>     
+                          <td>Pepe Cadena</td>
+                          <td>1
+                            <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="reportesDetalles.php">
                         <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
-                        </button>
+                        </button></a>
                         
                         </div>
-                           </td>
-                          <td>20</td>
-                          <td>40</td>
-                        </tr>            
+                          </td>
+                          <td> <div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><span class="glyphicon glyphicon-ok"></span></td>
+                          <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><span class="glyphicon glyphicon-ok"></span></td>
+                            <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><span class="glyphicon glyphicon-ok"></span></td>
+                              <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><span class="glyphicon glyphicon-ok"></span></td>
+                                <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color:  #e74c3c; margin-top:0px; margin-left:0px;" ><span class="glyphicon glyphicon-warning-sign"></span></td>
+                                  <td>90%</td>
+                        </tr> 
+                        <tr>     
+                          <td>Milton Jimenez</td>
+                          <td>1
+                            <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="reportesDetalles.php">
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
+                        </button></a>
+                        
+                        </div>
+                          </td>
+                          <td> <div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><span class="glyphicon glyphicon-ok"></span></td>
+                          <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><span class="glyphicon glyphicon-ok"></span></td>
+                            <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><span class="glyphicon glyphicon-ok"></span></td>
+                              <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><span class="glyphicon glyphicon-ok"></span></td>
+                                <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color:  #e74c3c; margin-top:0px; margin-left:0px;" ><span class="glyphicon glyphicon-warning-sign"></span></td>
+                                  <td>90%</td>
+                        </tr>
+                        <tr>     
+                          <td>Martin Gonzalez</td>
+                          <td>1
+                            <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="reportesDetalles.php">
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
+                        </button></a>
+                        
+                        </div>
+                          </td>
+                          <td> <div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><span class="glyphicon glyphicon-ok"></span></td>
+                          <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><span class="glyphicon glyphicon-ok"></span></td>
+                            <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><span class="glyphicon glyphicon-ok"></span></td>
+                              <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><span class="glyphicon glyphicon-ok"></span></td>
+                                <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color:  #e74c3c; margin-top:0px; margin-left:0px;" ><span class="glyphicon glyphicon-warning-sign"></span></td>
+                                  <td>90%</td>
+                        </tr>
+                                
                       </tbody>
                     </table>         
           </div> 
 
-          <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px;">Matemáticas Reporte</div>
+          <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px; background-color:#1abc9c; color: white; border-radius: 5px;">Lecturas De Medición</div>
           <button class="btn btn-default botonAgg botonAgg-1" type="button"style="margin-left:510px;background-color: #c0392b; color: white; border:white;">PDF</button>
             <button class="btn btn-default botonAgg botonAgg-1" type="button"style="background-color: #16a085; color: white; border:white;">EXCEL</button>
 
-          <div class="col-md-12 sombra" style=" min-height:100px;  margin-bottom: 50px;">
+          <div class="col-md-12 sombra" style=" min-height:100px;  margin-bottom: 50px; overflow: auto;">
 
                     <table class="table table-hover" id="ejemplo">
-                      <thead>
+                        <thead>
                         <tr>
                           <th scope="col">Alumno</th>
-                          <th scope="col">Actividad Realizadas</th>
-                          <th scope="col">zona / 60</th>
-                          <th scope="col">Examen / 40</th>
+                          <th scope="col">Semana</th>
+                          <th scope="col">Lectura</th>
+                          <th scope="col">Comprensión CNB</th>
+                          <th scope="col">Comprensión PISA</th>
+                          <th scope="col">Glosario</th>
+                          <th scope="col">Con Tus Palabras</th>
+                          <th scope="col">Evaluación Personajes</th>
+                          <th scope="col">Total Lectura</th>
                         </tr>
                       </thead>
-                      <tbody class="text-left">
-                        <tr>     
-                          <td>Estuardo Alvarado Gonzalez</td>
-                          <td>10 
-                              <div class="dropdown botonAgg botonAgg-1" >
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
-                        </button>
-                        
+                       <tr> 
+                       <td><strong>Jose Manuel</strong></td>  
+                        <td><strong>Semana 1</strong></td>   
+                          <td><strong>El gato con botas</strong></td>
+                          <td>
+                            <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="../atomLector/p1/resultadoCnb.php?intentoABuscar=33&idLectura=1&idUsuario=1&intento=1" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">40 Detalle
+                        </button></a>                       
                         </div>
                           </td>
-                          <td>60</td>
-                          <td>40</td>
-                        </tr>
-                        <tr>             
-                          <td>Jessica Estefania Morales Garcia</td>
-                          <td>5
-                                <div class="dropdown botonAgg botonAgg-1" >
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
-                        </button>
+                          <td>
+                           <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="../atomLector/p1/resultado.php?idLectura=1&idUsuario=1" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #3498db; color: white; border:white;">C1 Detalle
+                        </button></a>
                         
                         </div>
-                           </td>
-                          <td>20</td>
-                          <td>40</td>
-                        </tr>            
+
+                          </td>
+                          <td>
+                           <div class="dropdown botonAgg botonAgg-1">
+                              <a href="../atomLector/p1/glosario.php?noLectura=1" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">50 Detalle
+                        </button></a>
+                        
+                        </div>
+
+                          </td>
+                           <td>
+                           <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="../atomLector/p1/cuentame.php?noLectura=1" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #3498db; color: white; border:white;">Finalizado Detalle
+                        </button></a>
+                        
+                        </div>
+
+                          </td>
+                            <td>
+                           <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="../atomLector/p1/personajes.php?noLectura=1" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">60 Detalle
+                        </button></a>
+                        
+                        </div>
+
+                          </td>
+                             <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" >90</div></td>
+                        </tr> 
+                         <tr> 
+                       <td><strong>Pepe Cadena</strong></td>  
+                        <td><strong>Semana 1</strong></td>   
+                          <td><strong>El gato con botas</strong></td>
+                          <td>
+                            <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="../atomLector/p1/resultadoCnb.php?intentoABuscar=<?php echo $row1['registroCnb']; ?>&idLectura=<?php echo $row1['idLectura']; ?>&idUsuario=<?php echo $_SESSION['idUsuario']; ?>&intento=<?php echo 1; ?>" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">70 Detalle
+                        </button></a>                       
+                        </div>
+                          </td>
+                          <td>
+                           <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="../atomLector/p1/resultado.php?idLectura=<?php echo $row3['idLectura']; ?>&idUsuario=<?php echo $row3['idUsuario']; ?>" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #3498db; color: white; border:white;">C1 Detalle
+                        </button></a>
+                        
+                        </div>
+
+                          </td>
+                          <td>
+                           <div class="dropdown botonAgg botonAgg-1">
+                              <a href="../atomLector/p1/glosario.php?noLectura=<?php echo $row2['idLectura']; ?>" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">90 Detalle
+                        </button></a>
+                        
+                        </div>
+
+                          </td>
+                           <td>
+                           <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="../atomLector/p1/cuentame.php?noLectura=<?php echo $row3['idLectura']; ?>" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #3498db; color: white; border:white;">80 Detalle
+                        </button></a>
+                        
+                        </div>
+
+                          </td>
+                            <td>
+                           <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="../atomLector/p1/personajes.php?noLectura=<?php echo $row2['idLectura']; ?>" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">90 Detalle
+                        </button></a>
+                        
+                        </div>
+
+                          </td>
+                             <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" >90</div></td>
+                        </tr> 
+                         <tr> 
+                       <td><strong>Milton Jimenez</strong></td>  
+                        <td><strong>Semana 1</strong></td>   
+                          <td><strong>El gato con botas</strong></td>
+                          <td>
+                            <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="../atomLector/p1/resultadoCnb.php?intentoABuscar=<?php echo $row1['registroCnb']; ?>&idLectura=<?php echo $row1['idLectura']; ?>&idUsuario=<?php echo $_SESSION['idUsuario']; ?>&intento=<?php echo 1; ?>" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">70 Detalle
+                        </button></a>                       
+                        </div>
+                          </td>
+                          <td>
+                           <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="../atomLector/p1/resultado.php?idLectura=<?php echo $row3['idLectura']; ?>&idUsuario=<?php echo $row3['idUsuario']; ?>" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #3498db; color: white; border:white;">C1 Detalle
+                        </button></a>
+                        
+                        </div>
+
+                          </td>
+                          <td>
+                           <div class="dropdown botonAgg botonAgg-1">
+                              <a href="../atomLector/p1/glosario.php?noLectura=<?php echo $row2['idLectura']; ?>" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">90 Detalle
+                        </button></a>
+                        
+                        </div>
+
+                          </td>
+                           <td>
+                           <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="../atomLector/p1/cuentame.php?noLectura=<?php echo $row3['idLectura']; ?>" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #3498db; color: white; border:white;">80 Detalle
+                        </button></a>
+                        
+                        </div>
+
+                          </td>
+                            <td>
+                           <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="../atomLector/p1/personajes.php?noLectura=<?php echo $row2['idLectura']; ?>" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">90 Detalle
+                        </button></a>
+                        
+                        </div>
+
+                          </td>
+                             <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" >90</div></td>
+                        </tr> 
+                         <tr> 
+                       <td><strong>Martin Gonzalez</strong></td>  
+                        <td><strong>Semana 1</strong></td>   
+                          <td><strong>El gato con botas</strong></td>
+                          <td>
+                            <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="../atomLector/p1/resultadoCnb.php?intentoABuscar=<?php echo $row1['registroCnb']; ?>&idLectura=<?php echo $row1['idLectura']; ?>&idUsuario=<?php echo $_SESSION['idUsuario']; ?>&intento=<?php echo 1; ?>" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">70 Detalle
+                        </button></a>                       
+                        </div>
+                          </td>
+                          <td>
+                           <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="../atomLector/p1/resultado.php?idLectura=<?php echo $row3['idLectura']; ?>&idUsuario=<?php echo $row3['idUsuario']; ?>" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #3498db; color: white; border:white;">C1 Detalle
+                        </button></a>
+                        
+                        </div>
+
+                          </td>
+                          <td>
+                           <div class="dropdown botonAgg botonAgg-1">
+                              <a href="../atomLector/p1/glosario.php?noLectura=<?php echo $row2['idLectura']; ?>" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">90 Detalle
+                        </button></a>
+                        
+                        </div>
+
+                          </td>
+                           <td>
+                           <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="../atomLector/p1/cuentame.php?noLectura=<?php echo $row3['idLectura']; ?>" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #3498db; color: white; border:white;">80 Detalle
+                        </button></a>
+                        
+                        </div>
+
+                          </td>
+                            <td>
+                           <div class="dropdown botonAgg botonAgg-1" >
+                              <a href="../atomLector/p1/personajes.php?noLectura=<?php echo $row2['idLectura']; ?>" target="_blank">
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">90 Detalle
+                        </button></a>
+                        
+                        </div>
+
+                          </td>
+                             <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" >90</div></td>
+                        </tr> 
+
+
                       </tbody>
                     </table>         
           </div>
 
 
-          <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px;">Software 1</div>
+          <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px; background-color: #9b59b6; color: white; border-radius: 5px;">Medición Fluidez Verbal y </div>
           <button class="btn btn-default botonAgg botonAgg-1" type="button"style="margin-left:510px;background-color: #c0392b; color: white; border:white;">PDF</button>
             <button class="btn btn-default botonAgg botonAgg-1" type="button"style="background-color: #16a085; color: white; border:white;">EXCEL</button>
 
@@ -261,36 +497,70 @@ $cursoDiver->execute();
                       <thead>
                         <tr>
                           <th scope="col">Alumno</th>
-                          <th scope="col">Actividad Realizadas</th>
-                          <th scope="col">zona / 60</th>
-                          <th scope="col">Examen / 40</th>
+                          <th scope="col">Semana</th>
+                          <th scope="col">Lectura </th>
+                          <th scope="col">Velocidad Lectora(palabras por minuto)</th>
+                          <th scope="col">Fluidez Verbal en porcentaje</th>
+                          <th scope="col">Más detalle Graficos</th>
                         </tr>
                       </thead>
                       <tbody class="text-left">
                         <tr>     
-                          <td>Estuardo Alvarado Gonzalez</td>
-                          <td>10 
+                          <td>Jose Manuel</td>
+                          <td>1
+                          </td>
+                          <td>La Zorra y las Uvas</td>
+                          <td>135</td>
+                          <td>98</td>
+                          <td> 
                               <div class="dropdown botonAgg botonAgg-1" >
                         <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
                         </button>
                         
-                        </div>
+                        </div></td>
+                          </tr> 
+                          <tr>     
+                          <td>Pepe Cadena</td>
+                          <td>1
                           </td>
-                          <td>60</td>
-                          <td>40</td>
-                        </tr>
-                        <tr>             
-                          <td>Jessica Estefania Morales Garcia</td>
-                          <td>5
-                                <div class="dropdown botonAgg botonAgg-1" >
+                          <td>La Zorra y las Uvas</td>
+                          <td>125</td>
+                          <td>70</td>
+                          <td> 
+                              <div class="dropdown botonAgg botonAgg-1" >
                         <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
                         </button>
                         
-                        </div>
-                           </td>
-                          <td>20</td>
-                          <td>40</td>
-                        </tr>            
+                        </div></td>
+                          </tr>         
+                          <tr>     
+                          <td>Eliana Alcazar</td>
+                          <td>1
+                          </td>
+                          <td>La Zorra y las Uvas</td>
+                          <td>120</td>
+                          <td>50</td>
+                          <td> 
+                              <div class="dropdown botonAgg botonAgg-1" >
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
+                        </button>
+                        
+                        </div></td>
+                          </tr> 
+                          <tr>     
+                          <td>Pedro Rojas</td>
+                          <td>1
+                          </td>
+                          <td>La Zorra y las Uvas</td>
+                          <td>100</td>
+                          <td>60</td>
+                          <td> 
+                              <div class="dropdown botonAgg botonAgg-1" >
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
+                        </button>
+                        
+                        </div></td>
+                          </tr> 
                       </tbody>
                     </table>         
           </div>      

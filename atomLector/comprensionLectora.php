@@ -26,19 +26,14 @@ require("../conection/conexion.php");
       $gradoBuscar=$_SESSION['grado'];
     }
 
-    $q1 = ("SELECT * FROM atomolector where grado=:grado");
+    $q1 = ("SELECT * FROM atomolector where grado=:grado and noLecturaDiaria=0");
     $mostrarLectura=$dbConn->prepare($q1);
     $mostrarLectura->bindParam(':grado',$gradoBuscar, PDO::PARAM_STR); 
     $mostrarLectura->execute();
 
 
 
-    $q2 = ("SELECT * FROM velocidadlectora where grado=:grado");
-    $mostrarVelocidadLectora=$dbConn->prepare($q2);
-    $mostrarVelocidadLectora->bindParam(':grado',$gradoBuscar, PDO::PARAM_STR); 
-    $mostrarVelocidadLectora->execute();
-    $lecturasEncontradas=$mostrarVelocidadLectora->rowCount();
-
+   
     //ver si las lecturas ya fueron leidas y resuelto el cuestionario
 
       $q3= ("SELECT * FROM atomolector AS lecturas JOIN registropruebacomprension AS registro ON lecturas.idLectura=registro.idLectura WHERE registro.idUsuario=:idUsuario");
@@ -112,7 +107,7 @@ require("../conection/conexion.php");
 
               <div class="row">
               <?php while(@$row1=$mostrarLectura->fetch(PDO::FETCH_ASSOC)){ ?>
-               <a href="p1/lect1p.php?idLectura=<?php echo $row1['idLectura']; ?>">
+               <a href="p1/lect1p.php?idLectura=<?php echo $row1['idLectura']; ?>&gradoB=<?php echo $gradoBuscar; ?>">
                 <div class="col-md-5 estiloProducto" style="min-height:150px; margin-bottom: 20px;">
                 <div class="row" style="background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);">
 
@@ -160,44 +155,7 @@ require("../conection/conexion.php");
 
 
 
-         <div class="col-md-12" style="margin-top:40px;">
-              <h4 class="text-left">Nivel Primero Primaria - Velocidad y Fluides Lectora </h4><hr>
-         </div>
-
-         <div class="row" style="margin-bottom: 50px;">
-              <?php while(@$row2=$mostrarVelocidadLectora->fetch(PDO::FETCH_ASSOC)){
-                @$i+=1;
-                
-
-               ?> 
-
-
-               <a href="p1/velocidad1p.php?idLectura=<?php echo $row2['idLectura'];?>&numeroLectura=<?php echo $i;?>"><div class="col-md-5 estiloProducto" style="min-height:150px; margin-left: 10px; margin-left: 20px; margin-bottom: 20px;">
-                <div class="row" style="background-image:linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); ">
-
-                  <div class="col-md-5" style=" min-height:150px; 
-                  background-image: url(<?php echo '../'.$row2['rutaLectura'].'/'.$i.'.gif'; ?>); background-size: 70%; background-repeat:no-repeat; ">                                  
-                  </div>
-                  <div class="col-md-7" style=" min-height: 150px; color: black;">
-                    <h4 ><?php echo '"'.$row2['nombreLectura'].'"' ?></h4>
-                    <h5 style="text-align: left;"><?php echo "Genero: ".$row2['genero']; ?></h5>
-                    <h5 style="text-align: left;"><?php echo "Descripción: ".$row2['descripcion']; ?></h5>
-                    <h5 style="text-align: left;"><?php echo "Edad".$row2['edadLectura']; ?></h5>
-                                       
-                  
-                    <img id="" src="enviado1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:23%;">
-                  
-                    <img src="leido1.png" style="display:none; width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:23%;">
-
-                  </div>
-
-                </div>
-                 
-               </div></a>
-             <?php   } ?>
-
-         </div>
-
+         
  
                   <style type="text/css">
                     .cajaCards{

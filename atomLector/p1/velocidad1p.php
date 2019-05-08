@@ -199,18 +199,25 @@ $columnasEncontradas= $detalleLectura->rowCount();
               
          </div>
          <div class="row" style="margin-bottom: 100px;">
-          <button class="btn botonAgg-1" style="color: white; background-color: #3498db;" onclick="inicio()">Iniciar</button>
-          <button class="btn botonAgg-1" style="color: white; background-color: #e74c3c;" onclick="findeGrabacion()">Terminar Lectura</button>
+
+
           <div style="border:0px  pink; margin-bottom: 30px;">
             <h1 style="margin-top:10px;">Tiempo: <span id="minutos">00</span>:<span id="segundos">00</span></h1>
-          </div>        
+          </div>  
+
+          <div class="recodinggN" id="grabarOn" title="Empieza a leer" style="cursor: pointer; width: 70px; height: 70px; border-radius: 100%; margin-top: 25px; background-color: #e67e22; margin-left: 47%; margin-bottom: 30px;" onclick="iniciarVelocidadG(this.id)">
+            <img style="margin-top: 5px;" src="../../img/micro.png" width="55" height="55" ></div>
+
+            <div id="grabarOf" class="recodinggN" title="Terminar de leer" style="cursor: pointer; padding-top:3px;  width: 70px; height: 70px; border-radius: 100%; margin-top: 25px; background-color: #F72626; margin-left: 47%; display: none;  margin-bottom: 30px;" onclick="findeGrabacion(this.id)"><img src="../../img/microOf.png" width="55" height="55" ></div>
+
+     
 
          <?php while($obj1=$obtenerLectura->fetch(PDO::FETCH_ASSOC)){ 
           $_SESSION['lecturaPatron']=$obj1['lectura'];
 
 
           ?> 
-          <div class="col-md-12" style="margin-top: -20px; margin-bottom: 80px;">
+          <div class="col-md-12" style="margin-top: -20px; margin-bottom: 20px;">
          <img src="<?php echo "../../".$obj1['rutaLectura']."/".$_GET['numeroLectura']; ?>.gif" style=" box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); border-radius: 20px;">
          <p id="numeroLectura" style="display: none;"><?php echo $obj1['idLectura']; ?></p>
          <p id="palabrasLecturabd" style="display: none;"><?php echo $obj1['cantidadPalabras']; ?></p>
@@ -218,9 +225,9 @@ $columnasEncontradas= $detalleLectura->rowCount();
          </div>
        <?php } ?>
 
-       <div class="row">
-        <h4>En tiempo Real</h4>
-       <span class="col-md-10 " id="span-preview" style="border:1px solid #3498db; height: 200px; text-align: center;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); border-radius:5px;margin-left: 50px; margin-bottom: 40px;"></span>
+      <div class="row">
+        <h4 style="text-align: left; margin-left: 50px;">Tú Fluidez:</h4>
+       <span class="col-md-12 cajaDescripcion" id="span-preview" style="min-height:0px; text-align: center;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); border-radius:5px;margin-left: 40px; margin-bottom: 40px; background-color: #e67e22; text-align: left; color: white;"></span>
        </div>
 
 
@@ -415,15 +422,18 @@ $obj2['fluidez']."<br>";
 
          
 
-          function inicio(){
+          function iniciarVelocidadG(){
             startArtyom();
             capturarFluidez();
              carga();
+              $('#grabarOn').css("display","none");
+            $('#grabarOf').css("display","block"); 
+            
            };
 
           function informacion(){
             startArtyom();
-            artyom.say("Bienvenido a la prueba de velocidad y fluidez, de átomo LMS. Esta prueba mide velocidad, en términos básicos cuantas palabras por minuto lees y mientras lees capturamos la fluidez, el objetivo de estas lecturas es mejorar estas dos habilidades; Velocidad y Fluidez. Para empezar la prueba pulsa el botón iniciar, cuando termines da clic en el botón terminar lectura. Recuerda Leer en voz alta");
+            artyom.say("Bienvenido a la prueba de velocidad y fluidez, de átomo LMS. Esta prueba mide velocidad, en términos básicos cuantas palabras por minuto lees, y mientras lees capturamos la fluidez, el objetivo de estas lecturas es mejorar estas dos habilidades; Velocidad y Fluidez. Para empezar la prueba dale clic al microfono y cuando termines desactiva el microno. Recuerda Leer en voz alta");
             finAsistente();
 
           }
@@ -463,6 +473,8 @@ $obj2['fluidez']."<br>";
     function findeGrabacion(){
       artyom.fatality();// Detener cualquier instancia previa
       detenerse();
+      $('#grabarOn').css("display","block");
+      $('#grabarOf').css("display","none");  
       obtenerdatosLectura();
     };
 
@@ -513,7 +525,7 @@ $obj2['fluidez']."<br>";
 
       
        var cantidadPalabras=$('#palabrasLecturabd').text();
-       alert(cantidadPalabras);
+       //alert(cantidadPalabras);
        var segundos= $('#segundos').text();
        var minutos= $('#minutos').text();
        var guardarForm = document.getElementById("guardarCardLectura");

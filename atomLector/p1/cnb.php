@@ -296,7 +296,7 @@ input#fort:checked ~ label  {
 
 	<div class="col-md-8 col-xs-8 pag-center">
          <div class="col-md-12" style="margin-top: 60px;">
-              <h3 class="text-center">Test Comprensión Lectora</h3><br>
+              <h3 class="text-center">Evaluación Comprensión Lectora según CNB</h3><br>
               
          </div>
          <?php while(@$row2=$obtenerDatosLectura->fetch(PDO::FETCH_ASSOC)){  

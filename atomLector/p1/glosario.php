@@ -492,7 +492,7 @@ That part is just for the form
 
       <div class="col-md-8 col-xs-8 pag-center">
          <div class="card-style" style="width:60px; height: 60px; border-radius:100px; border:4px solid #f39c12; margin-left: 90%; margin-top: 20px; color: #d35400; cursor:pointer; position: absolute; z-index:6;" onclick="informacion();" title="¿Cómo Funciona?"><h1 style="margin-top:7px;">?</h1></div>
-        <h3 style="margin-top: 50px;">Aprendo Nuevas Palabras - Glosario</h4>
+        <h3 style="margin-top: 50px;">Aprendo Nuevas Palabras - Vocabulario</h4>
           
           <span class="col-md-10 " id="span-preview" style="display: none; border:1px solid #3498db; height: 200px; text-align: center;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); border-radius:5px;margin-left:30px; margin-bottom: 40px;"></span> 
 

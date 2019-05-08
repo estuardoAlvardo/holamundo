@@ -1,4 +1,5 @@
  <?php
+ 
 $nameCole="Colegio la Preparatoria";
 $_SESSION['tipoUsuario'];
 

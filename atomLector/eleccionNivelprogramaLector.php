@@ -205,7 +205,7 @@ padding-top: -30px;
          <div class="col-md-12" style="">
               <h3 class="text-center"><?php
                if($_GET['curso']==7){
-                echo $_SESSION['curso']="Programa Lector - Atomo(Lms)";
+                echo $_SESSION['curso']="Átomo Lector - Medición Comprensión";
               }
 
               
@@ -215,14 +215,13 @@ padding-top: -30px;
 
                 ?></h3>
          </div>
-
- 
+<input type="text" name="" id="userIa" value="<?php echo $_SESSION['nombre']; ?>" style="display: none;"> 
                   <style type="text/css">
                     .cajaCards{
                       box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
                       transition: all 0.3s cubic-bezier(.25,.8,.25,1);
                       border-radius: 5px;
-                      height: 100px; 
+                      height: 120px; 
                       margin-bottom: 20px;
                       padding-top: 10px;
                     }
@@ -270,20 +269,34 @@ padding-top: -30px;
                      <h3 class="text-left" style="">Nuestros Fundamentos</h3><hr>
                     <div class="row">
                       
-                      <div class="col-md-2 cajaCards" onclick="metodologiaActiva();" style="margin-left: 30px;">
-                        <p style="padding-top: 20px;">Pisa</p>
+                      <div class="col-md-2 cajaCards" onclick="pisa();" style="margin-left: 30px;">
+                        <p style="padding-top: 20px;">Test basaddos en el estandar Internacional Pisa</p>
                       </div>                                                      
-                     <div class="col-md-1"></div>
-                      <div class="col-md-2 cajaCards" style="">
-                      <p>Teoría de Edad Cognitiva de jean peaget</p>
+                     <div class="col-md-1" ></div>
+                     <div class="col-md-2 cajaCards" onclick="cnb();" style="">
+                      <p>Test basados en el estandar nacional CNB</p>
+                      </div>                      
+                      <div class="col-md-1"></div>
+                      <div class="col-md-2 cajaCards" onclick="testPersonajes();" style="">
+                      <p>Test para evaluar la identificación de personajes y roles.</p>
+                      </div>
+                       <div class="col-md-1"></div>
+                      <div class="col-md-2 cajaCards" onclick="vocabulario();" style="">
+                      <p>Actividad para incrementar Vocabulario</p>
                       </div>
                       <div class="col-md-1"></div>
-                      <div class="col-md-3 cajaCards" style="">
-                      <p>Desarrollo de comptencias Lectoras y velocidad Lectora</p>
+                      <div class="col-md-2 cajaCards" onclick="pensamientoCritico();" style="">
+                      <p>Actividad que permite el pensamiento critico</p>
                       </div>
+                      <div class="col-md-1"></div>
+                      <div class="col-md-2 cajaCards" onclick="jeanPeaget();" style="">
+                      <p>Teoría cognitiva del aprendizaje de Jean Piaget </p>
+                      </div>
+
+                      <div class="col-md-1"></div>
                                              
-                       <div class="col-md-2 cajaCards" style=" margin-left: 20px;">
-                         <p>Servicio Cognitivo I.A</p>                        
+                       <div class="col-md-2 cajaCards" onclick="servicioIA();" style=" margin-left: 20px;">
+                         <p>Asistente Lola basado en Inteligencia Artificial.</p>                        
                       </div>
                   </div>
                   <div class="col-md-11">
@@ -301,9 +314,7 @@ padding-top: -30px;
                     <button class="col-md-2 btn btn-danger" onclick="noAprendi();">No Aprendi</button>
                      <div class="col-md-3"></div>
                     </div>
-                    </div>
-
-                    
+                    </div>     
                    
 
                   
@@ -371,19 +382,19 @@ padding-top: -30px;
 
       
 <script type="text/javascript">
-    
+    var nombreUsuario= $('#userIa').text();
         function ejecucion(){
           startArtyom();
-          artyom.say("Hola Miss Yesy, buenos días, soy tu asistente, estoy para ayudarte, y me da mucho gusto que estés aquí, te dare algunas sugerencias didácticas y algunos tips, para apoyar a tus alumnos y explotar lo mejor de ellos.");
+          artyom.say("Hola"+nombreUsuario+" soy tu asistente, estoy para ayudarte, y me da mucho gusto que estés aquí, arriba de mi se encuentran los fundamentos pedagógicos y tecnológicos que hace posible que el Átomo lector funcione. Si le das clic a las tarjetas te explicare cada fundamento, te pido de favor que presiones solo una a la vez, y que me indiques si aprendiste.");
           document.getElementById("dormida").style.display="none";
           document.getElementById("despierta").style.display="block";
           
         }
 
 
-        function metodologiaActiva(){
+        function pisa(){
           startArtyom();
-          artyom.say("PISA (Programme for International Student Assessment) es un estudio internacional de evaluación educativa de las competencias (lectora, matemática y científica) alcanzadas por los alumnos a la edad de 15 años. Es un estudio cíclico que se repite cada tres años con el fin de apreciar la evolución en el tiempo del rendimiento escolar individual en las áreas evaluadas. El estudio es impulsado por la Organización para la Cooperación y el Desarrollo Económico (OCDE), organización internacional de ayuda a los gobiernos en la formulación de políticas eficaces. Se orienta a la toma de decisiones para la conducción del sistema educativo y no a medir el rendimiento de los procesos educativos en cada aula o centro, es decir, no es un estudio de diagnóstico que se destine a proporcionar información individualizada a los alumnos y centros participantes.");
+          artyom.say("El objetivo de esta prueba es medir las competencias lectoras desde las perspectivas siguientes: global. Obtención de información. Interpretación e integración. Reflexión y valoración cada competencia posee una escala de dificultad de 1c a 6 lo cual indica las capacidades lectoras que tiene desarrolladas el alumno. Al realizar cada prueba el alumno estimula cada competencia y con ello mejorar el rendimiento académico.");
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
           document.getElementById("saluda").style.display="block";
@@ -393,9 +404,9 @@ padding-top: -30px;
 
         }
 
-        function estilosAprendizaje(){
+        function cnb(){
           startArtyom();
-          artyom.say("La teoría sobre los estilos de aprendizaje fue desarrollada por Peter Honey y Alan Mumford, basándose en un trabajo previo de Kolb; ellos identificaron cuatro distintos tipos de aprendizaje o preferencias: el activo, el teórico, el pragmático y el reflexivo. Estos son los métodos de aprendizaje por los que cada individuo opta de manera natural y recomiendan que, para optimizar su propio aprendizaje personal, cada alumno debería: Comprender su estilo de aprendizaje. Buscar oportunidades para aprender utilizando ese estilo. ¿Quiero saber si aprendiste, por favor?, haz click en el botónn que se encuentra debajo de mi.");
+          artyom.say("El objetivo de estás pruebas es desarrollar las competencias: Interpretativa, Argumentativa, Propositiva, Utilizando la taxonomia de marzano en la redacción del test midiendo los niveles literal inferencial y critico. Como resultado tendremos el cumplimiento de los indicadores de logro.");
            document.getElementById("enamorada").style.display="none";
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
@@ -404,11 +415,71 @@ padding-top: -30px;
            stopArtyom();      
         }
 
+        function testPersonajes(){
+          startArtyom();
+          artyom.say("Mediante un test creado exclusivamente para identificar a los personajes, roles y participación de los mismos en la lectura, desarrollamos en el alumno la habilidad de identificar y reconocer a los participantes involucrados en la misma.");
+           document.getElementById("enamorada").style.display="none";
+          document.getElementById("despierta").style.display="none";
+          document.getElementById("dormida").style.display="none";
+          document.getElementById("saluda").style.display="block"; 
+           document.getElementById("siAprendi").style.display="block";  
+           stopArtyom();      
+        }
+
+         function vocabulario(){
+          startArtyom();
+          artyom.say("Haciendo uso de nuestro algoritmo de  reconocimiento de voz capturamos la pronunciación del concepto y la definición de cada palabra que se concidera dificil dentro de la lectura, para una mejor memorización, Almacenamos lo que se grabo en formato texto. Tiene como fundamento la mnemotécnia.");
+           document.getElementById("enamorada").style.display="none";
+          document.getElementById("despierta").style.display="none";
+          document.getElementById("dormida").style.display="none";
+          document.getElementById("saluda").style.display="block"; 
+           document.getElementById("siAprendi").style.display="block";  
+           stopArtyom();      
+        }
+
+           function pensamientoCritico(){
+          startArtyom();
+          artyom.say("Haciendo uso del reconocimiento de voz capturamos lo que más le gusto al alumno de la lectura, desarrollando el pensamiento crítico.");
+           document.getElementById("enamorada").style.display="none";
+          document.getElementById("despierta").style.display="none";
+          document.getElementById("dormida").style.display="none";
+          document.getElementById("saluda").style.display="block"; 
+           document.getElementById("siAprendi").style.display="block";  
+           stopArtyom();      
+        }
+
+        function jeanPeaget(){
+          startArtyom();
+          artyom.say("Utilizando como fundamento el estudio de Jean Piaget que nos indica el ser humano aprende en base a su edad cognitiva, y que sí se le da conocimiento que no puede comprender y explicar con sus conocimientos previos, a esto se le conoce como conflicto cognitivo, esto dificultara el aprendizaje, en resumen, las lecturas fueron creadas en base a la edad del estudiante.");
+           document.getElementById("enamorada").style.display="none";
+          document.getElementById("despierta").style.display="none";
+          document.getElementById("dormida").style.display="none";
+          document.getElementById("saluda").style.display="block"; 
+           document.getElementById("siAprendi").style.display="block";  
+           stopArtyom();      
+        }
+
+        function servicioIA(){
+          
+          startArtyom();
+          artyom.say("Hola "+nombreUsuario+" mi nombre es lola y soy tu asistente, estoy construida con varias tecnologías entre ella el algoritmo de reconocimiento de voz, que me permite escucharte y poder cumplir tus peticiones, también estoy basada en algoritmos de inteligencia artificial que me permite captar tu voz y ser lo más precisa al momento de apoyarte");
+           document.getElementById("enamorada").style.display="none";
+          document.getElementById("despierta").style.display="none";
+          document.getElementById("dormida").style.display="none";
+          document.getElementById("saluda").style.display="block"; 
+           document.getElementById("siAprendi").style.display="block";  
+           stopArtyom();      
+        }
+
+
+
+
+
        function siAprendi(){
         startArtyom();
         document.getElementById("saluda").style.display="none";
         document.getElementById("enamorada").style.display="block";
-        artyom.say("Bravo, me encanta que aprendamos juntos. Si quieres aprender otro de nuestros fundamentos da click en cualquiera de los fundamentos que se encuentra arriba de mí.");
+        artyom.say("Bravo, me encanta que aprendamos juntos. Si quieres aprender otro de nuestros fundamentos da click en cualquiera de los fundamentos, que se encuentra arriba de mí.");
         document.getElementById("siAprendi").style.display="none";
         stopArtyom(); 
 

@@ -210,11 +210,83 @@ padding-top: -30px;
                     }
 
 
+/* card material design style*/
+
+.card {
+  display: inline-block;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  margin: 20px;
+  position: relative;
+  margin-bottom: 50px;
+  transition: all .2s ease-in-out;
+  text-decoration: none;
+  color: black; 
+}
+
+.card:hover {
+  /*box-shadow: 0 5px 22px 0 rgba(0,0,0,.25);*/
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  
+}
+
+.image {
+  height: 150px;
+  opacity: .7;
+  overflow: hidden;
+  transition: all .2s ease-in-out;
+   background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */
+   background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.image:hover,
+.card:hover .image {
+  height: 150px;
+  opacity: 1;
+}
+
+.text {
+  background: #FFF;
+  padding: 20px;
+  min-height: 200px;
+}
+
+.text p {
+  margin-bottom: 0px;
+}
+
+.fab {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: absolute;
+  margin-top: -50px;
+  right: 20px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, .3);
+  color: #fff;
+  font-size: 48px;
+  line-height: 48px;
+  text-align: center;
+  background: #0066A2;
+  -webkit-transition: -webkit-transform .2s ease-in-out;
+  transition: transform .2s ease-in-out;
+}
+
+.fab:hover {
+  background: #549D3C;
+  cursor: pointer;
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+
+
  </style>
 
  			<div class="col-md-8 col-xs-8 pag-center">
          <div class="col-md-12" style="">
-              <h3 class="text-center">Mis cursos</h3>
+              <h3 class="text-center">ÁTOMO LECTOR</h3>
          </div>
 
  <!--        
@@ -326,40 +398,65 @@ padding-top: -30px;
                    </div>
                   </a> --->
 
-                  <div class="col-md-11">
-                     <h3 class="text-left" style="">Areas Principales | Según CNB</h3><hr>
+             
+                     <h3 class="text-left" style="">Lecuturas y Mediciones</h3><hr>
                     <div class="row">
-                      <div class="col-md-1"></div>
-                      <a href="../atomoCnb/1p/Lenguaje1/eleccionNivel.php?curso=1
-                      "><div class="col-md-2 cajaCards" style="">
-                        <p>Comunicación Y  Lenguaje | L1</p>
-                      </div></a>
-                      <div class="col-md-1"></div>
-                      <div class="col-md-2 cajaCards" style="">
-                        <p>Comunicación Y  Lenguaje | L2</p>
+                      <a href="../atomLector/lecturasDiarias.php?curso=7&gradoB=<?php echo $_SESSION['grado'];?>">
+                   <div class="col-md-4">
+                    <div class="card">
+
+                      <div class="image" >
+                        <img  src="../img/lecturasDiarias.png" width="60%">
                       </div>
-                      <div class="col-md-1"></div>
-                      <div class="col-md-2 cajaCards" style="">
-                        <p>Comunicación Y  Lenguaje | L3</p>
+
+                      <div class="text">
+                        <h3>Lecturas Diarias</h3>
+                        <p style="text-align: left;">Antologia de lecturas, compendio de lecturas adecuadas a la edad cognitiva del alumno.</p>
+
                       </div>
-                      <div class="col-md-1"></div>
-                      <div class="col-md-2 cajaCards" style="">
-                         <p>Medio Social y Natural</p>
+
+                    </div>
+                  </div> 
+                </a>
+                 <a href="../atomLector/comprensionLectora.php?curso=7&gradoB=<?php echo $_SESSION['grado'];?>">
+                  <div class="col-md-4" style="">
+                    <div class="card">
+
+                      <div class="image" >
+                        <img  src="../img/programaLector.png" width="60%">
                       </div>
-                      <div class="col-md-1"></div>
-                      <div class="col-md-2 cajaCards" style="">
-                         <p>Formación Ciuadana</p>
+
+                      <div class="text">
+                        
+                        
+                        <h3>Lecturas de Medición</h3>
+                        <p style="text-align: left;">Prueba diseñadas para desarrollar las competencias lectoras, y con ello mejorar el rendimiento academico.</p>
+
                       </div>
-                      <div class="col-md-1"></div>
-                       <div class="col-md-2 cajaCards" style="">
-                         <p>Matemáticas</p>                        
-                      </div>
-                       <div class="col-md-1"></div>
-                       <a href="../atomLector/comprensionLectora.php?curso=7&gradoB=<?php echo $_SESSION['grado'];?>">
-                       <div class="col-md-2 cajaCards" style="">
-                         <p>Programa Lector</p>                        
-                      </div></a>
+
+                    </div>
                   </div>
+              </a>
+
+              <a href="../atomLector/velocidadLectora.php?curso=7&gradoB=<?php echo $_SESSION['grado'];?>">
+                   <div class="col-md-4">
+                    <div class="card">
+
+                      <div class="image" >
+                        <img  src="../img/velocidadLectora.png" width="60%">
+                      </div>
+
+                      <div class="text">
+                        <h3>Fluidez y Velocidad Lectora </h3>
+                        <p style="text-align: left;">Desarrolla la habilidad de leer con fluidez a grandes velocidades.</p>
+
+                      </div>
+
+                    </div>
+                  </div> 
+                </a>
+                      
+                
                 </div>
 
 

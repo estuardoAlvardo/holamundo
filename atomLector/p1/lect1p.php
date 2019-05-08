@@ -6,6 +6,7 @@ require("../../conection/conexion.php");
   $cnb='cnb';
 
 
+
       $q1 = ("SELECT * FROM atomolector where idLectura=:idLectura");
       $mostrarLectura=$dbConn->prepare($q1);
       $mostrarLectura->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT); 
@@ -59,7 +60,7 @@ require("../../conection/conexion.php");
 
 
 
-      $q3 = ("SELECT * FROM registropruebacomprension as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario and registro.nivelObtenido=''");
+      $q3 = ("SELECT * FROM registropruebacomprension as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario and registro.nivelObtenido='' or registro.nivelObtenido IS NULL");
       $buscarIntentosCnb=$dbConn->prepare($q3);
       $buscarIntentosCnb->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
       $buscarIntentosCnb->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);  
@@ -86,6 +87,12 @@ require("../../conection/conexion.php");
         $hayIntentos2+=1;
       }
 
+//cambiamos link para prueba cnb : aqui ya se incluye reconocimiento de voz
+  if($_GET['gradoB']>=3){
+    $rutaCnb='cnbReconocimiento.php';
+  }else{
+    $rutaCnb='cnb.php';
+  }    
       
  ?>
 
@@ -141,7 +148,7 @@ require("../../conection/conexion.php");
 <style type="text/css">
   .masCentrado{
     margin-left: 55%;
-    margin-top: 65%;
+    margin-top: 70%;
   }
 
   .cajaDescripcion{
@@ -163,10 +170,10 @@ require("../../conection/conexion.php");
               <hr>
               <h4>Actividades Lectoras</h4>              
               <a href="pisa1p.php?noLectura=<?php echo $row1['idLectura']; ?>&intento=<?php echo $hayIntentos1; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#3498db; ">Prueba Comprensión - Segun Pisa</a>
-              <a href="cnb.php?noLectura=<?php echo $row1['idLectura']; ?>&intento=<?php echo $hayIntentos2; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#27ae60; ">Prueba Comprensión - Segun CNB</a>             
-              <a href="glosario.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#ff4757; ">Glosario</a>
+              <a href="<?php echo $rutaCnb;?>?noLectura=<?php echo $row1['idLectura']; ?>&intento=<?php echo $hayIntentos2; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#27ae60; ">Prueba Comprensión - Segun CNB</a>             
+              <a href="glosario.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#ff4757; ">Mi vocabulario</a>
                <a href="cuentame.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#e67e22; ">Con tus palabras</a>
-              <a href="personajes.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#f1c40f; ">Identificar Personaje</a>
+              <a href="personajes.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#f1c40f; margin-top: 10px; ">Identificar Personaje</a>
               <hr>
          </div>
 

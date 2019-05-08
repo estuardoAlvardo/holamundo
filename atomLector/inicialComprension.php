@@ -24,7 +24,7 @@ if(empty($_GET['curso'])){
       $gradoBuscar=$_SESSION['grado'];
     }
 
-    $q1 = ("SELECT * FROM atomolector where grado=:grado");
+    $q1 = ("SELECT * FROM atomolector where grado=:grado and noLecturaDiaria=0");
     $mostrarLectura=$dbConn->prepare($q1);
     $mostrarLectura->bindParam(':grado',$gradoBuscar, PDO::PARAM_INT); 
     $mostrarLectura->execute();

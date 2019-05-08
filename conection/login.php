@@ -203,7 +203,7 @@ switch ($_SESSION["tipoUsuario"]) {
 
 }else{
 
-	header("location:../index.php");
+	header("location:../index.html");
 }
 // en la base de datos el tipo de usuario se toma como 1=alumno 2=profesor 3=coordinador
 

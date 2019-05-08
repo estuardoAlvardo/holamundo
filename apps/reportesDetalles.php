@@ -121,9 +121,9 @@ $cursoDiver->execute();
 
  			<div class="col-md-8 col-xs-8 pag-center">
          <div class="col-md-12" style=" margin-bottom: 50px;">
-              <h3 class="text-center">Atom Reportes - Detalle - Alumno</h3>
+              <h3 class="text-center">Atom Reportes - Detalle - Jose Manuel</h3>
          </div>
-          <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px;">Lenguaje Reporte</div>
+          <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px;">Lecturas Diarias Semana 1</div>
             <button class="btn btn-default botonAgg botonAgg-1" type="button"style="margin-left:510px;background-color: #c0392b; color: white; border:white;">PDF</button>
             <button class="btn btn-default botonAgg botonAgg-1" type="button"style="background-color: #16a085; color: white; border:white;">EXCEL</button>
 
@@ -132,69 +132,69 @@ $cursoDiver->execute();
                     <table class="table table-hover" id="ejemplo">
                       <thead>
                         <tr>
-                          <th scope="col">Actividad</th>
-                          <th scope="col">Nombre Actividad</th>
-                          <th scope="col">nota asignada</th>
-                          <th scope="col">Nota obtenida</th>
-                          <th scope="col">Zona/60</th>
-                          <th scope="col">Examen/ 40</th>
+                          <th scope="col">Lectura </th>
+                          <th scope="col">Dia</th>
+                          <th scope="col">Fecha </th>
+                          <th scope="col">Hora</th>
+                          <th scope="col">Estado</th>
+                          <th scope="col">Porcentaje Obtenido</th>
+                         
                         </tr>
                       </thead>
                       <tbody class="text-left">
                         <tr>     
-                          <td>Conocimiento</td>
-                          <td>Reconoce y comenta</td>
-                          <td>5</td>
-                          <td>2</td>
-                          <td>2</td>
-                          <td>--</td>
+                          <td>Trsitan quiere ser pirata</td>
+                          <td>Lunes</td>
+                          <td>08/01/2019</td>
+                          <td>9:00</td>
+                          <td>ok</td>
+                          <td>10%</td>
+                          <td></td>
                         </tr>
                         <tr>     
-                          <td>Comprensión</td>
-                          <td>Reconoce y comenta</td>
-                          <td>5</td>
-                          <td>2</td>
-                          <td>2</td>
-                          <td>--</td>
+                          <td>Patito Feo</td>
+                          <td>Martes</td>
+                          <td>08/02/2019</td>
+                          <td>9:00</td>
+                          <td>ok</td>
+                          <td>10%</td>
+                          <td></td>
                         </tr>
                         <tr>     
-                          <td>Analisis</td>
-                          <td>Reconoce y comenta</td>
-                          <td>5</td>
-                          <td>3</td>
-                          <td>3</td>
-                          <td>--</td>
-                        </tr>
-                         <tr>     
-                          <td>Aplicación</td>
-                          <td>Reconoce y comenta</td>
-                          <td>5</td>
-                          <td>3</td>
-                          <td>3</td>
-                          <td>--</td>
-                        </tr>
-                         <tr>     
-                          <td>Evaluación</td>
-                          <td>Examen corto 1</td>
-                          <td>20</td>
-                          <td>10</td>
-                          <td>--</td>
-                          <td>10</td>
-                        </tr>
-                         <tr>     
-                          <td>Evaluación</td>
-                          <td>Examen corto 2</td>
-                          <td>20</td>
-                          <td>20</td>
-                          <td>--</td>
-                          <td>20</td>
+                          <td>La pera y su historia</td>
+                          <td>Miercoles</td>
+                          <td>08/03/2019</td>
+                          <td>9:00</td>
+                          <td>ok</td>
+                          <td>10%</td>
+                          <td></td>
                         </tr>
                         <tr>     
-                          <td colspan="4">Total</td>
-                         <td>10</td>
-                          <td>30</td>
-                         
+                          <td>Blanca Nieves</td>
+                          <td>Jueves</td>
+                          <td>08/04/2019</td>
+                          <td>9:00</td>
+                          <td>ok</td>
+                          <td>10%</td>
+                          <td></td>
                         </tr>
+                        <tr>     
+                          <td>El invierno es lo mejor</td>
+                          <td>Viernes</td>
+                          <td>--</td>
+                          <td>--</td>
+                          <td>no</td>
+                          <td>0%</td>
+                          <td></td>
+                        </tr>
+
+                        <tr>     
+                          <td colspan="5">Total</td>
+                          
+                          <td>90%</td>
+                        </tr>
+
+                       
                                   
                       </tbody>
                     </table>         

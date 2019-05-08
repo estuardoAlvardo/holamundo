@@ -233,7 +233,7 @@ if(empty($sumaInter)){
 
 
          <div class="col-md-12" style="margin-top: 60px;">
-              <h3 class="text-center">Resultado Prueba segun Estándares CNB </h3><br>
+              <h3 class="text-center">Resultado Prueba según Estándares CNB </h3><br>
               <a href="../comprensionLectora.php?gradoB=<?php echo $_SESSION['gradoEnviar']; ?>" class="btn botonAgg-1" style="color: white; background-color: #3498db;">Mis Lecturas</a>
              
               <div class="col-md-12 cajaDescripcion" style="min-height:200px; margin-top: 20px;">

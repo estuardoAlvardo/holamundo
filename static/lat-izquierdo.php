@@ -1,4 +1,5 @@
 <?php
+
 $time = time();
 
 
@@ -186,49 +187,7 @@ transition: all .2s ease-in-out;
   <?php }?>
           
 
-            <div class="modal fade" id="plataformas" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg ">
-                    <div class="modal-content">
-                       <div class="modal-header text-left">
-                           Plataformas<br>
-                           <hr>
-                          
-                       
-                       <div class="modal-body">
-                        <a href="https://www.progrentis.com/Selector/" target="_blank">
-                           <div class="col-md-1 item">
-                                <div class="img-responsive sinfondo"> 
-                                  <img class="img-fondo" src="../img/progrentis.jpg" style="border-radius: 10px;">
-                                </div> 
-                                <strong><p class="txt-fuente">Progrentis</p></strong>
-                           </div>
-                           </a>
-                          <a href="https://www.achieve3000.com/" target="_blank">
-                           <div class="col-md-1 item" data-toggle="modal" data-target="#achive3000">
-                                <div class="img-responsive sinfondo"> 
-                                  <img class="img-fondo" src="../img/achive3000.png" style="border-radius: 10px;">
-                                </div> 
-                                <strong><p class="txt-fuente">Achive3000</p></strong>
-                           </div>
-                           </a>
-                           <a href="http://www.lectopolis.net/login.php" target="_blank">
-                           <div class="col-md-1 item" data-toggle="modal" data-target="#lectopolis">
-                                <div class="img-responsive sinfondo"> 
-                                  <img class="img-fondo" src="../img/lectopolis.png" style="border-radius: 10px;">
-                                </div> 
-                                <strong><p class="txt-fuente">Lectopolis</p></strong>
-                           </div>
-                           </a>
-                       </div>
-                       </div>
-                       <div class="modal-footer">
-                         <button type="button" class="btn btn-info btn1" data-dismiss="modal" style="margin-left: 90%;">Cerrar</button>
-                         
-                       </div>
-                    </div>
-                </div>
-            </div>
-
+      
 
 <script>
 
@@ -251,7 +210,7 @@ transition: all .2s ease-in-out;
 
         },
         
-        events:'http://localhost:8080/atomolms/calendar/eventos.php',
+        events:'https://localhost:8080/atomolms/calendar/eventos.php',
 
 
         
@@ -312,8 +271,10 @@ function datos(){
 
         
         <img class="img-responsive btn-back" src="../../img/back3.png" title="atras" onclick="history.back(-1)"  />
+        <h5 style="color:white; margin-left: 10px; margin-top: 50px;">Asistente de voz</h5>
+           <div class="recodinggN" id="microOn" title="Que quieres hacer.." style="cursor: pointer; padding-top:3px;  width: 50px; height: 50px; border-radius: 100%; margin-top: 30px; background-color: #3498db; margin-left: 40%;" onclick="inicio(this.id)"><img src="../../img/micro.png" width="40" height="40" ></div>
 
-        
+        <div id="microOf" class="recodinggN" title="Graba el concepto" style="cursor: pointer; padding-top:3px;  width: 50px; height: 50px; border-radius: 100%; margin-top: 30px; background-color: #F72626; margin-left: 40%; display: none" onclick="finGrabacion(this.id)"><img src="../../img/microOf.png" width="40" height="40" ></div>
 
         <div class="text-center col-md-12" style="margin-left:5px; margin-top: 50%;">
           <h5 style="color:white; margin-left: 10px;">Mis apps</h5>
@@ -471,7 +432,7 @@ function datos(){
                                 <strong><p class="txt-fuente">Achive3000</p></strong>
                            </div>
                            </a>
-                           <a href="http://www.lectopolis.net/login.php" target="_blank">
+                           <a href="https://www.lectopolis.net/login.php" target="_blank">
                            <div class="col-md-1 item" data-toggle="modal" data-target="#lectopolis">
                                 <div class="img-responsive sinfondo"> 
                                   <img class="img-fondo" src="../../img/lectopolis.png" style="border-radius: 10px;">
@@ -511,7 +472,7 @@ function datos(){
 
         },
         
-        events:'http://localhost:8080/atomolms/calendar/eventos.php',
+        events:'https://localhost:8080/atomolms/calendar/eventos.php',
 
 
         
@@ -570,12 +531,16 @@ function datos(){
         </div>
   </div>
 <?php } if($nivel==3){ ?>
+
   <div class="col-md-2 col-xs-2 lat-izquierdo">
 
         
         <img class="img-responsive btn-back" src="../../../img/back3.png" title="atras" onclick="history.back(-1)"  />
 
-        
+        <h5 style="color:white; margin-left: 10px; margin-top: 50px;">Asistente de voz</h5>
+         <div class="recodinggN" id="microOn" title="Que quieres hacer.." style="cursor: pointer; padding-top:3px;  width: 50px; height: 50px; border-radius: 100%; margin-top: 30px; background-color: #3498db; margin-left: 40%;" onclick="inicio(this.id)"><img src="../../../img/micro.png" width="40" height="40" ></div>
+
+        <div id="microOf" class="recodinggN" title="Graba el concepto" style="cursor: pointer; padding-top:3px;  width: 50px; height: 50px; border-radius: 100%; margin-top: 30px; background-color: #F72626; margin-left: 40%; display: none" onclick="finGrabacion(this.id)"><img src="../../../img/microOf.png" width="40" height="40" ></div>
 
         <div class="text-center col-md-12" style="margin-left:5px; margin-top: 50%;">
           <h5 style="color:white; margin-left: 10px;">Mis apps</h5>
@@ -733,7 +698,7 @@ function datos(){
                                 <strong><p class="txt-fuente">Achive3000</p></strong>
                            </div>
                            </a>
-                           <a href="http://www.lectopolis.net/login.php" target="_blank">
+                           <a href="https://www.lectopolis.net/login.php" target="_blank">
                            <div class="col-md-1 item" data-toggle="modal" data-target="#lectopolis">
                                 <div class="img-responsive sinfondo"> 
                                   <img class="img-fondo" src="../../img/lectopolis.png" style="border-radius: 10px;">
@@ -773,7 +738,7 @@ function datos(){
 
         },
         
-        events:'http://localhost:8080/atomolms/calendar/eventos.php',
+        events:'https://localhost:8080/atomolms/calendar/eventos.php',
 
 
         
@@ -946,7 +911,7 @@ function iaDocente(){
         indexes:['lecturas','quiero leer','ver mis lecturas', 'ver lecturas rápidas','ver lecturas','ir a lecturas','abrir lecturas','lecturas rápidas','comprensión lectora',],
         action: function(){
           artyom.say("Abriendo lecturas, por favor tienes que elegir grado por ser docente");
-          window.open("http://localhost/atomolms/atomLector/eleccionNivelprogramaLector.php?curso=7",'_blank')
+          window.open("https://localhost/atomolms/atomLector/eleccionNivelprogramaLector.php?curso=7",'_blank')
 
         }
       },
@@ -955,7 +920,7 @@ function iaDocente(){
         indexes:['ver reportes','reportes','reportes de lecturas', 'notas','ver notas','ver avances de lectura','sacar reportes','ir a reportes'],
         action: function(){
           artyom.say("Abriendo área de reportes, elije grado y sección para ver el avance lector");
-          window.open("http://localhost/atomolms/apps/reportes.php",'_blank')
+          window.open("https://localhost/atomolms/apps/reportes.php",'_blank')
 
         }
       },
@@ -964,7 +929,7 @@ function iaDocente(){
         indexes:['ver actividades','actividades','mis actividades', 'calendario','ver calendario','ir a calendario','fechas importantes','crear actividad','nueva actividad'],
         action: function(){
           artyom.say("Abriendo calendario de actividades, si quieres ver una actividad dale click, crea una nueva actividad dándole clic al día.");
-          window.open("http://localhost/atomolms/apps/calendarm.php",'_blank')
+          window.open("https://localhost/atomolms/apps/calendarm.php",'_blank')
 
         }
       },
@@ -973,7 +938,7 @@ function iaDocente(){
         indexes:['guardar archivos','mis documentos','subir archivo', 'compartir archivo','mis archivos','archivos','compartir archivos','borrar un archivo','atomDrive', 'atomodrive','drive','abrir drive','abrir atomodrive', 'atom drive'],
         action: function(){
           artyom.say("Abriendo AtomDrive, para subir un documento dale clic al botón nuevo y subir archivo, puedes compartir tus archivos, y ver archivos que han compartido contigo.");
-          window.open("http://localhost/atomolms/apps/atomDrive.php",'_blank')
+          window.open("https://localhost/atomolms/apps/atomDrive.php",'_blank')
 
         }
       },
@@ -982,7 +947,7 @@ function iaDocente(){
         indexes:['ver asistencia','asistencia','ir a asistencia', 'ver faltas','ver conectividad','reporte de asistencia','ausencia','actividad plataforma','conectiviadad plataforma'],
         action: function(){
           artyom.say("Abriendo reporte de asistencia, elije el grado, sección y mes para ver la asistencia presencial, también podrás ver el reporte de uso de la plataforma.");
-          window.open("http://localhost/atomolms/apps/misAlumnos.php",'_blank')
+          window.open("https://localhost/atomolms/apps/misAlumnos.php",'_blank')
 
         }
       },
@@ -991,7 +956,7 @@ function iaDocente(){
         indexes:['bullying','reporte bullying','ver incidencias', 'reporte de agresión','agreciones','controlar bullying','reporte de agreciones'],
         action: function(){
           artyom.say("Abriendo reporte de bullying, encontraras en este apartado, los datos de personas que valientemente reportan las agreciones que suceden en el plantel educativo, con esta información podremos actuar y combatir el bullying.");
-          window.open("http://localhost/atomolms/apps/reportbullying.php",'_blank')
+          window.open("https://localhost/atomolms/apps/reportbullying.php",'_blank')
 
         }
       },
@@ -1010,7 +975,7 @@ function iaDocente(){
         indexes:['editar perfil','perfil','ver perfil','ir a perfil','quiero ver mi perfil'],
         action: function(){
           artyom.say("Abriendo tú perfil, en el podras editar nombre y apellido, hay datos que están bloqueados por tu seguridad");
-           window.open("http://localhost/atomolms/apps/editarPerfil.php",'_blank')
+           window.open("https://localhost/atomolms/apps/editarPerfil.php",'_blank')
 
 
         }
@@ -1020,7 +985,7 @@ function iaDocente(){
         indexes:['cerrar sesión','salir de la plataforma','terminar sesión','finalizar sesión','cerrar plataforma'],
         action: function(){
           artyom.say("Saliendo de la plataforma, espero escucharte pronto, hasta luego.");
-          window.location.replace("http://localhost/atomolms/index.html");
+          window.location.replace("https://localhost/atomolms/index.html");
           
             artyom.fatality();
 
@@ -1089,7 +1054,7 @@ function iaEstudiante(){
         indexes:['lecturas','quiero leer','ver mis lecturas', 'ver lecturas rápidas','ver lecturas','ir a lecturas','abrir lecturas','lecturas rápidas','comprensión lectora',],
         action: function(){
           artyom.say("Abriendo lecturas, elije la lectura que quieres realizar, mejora tú comprensión y tu velocidad.");
-          window.open("http://localhost/atomolms/atomLector/comprensionLectora.php?curso=7&gradoB=1",'_blank')
+          window.open("https://localhost/atomolms/atomLector/comprensionLectora.php?curso=7&gradoB=1",'_blank')
 
         }
       },
@@ -1098,7 +1063,7 @@ function iaEstudiante(){
         indexes:['ver reportes','reportes','reportes de lecturas', 'notas','ver notas','ver avances de lectura','sacar reportes','ir a reportes'],
         action: function(){
           artyom.say("Abriendo tús notas, en esta área podrás ver tú avance lector ");
-          window.open("http://localhost/atomolms/apps/misNotas.php",'_blank')
+          window.open("https://localhost/atomolms/apps/misNotas.php",'_blank')
 
         }
       },
@@ -1107,7 +1072,7 @@ function iaEstudiante(){
         indexes:['ver actividades','actividades','mis actividades', 'calendario','ver calendario','ir a calendario','fechas importantes','crear actividad','nueva actividad'],
         action: function(){
           artyom.say("Abriendo calendario de actividades, si quieres ver una actividad dale click, crea una nueva actividad dándole clic al día.");
-          window.open("http://localhost/atomolms/apps/calendarm.php",'_blank')
+          window.open("https://localhost/atomolms/apps/calendarm.php",'_blank')
 
         }
       },
@@ -1116,7 +1081,7 @@ function iaEstudiante(){
         indexes:['guardar archivos','mis documentos','subir archivo', 'compartir archivo','mis archivos','archivos','compartir archivos','borrar un archivo','atomDrive', 'atomodrive','drive','abrir drive','abrir atomodrive', 'atom drive'],
         action: function(){
           artyom.say("Abriendo AtomDrive, para subir un documento dale clic al botón nuevo y subir archivo, puedes compartir tus archivos, y ver archivos que han compartido contigo.");
-          window.open("http://localhost/atomolms/apps/atomDrive.php",'_blank')
+          window.open("https://localhost/atomolms/apps/atomDrive.php",'_blank')
 
         }
       },
@@ -1125,7 +1090,7 @@ function iaEstudiante(){
         indexes:['bullying','reportar agresión','agresión','agreciones','controlar bullying','reporte de agreciones'],
         action: function(){
           artyom.say("Abriendo área de bullying, podrás reportar cualquier agresión, ayudanos a tener un centro educativo sano.");
-          window.open("http://localhost/atomolms/apps/bullying.php",'_blank')
+          window.open("https://localhost/atomolms/apps/bullying.php",'_blank')
 
         }
       },
@@ -1134,7 +1099,7 @@ function iaEstudiante(){
         indexes:['editar perfil','perfil','ver perfil','ir a perfil','quiero ver mi perfil'],
         action: function(){
           artyom.say("Abriendo tú perfil, en el podras editar nombre y apellido, hay datos que están bloqueados por tu seguridad");
-           window.open("http://localhost/atomolms/apps/editarPerfil.php",'_blank')
+           window.open("https://localhost/atomolms/apps/editarPerfil.php",'_blank')
 
 
         }
@@ -1144,7 +1109,7 @@ function iaEstudiante(){
         indexes:['cerrar sesión','salir de la plataforma','terminar sesión','finalizar sesión','cerrar plataforma'],
         action: function(){
           artyom.say("Saliendo de la plataforma, espero escucharte pronto, hasta luego.");
-          window.location.replace("http://localhost/atomolms/index.html");
+          window.location.replace("https://localhost/atomolms/index.html");
           
             artyom.fatality();
 

@@ -184,15 +184,33 @@ $cursoDiver->execute();
 
  			<div class="col-md-8 col-xs-8 pag-center">
          <div class="col-md-12" style="">
-              <h3 class="text-center">Mis cursos</h3>
+              <h3 class="text-center">Átomo Lector</h3>
          </div>
 
  
-            <h3 class="text-left" style="">Areas Principales | Según CNB</h3><hr>
+            <h3 class="text-left" style="">Lecturas y Evaluaciones</h3><hr>
            
 
              <div class="row">
-                <a href="../atomLector/eleccionNivelprogramaLector.php?curso=7
+               
+                <a href="../atomLector/eleccionNivelLecturasDiarias.php?curso=7">
+                   <div class="col-md-4">
+                    <div class="card">
+
+                      <div class="image" >
+                        <img  src="../img/lecturasDiarias.png" width="60%">
+                      </div>
+
+                      <div class="text">
+                        <h3>Lecturas Diarias</h3>
+                        <p style="text-align: left;">Antologia de lecturas, compendio de lecturas adecuadas a la edad cognitiva del alumno.</p>
+
+                      </div>
+
+                    </div>
+                  </div> 
+                </a>
+                 <a href="../atomLector/eleccionNivelprogramaLector.php?curso=7
                                 ">
                   <div class="col-md-4" style="">
                     <div class="card">
@@ -204,102 +222,33 @@ $cursoDiver->execute();
                       <div class="text">
                         
                         
-                        <h3>Programa Lector</h3>
-                        <p style="text-align: left;">Incrementa tú nivel lector, tú velocidad y fluidez con el programa lector de AtomoLMS.</p>
+                        <h3>Lecturas de Medición</h3>
+                        <p style="text-align: left;">Prueba diseñadas para desarrollar las competencias lectoras, y con ello mejorar el rendimiento academico.</p>
 
                       </div>
 
                     </div>
                   </div>
               </a>
-                <a href="../atomoCnb/1p/Lenguaje1/eleccionNivel.php?curso=1">
+                 <a href="../atomLector/eleccionNivelvelocidadLectora.php?curso=7">
                    <div class="col-md-4">
                     <div class="card">
 
                       <div class="image" >
-                        <img  src="../img/comunicacion.jpg" width="110%">
+                        <img  src="../img/velocidadLectora.png" width="60%">
                       </div>
 
                       <div class="text">
-                        
-                       
-
-                        <h3>Comunicación y Lenguaje L1</h3>
-                        <p style="text-align: left;">Desarrolla tus competencias y habilidades comunicativas.</p>
+                        <h3>Fluidez y Velocidad Lectora </h3>
+                        <p style="text-align: left;">Desarrolla la habilidad de leer con fluidez a grandes velocidades.</p>
 
                       </div>
 
                     </div>
                   </div> 
                 </a>
-                 <a href="../atomoCnb/1p/Lenguaje1/eleccionNivel.php?curso=1">
-                   <div class="col-md-4">
-                    <div class="card">
 
-                      <div class="image" >
-                        <img  src="../img/mate2.jpg" width="100%">
-                      </div>
-
-                      <div class="text">
-                        <h3>Matemáticas </h3>
-                        <p style="text-align: left;">Desarrolla tus competencias y habilidades matematicas.</p>
-
-                      </div>
-
-                    </div>
-                  </div> 
-                </a>
-                 <a href="../atomoCnb/1p/Lenguaje1/eleccionNivel.php?curso=1">
-                   <div class="col-md-4">
-                    <div class="card">
-
-                      <div class="image" >
-                        <img  src="../img/medioSocial.jpg" width="130%">
-                      </div>
-
-                      <div class="text">
-                        <h3>Medio Social y Natural </h3>
-                        <p style="text-align: left;">Desarrolla tus competencias y habilidades matematicas.</p>
-
-                      </div>
-
-                    </div>
-                  </div> 
-                </a>
-                <a href="../atomoCnb/1p/Lenguaje1/eleccionNivel.php?curso=1">
-                   <div class="col-md-4">
-                    <div class="card">
-
-                      <div class="image" >
-                        <img  src="../img/expresionArtistica.jpg" width="130%">
-                      </div>
-
-                      <div class="text">
-                        <h3>Expresión Artistica </h3>
-                        <p style="text-align: left;">Desarrolla tus competencias y habilidades matematicas.</p>
-
-                      </div>
-
-                    </div>
-                  </div> 
-                </a>
-                <a href="../atomoCnb/1p/Lenguaje1/eleccionNivel.php?curso=1">
-                   <div class="col-md-4">
-                    <div class="card">
-
-                      <div class="image" >
-                        <img  src="../img/formacion.jpg" width="100%">
-                      </div>
-
-                      <div class="text">
-                        <h3>Formación Ciudadana</h3>
-                        <p style="text-align: left;">Desarrolla tus competencias y habilidades matematicas.</p>
-
-                      </div>
-
-                    </div>
-                  </div> 
-                </a>
+               
               </div>
       
 

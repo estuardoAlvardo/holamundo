@@ -207,7 +207,7 @@ $mostrarPisa->bindParam(':idUsuario', $_SESSION['idUsuario'], PDO::PARAM_INT);
                          <td></td>
                          <td></td>
                          <td></td>
-                         <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><?php echo round($_SESSION['promedioFinal'], 0, PHP_ROUND_HALF_DOWN); ?></div></td>
+                         <td><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><?php echo round(@$_SESSION['promedioFinal'], 0, PHP_ROUND_HALF_DOWN); ?></div></td>
                        </tr>     
                       </tbody>
                     </table>         
