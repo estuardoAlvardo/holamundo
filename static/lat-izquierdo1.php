@@ -252,7 +252,7 @@ transition: all .2s ease-in-out;
 
         },
         
-        events:'http://localhost:8080/atomolms/calendar/eventos.php',
+        events:'http://atomolector.com:8080/atomolms/calendar/eventos.php',
 
 
         
@@ -514,7 +514,7 @@ function datos(){
 
         },
         
-        events:'https://localhost:8080/atomolms/calendar/eventos.php',
+        events:'https://atomolector.com:8080/atomolms/calendar/eventos.php',
 
 
         
@@ -778,7 +778,7 @@ function datos(){
 
         },
         
-        events:'https://localhost:8080/atomolms/calendar/eventos.php',
+        events:'https://atomolector.com:8080/atomolms/calendar/eventos.php',
 
 
         
@@ -951,7 +951,7 @@ function iaDocente(){
         indexes:['lecturas','quiero leer','ver mis lecturas', 'ver lecturas rápidas','ver lecturas','ir a lecturas','abrir lecturas','lecturas rápidas','comprensión lectora',],
         action: function(){
           artyom.say("Abriendo lecturas, por favor tienes que elegir grado por ser docente");
-          window.open("https://localhost/atomolms/atomLector/eleccionNivelprogramaLector.php?curso=7",'_blank')
+          window.open("https://atomolector.com/atomolms/atomLector/eleccionNivelprogramaLector.php?curso=7",'_blank')
 
         }
       },
@@ -960,7 +960,7 @@ function iaDocente(){
         indexes:['ver reportes','reportes','reportes de lecturas', 'notas','ver notas','ver avances de lectura','sacar reportes','ir a reportes'],
         action: function(){
           artyom.say("Abriendo área de reportes, elije grado y sección para ver el avance lector");
-          window.open("https://localhost/atomolms/apps/reportes.php",'_blank')
+          window.open("https://atomolector.com/atomolms/apps/reportes.php",'_blank')
 
         }
       },
@@ -969,7 +969,7 @@ function iaDocente(){
         indexes:['ver actividades','actividades','mis actividades', 'calendario','ver calendario','ir a calendario','fechas importantes','crear actividad','nueva actividad'],
         action: function(){
           artyom.say("Abriendo calendario de actividades, si quieres ver una actividad dale click, crea una nueva actividad dándole clic al día.");
-          window.open("https://localhost/atomolms/apps/calendarm.php",'_blank')
+          window.open("https://atomolector.com/atomolms/apps/calendarm.php",'_blank')
 
         }
       },
@@ -978,7 +978,7 @@ function iaDocente(){
         indexes:['guardar archivos','mis documentos','subir archivo', 'compartir archivo','mis archivos','archivos','compartir archivos','borrar un archivo','atomDrive', 'atomodrive','drive','abrir drive','abrir atomodrive', 'atom drive'],
         action: function(){
           artyom.say("Abriendo AtomDrive, para subir un documento dale clic al botón nuevo y subir archivo, puedes compartir tus archivos, y ver archivos que han compartido contigo.");
-          window.open("https://localhost/atomolms/apps/atomDrive.php",'_blank')
+          window.open("https://atomolector.com/atomolms/apps/atomDrive.php",'_blank')
 
         }
       },
@@ -987,7 +987,7 @@ function iaDocente(){
         indexes:['ver asistencia','asistencia','ir a asistencia', 'ver faltas','ver conectividad','reporte de asistencia','ausencia','actividad plataforma','conectiviadad plataforma'],
         action: function(){
           artyom.say("Abriendo reporte de asistencia, elije el grado, sección y mes para ver la asistencia presencial, también podrás ver el reporte de uso de la plataforma.");
-          window.open("https://localhost/atomolms/apps/misAlumnos.php",'_blank')
+          window.open("https://atomolector.com/atomolms/apps/misAlumnos.php",'_blank')
 
         }
       },
@@ -996,7 +996,7 @@ function iaDocente(){
         indexes:['bullying','reporte bullying','ver incidencias', 'reporte de agresión','agreciones','controlar bullying','reporte de agreciones'],
         action: function(){
           artyom.say("Abriendo reporte de bullying, encontraras en este apartado, los datos de personas que valientemente reportan las agreciones que suceden en el plantel educativo, con esta información podremos actuar y combatir el bullying.");
-          window.open("https://localhost/atomolms/apps/reportbullying.php",'_blank')
+          window.open("https://atomolector.com/atomolms/apps/reportbullying.php",'_blank')
 
         }
       },
@@ -1015,7 +1015,7 @@ function iaDocente(){
         indexes:['editar perfil','perfil','ver perfil','ir a perfil','quiero ver mi perfil'],
         action: function(){
           artyom.say("Abriendo tú perfil, en el podras editar nombre y apellido, hay datos que están bloqueados por tu seguridad");
-           window.open("https://localhost/atomolms/apps/editarPerfil.php",'_blank')
+           window.open("https://atomolector.com/atomolms/apps/editarPerfil.php",'_blank')
 
 
         }
@@ -1025,7 +1025,7 @@ function iaDocente(){
         indexes:['cerrar sesión','salir de la plataforma','terminar sesión','finalizar sesión','cerrar plataforma'],
         action: function(){
           artyom.say("Saliendo de la plataforma, espero escucharte pronto, hasta luego.");
-          window.location.replace("https://localhost/atomolms/index.html");
+          window.location.replace("https://atomolector.com/atomolms/index.html");
           
             artyom.fatality();
 
@@ -1094,7 +1094,7 @@ function iaEstudiante(){
         indexes:['lecturas','quiero leer','ver mis lecturas', 'ver lecturas rápidas','ver lecturas','ir a lecturas','abrir lecturas','lecturas rápidas','comprensión lectora',],
         action: function(){
           artyom.say("Abriendo lecturas, elije la lectura que quieres realizar, mejora tú comprensión y tu velocidad.");
-          window.open("https://localhost/atomolms/atomLector/comprensionLectora.php?curso=7&gradoB=1",'_blank')
+          window.open("https://atomolector.com/atomolms/atomLector/comprensionLectora.php?curso=7&gradoB=1",'_blank')
 
         }
       },
@@ -1103,7 +1103,7 @@ function iaEstudiante(){
         indexes:['ver reportes','reportes','reportes de lecturas', 'notas','ver notas','ver avances de lectura','sacar reportes','ir a reportes'],
         action: function(){
           artyom.say("Abriendo tús notas, en esta área podrás ver tú avance lector ");
-          window.open("https://localhost/atomolms/apps/misNotas.php",'_blank')
+          window.open("https://atomolector.com/atomolms/apps/misNotas.php",'_blank')
 
         }
       },
@@ -1112,7 +1112,7 @@ function iaEstudiante(){
         indexes:['ver actividades','actividades','mis actividades', 'calendario','ver calendario','ir a calendario','fechas importantes','crear actividad','nueva actividad'],
         action: function(){
           artyom.say("Abriendo calendario de actividades, si quieres ver una actividad dale click, crea una nueva actividad dándole clic al día.");
-          window.open("https://localhost/atomolms/apps/calendarm.php",'_blank')
+          window.open("https://atomolector.com/atomolms/apps/calendarm.php",'_blank')
 
         }
       },
@@ -1121,7 +1121,7 @@ function iaEstudiante(){
         indexes:['guardar archivos','mis documentos','subir archivo', 'compartir archivo','mis archivos','archivos','compartir archivos','borrar un archivo','atomDrive', 'atomodrive','drive','abrir drive','abrir atomodrive', 'atom drive'],
         action: function(){
           artyom.say("Abriendo AtomDrive, para subir un documento dale clic al botón nuevo y subir archivo, puedes compartir tus archivos, y ver archivos que han compartido contigo.");
-          window.open("https://localhost/atomolms/apps/atomDrive.php",'_blank')
+          window.open("https://atomolector.com/atomolms/apps/atomDrive.php",'_blank')
 
         }
       },
@@ -1130,7 +1130,7 @@ function iaEstudiante(){
         indexes:['bullying','reportar agresión','agresión','agreciones','controlar bullying','reporte de agreciones'],
         action: function(){
           artyom.say("Abriendo área de bullying, podrás reportar cualquier agresión, ayudanos a tener un centro educativo sano.");
-          window.open("https://localhost/atomolms/apps/bullying.php",'_blank')
+          window.open("https://atomolector.com/atomolms/apps/bullying.php",'_blank')
 
         }
       },
@@ -1139,7 +1139,7 @@ function iaEstudiante(){
         indexes:['editar perfil','perfil','ver perfil','ir a perfil','quiero ver mi perfil'],
         action: function(){
           artyom.say("Abriendo tú perfil, en el podras editar nombre y apellido, hay datos que están bloqueados por tu seguridad");
-           window.open("https://localhost/atomolms/apps/editarPerfil.php",'_blank')
+           window.open("https://atomolector.com/atomolms/apps/editarPerfil.php",'_blank')
 
 
         }
@@ -1149,7 +1149,7 @@ function iaEstudiante(){
         indexes:['cerrar sesión','salir de la plataforma','terminar sesión','finalizar sesión','cerrar plataforma'],
         action: function(){
           artyom.say("Saliendo de la plataforma, espero escucharte pronto, hasta luego.");
-          window.location.replace("https://localhost/atomolms/index.html");
+          window.location.replace("https://atomolector.com/atomolms/index.html");
           
             artyom.fatality();
 
