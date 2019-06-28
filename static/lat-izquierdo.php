@@ -44,7 +44,7 @@ transition: all .2s ease-in-out;
       <div class="col-md-2 col-xs-2 lat-izquierdo">
 
       	
-        <img class="img-responsive btn-back" src="../img/back3.png" title="atras" onclick="history.back(-1)"  />
+        <img class="img-responsive btn-back" src="../img/back3.png" title="atras" onclick="history.back(-1)" style="margin-left:70px;"  />
 
         
         <h5 style="color:white; margin-left: 10px; margin-top: 50px;">Asistente de voz</h5>
@@ -73,18 +73,21 @@ transition: all .2s ease-in-out;
           <h5 style="color: white; margin-left: 20px;" class="text-left">Mis notas</h5>
 
 
+          <!--
 
           <a href="../apps/streamingCanales.php"><img class="img-responsive" src="../img/streaming.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />           
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left">Streaming</h5>
-
-          <a href="../apps/bullying.php"><img class="img-responsive" src="../img/alert.png" style="max-width:50px; max-height: 50px; margin-left:10px; margin-top: 30px;" title="Bullyng"/>           
+          --->
+          <a href="../apps/bullying.php"><img class="img-responsive" src="../img/alert.png" style="max-width:50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" title="Bullyng"/>           
           </a>
-          <h5 style="color: white; margin-left: 20px;" class="text-left" >Bullyng</h5>
+          <h5 style="color: white; margin-left: 60%;" class="text-left" >Bullyng</h5>
 
+          <!-- 
           <a href="#" data-toggle="modal" data-target="#plataformas"><img class="img-responsive" src="../img/otras.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />            
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left">Plataformas</h5>
+          --->
            <?php  } if($_SESSION['tipoUsuario']==2){  ?>
 
 
@@ -102,22 +105,27 @@ transition: all .2s ease-in-out;
           </a>
           <h5 style="color: white; margin-left: 20px;" class="text-left">Reportes</h5>
 
-
-
-          <a href="../apps/streamingCanales.php"><img class="img-responsive" src="../img/streaming.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />           
+          <a href="../apps/misAlumnos.php"><img class="img-responsive" src="../img/alumnos.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" title="Asistencia"/>           
           </a>
-          <h5 style="color: white; margin-left: 60%;" class="text-left">Streaming</h5>
-
-          <a href="../apps/misAlumnos.php"><img class="img-responsive" src="../img/alumnos.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 30px;" title="Asistencia"/>           
-          </a>
-          <h5 style="color: white; margin-left: 20px;" class="text-left" >Asistencia</h5>
-
-          <a href="#" data-toggle="modal" data-target="#plataformas"><img class="img-responsive" src="../img/otras.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />            
-          </a>
-          <h5 style="color: white; margin-left: 60%;" class="text-left">Plataformas</h5>
+          <h5 style="color: white; margin-left: 60%;" class="text-left" >Asistencia</h5>
           <a href="../apps/reportbullying.php"><img class="img-responsive" src="../img/alert.png" style="max-width:50px; max-height: 50px; margin-left:10px; margin-top: 30px;" title="Bullyng"/>           
           </a><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: rgb(54, 171, 203); position: absolute; margin-top: -60px; margin-left: -32px;" ><?php echo @$_SESSION['reporteBullying1']; ?></div>
           <h5 style="color: white; margin-left: 20px;" class="text-left" >Bullyng</h5>
+          <!--
+          <a href="../apps/streamingCanales.php"><img class="img-responsive" src="../img/streaming.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%; " />           
+          </a>
+         
+          <h5 style="color: white; margin-left: 60%;" class="text-left">Streaming</h5>
+         --->
+          
+          <!--
+          <a href="#" data-toggle="modal" data-target="#plataformas"><img class="img-responsive" src="../img/otras.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />            
+          </a>
+        
+          <h5 style="color: white; margin-left: 60%;" class="text-left">Plataformas</h5>
+            --->
+
+          
 
 
 
@@ -210,7 +218,7 @@ transition: all .2s ease-in-out;
 
         },
         
-        events:'https://atomolector.com:8080/atomolms/calendar/eventos.php',
+        events:'http://localhost:8080/atomolms/calendar/eventos.php',
 
 
         
@@ -270,7 +278,7 @@ function datos(){
        <div class="col-md-2 col-xs-2 lat-izquierdo">
 
         
-        <img class="img-responsive btn-back" src="../../img/back3.png" title="atras" onclick="history.back(-1)"  />
+        <img class="img-responsive btn-back" src="../../img/back3.png" title="atras" onclick="history.back(-1)"  style="margin-left:70px;"/>
         <h5 style="color:white; margin-left: 10px; margin-top: 50px;">Asistente de voz</h5>
            <div class="recodinggN" id="microOn" title="Que quieres hacer.." style="cursor: pointer; padding-top:3px;  width: 50px; height: 50px; border-radius: 100%; margin-top: 30px; background-color: #3498db; margin-left: 40%;" onclick="inicio(this.id)"><img src="../../img/micro.png" width="40" height="40" ></div>
 
@@ -296,20 +304,23 @@ function datos(){
           <h5 style="color: white; margin-left: 20px;" class="text-left">Mis notas</h5>
 
 
-
+          <!--
           <a href="../../apps/streamingCanales.php"><img class="img-responsive" src="../../img/streaming.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />           
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left">Streaming</h5>
+          -->
 
-          <a href="../../apps/bullying.php"><img class="img-responsive" src="../../img/alert.png" style="max-width:50px; max-height: 50px; margin-left:10px; margin-top: 30px;" title="Bullyng"/>           
+          <a href="../../apps/bullying.php"><img class="img-responsive" src="../../img/alert.png" style="max-width:50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" title="Bullyng"/>           
           </a>
-          <h5 style="color: white; margin-left: 20px;" class="text-left" >Bullyng</h5>
+          <h5 style="color: white; margin-left: 60%;" class="text-left" >Bullyng</h5>
 
+          <!--
           <a href="#" data-toggle="modal" data-target="#plataformas"><img class="img-responsive" src="../../img/otras.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />            
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left">Plataformas</h5>
+            -->
            <?php  } if($_SESSION['tipoUsuario']==2){  ?>
-
+        
 
           <a href="../../apps/calendarm.php" ><img class="img-responsive" src="../../img/calendario.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 50px;" />           
           </a>
@@ -326,18 +337,19 @@ function datos(){
           <h5 style="color: white; margin-left: 20px;" class="text-left">Reportes</h5>
 
 
-
+          <!---
           <a href="../../apps/streamingCanales.php"><img class="img-responsive" src="../../img/streaming.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />           
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left">Streaming</h5>
-
-          <a href="../../apps/misAlumnos.php"><img class="img-responsive" src="../../img/alumnos.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 30px;" title="Asistencia"/>           
+          -->
+          <a href="../../apps/misAlumnos.php"><img class="img-responsive" src="../../img/alumnos.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" title="Asistencia"/>           
           </a>
-          <h5 style="color: white; margin-left: 20px;" class="text-left" >Asistencia</h5>
-
+          <h5 style="color: white; margin-left: 60%;" class="text-left" >Asistencia</h5>
+          <!--
           <a href="#" data-toggle="modal" data-target="#plataformas"><img class="img-responsive" src="../../img/otras.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />            
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left">Plataformas</h5>
+        -->
           <a href="../../apps/reportbullying.php"><img class="img-responsive" src="../../img/alert.png" style="max-width:50px; max-height: 50px; margin-left:10px; margin-top: 30px;" title="Bullyng"/>           
           </a><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: rgb(54, 171, 203); position: absolute; margin-top: -60px; margin-left: -32px;" ><?php echo @$_SESSION['reporteBullying1']; ?></div>
           <h5 style="color: white; margin-left: 20px;" class="text-left" >Bullyng</h5>
@@ -416,7 +428,7 @@ function datos(){
                           
                        
                        <div class="modal-body">
-                        <a href="https://www.progrentis.com/Selector/" target="_blank">
+                        <a href="http://www.progrentis.com/Selector/" target="_blank">
                            <div class="col-md-1 item">
                                 <div class="img-responsive sinfondo"> 
                                   <img class="img-fondo" src="../../img/progrentis.jpg" style="border-radius: 10px;">
@@ -424,7 +436,7 @@ function datos(){
                                 <strong><p class="txt-fuente">Progrentis</p></strong>
                            </div>
                            </a>
-                          <a href="https://www.achieve3000.com/" target="_blank">
+                          <a href="http://www.achieve3000.com/" target="_blank">
                            <div class="col-md-1 item" data-toggle="modal" data-target="#achive3000">
                                 <div class="img-responsive sinfondo"> 
                                   <img class="img-fondo" src="../../img/achive3000.png" style="border-radius: 10px;">
@@ -432,7 +444,7 @@ function datos(){
                                 <strong><p class="txt-fuente">Achive3000</p></strong>
                            </div>
                            </a>
-                           <a href="https://www.lectopolis.net/login.php" target="_blank">
+                           <a href="http://www.lectopolis.net/login.php" target="_blank">
                            <div class="col-md-1 item" data-toggle="modal" data-target="#lectopolis">
                                 <div class="img-responsive sinfondo"> 
                                   <img class="img-fondo" src="../../img/lectopolis.png" style="border-radius: 10px;">
@@ -472,7 +484,7 @@ function datos(){
 
         },
         
-        events:'https://atomolector.com:8080/atomolms/calendar/eventos.php',
+        events:'http://localhost:8080/atomolms/calendar/eventos.php',
 
 
         
@@ -535,7 +547,7 @@ function datos(){
   <div class="col-md-2 col-xs-2 lat-izquierdo">
 
         
-        <img class="img-responsive btn-back" src="../../../img/back3.png" title="atras" onclick="history.back(-1)"  />
+        <img class="img-responsive btn-back" src="../../../img/back3.png" title="atras" onclick="history.back(-1)" style="margin-left:70px;" />
 
         <h5 style="color:white; margin-left: 10px; margin-top: 50px;">Asistente de voz</h5>
          <div class="recodinggN" id="microOn" title="Que quieres hacer.." style="cursor: pointer; padding-top:3px;  width: 50px; height: 50px; border-radius: 100%; margin-top: 30px; background-color: #3498db; margin-left: 40%;" onclick="inicio(this.id)"><img src="../../../img/micro.png" width="40" height="40" ></div>
@@ -592,18 +604,21 @@ function datos(){
           <h5 style="color: white; margin-left: 20px;" class="text-left">Reportes</h5>
 
 
-
+          <!--
           <a href="../../../apps/streamingCanales.php"><img class="img-responsive" src="../../../img/streaming.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />           
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left">Streaming</h5>
-
+            -->
           <a href="../../../apps/misAlumnos.php"><img class="img-responsive" src="../../../img/alumnos.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 30px;" title="Asistencia"/>           
           </a>
           <h5 style="color: white; margin-left: 20px;" class="text-left" >Asistencia</h5>
 
+          <!--
           <a href="#" data-toggle="modal" data-target="#plataformas"><img class="img-responsive" src="../../../img/otras.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />            
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left">Plataformas</h5>
+          -->
+
           <a href="../../../apps/reportbullying.php"><img class="img-responsive" src="../../../img/alert.png" style="max-width:50px; max-height: 50px; margin-left:10px; margin-top: 30px;" title="Bullyng"/>           
           </a><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: rgb(54, 171, 203); position: absolute; margin-top: -60px; margin-left: -32px;" ><?php echo @$_SESSION['reporteBullying1']; ?></div>
           <h5 style="color: white; margin-left: 20px;" class="text-left" >Bullyng</h5>
@@ -682,7 +697,7 @@ function datos(){
                           
                        
                        <div class="modal-body">
-                        <a href="https://www.progrentis.com/Selector/" target="_blank">
+                        <a href="http://www.progrentis.com/Selector/" target="_blank">
                            <div class="col-md-1 item">
                                 <div class="img-responsive sinfondo"> 
                                   <img class="img-fondo" src="../../img/progrentis.jpg" style="border-radius: 10px;">
@@ -690,7 +705,7 @@ function datos(){
                                 <strong><p class="txt-fuente">Progrentis</p></strong>
                            </div>
                            </a>
-                          <a href="https://www.achieve3000.com/" target="_blank">
+                          <a href="http://www.achieve3000.com/" target="_blank">
                            <div class="col-md-1 item" data-toggle="modal" data-target="#achive3000">
                                 <div class="img-responsive sinfondo"> 
                                   <img class="img-fondo" src="../../img/achive3000.png" style="border-radius: 10px;">
@@ -698,7 +713,7 @@ function datos(){
                                 <strong><p class="txt-fuente">Achive3000</p></strong>
                            </div>
                            </a>
-                           <a href="https://www.lectopolis.net/login.php" target="_blank">
+                           <a href="http://www.lectopolis.net/login.php" target="_blank">
                            <div class="col-md-1 item" data-toggle="modal" data-target="#lectopolis">
                                 <div class="img-responsive sinfondo"> 
                                   <img class="img-fondo" src="../../img/lectopolis.png" style="border-radius: 10px;">
@@ -738,7 +753,7 @@ function datos(){
 
         },
         
-        events:'https://atomolector.com:8080/atomolms/calendar/eventos.php',
+        events:'http://localhost:8080/atomolms/calendar/eventos.php',
 
 
         
@@ -911,7 +926,7 @@ function iaDocente(){
         indexes:['lecturas','quiero leer','ver mis lecturas', 'ver lecturas rápidas','ver lecturas','ir a lecturas','abrir lecturas','lecturas rápidas','comprensión lectora',],
         action: function(){
           artyom.say("Abriendo lecturas, por favor tienes que elegir grado por ser docente");
-          window.open("https://atomolector.com/atomLector/eleccionNivelprogramaLector.php?curso=7",'_blank')
+          window.open("http://localhost/atomolms/atomLector/eleccionNivelprogramaLector.php?curso=7",'_blank')
 
         }
       },
@@ -920,7 +935,7 @@ function iaDocente(){
         indexes:['ver reportes','reportes','reportes de lecturas', 'notas','ver notas','ver avances de lectura','sacar reportes','ir a reportes'],
         action: function(){
           artyom.say("Abriendo área de reportes, elije grado y sección para ver el avance lector");
-          window.open("https://atomolector.com/apps/reportes.php",'_blank')
+          window.open("http://localhost/atomolms/apps/reportes.php",'_blank')
 
         }
       },
@@ -929,7 +944,7 @@ function iaDocente(){
         indexes:['ver actividades','actividades','mis actividades', 'calendario','ver calendario','ir a calendario','fechas importantes','crear actividad','nueva actividad'],
         action: function(){
           artyom.say("Abriendo calendario de actividades, si quieres ver una actividad dale click, crea una nueva actividad dándole clic al día.");
-          window.open("https://atomolector.com/apps/calendarm.php",'_blank')
+          window.open("http://localhost/atomolms/apps/calendarm.php",'_blank')
 
         }
       },
@@ -938,7 +953,7 @@ function iaDocente(){
         indexes:['guardar archivos','mis documentos','subir archivo', 'compartir archivo','mis archivos','archivos','compartir archivos','borrar un archivo','atomDrive', 'atomodrive','drive','abrir drive','abrir atomodrive', 'atom drive'],
         action: function(){
           artyom.say("Abriendo AtomDrive, para subir un documento dale clic al botón nuevo y subir archivo, puedes compartir tus archivos, y ver archivos que han compartido contigo.");
-          window.open("https://atomolector.com/apps/atomDrive.php",'_blank')
+          window.open("http://localhost/atomolms/apps/atomDrive.php",'_blank')
 
         }
       },
@@ -947,7 +962,7 @@ function iaDocente(){
         indexes:['ver asistencia','asistencia','ir a asistencia', 'ver faltas','ver conectividad','reporte de asistencia','ausencia','actividad plataforma','conectiviadad plataforma'],
         action: function(){
           artyom.say("Abriendo reporte de asistencia, elije el grado, sección y mes para ver la asistencia presencial, también podrás ver el reporte de uso de la plataforma.");
-          window.open("https://atomolector.com/apps/misAlumnos.php",'_blank')
+          window.open("http://localhost/atomolms/apps/misAlumnos.php",'_blank')
 
         }
       },
@@ -956,7 +971,7 @@ function iaDocente(){
         indexes:['bullying','reporte bullying','ver incidencias', 'reporte de agresión','agreciones','controlar bullying','reporte de agreciones'],
         action: function(){
           artyom.say("Abriendo reporte de bullying, encontraras en este apartado, los datos de personas que valientemente reportan las agreciones que suceden en el plantel educativo, con esta información podremos actuar y combatir el bullying.");
-          window.open("https://atomolector.com/apps/reportbullying.php",'_blank')
+          window.open("http://localhost/atomolms/apps/reportbullying.php",'_blank')
 
         }
       },
@@ -975,7 +990,7 @@ function iaDocente(){
         indexes:['editar perfil','perfil','ver perfil','ir a perfil','quiero ver mi perfil'],
         action: function(){
           artyom.say("Abriendo tú perfil, en el podras editar nombre y apellido, hay datos que están bloqueados por tu seguridad");
-           window.open("https://atomolector.com/apps/editarPerfil.php",'_blank')
+           window.open("http://localhost/atomolms/apps/editarPerfil.php",'_blank')
 
 
         }
@@ -985,7 +1000,7 @@ function iaDocente(){
         indexes:['cerrar sesión','salir de la plataforma','terminar sesión','finalizar sesión','cerrar plataforma'],
         action: function(){
           artyom.say("Saliendo de la plataforma, espero escucharte pronto, hasta luego.");
-          window.location.replace("https://atomolector.com/index.html");
+          window.location.replace("http://localhost/atomolms/index.html");
           
             artyom.fatality();
 
@@ -1054,7 +1069,7 @@ function iaEstudiante(){
         indexes:['lecturas','quiero leer','ver mis lecturas', 'ver lecturas rápidas','ver lecturas','ir a lecturas','abrir lecturas','lecturas rápidas','comprensión lectora',],
         action: function(){
           artyom.say("Abriendo lecturas, elije la lectura que quieres realizar, mejora tú comprensión y tu velocidad.");
-          window.open("https://atomolector.com/atomLector/comprensionLectora.php?curso=7&gradoB=1",'_blank')
+          window.open("http://localhost/atomolms/atomLector/comprensionLectora.php?curso=7&gradoB=1",'_blank')
 
         }
       },
@@ -1063,7 +1078,7 @@ function iaEstudiante(){
         indexes:['ver reportes','reportes','reportes de lecturas', 'notas','ver notas','ver avances de lectura','sacar reportes','ir a reportes'],
         action: function(){
           artyom.say("Abriendo tús notas, en esta área podrás ver tú avance lector ");
-          window.open("https://atomolector.com/apps/misNotas.php",'_blank')
+          window.open("http://localhost/atomolms/apps/misNotas.php",'_blank')
 
         }
       },
@@ -1072,7 +1087,7 @@ function iaEstudiante(){
         indexes:['ver actividades','actividades','mis actividades', 'calendario','ver calendario','ir a calendario','fechas importantes','crear actividad','nueva actividad'],
         action: function(){
           artyom.say("Abriendo calendario de actividades, si quieres ver una actividad dale click, crea una nueva actividad dándole clic al día.");
-          window.open("https://atomolector.com/apps/calendarm.php",'_blank')
+          window.open("http://localhost/atomolms/apps/calendarm.php",'_blank')
 
         }
       },
@@ -1081,7 +1096,7 @@ function iaEstudiante(){
         indexes:['guardar archivos','mis documentos','subir archivo', 'compartir archivo','mis archivos','archivos','compartir archivos','borrar un archivo','atomDrive', 'atomodrive','drive','abrir drive','abrir atomodrive', 'atom drive'],
         action: function(){
           artyom.say("Abriendo AtomDrive, para subir un documento dale clic al botón nuevo y subir archivo, puedes compartir tus archivos, y ver archivos que han compartido contigo.");
-          window.open("https://atomolector.com/apps/atomDrive.php",'_blank')
+          window.open("http://localhost/atomolms/apps/atomDrive.php",'_blank')
 
         }
       },
@@ -1090,7 +1105,7 @@ function iaEstudiante(){
         indexes:['bullying','reportar agresión','agresión','agreciones','controlar bullying','reporte de agreciones'],
         action: function(){
           artyom.say("Abriendo área de bullying, podrás reportar cualquier agresión, ayudanos a tener un centro educativo sano.");
-          window.open("https://atomolector.com/apps/bullying.php",'_blank')
+          window.open("http://localhost/atomolms/apps/bullying.php",'_blank')
 
         }
       },
@@ -1099,7 +1114,7 @@ function iaEstudiante(){
         indexes:['editar perfil','perfil','ver perfil','ir a perfil','quiero ver mi perfil'],
         action: function(){
           artyom.say("Abriendo tú perfil, en el podras editar nombre y apellido, hay datos que están bloqueados por tu seguridad");
-           window.open("https://atomolector.com/apps/editarPerfil.php",'_blank')
+           window.open("http://localhost/atomolms/apps/editarPerfil.php",'_blank')
 
 
         }
@@ -1109,7 +1124,7 @@ function iaEstudiante(){
         indexes:['cerrar sesión','salir de la plataforma','terminar sesión','finalizar sesión','cerrar plataforma'],
         action: function(){
           artyom.say("Saliendo de la plataforma, espero escucharte pronto, hasta luego.");
-          window.location.replace("https://atomolector.com/index.html");
+          window.location.replace("http://localhost/atomolms/index.html");
           
             artyom.fatality();
 

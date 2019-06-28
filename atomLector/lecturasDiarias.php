@@ -36,15 +36,6 @@ require("../conection/conexion.php");
 
 
    
-    //ver si las lecturas ya fueron leidas y resuelto el cuestionario
-
-      $q3= ("SELECT * FROM atomolector AS lecturas JOIN registropruebacomprension AS registro ON lecturas.idLectura=registro.idLectura WHERE registro.idUsuario=:idUsuario and semana!=0");
-      $hizoCuestionario=$dbConn->prepare($q3);
-      $hizoCuestionario->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
-      $hizoCuestionario->execute();
-      $hayRegistroCuestionario=$hizoCuestionario->rowCount();
-
-   
  ?>
 
 
@@ -335,8 +326,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 
           <div class="container">
   <div class="row">
-      <div class="col-sm-9">
-         <?php while(@$row1=$mostrarLectura->fetch(PDO::FETCH_ASSOC)){ 
+     <?php while(@$row1=$mostrarLectura->fetch(PDO::FETCH_ASSOC)){ 
               
               //mostramos las 5 lecturas de cada semana
 
@@ -344,102 +334,184 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
               $lecturasSemanal=$dbConn->prepare($q2);
               $lecturasSemanal->bindParam(':grado',$gradoBuscar, PDO::PARAM_STR); 
               $lecturasSemanal->bindParam(':semana',$row1['semana'], PDO::PARAM_STR); 
-              $lecturasSemanal->execute();   
-                
+              $lecturasSemanal->execute(); 
+
+              $_SESSION['semana']=$row1['semana'];  
+
+
+                }
           ?>
-          <button class="btn btn-default botonAgg-1"  id="<?php echo 'btn'.$row1['semana']; ?>" style="position: absolute; margin-left: 43%; margin-top: 25%; color:white; width:70px; height:70px; background-color: #3498db; border:1px solid #3498db;" onclick="verMasLecturas(this.id);"> <span class="glyphicon glyphicon-chevron-right" width="60" heght="60"></span></button>
+
+            <?php for($m=1; $m<=$_SESSION['semana']; $m++){ ?>
+      <div class="col-sm-9">
+          <button class="btn btn-default botonAgg-1"  id="<?php echo 'btn'.$_SESSION['semana']; ?>" style="position: absolute; margin-left: 43%; margin-top: 25%; color:white; width:70px; height:70px; background-color: #3498db; border:1px solid #3498db;" onclick="verMasLecturas(this.id);"> <span class="glyphicon glyphicon-chevron-right" width="60" heght="60"></span></button>
+          
           <div class="itemLect">
-           <span class=""><?php echo $row1['semana'];  ?></span>
+           <span class=""><?php echo $_SESSION['semana'];  ?></span>
              
              <!-----  time line 2 --->
 
           <div class="page-header" >
-            <h3>Semana <?php echo $row1['semana']; ?> </h3>
+            <h3>Semana <?php echo $_SESSION['semana']; ?> </h3>
           </div>
-          <div style="overflow-y:auto; opacity: 0px;" id="<?php echo 'panel'.$row1['semana']; ?>">
+          <div style="overflow-y:auto; opacity: 0px;" id="<?php echo 'panel'.$_SESSION['semana']; ?>">
           <ul class="timeline timeline-horizontal">
-            <?php for($e=1; $e<=5; $e++){
+            <?php while(@$row2=$lecturasSemanal->fetch(PDO::FETCH_ASSOC)){ 
+              @$e+=1;
+
+              //verificamos si hay el minimo de palabras de cada lectura
+
+              $q6= ("SELECT * FROM micofre where idUsuario=:idUsuario and idLectura=:idLectura");
+              $palabrasMiCofre=$dbConn->prepare($q6);
+              $palabrasMiCofre->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
+              $palabrasMiCofre->bindParam(':idLectura',$row2['idLectura'], PDO::PARAM_INT);
+              $palabrasMiCofre->execute();
+              $hayPalabras=$palabrasMiCofre->rowCount();
+
+              //verificamos si ya publico un texto 
+              $q7= ("SELECT * FROM publicTexto where idUsuario=:idUsuario and idLectura=:idLectura");
+              $sePublicoTexto=$dbConn->prepare($q7);
+              $sePublicoTexto->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
+              $sePublicoTexto->bindParam(':idLectura',$row2['idLectura'], PDO::PARAM_INT);
+              $sePublicoTexto->execute();
+              $hayTextoPublicado=$sePublicoTexto->rowCount();
+              
+
+
                  $diaSemana='noDefinido';
+                 $completo='';
                 
                 if($e==1){
                   $diaSemana="L";
                   $background="#2980b9";
+                  $titulo=$row2['nombreLectura'];
+                  $tipoLectura=$row2['tipoLectura'];
+                  $descripcion=$row2['descripcion'];
+                  $edad=$row2['edadLectura'];
+                  $portada='../'.$row2['rutaLectura'].'/1.png';
+                  $linkEbook='p1/mostrarLect1.php?idLectura='.$row2['idLectura'];
+                  if($hayPalabras>=1 and $hayTextoPublicado>=1){
+                    $completo='leido1.png';
+
+                  }else{
+                    $completo='enviado1.png';
+                  }
+                  
+                  
                    
 
                 }
                 if($e==2){
                    $diaSemana="M";
                     $background="#1abc9c";
-                   
+                    $titulo=$row2['nombreLectura'];
+                    $tipoLectura=$row2['tipoLectura'];
+                    $descripcion=$row2['descripcion'];
+                    $edad= $row2['edadLectura'];
+                    $portada='../'.$row2['rutaLectura'].'/1.png';
+                    $linkEbook='p1/mostrarLect1.php?idLectura='.$row2['idLectura'];
+                    if($hayPalabras>=1 and $hayTextoPublicado>=1){
+                    $completo='leido1.png';
+
+                  }else{
+                    $completo='enviado1.png';
+                  }
                 }
                 
                 if($e==3){
                    $diaSemana="X";
                    $background="#f1c40f";
+                   $titulo=$row2['nombreLectura'];
+                   $tipoLectura=$row2['tipoLectura'];
+                   $descripcion=$row2['descripcion'];
+                   $edad= $row2['edadLectura'];
+                   $portada='../'.$row2['rutaLectura'].'/1.png';
+                   $linkEbook='p1/mostrarLect1.php?idLectura='.$row2['idLectura'];
+                 if($hayPalabras>=1 and $hayTextoPublicado>=1){
+                    $completo='leido1.png';
+
+                  }else{
+                    $completo='enviado1.png';
+                  }
                    
                 }
                 if($e==4){
                    $diaSemana="J";
                    $background="#be2edd";
-                  
+                   $titulo=$row2['nombreLectura'];
+                   $tipoLectura=$row2['tipoLectura'];
+                   $descripcion=$row2['descripcion'];
+                   $edad= $row2['edadLectura'];
+                   $portada='../'.$row2['rutaLectura'].'/1.png';
+                   $linkEbook='p1/mostrarLect1.php?idLectura='.$row2['idLectura'];
+                   if($hayPalabras>=1 and $hayTextoPublicado>=1){
+                    $completo='leido1.png';
+
+                  }else{
+                    $completo='enviado1.png';
+                  }
                 }
                 if($e==5){
                    $diaSemana="V";
                    $background="#30336b";
+                   $titulo=$row2['nombreLectura'];
+                   $tipoLectura=$row2['tipoLectura'];
+                   $descripcion=$row2['descripcion'];
+                   $edad= $row2['edadLectura'];
+                   $portada='../'.$row2['rutaLectura'].'/1.png';
+                   $linkEbook='p1/mostrarLect1.php?idLectura='.$row2['idLectura'];
+                   $idLectura=$row2['idLectura'];
+                     if($hayPalabras>=1 and $sePublicoTexto>=1){
+                    $completo='leido1.png';
+
+                  }else{
+                    $completo='enviado1.png';
+                  }
                   
                 }
-
-
+               
              ?>
 
             <li class="timeline-item" >
+
               <div class="timeline-badge primary" style="background-color: <?php echo $background; ?>;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 transition: all .2s ease-in-out;" ><?php echo $diaSemana; ?></div>
 
-<?php while(@$row2=$lecturasSemanal->fetch(PDO::FETCH_ASSOC)){ ?>
-       <a href="p1/mostrarLect1.php?idLectura=<?php echo $row1['idLectura']; ?>" style="text-decoration:none; color: black;">
+
+       <a href="<?php echo $linkEbook; ?>" style="text-decoration:none; color: black;">
               <div class="timeline-panel"  style="border:0px; cursor: pointer; margin-left: -70px;">
                 <div class="timeline-heading">
-                  <h4 class="timeline-title" style="margin-top: 30px;"><?php echo $row2['nombreLectura']; ?></h4>
-                  <p><small class="text-muted"><i class="glyphicon glyphicon-bookmark"></i> Tipo Lectura:<?php echo $row2['tipoLectura']; ?></small></p>
-                   <h5 style="text-align: left;"><?php echo "Descripción: ".$row1['descripcion']; ?></h5>
-                    <h5 style="text-align: left;"><?php echo "Edad: ".$row1['edadLectura']; ?></h5>
+                  <h4 class="timeline-title" style="margin-top: 30px;"><?php echo $titulo; ?></h4>
+                  <p><small class="text-muted"><i class="glyphicon glyphicon-bookmark"></i> <?php echo $tipoLectura; ?></small></p>
+                   <h5 style="text-align: left;">Descripción: <?php echo $descripcion; ?> </h5>
+                    <h5 style="text-align: left;">Edad: <?php echo $edad; ?></h5>
                 </div>
                 <div class="timeline-body" style=" min-height:100px; width: 100px; 
                   background-image: ; background-size: 100%; background-repeat:no-repeat;">
 
-                  <img src="<?php echo '../'.$row1['rutaLectura'].'/1.png'; ?>" style="width: 150px; height: 150px;">
-
-                  <img id="<?php echo 'envi1'.$row1['idLectura']; ?>" src="enviado1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:46%;">
+                  <img src="<?php echo $portada; ?>" style="width: 150px; height: 150px;">
                   
-                    <img id="<?php echo 'lei1'.$row1['idLectura']; ?>" src="leido1.png" style=" display:none; width: 40px; height: 40px; position:absolute; margin-top:-18%; margin-left:69%;">
+                  <img src="<?php echo $completo; ?>" style=" display:block; width: 40px; height: 40px; position:absolute; margin-top:-18%; margin-left:69%;">
                 </div>
               </div>
             </a>
-     <?php } ?>         
+            
             </li>
-            <?php } ?>
+            <?php }  ?>
                        
           </ul>
-        </div>       
-
-               <!----   time line 2 ---> 
+        </div>
+        <!----   time line 2 ---> 
                <p style="opacity: 0;">asda</p>
           </div>
-    <?php }  ?>
+    
       </div>
+
+    <?php } ?>
   </div>
 </div>     
 
-<!-- AQUI VERIFICAMOS SI YA REALIZO ALGUNA LECTURA Y CAMBIAMOS ESTILOS TARJETAS -->
 
-        <input id="cantidadIteracion" type="text" name="cantidadRealizada" value="<?php echo $hayRegistroCuestionario; ?>" style="display: none;">
-        <?php while(@$row5=$hizoCuestionario->fetch(PDO::FETCH_ASSOC)){ @$m+=1; ?>
-
-          <input id="<?php echo "cambiar".$m; ?>" type="text" name="cambiarcolor" value="<?php echo "id".$row5['idLectura']; ?>" style="display: none;">
-        <?php } ?> 
-
-<!-- AQUI VERIFICAMOS SI YA REALIZO ALGUNA LECTURA  Y CAMBIAMOS ESTILOS TARJETAS -->
 
 
 

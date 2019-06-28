@@ -5,6 +5,7 @@ require("../../conection/conexion.php");
 $_SESSION['idUsuario'];
 $_GET['idLectura'];
 $_GET['numeroLectura'];
+$_GET['gradoB'];
 
 $sql1 = ("SELECT * FROM atomolectorvelocidad where noLectura=:noLectura and idUsuario=:idUsuario ");
 $obtenerIntentos = $dbConn->prepare($sql1);
@@ -247,7 +248,7 @@ $columnasEncontradas= $detalleLectura->rowCount();
       <td><?php echo $row1['intento']?></td>
       <td><?php echo $row1['velocidadLectora']."/pm"?></td>
       <td><?php if($row1['tiempoSeg']>=60){ $tiempo =$row1['tiempoSeg']/60; echo $tiempo."min";  }else{echo $row1['tiempoSeg']."seg"; } ?></td>
-      <td><a href="velocidad1p.php?idLectura=<?php echo $row1['noLectura'];?>&intento100=<?php echo $row1['intento']; ?>&numeroLectura=<?php echo $_GET['numeroLectura']; ?>#detalleLecturaAqui" class="btn botonAgg-1" style="color: white; background-color: #2ecc71;">Ver</a></td>   
+      <td><a href="velocidad1p.php?idLectura=<?php echo $row1['noLectura'];?>&intento100=<?php echo $row1['intento']; ?>&numeroLectura=<?php echo $_GET['numeroLectura']; ?>&gradoB=<?php echo $_GET['gradoB']; ?>#detalleLecturaAqui" class="btn botonAgg-1" style="color: white; background-color: #2ecc71;">Ver</a></td>   
     </tr>
   <?php } ?>
   </tbody>
@@ -266,6 +267,7 @@ $columnasEncontradas= $detalleLectura->rowCount();
           <input type="text" name="lectura" id="NoLectura">
           <input type="text" name="intento" id="intento">
           <input type="text" name="tiempo" id="tiempo">
+          <input type="text" name="gradoBB" id="grado" value="<?php echo $_GET['gradoB']; ?>">
           <input type="text" name="velocidad" id="velocidad">
           <textarea id="fluidez" name="fluidez"></textarea>
 
@@ -282,15 +284,82 @@ $columnasEncontradas= $detalleLectura->rowCount();
     <div class="col-md-12" style="margin-top: 50px;">
      
    <?php while($obj2=$detalleLectura->fetch(PDO::FETCH_ASSOC)){  
-   
-  
-    
-       ?>
+
+    if($_GET['gradoB']==9){
+      //si el grado es 3ro basico cambian las tablas y cambia la forma de evaluar
+
+      echo "estoy funcionando";
+     ?>
+      <span id="detalleLecturaAqui" style="display: block;"></span>
+           <h3 >Detalle de la Lectura</h3>
+           <button class="btn botonAgg-1" style="color: white; background-color: #3498db;">PDF</button>
+          <a href="velocidad1p.php?idLectura=<?php echo $_GET['idLectura'];?>&numeroLectura=<?php echo $_GET['numeroLectura']; ?>&gradoB=<?php echo $_GET['gradoB'] ?>" class="btn botonAgg-1" style="color: white; background-color: #e74c3c;">Volver</a>
+          <h4 style="font-weight: bold; text-align: left;margin-left: 50px;">No Lectura: <?php echo " ".$obj2['noLectura']; ?></h4>
+         <h4 style="font-weight: bold; text-align: left;margin-left: 50px;">Intento:<?php   echo " ".$obj2['intento'];   ?></h4>
+         <h4 style="font-weight: bold; text-align: left;margin-left: 50px;">Tiempo:<?php
+         if($obj2['tiempoSeg']<=60){ echo " ".$obj2['tiempoSeg']."seg";}else{ echo " ".$obj2['tiempoSeg']."min";}  ?></h4>
+         <h4 style="font-weight: bold;text-align: left;margin-left: 50px;">Palabras por Minuto: <?php echo " ".$obj2['velocidadLectora']; ?></h4>
+
+           <div class="col-md-12">   
+
+        <table class="table table-hover">       
+          <thead>
+            <tr>
+              <th style="text-align: center;">Muy Lento</th>
+              <th style="text-align: center;">Lento</th>
+              <th style="text-align: center;">Media Baja</th>
+              <th style="text-align: center;">Media Alta</th>
+               <th style="text-align: center;">Rapida</th>
+                <th style="text-align: center;">Muy Rapida</th>
+            </tr>
+          </thead>
+           <tbody>
+               <tr>      
+                <td class="card-style" style="background-color: #d63031; color: white;">0-247</td>
+                <td class="card-style" style="background-color: #d35400; color: white;">248-256</td>
+                <td class="card-style" style="background-color: #e67e22; color: white;">257-265</td>
+                <td class="card-style" style="background-color: #f39c12; color: white;">266-274</td>
+                <td class="card-style" style="background-color: #1abc9c; color: white;">275-279</td>
+                <td class="card-style" style="background-color: #2ecc71; color: white;">280</td>
+              </tr>
+    </table>
+</div>  
+<h5 style="font-weight: bold;text-align: left;margin-left: 50px; ">Fluidez de la Lectura</h5>
+
+ <span class="col-md-10 " id="span-preview" style="border:1px solid #3498db; height: 200px; text-align: center;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); border-radius:5px;margin-left: 50px;"><?php echo $obj2['fluidez']; ?></span>
+         
+<div class="row">
+            <div class="col-md-3"></div>
+         <div id="container" class="col-md-6" style=""></div>
+ </div>
+
+<?php 
+
+
+ //calculo de velocidad para graficos
+    if($obj2['velocidadLectora']>=0 and $obj2['velocidadLectora']<=247){ $graficoTiempo=16; ?>
+      <h1 id="graficoVelocidad" style="display:none;"><?php echo $graficoTiempo; ?></h1>
+  <?php }else if($obj2['velocidadLectora']>=248 and $obj2['velocidadLectora']<=256){ $graficoTiempo=32;?>
+    <h1 id="graficoVelocidad"  style="display:none;"><?php echo $graficoTiempo;?></h1>
+     <?php }else if($obj2['velocidadLectora']>=257 and $obj2['velocidadLectora']<=265){$graficoTiempo=48; ?>
+        <h1 id="graficoVelocidad" style="display:none;"><?php echo $graficoTiempo;?></h1>
+       <?php }else if($obj2['velocidadLectora']>=266 and $obj2['velocidadLectora']<=274){$graficoTiempo=64; ?>
+ <h1 id="graficoVelocidad" style="display:none;"><?php echo $graficoTiempo;?></h1>
+  <?php }else if($obj2['velocidadLectora']>=266 and $obj2['velocidadLectora']<=274){$graficoTiempo=80; ?>
+<h1 id="graficoVelocidad" style="display:none;"><?php echo $graficoTiempo;?></h1>
+ <?php }else if($obj2['velocidadLectora']>=275){$graficoTiempo=100; ?>
+  <h1 id="graficoVelocidad" style="display:none;"><?php echo $graficoTiempo; } ?></h1>
+
+
+<?php // terminar el calculo para 3ero basico ?>
+
+
+       <?php  }else{ ?>
 
           <span id="detalleLecturaAqui" style="display: block;"></span>
            <h3 >Detalle de la Lectura</h3>
            <button class="btn botonAgg-1" style="color: white; background-color: #3498db;">PDF</button>
-          <a href="velocidad1p.php?idLectura=<?php echo $_GET['idLectura'];?>&numeroLectura=<?php echo $_GET['numeroLectura']; ?>" class="btn botonAgg-1" style="color: white; background-color: #e74c3c;">Volver</a>
+          <a href="velocidad1p.php?idLectura=<?php echo $_GET['idLectura'];?>&numeroLectura=<?php echo $_GET['numeroLectura']; ?>&gradoB=<?php echo $_GET['gradoB'] ?>" class="btn botonAgg-1" style="color: white; background-color: #e74c3c;">Volver</a>
           <h4 style="font-weight: bold; text-align: left;margin-left: 50px;">No Lectura: <?php echo " ".$obj2['noLectura']; ?></h4>
          <h4 style="font-weight: bold; text-align: left;margin-left: 50px;">Intento:<?php   echo " ".$obj2['intento'];   ?></h4>
          <h4 style="font-weight: bold; text-align: left;margin-left: 50px;">Tiempo:<?php
@@ -332,7 +401,10 @@ $columnasEncontradas= $detalleLectura->rowCount();
          <div id="container" class="col-md-6" style=""></div>
  </div>
 
- <?php //calculo de velocidad para graficos
+ <?php 
+
+
+ //calculo de velocidad para graficos
     if($obj2['velocidadLectora']>=0 and $obj2['velocidadLectora']<=21){ $graficoTiempo=16; ?>
       <h1 id="graficoVelocidad" style="display:none;"><?php echo $graficoTiempo; ?></h1>
   <?php }else if($obj2['velocidadLectora']>=22 and $obj2['velocidadLectora']<=28){ $graficoTiempo=32;?>
@@ -344,8 +416,10 @@ $columnasEncontradas= $detalleLectura->rowCount();
   <?php }else if($obj2['velocidadLectora']>=47 and $obj2['velocidadLectora']<=55){$graficoTiempo=80; ?>
 <h1 id="graficoVelocidad" style="display:none;"><?php echo $graficoTiempo;?></h1>
  <?php }else if($obj2['velocidadLectora']>=58){$graficoTiempo=100; ?>
-  <h1 id="graficoVelocidad" style="display:none;"><?php echo $graficoTiempo;?></h1>
-<?php } ?>
+  <h1 id="graficoVelocidad" style="display:none;"><?php echo $graficoTiempo; } }?></h1>
+
+
+
 
 
 

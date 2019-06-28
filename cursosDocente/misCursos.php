@@ -109,8 +109,8 @@ $cursoDiver->execute();
 
                     }
 
-/* card material design style*/
 
+/* card material design style*/
 .card {
   display: inline-block;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -248,9 +248,50 @@ $cursoDiver->execute();
                   </div> 
                 </a>
 
+
+                <img src="">
                
               </div>
-      
+
+              <div>
+                <h3 style="text-align: left;">Soy Creativo</h3>
+                <hr>
+                <a href="../atomLector/cofrePalabras.php?curso=7">
+                   <div class="col-md-4">
+                    <div class="card">
+
+                      <div class="image" >
+                        <img  src="../img/miCofre.png" width="60%" style="margin-left: -50px; margin-top: 30px;">
+                      </div>
+
+                      <div class="text">
+                        <h3>Mi Cofre de Palabras</h3>
+                        <p style="text-align: left;">Palabras que agrego a mi vocabulario</p>
+
+                      </div>
+
+                    </div>
+                  </div> 
+                </a>
+                <a href="../atomLector/misTextos.php?gradoB=7">
+                   <div class="col-md-4">
+                    <div class="card">
+
+                      <div class="image" >
+                        <img  src="../img/misTextos.png" width="50%">
+                      </div>
+
+                      <div class="text">
+                        <h3>Mis Textos</h3>
+                        <p style="text-align: left;">Mi creatividad descrita en textos.</p>
+
+                      </div>
+
+                    </div>
+                  </div> 
+                </a>
+
+              </div>      
 
 
 

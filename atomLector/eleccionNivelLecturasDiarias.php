@@ -269,24 +269,24 @@ padding-top: -30px;
                      <h3 class="text-left" style="">Nuestros Fundamentos</h3><hr>
                     <div class="row">
                       
-                      <div class="col-md-2 cajaCards" onclick="pisa();" style="margin-left: 30px;">
-                        <p style="padding-top: 20px;">Test basaddos en el estandar Internacional Pisa</p>
+                      <div class="col-md-2 cajaCards" onclick="gamificacion();" style="margin-left: 30px;">
+                        <p style="padding-top: 20px;">Actividad Gamificación</p>
                       </div>                                                      
                      <div class="col-md-1" ></div>
-                     <div class="col-md-2 cajaCards" onclick="cnb();" style="">
-                      <p>Test basados en el estandar nacional CNB</p>
+                     <div class="col-md-2 cajaCards" onclick="lecturasContinuas();" style="">
+                      <p>Lecturas Continuas</p>
                       </div>                      
                       <div class="col-md-1"></div>
-                      <div class="col-md-2 cajaCards" onclick="testPersonajes();" style="">
-                      <p>Test para evaluar la identificación de personajes y roles.</p>
+                      <div class="col-md-2 cajaCards" onclick="lecturasDiscontinuas();" style="">
+                      <p>Lectura Discontinua</p>
                       </div>
                        <div class="col-md-1"></div>
-                      <div class="col-md-2 cajaCards" onclick="vocabulario();" style="">
-                      <p>Actividad para incrementar Vocabulario</p>
+                      <div class="col-md-2 cajaCards" onclick="generosLiterarios();" style="">
+                      <p>Generos Literiarios</p>
                       </div>
                       <div class="col-md-1"></div>
-                      <div class="col-md-2 cajaCards" onclick="pensamientoCritico();" style="">
-                      <p>Actividad que permite el pensamiento critico</p>
+                      <div class="col-md-2 cajaCards" onclick="generosNoLiterarios();" style="">
+                      <p>Generos No Literarios</p>
                       </div>
                       <div class="col-md-1"></div>
                       <div class="col-md-2 cajaCards" onclick="jeanPeaget();" style="">
@@ -392,9 +392,9 @@ padding-top: -30px;
         }
 
 
-        function pisa(){
+        function gamificacion(){
           startArtyom();
-          artyom.say("El objetivo de esta prueba es medir las competencias lectoras desde las perspectivas siguientes: global. Obtención de información. Interpretación e integración. Reflexión y valoración cada competencia posee una escala de dificultad de 1c a 6 lo cual indica las capacidades lectoras que tiene desarrolladas el alumno. Al realizar cada prueba el alumno estimula cada competencia y con ello mejorar el rendimiento académico.");
+          artyom.say("La Gamificación es una técnica de aprendizaje que traslada la mecánica de los juegos al ámbito educativo-profesional con el fin de conseguir mejores resultados, ya sea para absorber mejor algunos conocimientos, mejorar alguna habilidad, o bien recompensar acciones concretas, entre otros muchos objetivos.");
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
           document.getElementById("saluda").style.display="block";
@@ -404,9 +404,9 @@ padding-top: -30px;
 
         }
 
-        function cnb(){
+        function textosContinuos(){
           startArtyom();
-          artyom.say("El objetivo de estás pruebas es desarrollar las competencias: Interpretativa, Argumentativa, Propositiva, Utilizando la taxonomia de marzano en la redacción del test midiendo los niveles literal inferencial y critico. Como resultado tendremos el cumplimiento de los indicadores de logro.");
+          artyom.say("La Gamificación es una técnica de aprendizaje que traslada la mecánica de los juegos al ámbito educativo-profesional con el fin de conseguir mejores resultados, ya sea para absorber mejor algunos conocimientos, mejorar alguna habilidad, o bien recompensar acciones concretas, entre otros muchos objetivos.");
            document.getElementById("enamorada").style.display="none";
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
@@ -415,9 +415,9 @@ padding-top: -30px;
            stopArtyom();      
         }
 
-        function testPersonajes(){
+        function textosDiscontinuos(){
           startArtyom();
-          artyom.say("Mediante un test creado exclusivamente para identificar a los personajes, roles y participación de los mismos en la lectura, desarrollamos en el alumno la habilidad de identificar y reconocer a los participantes involucrados en la misma.");
+          artyom.say("Son  textos discontinuos aquellos que no siguen la estructura secuenciada y progresiva durante su desarrollo; se trata de  listas,cuadros,gráficos,diagramas,tablas,mapas,etc.En estos textos  ,la información se presenta  organizada,pero no necesariamente  secuenciada ni de forma progresiva.La comprensión  de estos textos requiere del uso de estrategias de lectura no lineal que propician  la búsqueda de interpretación de la información  de forma más global e interrelacionada.También algunos de los textos utilizados en las evaluaciones PISA ,PERCE,SERCE Y UMC son de este tipo.");
            document.getElementById("enamorada").style.display="none";
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
@@ -426,9 +426,9 @@ padding-top: -30px;
            stopArtyom();      
         }
 
-         function vocabulario(){
+         function generosLiterarios(){
           startArtyom();
-          artyom.say("Haciendo uso de nuestro algoritmo de  reconocimiento de voz capturamos la pronunciación del concepto y la definición de cada palabra que se concidera dificil dentro de la lectura, para una mejor memorización, Almacenamos lo que se grabo en formato texto. Tiene como fundamento la mnemotécnia.");
+          artyom.say("Los géneros literarios son los distintos grupos o categorías en que podemos clasificar las obras literarias atendiendo a su contenido y estructura. La retórica los ha clasificado en tres grupos importantes:narrativo, lírico y dramático, a los que se añade con frecuencia el género didáctico, convirtiéndose en un punto de referencia para el análisis de la literatura.1​ Así mismo, y desde el punto de vista del autor, los géneros literarios son modelos de estructuración formal y temática que le permiten establecer un esquema previo a la creación de su obra.");
            document.getElementById("enamorada").style.display="none";
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
@@ -437,9 +437,9 @@ padding-top: -30px;
            stopArtyom();      
         }
 
-           function pensamientoCritico(){
+           function generosNoLiterarios(){
           startArtyom();
-          artyom.say("Haciendo uso del reconocimiento de voz capturamos lo que más le gusto al alumno de la lectura, desarrollando el pensamiento crítico.");
+          artyom.say("Los textos literarios son aquellos en los cuales se manifiesta como principal la función poética de los mismos; esta función poética puede ser evidente, como en el caso de la poesía, o estar al servicio de otros intereses como en los textos didácticos o históricos.Los textos literarios son ficcionales (son invención, creación del hombre en mayor o menor medida) Ejemplos de literarios: novelas, cuentos, leyendas, mitos, poesías. Por lo tanto para determinar que un texto es no literario no tenemos más que evaluar si la principal función del lenguaje es la poética. En caso de que no lo sea nos encontraremos con un texto no literario. Los textos no literarios más habituales son los textos científicos, textos administrativos, textos jurídicos, textos periodísticos, textos humanísticos, textos publicitarios y textos digitales.");
            document.getElementById("enamorada").style.display="none";
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";

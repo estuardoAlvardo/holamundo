@@ -1,16 +1,28 @@
 <?php 
 session_start();
 require("../conection/conexion.php");
-$_SESSION['tipoUsuario'];
-if($_SESSION['tipoUsuario']==2){
+$destinatario=0;
 
-  $emisor="Docente";
+switch ($_POST['destinatario']) {
+	case '@estudiantes':
+		@$destinatario=1;
+		break;
+	case '@docentes':
+		@$destinatario=2;
+		break;
+	case '@padres':
+		@$destinatario=3;
+		break;
+	case '@todos':
+		@$destinatario=4;
+		break;
+	
+	default:
+		# code...
+		break;
 }
 
-if($_SESSION['tipoUsuario']==3){
 
-  $emisor="Coordinacion";
-}
 
 $fecha_actual=date("d/m/Y");
 $hora_actual=date('h:i:s');
@@ -26,12 +38,11 @@ echo $emisor."-------Emisor<br>";
 */
 
 
-$q1 = ("INSERT INTO atomocircular (receptor,tituloCircular,cuerpoCircular,emisor,fechaCircular,horaCircular) VALUES(:receptor,:tituloCircular,:cuerpoCircular,:emisor,:fechaCircular,:horaCircular)");
+$q1 = ("INSERT INTO atomocircular (receptor,tituloCircular,cuerpoCircular,fechaCircular,horaCircular) VALUES(:receptor,:tituloCircular,:cuerpoCircular,:fechaCircular,:horaCircular)");
 $insertarCircular=$dbConn->prepare($q1);
-$insertarCircular->bindParam(':receptor',$_POST['destinatario'], PDO::PARAM_STR); 
+$insertarCircular->bindParam(':receptor',$destinatario, PDO::PARAM_STR); 
 $insertarCircular->bindParam(':tituloCircular',$_POST['tituloCircular'], PDO::PARAM_STR);
 $insertarCircular->bindParam(':cuerpoCircular',$_POST['circular'], PDO::PARAM_STR);
-$insertarCircular->bindParam(':emisor',$emisor, PDO::PARAM_STR);
 $insertarCircular->bindParam(':fechaCircular',$fecha_actual, PDO::PARAM_STR);
 $insertarCircular->bindParam(':horaCircular',$hora_actual, PDO::PARAM_STR);
 $insertarCircular->execute();

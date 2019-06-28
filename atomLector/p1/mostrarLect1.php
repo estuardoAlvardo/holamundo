@@ -15,11 +15,7 @@ require("../../conection/conexion.php");
 
 
 
-   
-
-
-
-      
+        
  ?>
 
 
@@ -74,13 +70,15 @@ require("../../conection/conexion.php");
 <style type="text/css">
   .masCentrado{
     margin-left: 55%;
-    margin-top: 50%;
+    margin-top: 36%;
   }
 
   .cajaDescripcion{
                      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
                      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
                     }
+
+
 </style>
 
 
@@ -97,8 +95,12 @@ require("../../conection/conexion.php");
              
          </div>
 
-
- 
+ <h4>Actividades</h4>
+  <div style="margin-top: 30px;">
+  <a href="lecturaDiariaJuego.php?idLectura=<?php echo $_SESSION['gradoEnviar']; ?>" class="btn btn-default botonAgg-1" style="background-color: #e67e22; border:1px solid #e67e22; color:white; ">Juego</a>
+  <a href="miCofre.php?idLectura=<?php echo $_GET['idLectura']; ?>" class="btn btn-default botonAgg-1" style="background-color: #3498db; border:1px solid #3498db; color:white;">Mi cofre</a>
+  <a href="lmNivel3CrearTexto.php?idLectura=<?php echo $_GET['idLectura']; ?>" class="btn btn-default botonAgg-1" style="background-color: #27ae60;  border:1px solid  #27ae60; color:white;">Escritura Madura</a>
+ </div>
 <div class="row sectionDinamico masCentrado">
            <div class="col-md-11">
               <div class="flipbook-viewport">
@@ -120,9 +122,7 @@ require("../../conection/conexion.php");
  </div>
 
 <div class="col-md-12" style="margin-top: -200px;">
-  <h4>Actividades</h4>
-  <a onclick="obtenerTiempo();">obtener tiempo</a>
-  <iframe id="act11" src="http://es.educaplay.com/es/recursoseducativos/4475821/html5/lect1_primero_primaria.htm" width="600" height="600"></iframe>
+
 
 <script>
 function obtenerTiempo(){

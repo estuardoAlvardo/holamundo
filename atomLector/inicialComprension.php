@@ -34,7 +34,7 @@ if(empty($_GET['curso'])){
 
   //mostramos las vocales
   $objBuscar='vocal';
- $q2 = ("SELECT * FROM aprendizajePreescolar where grado=:grado and descripcion=:descripcion");
+ $q2 = ("SELECT * FROM aprendizajepreescolar where grado=:grado and descripcion=:descripcion");
     $mostrarVocales=$dbConn->prepare($q2);
     $mostrarVocales->bindParam(':grado',$gradoBuscar, PDO::PARAM_INT); 
     $mostrarVocales->bindParam(':descripcion',$objBuscar, PDO::PARAM_STR); 

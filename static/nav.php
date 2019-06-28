@@ -19,7 +19,7 @@ function directorioNivelesNav($nivell){
               <h1 class="txt-fuente txt-colegio" style="float:right;"><?php echo $nameCole; ?></h1>
                -->
              
-              <a href="../cursosAlumno/misCursos.php" ><img style="margin:10px;" class="img-responsive" src="../img/logos.jpg" width="280" height="100"></a>   
+              <a href="../cursosAlumno/misCursos.php" ><img style="margin:10px; margin-top: 0px; -webkit-box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); border-radius: 100%" class="img-responsive" src="../img/tulogo.png" width="100" height="100"></a>   
 
               
           </div>  
@@ -37,7 +37,7 @@ function directorioNivelesNav($nivell){
               <h1 class="txt-fuente txt-colegio" style="float:right;"><?php echo $nameCole; ?></h1>
                -->
              
-              <a href="../cursosDocente/misCursos.php" ><img style="margin:10px;" class="img-responsive" src="../img/logos.jpg" width="280" height="100"></a>   
+              <a href="../cursosDocente/misCursos.php" ><img style="margin:10px; margin-top: 0px; -webkit-box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); border-radius: 100%" class="img-responsive" src="../img/tulogo.png" width="100" height="100"></a>   
 
               
           </div>  
@@ -64,7 +64,7 @@ function directorioNivelesNav($nivell){
               <h1 class="txt-fuente txt-colegio" style="float:right;"><?php echo $nameCole; ?></h1>
                -->
              
-              <a href="../../cursosAlumno/misCursos.php" ><img style="margin:10px;" class="img-responsive" src="../../img/logos.jpg" width="280" height="100"></a>   
+              <a href="../../cursosAlumno/misCursos.php" ><img style="margin:10px; margin-top: 0px; -webkit-box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); border-radius: 100%" class="img-responsive" src="../../img/tulogo.png" width="100" height="100"></a>   
 
               
           </div>  
@@ -82,7 +82,7 @@ function directorioNivelesNav($nivell){
               <h1 class="txt-fuente txt-colegio" style="float:right;"><?php echo $nameCole; ?></h1>
                -->
              
-              <a href="../../cursosDocente/misCursos.php" ><img style="margin:10px;" class="img-responsive" src="../../img/logos.jpg" width="280" height="100"></a>   
+              <a href="../../cursosDocente/misCursos.php" ><img style="margin:10px; margin-top: 0px; -webkit-box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); border-radius: 100%" class="img-responsive" src="../../img/tulogo.png" width="100" height="100"></a>   
 
               
           </div>  
@@ -100,7 +100,7 @@ function directorioNivelesNav($nivell){
               <h1 class="txt-fuente txt-colegio" style="float:right;"><?php echo $nameCole; ?></h1>
                -->
              
-              <a href="../../../cursosAlumno/misCursos.php" ><img style="margin:10px;" class="img-responsive" src="../../../img/logos.jpg" width="280" height="100"></a>   
+              <a href="../../../cursosAlumno/misCursos.php" ><img style="margin:10px; margin-top: 0px; -webkit-box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); border-radius: 100%" class="img-responsive" src="../../../img/tulogo.png" width="100" height="100"></a>   
 
               
           </div>  
@@ -118,7 +118,7 @@ function directorioNivelesNav($nivell){
               <h1 class="txt-fuente txt-colegio" style="float:right;"><?php echo $nameCole; ?></h1>
                -->
              
-              <a href="../../../cursosDocente/misCursos.php" ><img style="margin:10px;" class="img-responsive" src="../../../img/logos.jpg" width="280" height="100"></a>   
+              <a href="../../../cursosDocente/misCursos.php" ><img style="margin:10px; margin-top: 0px; -webkit-box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); border-radius: 100%" class="img-responsive" src="./../../img/tulogo.png" width="100" height="100"></a>   
 
               
           </div>  

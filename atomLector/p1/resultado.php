@@ -221,8 +221,8 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
                   <th scope="col">Tú respuesta</th>
                   <th scope="col">Capacidad</th>
                   <th scope="col">Objetivo del Item</th>
-                  <th scope="col">Creditos Item</th>
-                  <th scope="col">Tus Creditos</th>
+                  <th scope="col">Puntos por pregunta</th>
+                  <th scope="col">Tus Puntos</th>
                   <th scope="col">Nivel Item</th>
                 </tr>
               </thead>
@@ -286,7 +286,7 @@ Highcharts.chart('container', {
         }
     },
     title: {
-        text: 'Grafico de Capacidades Pisa- Creditos según items'
+        text: 'Grafico de Capacidades Pisa- Puntos según Preguntas'
     },
     subtitle: {
         text: 'Capacidades Lectoras'
@@ -296,7 +296,7 @@ Highcharts.chart('container', {
     },
     yAxis: {
         title: {
-            text: 'Creditos segun capacidades Pisa'
+            text: 'Puntos según - Pisa'
         }
 
     },

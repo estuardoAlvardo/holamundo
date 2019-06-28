@@ -96,6 +96,15 @@ if(empty($_SESSION["imgPerfil"])){
 
 
 if($_SESSION['tipoUsuario']==1){ 
+  require("../conection/conexion.php");
+
+  $consu1 = ("SELECT * FROM atomocircular where receptor=1");
+  $buscarCircular=$dbConn->prepare($consu1);
+  $buscarCircular->execute();
+
+   
+
+
 
 ?>
 
@@ -127,42 +136,42 @@ if($_SESSION['tipoUsuario']==1){
  
       <div class="carousel slide media-carousel" id="media" style = "width:120%;">
         <div class="carousel-inner" style="margin-top:10px;">
-          <div class="item  active"  >
+
+             <div class="item active">
             <div class="row" >
               
-              <div class="col-md-12" style = "width:100%;">
+              <div class="col-md-12" style = "width:100%;" id="dropdownMenu1" data-toggle="modal" data-target="#verCircular">
                 <div class="alert alert-default botonAgg card1100" style="width: 100%;  background-color: #f1c40f;">
-					<h4>Circular Direccion</h4>
-          <div>este es un mensaje enviar por dirección</div>
+          <h4></h4>
+          <div>CIRCULARES</div>
 
                 </div>
               </div>        
             </div>
           </div>
+
+
+          <?php  while($mostrarr1=$buscarCircular->fetch(PDO::FETCH_ASSOC)){
+      
+
+    
+ ?>
           <div class="item">
-            <div class="row">
+            <div class="row" >
               
-              <div class="col-md-12"  style = "width:100%">
-                <div class="alert alert-default botonAgg card1100" style=" background-color:#e67e22;">
-      					<h4>Circular Docente</h4>
-                <p>este es un mensaje enviar por dirección</p>
+              <div class="col-md-12" style = "width:100%;" id="dropdownMenu1" data-toggle="modal" data-target="#verCircular">
+                <div class="alert alert-default botonAgg card1100" style="width: 100%;  background-color: #f1c40f;">
+					<h4><?php echo $mostrarr1['tituloCircular']; ?> </h4>
+          <div><?php echo substr($mostrarr1['cuerpoCircular'],0,20); ?></div>
 
                 </div>
               </div>        
             </div>
           </div>
-          <div class="item">
-            <div class="row">
-              
-              <div class="col-md-12"  style = "width:100%">
-                <div class="alert alert-default botonAgg card1100" style=" background-color:#d35400;">
-					<h4>Circular para Padres</h4>
-                <p> es un mensaje enviar por direccióneste es un mensaje enviar por dirección</p>
 
-                </div>
-              </div>      
-            </div>
-          </div>
+<?php  } ?>
+
+
         </div>
        
         <a data-slide="prev" href="#media" class="left carousel-control" style="margin-top:30px; margin-left:20%;">‹</a>
@@ -172,23 +181,19 @@ if($_SESSION['tipoUsuario']==1){
       </div>                          
  
  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog" style="background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);">
+  <div class="modal fade" id="verCircular" role="dialog" style="background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);">
     <div class="modal-dialog">
     
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Crear Circular</h4>
+          <h4 class="modal-title">Titulo Circular</h4>
+          <h5 class="" style="margin-left: 80%;">24/02/2019 12:45</h5>
         </div>
         <div class="modal-body">
-          <form action="../apps/guardarCircular.php" method="post">
-            <input type="text" class="form-control" name="destinatario" placeholder="Para: Alumnos, padres de familia, docentes" required=""><br>
-            <input type="text" class="form-control" name="tituloCircular" placeholder="Titulo Circular" required><br>
-             <textarea type="text" class="form-control" name="circular" placeholder="Cuerpo de la circular" required></textarea> <br>
-              
-             <input class="btn botonAgg botonAgg-1"  type="submit" value="Crear Circular"  style="background-color: rgb(54, 171, 203); color: white; border:white; float: right; margin-top: 40px; ">
-          </form>
+          <h4>Circular:</h4>
+          <h4 style="text-align: left;">Este es el cuerpo del circular Este es el cuerpo del circularEste es el cuerpo del circularEste es el cuerpo del circularEste es el cuerpo del circularEste es el cuerpo del circularEste es el cuerpo del circularEste es el cuerpo del circularEste es el cuerpo del circularEste es el cuerpo del circularEste es el cuerpo del circularEste es el cuerpo del circularEste es el cuerpo del circularEste es el cuerpo del circularEste es el cuerpo del circularEste es el cuerpo del circularEste es el cuerpo del circularEste es el cuerpo del circular</h4>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn botonAgg botonAgg-1" data-dismiss="modal" style="background-color: #e67e22; color: white; border:white; float: right; margin-top: 10px; ">Close</button>
@@ -283,7 +288,7 @@ if($_SESSION['tipoUsuario']==1){
         <a data-slide="prev" href="#media" class="left carousel-control" style="margin-top:30px; margin-left:20%;">‹</a>
         <a data-slide="next" href="#media" class="right carousel-control" style="margin-top:30px; margin-right:35%;">›</a>
         <br>
-         <button class="btn botonAgg botonAgg-1" id="" type="button" id="dropdownMenu1" data-toggle="modal" data-target="#myModal" aria-haspopup="true" aria-expanded="true" style="background-color: rgb(54, 171, 203); color: white; border:white;">Crear Circular</button>
+         <button class="btn botonAgg botonAgg-1" id="" type="button" id="dropdownMenu1" data-toggle="modal" data-target="#myModal" aria-haspopup="true" aria-expanded="true" style="background-color: rgb(54, 171, 203); color: white; border:white; margin-left: -5px;">Crear Circular</button>
       </div>                          
  
  <!-- Modal -->
@@ -298,7 +303,7 @@ if($_SESSION['tipoUsuario']==1){
         </div>
         <div class="modal-body">
           <form action="../apps/guardarCircular.php" method="post">
-            <input type="text" class="form-control" name="destinatario" placeholder="Para: Alumnos, padres de familia, docentes" required=""><br>
+            <input type="text" class="form-control" name="destinatario" placeholder="Para: @alumnos, @padres, @todos" required><br>
             <input type="text" class="form-control" name="tituloCircular" placeholder="Titulo Circular" required><br>
              <textarea type="text" class="form-control" name="circular" placeholder="Cuerpo de la circular" required></textarea> <br>
               
