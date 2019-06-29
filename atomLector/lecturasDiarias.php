@@ -359,6 +359,46 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
             <?php while(@$row2=$lecturasSemanal->fetch(PDO::FETCH_ASSOC)){ 
               @$e+=1;
 
+
+              if($gradoBuscar>=1 and $gradoBuscar<=4){
+                $q6= ("SELECT * FROM micofre where idUsuario=:idUsuario and idLectura=:idLectura");
+              $palabrasMiCofre=$dbConn->prepare($q6);
+              $palabrasMiCofre->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
+              $palabrasMiCofre->bindParam(':idLectura',$row2['idLectura'], PDO::PARAM_INT);
+              $palabrasMiCofre->execute();
+              $hayPalabras=$palabrasMiCofre->rowCount();
+
+              //verificamos si ya publico un texto 
+              $q7= ("SELECT * FROM emnivel1completopaso1 where idUsuario=:idUsuario and idTexto=:idLectura");
+              $sePublicoTexto=$dbConn->prepare($q7);
+              $sePublicoTexto->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
+              $sePublicoTexto->bindParam(':idLectura',$row2['idLectura'], PDO::PARAM_INT);
+              $sePublicoTexto->execute();
+              $hayTextoPublicado=$sePublicoTexto->rowCount();
+
+              }
+
+              if($gradoBuscar>=5 and $gradoBuscar<=8){
+
+                  $q6= ("SELECT * FROM micofre where idUsuario=:idUsuario and idLectura=:idLectura");
+              $palabrasMiCofre=$dbConn->prepare($q6);
+              $palabrasMiCofre->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
+              $palabrasMiCofre->bindParam(':idLectura',$row2['idLectura'], PDO::PARAM_INT);
+              $palabrasMiCofre->execute();
+              $hayPalabras=$palabrasMiCofre->rowCount();
+
+              //verificamos si ya publico un texto 
+              $q7= ("SELECT * FROM emnivel2completopaso1 where idUsuario=:idUsuario and idTexto=:idLectura");
+              $sePublicoTexto=$dbConn->prepare($q7);
+              $sePublicoTexto->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
+              $sePublicoTexto->bindParam(':idLectura',$row2['idLectura'], PDO::PARAM_INT);
+              $sePublicoTexto->execute();
+              $hayTextoPublicado=$sePublicoTexto->rowCount();
+
+              }
+
+              if($gradoBuscar>=9 and $gradoBuscar<=12){
+
               //verificamos si hay el minimo de palabras de cada lectura
 
               $q6= ("SELECT * FROM micofre where idUsuario=:idUsuario and idLectura=:idLectura");
@@ -375,7 +415,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
               $sePublicoTexto->bindParam(':idLectura',$row2['idLectura'], PDO::PARAM_INT);
               $sePublicoTexto->execute();
               $hayTextoPublicado=$sePublicoTexto->rowCount();
-              
+              }
 
 
                  $diaSemana='noDefinido';
@@ -389,7 +429,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
                   $descripcion=$row2['descripcion'];
                   $edad=$row2['edadLectura'];
                   $portada='../'.$row2['rutaLectura'].'/1.png';
-                  $linkEbook='p1/mostrarLect1.php?idLectura='.$row2['idLectura'];
+                  $linkEbook='p1/mostrarLect1.php?idLectura='.$row2['idLectura'].'&gradoB='.$gradoBuscar;
                   if($hayPalabras>=1 and $hayTextoPublicado>=1){
                     $completo='leido1.png';
 
@@ -409,7 +449,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
                     $descripcion=$row2['descripcion'];
                     $edad= $row2['edadLectura'];
                     $portada='../'.$row2['rutaLectura'].'/1.png';
-                    $linkEbook='p1/mostrarLect1.php?idLectura='.$row2['idLectura'];
+                    $linkEbook='p1/mostrarLect1.php?idLectura='.$row2['idLectura'].'&gradoB='.$gradoBuscar;
                     if($hayPalabras>=1 and $hayTextoPublicado>=1){
                     $completo='leido1.png';
 
@@ -426,7 +466,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
                    $descripcion=$row2['descripcion'];
                    $edad= $row2['edadLectura'];
                    $portada='../'.$row2['rutaLectura'].'/1.png';
-                   $linkEbook='p1/mostrarLect1.php?idLectura='.$row2['idLectura'];
+                   $linkEbook='p1/mostrarLect1.php?idLectura='.$row2['idLectura'].'&gradoB='.$gradoBuscar;
                  if($hayPalabras>=1 and $hayTextoPublicado>=1){
                     $completo='leido1.png';
 
@@ -443,7 +483,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
                    $descripcion=$row2['descripcion'];
                    $edad= $row2['edadLectura'];
                    $portada='../'.$row2['rutaLectura'].'/1.png';
-                   $linkEbook='p1/mostrarLect1.php?idLectura='.$row2['idLectura'];
+                   $linkEbook='p1/mostrarLect1.php?idLectura='.$row2['idLectura'].'&gradoB='.$gradoBuscar;
                    if($hayPalabras>=1 and $hayTextoPublicado>=1){
                     $completo='leido1.png';
 
@@ -459,7 +499,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
                    $descripcion=$row2['descripcion'];
                    $edad= $row2['edadLectura'];
                    $portada='../'.$row2['rutaLectura'].'/1.png';
-                   $linkEbook='p1/mostrarLect1.php?idLectura='.$row2['idLectura'];
+                   $linkEbook='p1/mostrarLect1.php?idLectura='.$row2['idLectura'].'&gradoB='.$gradoBuscar;
                    $idLectura=$row2['idLectura'];
                      if($hayPalabras>=1 and $sePublicoTexto>=1){
                     $completo='leido1.png';

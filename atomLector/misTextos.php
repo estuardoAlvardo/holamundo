@@ -11,12 +11,25 @@ require("../conection/conexion.php");
     $hayTextos=$mostrarTexto->rowCount();
 
 
-    //todos los textos 
+    //todos los textos nivel 3
 
     $q2 = ("SELECT * FROM publicTexto");
     $mostrarTodosTextos=$dbConn->prepare($q2);
     $mostrarTodosTextos->execute();
+    $hay1=$mostrarTodosTextos->rowCount();
     
+    //todos los textos nivel 2
+    $q3 = ("SELECT * FROM emnivel2completopaso1");
+    $mostrarTextoN2=$dbConn->prepare($q3);
+    $mostrarTextoN2->execute();
+    $hay2=$mostrarTextoN2->rowCount();
+
+    //todos los textos nivel 1
+
+     $q4 = ("SELECT * FROM emnivel1completopaso1");
+    $mostrarTextosN1=$dbConn->prepare($q4);
+    $mostrarTextosN1->execute();
+    $hay3=$mostrarTextosN1->rowCount();
 
 
   
@@ -175,10 +188,9 @@ require("../conection/conexion.php");
 
  </style>
 
-
  			<div class="col-md-8 col-xs-8 pag-center">
          <div class="col-md-12" style="">
-              <h3 class="text-center">Soy Creativo</h3><br>
+              <h3 class="text-center" style="margin-top: 60px;">Soy Creativo- Escritura Madura</h3><br>
               
          </div>
 
@@ -189,18 +201,28 @@ require("../conection/conexion.php");
       <!-- Nav tabs -->
       <div class="card_new"  style="margin-top: 60px;">
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-home"></i>  <span>Público</span></a></li>
+          <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-home"></i>  <span>Nivel 3</span></a></li>
+
+          <li role="presentation" ><a href="#n2" aria-controls="n2" role="tab" data-toggle="tab"><i class="fa fa-n2"></i>  <span>Nivel 2</span></a></li>
+
+          <li role="presentation" ><a href="#n1" aria-controls="n1" role="tab" data-toggle="tab"><i class="fa fa-n1"></i>  <span>Nivel 1</span></a></li>
+
           <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-user"></i>  <span>Mis Publicaciones</span></a></li>
           
         </ul>
         
         <!-- Tab panes -->
         <div class="tab-content">
+           
           <div role="tabpanel" class="tab-pane active" id="home">
-            <?php while(@$row2=$mostrarTodosTextos->fetch(PDO::FETCH_ASSOC)){ ?>
+            <h3>Textos creados a criterio de los alumnos. Grados 3ero Básico hasta 6to Diversificado</h3>
+            <?php if($hayTextos==0){ ?>
+              <h3>un no hay ningún texto.</h3>
+
+
+            <?php }else{ while(@$row2=$mostrarTodosTextos->fetch(PDO::FETCH_ASSOC)){ ?>
 
                <div class="card">
-
                       <div class="image" style="background-image: url('../img/flatWall1.png');" >
                          <h1 style="color: white; width: 350px; background-color: #9b59b6; text-align: left; padding:5px; border-radius: 0 10px 10px 0;"><?php echo $row2['titulo']; ?></h1>
                        </div>
@@ -221,9 +243,61 @@ require("../conection/conexion.php");
 
                     </div>
 
-                <?php } ?>
+                <?php }}  ?>
+          </div>
+
+          <div role="tabpanel" class="tab-pane" id="n2">
+            <h3>Textos creados a criterio de los alumnos. Grados: 5to primaria a 2do básico. </h3>
+            <?php if($hay2==0){ ?>
+              <h3>Aún no hay ningún texto..</h3>
+            <?php }else{ while(@$row2=$mostrarTextoN2->fetch(PDO::FETCH_ASSOC)){ ?>
+
+               <div class="card">
+
+                      <div class="image" style="background-image: url('../img/flatWall1.png');" >
+                         <h1 style="color: white; width: 350px; background-color: #9b59b6; text-align: left; padding:5px; border-radius: 0 10px 10px 0;"><?php echo $row2['titulo']; ?></h1>
+                       </div>
+
+                      <div class="text" style="text-align: left;">
+                         <h3><?php echo $row2['cuento']; ?></h3>                    
+                      </div>
+
+                        <div style=" margin-left: 65%;">
+                              
+                              <h5 style="text-align: left;">Publicado:<?php echo $row2['fecha'].' '.$row2['hora']; ?></h5>
+                              </div> 
+                    </div>
+
+                <?php } } ?>
 
           </div>
+
+          <div role="tabpanel" class="tab-pane" id="n1">
+              <h3>Textos creados a criterio de los alumnos. Grados: 1ero primaria a 4to primaria. </h3>
+              <?php if($hay2==0){ ?>
+                <h3>Aún no hay Textos.</h3>
+
+              <?php }else{ while(@$row3=$mostrarTextosN1->fetch(PDO::FETCH_ASSOC)){ ?>
+
+               <div class="card">
+
+                      <div class="image" style="background-image: url('../img/flatWall1.png');" >
+                         <h1 style="color: white; width: 350px; background-color: #9b59b6; text-align: left; padding:5px; border-radius: 0 10px 10px 0;"><?php echo $row3['titulo']; ?></h1>
+                       </div>
+
+                      <div class="text" style="text-align: left;">
+                         <h3><?php echo $row3['CuentoCompleto']; ?></h3>                    
+                      </div>
+
+                        <div style=" margin-left: 65%;">
+                              
+                              <h5 style="text-align: left;">Publicado:<?php echo $row3['fecha'].' '.$row3['hora']; ?></h5>
+                              </div> 
+                    </div>
+
+                <?php } } ?>
+          </div>
+
           <div role="tabpanel" class="tab-pane" id="profile">
 
            <?php while(@$row1=$mostrarTexto->fetch(PDO::FETCH_ASSOC)){ ?>

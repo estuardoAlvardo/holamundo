@@ -81,11 +81,6 @@ require("../../conection/conexion.php");
 
 </style>
 
-
-
-
-
-
       <div class="col-md-8 col-xs-8 pag-center">
 
          <div class="col-md-12" style="margin-top: 30px;">
@@ -97,10 +92,31 @@ require("../../conection/conexion.php");
 
  <h4>Actividades</h4>
   <div style="margin-top: 30px;">
-  <a href="lecturaDiariaJuego.php?idLectura=<?php echo $_SESSION['gradoEnviar']; ?>" class="btn btn-default botonAgg-1" style="background-color: #e67e22; border:1px solid #e67e22; color:white; ">Juego</a>
+ <a href="lecturaDiariaJuego.php?idLectura=<?php echo $_SESSION['gradoEnviar']; ?>" class="btn btn-default botonAgg-1" style="background-color: #e67e22; border:1px solid #e67e22; color:white; ">Juego</a>
+  
+
+ <?php if($_GET['gradoB']>=1 and $_GET['gradoB']<=4){ ?> 
   <a href="miCofre.php?idLectura=<?php echo $_GET['idLectura']; ?>" class="btn btn-default botonAgg-1" style="background-color: #3498db; border:1px solid #3498db; color:white;">Mi cofre</a>
-  <a href="lmNivel3CrearTexto.php?idLectura=<?php echo $_GET['idLectura']; ?>" class="btn btn-default botonAgg-1" style="background-color: #27ae60;  border:1px solid  #27ae60; color:white;">Escritura Madura</a>
- </div>
+  <a href="lmNivel1CrearTexto.php?idLectura=<?php echo $_GET['idLectura'];?>&gradoB=<?php echo $_GET['gradoB'];  ?>" class="btn btn-default botonAgg-1" style="background-color: #27ae60;  border:1px solid  #27ae60; color:white;">Escritura Madura n1</a>
+
+ 
+<?php } if($_GET['gradoB']>=5 and $_GET['gradoB']<=8){ ?>
+<a href="miCofre.php?idLectura=<?php echo $_GET['idLectura']; ?>" class="btn btn-default botonAgg-1" style="background-color: #3498db; border:1px solid #3498db; color:white;">Mi cofre</a>
+  
+  <a href="lmNivel2CrearTexto.php?idLectura=<?php echo $_GET['idLectura'];?>&gradoB=<?php echo $_GET['gradoB'];?>" class="btn btn-default botonAgg-1" style="background-color: #27ae60;  border:1px solid  #27ae60; color:white;">Escritura Madura n2</a>
+ 
+<?php } if($_GET['gradoB']>=9 and $_GET['gradoB']<=12){?>
+<a href="miCofre.php?idLectura=<?php echo $_GET['idLectura']; ?>" class="btn btn-default botonAgg-1" style="background-color: #3498db; border:1px solid #3498db; color:white;">Mi cofre</a>
+
+  
+  <a href="lmNivel3CrearTexto.php?idLectura=<?php echo $_GET['idLectura']; ?>" class="btn btn-default botonAgg-1" style="background-color: #27ae60;  border:1px solid  #27ae60; color:white;">Escritura Madura n3</a>
+
+<?php } ?>
+</div>
+
+
+
+
 <div class="row sectionDinamico masCentrado">
            <div class="col-md-11">
               <div class="flipbook-viewport">
