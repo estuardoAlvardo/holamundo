@@ -69,7 +69,7 @@ require("../../conection/conexion.php");
 
       //buscar si ya publico texto
 
-      $q8 = ("SELECT * FROM publicTexto where idLectura=:idLectura and idUsuario=:idUsuario");
+      $q8 = ("SELECT * FROM publictexto where idLectura=:idLectura and idUsuario=:idUsuario");
       $publicoTexto=$dbConn->prepare($q8);
       $publicoTexto->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
       $publicoTexto->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);  

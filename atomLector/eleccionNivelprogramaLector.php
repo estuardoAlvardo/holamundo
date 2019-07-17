@@ -18,34 +18,6 @@ $nivelPrimaria=1;
 $nivelBasico=2;
 $nivelDiver=3;
 
-//Buscar todos los cursos de este usuario primaria
-
-$q1 = ("SELECT * FROM cursos where idDocente=:idUsuario and nivel=:nivel");
-$cursosPrimaria=$dbConn->prepare($q1);
-$cursosPrimaria->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
-$cursosPrimaria->bindParam(':nivel',$nivelPrimaria, PDO::PARAM_INT); 
-$cursosPrimaria->execute();
-
-//Buscar todos los cursos de este usuario Basicos
-
-$q2= ("SELECT * FROM cursos where idDocente=:idUsuario and nivel=:nivel");
-$cursoBasico=$dbConn->prepare($q2);
-$cursoBasico->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
-$cursoBasico->bindParam(':nivel',$nivelBasico, PDO::PARAM_INT); 
-$cursoBasico->execute();
-
-
-//Buscar todos los cursos de este usuario Diversificado
-
-$q3 = ("SELECT * FROM cursos where idDocente=:idUsuario and nivel=:nivel");
-$cursoDiver=$dbConn->prepare($q3);
-$cursoDiver->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
-$cursoDiver->bindParam(':nivel',$nivelDiver, PDO::PARAM_INT); 
-$cursoDiver->execute();
-
-
-
-//funcion encargada de asignar imagen segun primer letra del nombre del curso
 
  ?>
 

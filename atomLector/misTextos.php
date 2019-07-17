@@ -4,7 +4,7 @@ session_start();
 require("../conection/conexion.php");
     
 
-    $q1 = ("SELECT * FROM publicTexto where idUsuario");
+    $q1 = ("SELECT * FROM publictexto where idUsuario");
     $mostrarTexto=$dbConn->prepare($q1);
     $mostrarTexto->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
     $mostrarTexto->execute();
@@ -13,7 +13,7 @@ require("../conection/conexion.php");
 
     //todos los textos nivel 3
 
-    $q2 = ("SELECT * FROM publicTexto");
+    $q2 = ("SELECT * FROM publictexto");
     $mostrarTodosTextos=$dbConn->prepare($q2);
     $mostrarTodosTextos->execute();
     $hay1=$mostrarTodosTextos->rowCount();

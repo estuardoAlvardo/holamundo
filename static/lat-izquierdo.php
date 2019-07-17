@@ -874,7 +874,7 @@ function iaDocente(){
 
   //grupo 1 conociendo a lola 
  //grupo 2 despedida cortar grabacion
- //grupo 3 ir a lecturas comprension y rapides
+ //grupo 3 ir a lecturas de medicion semanales
  //grupo 4 ver reportes 
  //grupo 5 ver actividades
  //grupo 6 atomDrive
@@ -883,6 +883,8 @@ function iaDocente(){
  //grupo 9 crear circular
   //grupo 10 perfil
  //grupo 11 salir de la plataforma
+ //grupo 12 ir a lecturas de velocidad
+//gurpo 13 ir a lecturas diarias
 
 
 
@@ -923,7 +925,7 @@ function iaDocente(){
       },
       {
         //grupo 3
-        indexes:['lecturas','quiero leer','ver mis lecturas', 'ver lecturas rápidas','ver lecturas','ir a lecturas','abrir lecturas','lecturas rápidas','comprensión lectora',],
+        indexes:['lecturas semanales','lecturas de medición','prueba pisa', 'prueba cnb','ver lecturas semanales','ir a lecturas semanales','abrir lecturas lecturas semanales','lecturas semanales','comprensión lectora',],
         action: function(){
           artyom.say("Abriendo lecturas, por favor tienes que elegir grado por ser docente");
           window.open("http://localhost/atomolms/atomLector/eleccionNivelprogramaLector.php?curso=7",'_blank')
@@ -1005,7 +1007,30 @@ function iaDocente(){
             artyom.fatality();
 
         }
+      },
+      {
+        //grupo 12
+        indexes:['abrir lecturas de velocidad','lecturas de velocidad','practicar velocidad','velocidad lectora','ver lecturas de velocidad','lecturas de fluidez'],
+        action: function(){
+          artyom.say("abriendo las lecturas de velocidad, elije grado que quieres observar");
+          window.location.replace("http://localhost/atomolms/atomLector/eleccionNivelvelocidadLectora.php?curso=7",'_blank');
+          
+            artyom.fatality();
+
+        }
+      },
+      {
+        //grupo 13
+        indexes:['abrir lecturas diarias','ver las lecturas diarias','mis lecturas diarias','quiero leer hoy','lecturas diarias',],
+        action: function(){
+          artyom.say("abriendo las lecturas diarias, elije grado que quieres observar, y empieza a crear el hábito lector.");
+          window.location.replace("http://localhost/atomolms/atomLector/eleccionNivelLecturasDiarias.php?curso=7",'_blank');
+          
+            artyom.fatality();
+
+        }
       }
+
 
     ]); 
 

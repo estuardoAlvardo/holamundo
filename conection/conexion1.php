@@ -1,9 +1,9 @@
 <?php
  
 $databaseHost = 'localhost';
-$databaseName = 'atom1';
+$databaseName = 'reydegloria';
 $databaseUsername = 'root';
-$databasePassword = '';
+$databasePassword = 'Admin11!';
  
 try {
     
