@@ -263,7 +263,53 @@ padding-top: -30px;
 
                   </style>
 
-                  <div class="col-md-11">
+               
+
+<div class="col-md-11" style="margin-bottom: 100px;"><br><br>
+  <h3 class="text-left" style="">¿Que grado quieres Observar?</h3><hr>
+  <div class="col-md-12 cajaGrado" style="min-height: 200px;">
+     
+    <p>Primaria</p>
+  <div class="row" style="padding-left: 40px;">
+    
+    <a href="velocidadLectora.php?gradoB=1" style="color: white;"><div class="col-md-2 btnGrado">1ero Primaria</div></a>
+    <div class="col-md-1"></div>
+   <a href="velocidadLectora.php?gradoB=2" style="color: white;"> <div class="col-md-2 btnGrado" >2do Primaria</div></a>
+    <div class="col-md-1"></div>
+    <a href="velocidadLectora.php?gradoB=3" style="color: white;"> <div class="col-md-2 btnGrado">3ero Primaria</div></a>
+    <div class="col-md-1"></div>
+    <a href="velocidadLectora.php?gradoB=4" style="color: white;"> <div class="col-md-2 btnGrado" >4to Primaria</div></a>
+    <div class="col-md-1"></div>
+     <a href="velocidadLectora.php?gradoB=5" style="color: white;"><div class="col-md-2 btnGrado" >5to Primaria</div></a>
+    <div class="col-md-1"></div>
+     <a href="velocidadLectora.php?gradoB=6" style="color: white;"><div class="col-md-2 btnGrado">6to Primaria</div></a>
+  </div>
+     <p>Básicos</p>
+  <div class="row" style="padding-left: 40px;">
+    
+    <a href="velocidadLectora.php?gradoB=7" style="color: white;"><div class="col-md-2 btnGrado" >1ero Básicos</div></a>
+    <div class="col-md-1"></div>
+     <a href="velocidadLectora.php?gradoB=8" style="color: white;"><div class="col-md-2 btnGrado"  style="background-color: #bdc3c7; pointer-events:none;">2do Básicos</div></a>
+    <div class="col-md-1"></div>
+    <a href="velocidadLectora.php?gradoB=9" style="color: white;"> <div class="col-md-2 btnGrado">3ero Básicos</div></a>
+   
+  </div>
+       <p>Diversificado</p>
+  <div class="row" style="padding-left: 40px;">
+    
+    <a href="velocidadLectora.php?gradoB=10" style="color: white;"> <div class="col-md-2 btnGrado" >4to Diver</div></a>
+    <div class="col-md-1"></div>
+     <a href="velocidadLectora.php?gradoB=11" style="color: white;"><div class="col-md-2 btnGrado" style="background-color: #bdc3c7; pointer-events:none;" >5to Diver</div></a>
+    <div class="col-md-1"></div>
+     <a href="velocidadLectora.php?gradoB=12" style="color: white;"><div class="col-md-2 btnGrado" style="background-color: #bdc3c7; pointer-events:none;">6to Diver</div></a>
+   
+  </div>
+
+  </div>
+
+</div>
+
+   <div class="col-md-11">
                      <h3 class="text-left" style="">Nuestros Fundamentos Pedagógicos</h3><hr>
                     <div class="row">
                       
@@ -318,50 +364,6 @@ padding-top: -30px;
                   
                 </div>
 
-
-<div class="col-md-11" style="margin-bottom: 100px;"><br><br>
-  <h3 class="text-left" style="">¿Que grado quieres Observar?</h3><hr>
-  <div class="col-md-12 cajaGrado" style="min-height: 200px;">
-     
-    <p>Primaria</p>
-  <div class="row" style="padding-left: 40px;">
-    
-    <a href="velocidadLectora.php?gradoB=1" style="color: white;"><div class="col-md-2 btnGrado">1ero Primaria</div></a>
-    <div class="col-md-1"></div>
-   <a href="velocidadLectora.php?gradoB=2" style="color: white;"> <div class="col-md-2 btnGrado" >2do Primaria</div></a>
-    <div class="col-md-1"></div>
-    <a href="velocidadLectora.php?gradoB=3" style="color: white;"> <div class="col-md-2 btnGrado">3ero Primaria</div></a>
-    <div class="col-md-1"></div>
-    <a href="velocidadLectora.php?gradoB=4" style="color: white;"> <div class="col-md-2 btnGrado" >4to Primaria</div></a>
-    <div class="col-md-1"></div>
-     <a href="velocidadLectora.php?gradoB=5" style="color: white;"><div class="col-md-2 btnGrado" >5to Primaria</div></a>
-    <div class="col-md-1"></div>
-     <a href="velocidadLectora.php?gradoB=6" style="color: white;"><div class="col-md-2 btnGrado">6to Primaria</div></a>
-  </div>
-     <p>Básicos</p>
-  <div class="row" style="padding-left: 40px;">
-    
-    <a href="velocidadLectora.php?gradoB=7" style="color: white;"><div class="col-md-2 btnGrado" >1ero Básicos</div></a>
-    <div class="col-md-1"></div>
-     <a href="velocidadLectora.php?gradoB=8" style="color: white;"><div class="col-md-2 btnGrado" >2do Básicos</div></a>
-    <div class="col-md-1"></div>
-    <a href="velocidadLectora.php?gradoB=9" style="color: white;"> <div class="col-md-2 btnGrado">3ero Básicos</div></a>
-   
-  </div>
-       <p>Diversificado</p>
-  <div class="row" style="padding-left: 40px;">
-    
-    <a href="velocidadLectora.php?gradoB=10" style="color: white;"> <div class="col-md-2 btnGrado" >4to Diver</div></a>
-    <div class="col-md-1"></div>
-     <a href="velocidadLectora.php?gradoB=11" style="color: white;"><div class="col-md-2 btnGrado" >5to Diver</div></a>
-    <div class="col-md-1"></div>
-     <a href="velocidadLectora.php?gradoB=12" style="color: white;"><div class="col-md-2 btnGrado">6to Diver</div></a>
-   
-  </div>
-
-  </div>
-
-</div>
 
 
 

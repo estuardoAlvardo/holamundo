@@ -2,6 +2,17 @@
 session_start();
 require("../../../conection/conexion.php");
 
+//obtener intento y le sumamos 1 
+$sql3= ("SELECT intento  FROM registropruebacomprension where idLectura=:idLectura and idUsuario=:idUsuario");
+    $obtenerIntento = $dbConn->prepare($sql3);
+    $obtenerIntento->bindparam(':idUsuario',$_POST['idUsuario']);
+    $obtenerIntento->bindparam(':idLectura',$_POST['idLecturaEnviado']);
+    $obtenerIntento->execute();
+    $intento=$obtenerIntento->rowCount();    
+   $intento+=1;
+   
+  $intento;
+    
 //obtener items
 $sq1 = ("SELECT *  FROM atomolector as lectura join cuestionario as cues on lectura.idLectura=cues.idLectura join itemopcionmultiple as item on item.idCuestionario=cues.idCuestionario where lectura.idLectura=:idLectura");
     $obtenerCuestionario = $dbConn->prepare($sq1);
@@ -10,7 +21,7 @@ $sq1 = ("SELECT *  FROM atomolector as lectura join cuestionario as cues on lect
 
 
 //insertar cuestionario
- $sq2 = ("INSERT INTO registropruebacomprension(idLectura,idUsuario,tiempo,fechaRegistro,horaRegistro,rPregunta1,rPregunta2,rPregunta3, rPregunta4,rPregunta5,totalObtenido, nivelObtenido) VALUES(:idLectura,:idUsuario,:tiempo,:fechaRegistro,:horaRegistro,:rPregunta1,:rPregunta2,:rPregunta3, :rPregunta4,:rPregunta5,:totalObtenido, :nivelObtenido)");
+ $sq2 = ("INSERT INTO registropruebacomprension(idLectura,idUsuario,tiempo,fechaRegistro,horaRegistro,rPregunta1,rPregunta2,rPregunta3, rPregunta4,rPregunta5,totalObtenido,intento) VALUES(:idLectura,:idUsuario,:tiempo,:fechaRegistro,:horaRegistro,:rPregunta1,:rPregunta2,:rPregunta3, :rPregunta4,:rPregunta5,:totalObtenido,:intento)");
      $insertarCuestionario = $dbConn->prepare($sq2);
 
 
@@ -35,11 +46,12 @@ $insertarCuestionario->bindparam(':horaRegistro',$hora_actual);
 
 
 
+
   while(@$row1=$obtenerCuestionario->fetch(PDO::FETCH_ASSOC)){
 
 
     @$i+=1;
-    echo $i;
+    //echo $i;
 
     if(empty($_POST['name'.$i])){
         
@@ -66,7 +78,6 @@ $insertarCuestionario->bindparam(':horaRegistro',$hora_actual);
 
       $_POST['name'.$i];
       
-      @$sumaIncorrectas+=$row1['punteoItem'];
     }
   }
 
@@ -76,49 +87,20 @@ if(empty($sumaCorrectas)){
   $sumaCorrectas=0;
 }
 
-if(empty($sumaIncorrectas)){
-$sumaIncorrectas=0;
-
-}
-
-
-
 @$sumaCorrectas;
-@$sumaIncorrectas;
-$totalPisa=$sumaCorrectas-$sumaIncorrectas;
+
+$totalQuiz=$sumaCorrectas;
 
 
-if($totalPisa<=0){
+if($totalQuiz<=0){
   $totalPisa=0;
 }
 
-$insertarCuestionario->bindparam(':totalObtenido',$totalPisa);
+$insertarCuestionario->bindparam(':totalObtenido',$totalQuiz);
+$insertarCuestionario->bindparam(':intento',$intento);
 
-if(@$totalPisa>=698){
-  $nivelObtenido="6";
 
-}else if(@$totalPisa>=626 and @$totalPisa<=697){
-  $nivelObtenido="5";
-}else if(@$totalPisa>=553 and @$totalPisa<=625){
- $nivelObtenido="4";
-}else if(@$totalPisa>=480 and @$totalPisa<=552){
- $nivelObtenido="3";
-}else if(@$totalPisa>=407 and @$totalPisa<=479){
- $nivelObtenido="2";
-}else if(@$totalPisa>=335 and @$totalPisa<=406){
- $nivelObtenido="1A";
-}else if(@$totalPisa>=262 and @$totalPisa<=334){
- $nivelObtenido="1B";
-}else if(@$totalPisa>=0 and @$totalPisa<=261){
- $nivelObtenido="1C";
-}else{
-  $nivelObtenido="1C";
-}
-
-$nivelObtenido;
-$insertarCuestionario->bindparam(':nivelObtenido',$nivelObtenido);
-
- $insertarCuestionario->execute();
+$insertarCuestionario->execute();
 header("location:../resultado.php?idLectura=".$_POST['idLecturaEnviado']."&idUsuario=".$_POST['idUsuario']);
 
 ?>

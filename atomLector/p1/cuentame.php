@@ -619,12 +619,6 @@ That part is just for the form
 
 //fraccion de codigo para cambiar de color las cards --> fin
 
-
-
-
-
-
-
      function startArtyom(){
 
     artyom.initialize({

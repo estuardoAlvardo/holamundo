@@ -513,9 +513,9 @@ That part is just for the form
                   <span style="color: white; font-size: 13pt;" id="span-preview"></span>
                 
                 </div>
-                <div class="recodinggN" id="microOn" title="Cuentame" style="cursor: pointer; padding-top:3px;  width: 50px; height: 50px; border-radius: 100%; margin-top: 80px; background-color: #e67e22; margin-left: 48%;" onclick="inicio(this.id)"><img src="../../img/micro.png" width="40" height="40" ></div>
+                <div class="recodinggN" id="inMicroOn" title="Cuentame" style="cursor: pointer; padding-top:3px;  width: 50px; height: 50px; border-radius: 100%; margin-top: 80px; background-color: #e67e22; margin-left: 48%;" onclick="grabarInicial(this.id)"><img src="../../img/micro.png" width="40" height="40" ></div>
                 
-                <div id="microOf" class="recodinggN" title="Graba el concepto" style="cursor: pointer; padding-top:3px;  width: 50px; height: 50px; border-radius: 100%; margin-top: 80px; background-color: #F72626; margin-left: 48%; display: none" onclick="finGrabacion(this.id)"><img src="../../img/microOf.png" width="40" height="40" ></div>
+                <div id="inMicroOf" class="recodinggN" title="Graba el concepto" style="cursor: pointer; padding-top:3px;  width: 50px; height: 50px; border-radius: 100%; margin-top: 80px; background-color: #F72626; margin-left: 48%; display: none" onclick="finGrabarInicial(this.id)"><img src="../../img/microOf.png" width="40" height="40" ></div>
               </div>
               <?php }else if($hayRegistros==1){ ?>
                  <div class="col-md-1"></div>
@@ -604,15 +604,7 @@ That part is just for the form
        $('#bloq'+idModificar).css('display','block');
   }
 
-
-
 //fraccion de codigo para cambiar de color las cards --> fin
-
-
-
-
-
-
 
      function startArtyom(){
 
@@ -639,7 +631,7 @@ That part is just for the form
     artyom.fatality();// Detener cualquier instancia previa
   }    
 
-function inicio(clicked_id){
+function grabarInicial(clicked_id){
             
             //enviar idPalabra seleccionada para registrarlo en la base de datos          
             var idPalabra= clicked_id.substring(2,6); 
@@ -647,12 +639,13 @@ function inicio(clicked_id){
             startArtyom();
             capturarFluidez();
             
-            $('#microOn').css("display","none");
-            $('#microOf').css("display","block"); 
+            $('#inMicroOn').css("display","none");
+            $('#inMicroOf').css("display","block"); 
             $('#idGlosarioEnviar').val(idPalabra);
 
 
            };
+
     function capturarFluidez(){
     // Escribir lo que escucha.
     artyom.redirectRecognizedTextOutput(function(text,isFinal){
@@ -670,13 +663,13 @@ function inicio(clicked_id){
    }
   
 
-function finGrabacion(clicked_id){
+function finGrabarInicial(clicked_id){
    var texto = $("#span-preview").text();
    var ocultar= clicked_id;
    var mostrar= ocultar.substring(2,6); 
 
- $('#microOn').css("display","block");
-  $('#microOf').css("display","none");  
+ $('#inMicroOn').css("display","block");
+  $('#inMicroOf').css("display","none");  
   
   $('#textoEnviar').val(texto);
 

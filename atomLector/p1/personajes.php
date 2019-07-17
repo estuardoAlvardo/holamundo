@@ -13,7 +13,7 @@ require("../../conection/conexion.php");
 
     
    
-   $sql2=("SELECT * FROM preguntaspersonajes JOIN quizpersonajes ON preguntaspersonajes.idquizpersonaje=quizpersonajes.idQuiz JOIN atomolector ON quizpersonajes.idLectura=atomolector.idLectura   WHERE atomolector.idLectura=:idLectura");
+   $sql2=("SELECT * FROM preguntaspersonajes JOIN quizpersonajes ON preguntaspersonajes.idquizpersonaje=quizpersonajes.idQuiz JOIN atomolector ON quizpersonajes.idLectura=atomolector.idLectura WHERE atomolector.idLectura=:idLectura");
    $obtenerCuestionario = $dbConn->prepare($sql2);
      $obtenerCuestionario->bindparam(':idLectura', $_GET['noLectura']);
     $obtenerCuestionario->execute();
@@ -474,7 +474,7 @@ input#fort:checked ~ label  {
  <input type="text" name="idLecturaEnviado" id="idLecturaEnviar" value="" style="display: none;">
  <input type="text" name="cantidadPreguntas" value="<?php echo $consulta; ?>" style="display: none;">
   <input type="text" name="tiempo" id="tiempo" value="" style="display: none;">
- <input style="margin-top: 20px; margin-bottom: 50px;" onclick="obtenerTiempoSubmit();"  value="Termine El Cuestionario" name="" class="btn btn-default botonAgg-1">
+ <input style="margin-top: 20px; margin-bottom: 50px; border:1px solid #2980b9; background-color: #2980b9; color:white;" onclick="obtenerTiempoSubmit();"  value="Termine El Cuestionario" name="" class="btn btn-default botonAgg-1">
   </form>
 
 <!-- AQUI MOSTRAMOS EL QUIZ EN CASO DE NO HABERLO REALIZADO fin-->

@@ -7,10 +7,13 @@ require("../../conection/conexion.php");
       $mostrarGlosario=$dbConn->prepare($q1);
       $mostrarGlosario->bindParam(':idLectura',$_GET['noLectura'], PDO::PARAM_INT); 
       $mostrarGlosario->execute();
+      $cantidadPalabras=$mostrarGlosario->rowCount();
+    
 
-    $q2= ("SELECT * FROM palabrasglosario as glo JOIN registroglosario as registro on glo.idPalabras=registro.idPalabra WHERE registro.idUsuario=:idUsuario");
+    $q2= ("SELECT * FROM palabrasglosario as glo JOIN registroglosario as registro on glo.idPalabras=registro.idPalabra JOIN glosario on registro.idGlosario=glosario.idGlosario WHERE registro.idUsuario=:idUsuario and glosario.idLectura=:idLectura");
       $yaRealizo=$dbConn->prepare($q2);
       $yaRealizo->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
+      $yaRealizo->bindParam(':idLectura',$_GET['noLectura'], PDO::PARAM_INT);
       $yaRealizo->execute();
       $hayRegistros=$yaRealizo->rowCount();
 
@@ -501,7 +504,12 @@ That part is just for the form
          <div class="row">
             <h4>Progresión de Aprendizaje</h4>
             <?php  for($bucle=1; $bucle<=$hayRegistros; $bucle++){ 
+
+              if($hayRegistros==0){
+                $porcentaje=0;
+              }else{
               @$porcentaje+=10;
+            }
               }
               ?>
               <div class="progress">

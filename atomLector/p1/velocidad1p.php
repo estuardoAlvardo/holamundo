@@ -265,6 +265,7 @@ $columnasEncontradas= $detalleLectura->rowCount();
 
          <form action="controllador/guardarInforme.php" id="guardarCardLectura" method="post" style="display: none;">
           <input type="text" name="lectura" id="NoLectura">
+           <input type="text" name="numLect" value="<?php echo $_GET['numeroLectura']; ?>">
           <input type="text" name="intento" id="intento">
           <input type="text" name="tiempo" id="tiempo">
           <input type="text" name="gradoBB" id="grado" value="<?php echo $_GET['gradoB']; ?>">

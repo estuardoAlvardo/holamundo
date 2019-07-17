@@ -208,43 +208,6 @@ echo '<br>';
              <?php } ?>  
          </div>
 
-            <div class="col-md-12" style="margin-top:40px;">
-              <h4 class="text-left">Colores</h4><hr>
-            </div>
-
-              <div class="row" style="margin-bottom: 50px;">
-              
-               <a href="p1/velocidad1p.php?idLectura=<?php echo $row2['idLectura'];?>&numeroLectura=<?php echo $i;?>"><div class="col-md-5 estiloProducto" style="min-height:150px; margin-left: 10px; margin-left: 20px; margin-bottom: 20px;">
-                <div class="row" style="background-image:linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); ">
-
-                  <div class="col-md-5" style=" min-height:150px; 
-                  background-image: url(); background-size: 70%; background-repeat:no-repeat; ">                                  
-                  </div>
-                  <div class="col-md-7" style=" min-height: 150px; color: black;">
-                    <h4 >Nombre Lectura</h4>
-                    <h5 style="text-align: left;">genero</h5>
-                    <h5 style="text-align: left;">Descripcion</h5>
-                    <h5 style="text-align: left;">Edad</h5>
-                    
-
-                    <img src="leido1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:23%;">
-                 
-                     
-                    
-
-
-                  </div>
-
-                </div>
-                 
-               </div></a>
-
-
-         </div>
-
-
-
- 
                   <style type="text/css">
                     .cajaCards{
                       box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);

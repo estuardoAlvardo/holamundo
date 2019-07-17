@@ -8,7 +8,7 @@ echo "Intento: ".$_POST['intento']."<br>";
 echo "Tiempo: ".$_POST['tiempo']."<br>";
 echo "Palabras por Minuto: ".$_POST['velocidad']."<br>";
 echo "Fluidez: ".$_POST['fluidez']."<br>";
-
+echo 'lecturaNo'.$_POST['numLect'];
 
 
 $sql1 = ("INSERT INTO atomolectorvelocidad(idUsuario,noLectura,intento,tiempoSeg,velocidadLectora,fluidez) VALUES (:idUsuario,:noLectura,:intento,:tiempoSeg,:velocidadLectora,:fluidez)");
@@ -31,7 +31,7 @@ $actualizarLeido->execute();
 
 
 
-header("location:../velocidad1p.php?idLectura=".$_POST['lectura']."&numeroLectura=".$_POST['lectura']."&gradoB=".$_POST['gradoBB']);
+header("location:../velocidad1p.php?idLectura=".$_POST['lectura']."&numeroLectura=".$_POST['numLect']."&gradoB=".$_POST['gradoBB']);
 
 
 

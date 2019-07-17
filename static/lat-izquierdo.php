@@ -873,7 +873,7 @@ function iaDocente(){
  var nombreUser= $('#userIa').text();
 
   //grupo 1 conociendo a lola 
- //grupo 2 despedidad cortar grabacion
+ //grupo 2 despedida cortar grabacion
  //grupo 3 ir a lecturas comprension y rapides
  //grupo 4 ver reportes 
  //grupo 5 ver actividades

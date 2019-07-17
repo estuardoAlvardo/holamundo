@@ -351,7 +351,7 @@ input#fort:checked ~ label  {
 
   <ul>
     <li >
-      <input value="1" type="radio" name="<?php echo 'name'.$noPregunta; ?>" id="one" style="" />
+      <input value="1" type="radio" name="<?php echo 'multiple'.$noPregunta; ?>" id="one" style="" />
       <label ><?php echo $row1['respuesta1']; ?></label>
       
       
@@ -359,19 +359,19 @@ input#fort:checked ~ label  {
     </li>
     
     <li>
-      <input type="radio" value="2" name="<?php echo 'name'.$noPregunta; ?>" id="two" />
+      <input type="radio" value="2" name="<?php echo 'multiple'.$noPregunta; ?>" id="two" />
       <label ><?php echo $row1['respuesta2']; ?></label>
       
       <div class="check"></div>
     </li>
     <li>
-      <input type="radio" value="3" name="<?php echo 'name'.$noPregunta; ?>" id="tree" />
+      <input type="radio" value="3" name="<?php echo 'multiple'.$noPregunta; ?>" id="tree" />
       <label ><?php echo $row1['respuesta3']; ?></label>
       
       <div class="check"></div>
     </li>
     <li>
-      <input type="radio" value="4" name="<?php echo 'name'.$noPregunta; ?>" id="fort" />
+      <input type="radio" value="4" name="<?php echo 'multiple'.$noPregunta; ?>" id="fort" />
       <label ><?php echo $row1['respuesta4']; ?></label>
       
       <div class="check"></div>

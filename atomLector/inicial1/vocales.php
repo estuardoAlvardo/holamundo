@@ -493,7 +493,7 @@ That part is just for the form
          <div class="card-style" style="width:60px; height: 60px; border-radius:100px; border:4px solid #f39c12; margin-left: 90%; margin-top: 20px; color: #d35400; cursor:pointer; position: absolute; z-index:6;" onclick="informacion();" title="¿Cómo Funciona?"><h1 style="margin-top:7px;">?</h1></div>
         <h3 style="margin-top: 50px;">Aprendo las vocales</h4>
           
-          <span class="col-md-10 " id="span-preview" style="display: none; border:1px solid #3498db; height: 200px; text-align: center;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); border-radius:5px;margin-left:30px; margin-bottom: 40px;"></span> 
+          <span class="col-md-10 " id="span-preview1" style="display: none; border:1px solid #3498db; height: 200px; text-align: center;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); border-radius:5px;margin-left:30px; margin-bottom: 40px;"></span> 
 
           <input type="text" name="nombre" id="nombre" value="<?php echo $_SESSION['nombre']; ?>" style="display: none;">
 
@@ -519,13 +519,12 @@ That part is just for the form
                 </div>
                 <div class="recodinggN" id="<?php echo 'on'.$row1['idAprendizaje'].$i; ?>" title="Graba el concepto" style="cursor: pointer; padding-top:3px;  width: 50px; height: 50px; border-radius: 100%; margin-top: 280px; background-color: #e67e22; margin-left: 85%;" onclick="inicio(this.id)"><img src="../../img/micro.png" width="40" height="40" ></div>
 
-
-
                 <div id="<?php echo 'ofon'.$row1['idAprendizaje'].$i; ?>" class="recodinggN" title="Graba el concepto" style="cursor: pointer; padding-top:3px;  width: 50px; height: 50px; border-radius: 100%; margin-top: 280px; background-color: #F72626; margin-left: 85%; display: none" onclick="finGrabacion(this.id)"><img src="../../img/microOf.png" width="40" height="40" ></div>
 
                 <div  class="cardGlosario" title="Reproducir" style="cursor: pointer; padding-top:5px;  width: 50px; height: 50px; border-radius: 100%; margin-top:-50px; background-color: #3498db; margin-left: 60%; display: block ;position:absolute; padding-left: 10px;">
-                  <img src="../../img/play.png" width="40" height="40" >                  
+                  <img id="<?php echo 'audio'.$i; ?>" src="../../img/play.png" width="40" height="40" onclick="reproducirAudio(this.id);" >                  
                 </div>
+                <audio id="<?php echo 'reproducir'.$i; ?>" src="<?php echo $row1['audios'].$i.'.mp3'; ?>" preload="auto" controls style="display: none;"></audio>
 
                 <div  class="cardGlosario" title="Reproducir" style="cursor: pointer; padding-top:5px;  width: 50px; height: 50px; border-radius: 100%; margin-top:-50px; background-color: #3498db; margin-left: 60%; display: none ;position:absolute;">
                   <img src="../../img/pause.png" width="40" height="40" >                  
@@ -545,25 +544,12 @@ That part is just for the form
         <input id="cantidadIteracion" type="text" name="cantidadRealizada" value="<?php echo $hayRegistros; ?>" style="display: none;">
         <?php while(@$row2=$yaRealizo->fetch(PDO::FETCH_ASSOC)){ @$i+=1; ?>
 
-          <input id="<?php echo "cambiar".$i; ?>" type="text" name="cambiarcolor" value="<?php echo "palabra".$row2['idPalabras']; ?>" style="display: block;">
+          <input id="<?php echo "cambiar".$i; ?>" type="text" name="cambiarcolor" value="<?php echo "palabra".$row2['idPalabras']; ?>" style="display: none;">
         <?php } ?> 
-
-<!-- AQUI VERIFICAMOS SI YA REALIZO ALGUNA LECTURA  Y CAMBIAMOS ESTILOS TARJETAS -->
-
-
-   <form id="formularioE" action="controllador/guardarGlosario.php" method="post" style="display: none;">
-            <input id="textoEnviar" type="text" name="textRecord" value="">
-            <input type="text" name="idGlosario" value="<?php echo $_SESSION['idAprendizaje']; ?>">
-            <input type="text" name="idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>">
-            <input type="text" name="lectura" value="<?php echo $_SESSION['lect']; ?>">
-              <input id="idGlosarioEnviar" type="text" name="idPalabra" value="">             
-          </form>
-
-         
 
 
 <!-- TROZO DE CODIGO NOS VA A SERVIR PARA LANZAR LAS NOTIFICACIONES AL USUARIO --->
-         <section class="colorfulForm" style="display: none;">
+         <section class="colorfulForm" style="display: block;">
             <label>Title</label>
             <input type="text" id="title" value="Esto es lo que grabamos ¿Lo deseas Guardar?" class="l2"/><br>
             <label>Text</label>
@@ -611,14 +597,7 @@ That part is just for the form
 
 
 //fraccion de codigo para cambiar de color las cards --> fin
-
-
-
-
-
-
-
-     function startArtyom(){
+   function startArtyom(){
 
     artyom.initialize({
         lang: "es-ES",
@@ -633,7 +612,7 @@ That part is just for the form
     function informacion(){
           var name = $('#nombre').val(); 
             startArtyom();
-            artyom.say("Hola "+name+" te explicare como realizar esta actividad, antes de empezar quiero que sepas que si mejoras tu vocabulario podrás incrementar tú comprensión lectora, te ayudare a comprender, para eso te presentamos las palabras mas difíciles de la lectura, hay dentro de cada tarjeta un micrófono dale clic, y repite la palabra y el concepto por favor. La plataforma guardara cada palabra que dictes, esto te ayudara a guardar mejor las palabras en tú memoria.");
+            artyom.say("Hola "+name+" me encanta que estés aquí, quiero que conozcas la letra. A, te mostraré las tarjetas y aprenderás nuevas palabras, presiona el botón de color azul para escuchar, luego graba la palabra activando el micrófono. Vamos a aprender juntos.  ");
             finAsistente();
 
           }
@@ -641,7 +620,17 @@ That part is just for the form
 
         function finAsistente(){
     artyom.fatality();// Detener cualquier instancia previa
-  }    
+  } 
+
+
+  function reproducirAudio(clicked_id){
+    var id= clicked_id.substring(5,6);
+
+    var audio= document.getElementById("reproducir"+id);
+    audio.play(); //reproducimos audio
+
+
+  }   
 
 function inicio(clicked_id){
             
@@ -650,14 +639,14 @@ function inicio(clicked_id){
 
             startArtyom();
             capturarFluidez();
-            alert(idPalabra);
+            //alert(idPalabra);
             $('#'+clicked_id).css("display","none");
             $('#of'+clicked_id).css("display","block"); 
             $('#idGlosarioEnviar').val(idPalabra);
-
-
            };
-    function capturarFluidez(){
+
+
+ function capturarFluidez(){
     // Escribir lo que escucha.
     artyom.redirectRecognizedTextOutput(function(text,isFinal){
       if (isFinal) {
@@ -665,7 +654,7 @@ function inicio(clicked_id){
             
       }else{
         var fluidez=[text];
-        $("#span-preview").text(fluidez);
+        $("#span-preview1").text(fluidez);
      
       }
       
@@ -675,22 +664,28 @@ function inicio(clicked_id){
   
 
 function finGrabacion(clicked_id){
-   var texto = $("#span-preview").text();
+   var texto = $("#span-preview1").text();
    var ocultar= clicked_id;
    var mostrar= ocultar.substring(2,6); 
-
-   alert(mostrar);
-
 
    $('#'+ocultar).css("display","none");
   $('#'+mostrar).css("display","block"); 
   
   $('#textoEnviar').val(texto);
-
-    //confirmar guardado de grabacion
-  $("#activarNoti").click();
+    //alert(texto);
+    //confirmar guardado de grabacion  
     finAsistente();
+    $("#activarNoti").click();
+
+
+     var opcion = confirm("¿Quieres Grabarlo?\n"+texto);
+    if (opcion == true) {
+        mensaje = "Se guargdo";
+  } else {
+      mensaje = "no se guardo";
+  }
 }
+
 
 
 //FUNCIONES PARA LA ALERTA
@@ -733,6 +728,8 @@ janelaPopUp.abre = function(id, classes, titulo, corpo, functionCancelar, functi
         }else{
             janelaPopUp.fecha(id);
             //alert('rechazo'); //aqui es donde limpiamos la caja
+            $('#span-preview').text('');
+            $('body').css('overflow-x','none');
         }
     });
     $("#" + id + '_enviar').on("click", function(){
@@ -744,6 +741,7 @@ janelaPopUp.abre = function(id, classes, titulo, corpo, functionCancelar, functi
             janelaPopUp.fecha(id);
              //si le guardar a la notificacion ejecutamos formulario
              $('#formularioE').submit();
+
         }
     });
     
@@ -780,6 +778,11 @@ $("button").on("click", function(){
 });
 
 setTimeout(function(){janelaPopUp.fecha('example');}, 2000);
+
+
+
+///--------------------------------------------------------------------------------
+
 
 
   </script> 

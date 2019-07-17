@@ -53,7 +53,8 @@ $insertarCuestionario->bindparam(':intento',$_POST['intento']);
         
         $preguntaIteracion=':rPregunta'.$i;
         $_POST['name'.$i]=0;
-
+        
+        
         $insertarCuestionario->bindparam($preguntaIteracion, $_POST['name'.$i]);
       }else{
 

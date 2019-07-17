@@ -5,6 +5,8 @@ require("../../../conection/conexion.php");
 $nivelObtenido='';
 $_POST['intento'];
 $fundamento="pisa";
+
+
 $sq1 = ("SELECT *  FROM atomolector as lectura join cuestionario as cues on lectura.idLectura=cues.idLectura join itemopcionmultiple as item on item.idCuestionario=cues.idCuestionario where lectura.idLectura=:idLectura AND fundamento=:fundamento");
     $obtenerCuestionario = $dbConn->prepare($sq1);
      $obtenerCuestionario->bindparam(':idLectura',$_POST['idLecturaEnviado'],PDO::PARAM_INT);

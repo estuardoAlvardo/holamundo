@@ -14,7 +14,7 @@ require("../../conection/conexion.php");
    
 
 //buscar id= cuestionario pisa y id CUestionario cnb para mostrar intentos por metodologia
-      $pisa='pisa';
+      $pisa='cnb';
              //--pisa   
                 $q4= ("SELECT idCuestionario FROM cuestionario WHERE fundamento=:fundamento AND idLectura=:idLectura");
 
@@ -27,17 +27,19 @@ require("../../conection/conexion.php");
                   $_SESSION['idPisa']=$fila1['idCuestionario'];
                   
                 }
+                
 
+      //OBTENEMOS INTENTOS PRUEBAS REALIZADAS
 
-      //OBTENEMOS INTENTOS SEGUN PISA
-
-      $q2 = ("SELECT * FROM registropruebacomprension as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario and registro.nivelObtenido!='' ");
+      $q2 = ("SELECT * FROM registropruebacomprension as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario and registro.nivelObtenido IS NULL ");
       $buscarIntentosPisa=$dbConn->prepare($q2);
       $buscarIntentosPisa->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
         $buscarIntentosPisa->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
       $buscarIntentosPisa->bindParam(':idCuestionario',$_SESSION['idPisa'], PDO::PARAM_STR);  
       $buscarIntentosPisa->execute();
       $hayIntentos1=$buscarIntentosPisa->rowCount();
+
+
 
  ?>
 
@@ -48,7 +50,7 @@ require("../../conection/conexion.php");
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
-    <title><?php echo $_SESSION["nombre"]; ?> | Mis Cursos</title>
+    <title><?php $_SESSION["nombre"]; ?> | Mis Cursos</title>
  
     <!-- CSS de Bootstrap -->
     <link href="../../css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -147,12 +149,12 @@ require("../../conection/conexion.php");
  </div>
 
     <div  class="col-md-12 cajaDescripcion" style="margin-top: -220px;" >
-              <h3 class="text-center">MIS INTENTOS SEGÚN PISA</h3><br>
+              <h3 class="text-center">MIS INTENTOS</h3><br>
                <table class="table table-hover" >
                     <thead>
                       <tr>
                         <th style="text-align: center;">Intento</th>
-                        <th style="text-align: center;">Nivel Obtenido</th>
+                        <th style="text-align: center;">Nota Obtenida</th>
                         <th style="text-align: center;">Fecha Registro</th>
                         <th style="text-align: center;">Ver Detalles</th>
                       </tr>
@@ -170,7 +172,7 @@ require("../../conection/conexion.php");
                         ?>
                       <tr style="text-align: center;">      
                         <td><?php echo $i; ?></td>
-                        <td ><?php echo $row2['nivelObtenido']; ?></td>
+                        <td ><?php echo $row2['totalObtenido']; ?></td>
                         <td><?php echo $row2['fechaRegistro']." ".$row2['horaRegistro']; ?></td>
                         <td><a href="resultado.php?intentoABuscar=<?php echo $row2['idRegistro'];?>&idLectura=<?php echo $row2['idLectura']; ?>&idUsuario=<?php echo $_SESSION['idUsuario'];?>&intento=<?php echo $i; ?>" class="btn botonAgg-1" style="color: white; background-color: #2ecc71;">Ver</a></td>   
                       </tr>

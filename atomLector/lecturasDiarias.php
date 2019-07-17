@@ -430,7 +430,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
                   $edad=$row2['edadLectura'];
                   $portada='../'.$row2['rutaLectura'].'/1.png';
                   $linkEbook='p1/mostrarLect1.php?idLectura='.$row2['idLectura'].'&gradoB='.$gradoBuscar;
-                  if($hayPalabras>=1 and $hayTextoPublicado>=1){
+                  if(@$hayPalabras>=1 and @$hayTextoPublicado>=1){
                     $completo='leido1.png';
 
                   }else{

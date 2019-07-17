@@ -29,7 +29,6 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
 
     }
    
-      
       //obtenemos todos los datos  
      $sq2 = ("SELECT  * from registropruebacomprension as registro join atomolector as lectura on  registro.idLectura=lectura.idLectura join cuestionario as cues on cues.idLectura =registro.idLectura join itemopcionmultiple as preguntas on preguntas.idCuestionario=cues.idCuestionario where registro.idRegistro=:idRegistro");
       $obtenerItems = $dbConn->prepare($sq2);
@@ -175,7 +174,7 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
 
          <div class="col-md-12" style="margin-top: 60px;">
               <h3 class="text-center">Resultado Prueba </h3><br>
-              <a href="../comprensionLectora.php?gradoB=<?php echo $_SESSION['gradoEnviar']; ?>" class="btn botonAgg-1" style="color: white; background-color: #3498db;">Mis Lecturas</a>
+              <a href="../inicialComprension.php?gradoB=<?php echo $_SESSION['gradoEnviar']; ?>" class="btn botonAgg-1" style="color: white; background-color: #3498db;">Mis Lecturas</a>
              
 
               <div class="col-md-12 cajaDescripcion" style="min-height:200px; margin-top: 20px;">
@@ -183,14 +182,13 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
                        $_SESSION['gradoEnviar']=$row4['grado'];
                        
 
-                    $_SESSION['nivelObtenido']=$row4['nivelObtenido'];
+                    $_SESSION['totalObtenido']=$row4['totalObtenido'];
                  ?>
                 <h4>Datos de Lectura</h4>
                 <h4 class="textCajaDetalle">Lectura: <span><?php echo $row4['nombreLectura']; ?></span></h4>
                 <h4 class="textCajaDetalle">Intento: <span><?php echo  $_GET['intento']; ?></span></h4>
                 <h4 class="textCajaDetalle">Alumno: <span><?php echo $_SESSION['nombre']." ".$_SESSION['apellido']; ?></span></h4>
-                <h4 class="textCajaDetalle">Tiempo En la Prueba: <span>Pendiente</span></h4>
-                <h4 class="textCajaDetalle">Fecha de Registro: <span><?php echo $row4['fechaRegistro']; ?></span></h4>
+               <h4 class="textCajaDetalle">Fecha de Registro: <span><?php echo $row4['fechaRegistro']; ?></span></h4>
                 <h4 class="textCajaDetalle">Hora Registro: <span><?php echo $row4['horaRegistro']; ?></span></h4>
 
               </div>
@@ -199,10 +197,10 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
 
          <div class="col-md-4 cajaDescripcion" style="min-height: 200px; margin-top: 30px; margin-left: 35%; background:-webkit-gradient(radial, 220 0, 0, 165 173, 468, from(#8E4D61), to(#05455E));
  border-radius: 5px; color:white; margin-bottom: 50px;">
-          <h4>Nivel Obtenido-Escala Pisa</h4>
+          <h4>Nota Prueba Comprensión</h4>
 
           <div class="col-md-12 botonAgg-1" style="margin-left:23%; height: 150px; width: 150px; border-radius: 100%; background-color: #2ecc71; padding-top: 15px;">
-            <h1 style="font-size: 48pt;"><?php echo $_SESSION['nivelObtenido']; ?></h1>
+            <h1 style="font-size: 48pt;"><?php echo $_SESSION['totalObtenido']; ?></h1>
           </div>           
          </div> 
          
@@ -220,7 +218,7 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
                   <th scope="col">Objetivo del Item</th>
                   <th scope="col">Creditos Item</th>
                   <th scope="col">Tus Creditos</th>
-                  <th scope="col">Nivel Item</th>
+                  <th scope="col">Satisfactorio</th>
                 </tr>
               </thead>
               <tbody>
@@ -241,9 +239,9 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
                    <th scope="row">
 
                     <?php if($row3['rPregunta'.$i]==$row3['respuestaCorrecta']){  ?>
-                    <div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><?php echo $row3['nivel']; ?>
+                    <div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><?php echo 'Si' ?>
                     <?php }else{ ?>
-                       <div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #e74c3c; margin-top:0px; margin-left:0px;" ><?php echo $row3['nivel']; ?>
+                       <div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #e74c3c; margin-top:0px; margin-left:0px;" ><?php echo 'No' ?>
                      <?php  } ?>
                      </th>
                 </tr>
@@ -288,7 +286,7 @@ Highcharts.chart('container', {
         }
     },
     title: {
-        text: 'Grafico de Capacidades Pisa- Creditos según items'
+        text: 'Grafico Comprensión'
     },
     subtitle: {
         text: 'Capacidades Lectoras'

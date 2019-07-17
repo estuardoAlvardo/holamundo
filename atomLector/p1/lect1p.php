@@ -58,9 +58,7 @@ require("../../conection/conexion.php");
       
  //OBTENEMOS INTENTOS SEGUN CNB  
 
-
-
-      $q3 = ("SELECT * FROM registropruebacomprension as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario and registro.nivelObtenido='' or registro.nivelObtenido IS NULL");
+     $q3 = ("SELECT * FROM registropruebacomprension as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario and registro.nivelObtenido='' ");
       $buscarIntentosCnb=$dbConn->prepare($q3);
       $buscarIntentosCnb->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
       $buscarIntentosCnb->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);  
@@ -232,7 +230,7 @@ require("../../conection/conexion.php");
                   </table>
          </div>
 
-         <div  class="col-md-12 cajaDescripcion" style="margin-top: 20px;" >
+         <div  class="col-md-12 cajaDescripcion" style="margin-top: 20px; margin-bottom: 50px;" >
               <h3 class="text-center">MIS INTENTOS SEGÚN CNB</h3><br>
                <table class="table table-hover" >
                     <thead>

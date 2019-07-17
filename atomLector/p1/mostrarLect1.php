@@ -92,7 +92,17 @@ require("../../conection/conexion.php");
 
  <h4>Actividades</h4>
   <div style="margin-top: 30px;">
- <a href="lecturaDiariaJuego.php?idLectura=<?php echo $_SESSION['gradoEnviar']; ?>" class="btn btn-default botonAgg-1" style="background-color: #e67e22; border:1px solid #e67e22; color:white; ">Juego</a>
+ <a href="lecturaDiariaJuego.php?idLectura=<?php echo $_SESSION['gradoEnviar']; ?>" class="btn btn-default botonAgg-1" style="background-color: #e67e22; border:1px solid #e67e22; color:white; ">Juego</a><br><br>
+
+ <?php if($_GET['gradoB']>=13 and $_GET['gradoB']<=15){
+  $_SESSION['audio']=$row1['audio'];
+  ?>
+  <h4>Audio</h4>
+  <p id="audioText" style="display: none;"><?php echo $_SESSION['audio']; ?></p>
+ <a onclick="reproducirAud();" class="btn btn-default botonAgg-1" style="background-color: #e67e22; border:1px solid #e67e22; color:white; ">Audio</a>
+
+
+<?php } ?>
   
 
  <?php if($_GET['gradoB']>=1 and $_GET['gradoB']<=4){ ?> 
@@ -167,12 +177,24 @@ alert(tiempo);
   
     };
 
+   function  reproducirAud(){
+     startArtyom();
+        var audio=$('#audioText').text();
+        artyom.say('Veo que te gustan los cuentos, prepárate que voy a contar un cuento.'+audio);
+        finAsistente();        
+    }
+
     function informacion(){
             startArtyom();
             artyom.say("Veo que tienes dudas al momento de leer tus resultados. Estoy para servirte yo te explicare. En la primer caja llamada Datos de Lectura encontraras tus datos, la fecha y la hora en la que realizaste la prueba, en el recuadro que tiene por nombre, Nivel obtenido en la escala Pisa, está tú resultado total, esté es el nivel que alcanzaste, si quieres saber que destrezas posees dale clic.Por favor baja un poco hasta ver El enunciado Detalle de resultado. Este es el detalle de la prueba que realizaste, se detalla cada pregunta y no solo eso, también detalla si obtuviste los créditos estarán de color verde si los obtuviste y de color rojo si no lo obtuviste, aquí no se manejan puntos son créditos que obtienes según tú nivel. Te pediré de favor que bajes con el maus, Si bajas hasta encontrar los gráficos este detallara que capacidades lograste de una manera mas visual. Espero halla resuelto tus dudas.");
             finAsistente();
 
           }
+
+          function audioRep(){
+            artyom.say('Había una vez un príncipe que quería casarse con una princesa. pero con una  verdadera princesa de sangre real. Recorrio el mundo buscan una pero no lo consiguio. porque a pesar de que  habían muchas princesas casaderas. no halló a ninguna que le pareciera auténtica Desolado. regresó a su reino. Una noche de tormenta el princtpe y su familia oyeron de pronto que aiguien. llamaba -Toc, toc. toc Temerosos ante el extraño que podía estar a la intemperie en una noche de tanta lluvia. abrieron la puerta del castillo. Frente a ellos. vieron una muchacha muerta de frio y empapada de la cabeza a los pies -Soy una princesa contestó con voz dulce quejumbrosa. Me he perdido en la oscuridad y no tengo o donde ir está noche. Lo Joven que decía ser princesa fue bien recibida en el  palacio donde le proporcionaron ropa secas y uno suculenta cena.  Pero la reimo no se fiaba de que fuera una auténtica  princesa y se dijo: Solo hay una forma de averiguarlo Colocoré un guisante debajo del colchón de la coma donde va a dormir está nocne. Si no se da cuenta es que no es una sencible  y delicada princesa de verdad. A la mañana siguiente  la Familia real preguntó a la Joven: ¿Qué tal has dormido? Pues para serles smcem he dormido muy mal contestó algo terriblemente duro y molesto no me dejó dormir he amanecido con el cuerpo dolorido. Alborozado. la remo exclamó: -¡Ciertamente eres una princesa autentica... Sólo una princesa de verdad podría tener la delicadeza suficiente como para sentir un minúscuto guisante debajo del colchón. Y así fue cómo el príndpe encontró una maravilloosa princesa con la que casarse y ser feliz.')
+
+          };
 
 
         function finAsistente(){
