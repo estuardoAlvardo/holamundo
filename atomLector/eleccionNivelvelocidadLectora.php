@@ -243,7 +243,7 @@ padding-top: -30px;
                
 
 <div class="col-md-11" style="margin-bottom: 100px;"><br><br>
-  <h3 class="text-left" style="">¿Que grado quieres Observar?</h3><hr>
+  <h3 class="text-left" style="">¿Qué grado quieres Observar?</h3><hr>
   <div class="col-md-12 cajaGrado" style="min-height: 200px;">
      
     <p>Primaria</p>
@@ -330,9 +330,9 @@ padding-top: -30px;
 
                     <div class="row" style="display: none;" id="siAprendi">
                     <div class="col-md-4"></div>
-                    <button class="col-md-2 btn btn-success" onclick="siAprendi();">Si Aprendi</button>
+                    <button class="col-md-2 btn btn-success" onclick="siAprendi();">Si Aprendí</button>
                     <div class="col-md-1"></div>
-                    <button class="col-md-2 btn btn-danger" onclick="noAprendi();">No Aprendi</button>
+                    <button class="col-md-2 btn btn-danger" onclick="noAprendi();">No Aprendí</button>
                      <div class="col-md-3"></div>
                     </div>
                     </div>     

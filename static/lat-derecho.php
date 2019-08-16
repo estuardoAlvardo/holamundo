@@ -252,8 +252,8 @@ if($_SESSION['tipoUsuario']==1){
               
               <div class="col-md-12" style = "width:100%;">
                 <div class="alert alert-default botonAgg card1100" style="width: 100%;  background-color: #f1c40f;">
-          <h4>Circular Direccion</h4>
-          <div>este es un mensaje enviar por dirección</div>
+          <h4>Circular Dirección</h4>
+          <div>Este es un mensaje enviar por dirección</div>
 
                 </div>
               </div>        
@@ -265,7 +265,7 @@ if($_SESSION['tipoUsuario']==1){
               <div class="col-md-12"  style = "width:100%">
                 <div class="alert alert-default botonAgg card1100" style=" background-color:#e67e22;">
                 <h4>Circular Docente</h4>
-                <p>este es un mensaje enviar por dirección</p>
+                <p>Este es un mensaje enviar por dirección</p>
 
                 </div>
               </div>        
@@ -277,7 +277,7 @@ if($_SESSION['tipoUsuario']==1){
               <div class="col-md-12"  style = "width:100%">
                 <div class="alert alert-default botonAgg card1100" style=" background-color:#d35400;">
           <h4>Circular para Padres</h4>
-                <p> es un mensaje enviar por direccióneste es un mensaje enviar por dirección</p>
+                <p> Es un mensaje enviar por dirección Este es un mensaje enviar por dirección.</p>
 
                 </div>
               </div>      
@@ -375,8 +375,8 @@ if($_SESSION['tipoUsuario']==1){
               
               <div class="col-md-12" style = "width:100%;">
                 <div class="alert alert-default botonAgg card1100" style="width: 100%;  background-color: #f1c40f;">
-          <h4>Circular Direccion</h4>
-          <div>este es un mensaje enviar por dirección</div>
+          <h4>Circular Dirección</h4>
+          <div>Este es un mensaje enviar por dirección</div>
 
                 </div>
               </div>        
@@ -388,7 +388,7 @@ if($_SESSION['tipoUsuario']==1){
               <div class="col-md-12"  style = "width:100%">
                 <div class="alert alert-default botonAgg card1100" style=" background-color:#e67e22;">
                 <h4>Circular Docente</h4>
-                <p>este es un mensaje enviar por dirección</p>
+                <p>Este es un mensaje enviar por dirección</p>
 
                 </div>
               </div>        
@@ -400,7 +400,7 @@ if($_SESSION['tipoUsuario']==1){
               <div class="col-md-12"  style = "width:100%">
                 <div class="alert alert-default botonAgg card1100" style=" background-color:#d35400;">
           <h4>Circular para Padres</h4>
-                <p> es un mensaje enviar por direccióneste es un mensaje enviar por dirección</p>
+                <p> Es un mensaje enviar por direcciónEste es un mensaje enviar por dirección</p>
 
                 </div>
               </div>      
@@ -490,8 +490,8 @@ if($_SESSION['tipoUsuario']==1){
               
               <div class="col-md-12" style = "width:100%;">
                 <div class="alert alert-default botonAgg card1100" style="width: 100%;  background-color: #f1c40f;">
-          <h4>Circular Direccion</h4>
-          <div>este es un mensaje enviar por dirección</div>
+          <h4>Circular Dirección</h4>
+          <div>Este es un mensaje enviar por dirección</div>
 
                 </div>
               </div>        
@@ -503,7 +503,7 @@ if($_SESSION['tipoUsuario']==1){
               <div class="col-md-12"  style = "width:100%">
                 <div class="alert alert-default botonAgg card1100" style=" background-color:#e67e22;">
                 <h4>Circular Docente</h4>
-                <p>este es un mensaje enviar por dirección</p>
+                <p>Este es un mensaje enviar por dirección</p>
 
                 </div>
               </div>        
@@ -515,7 +515,7 @@ if($_SESSION['tipoUsuario']==1){
               <div class="col-md-12"  style = "width:100%">
                 <div class="alert alert-default botonAgg card1100" style=" background-color:#d35400;">
           <h4>Circular para Padres</h4>
-                <p> es un mensaje enviar por direccióneste es un mensaje enviar por dirección</p>
+                <p>Es un mensaje enviar por direcciónEste es un mensaje enviar por dirección</p>
 
                 </div>
               </div>      
@@ -613,8 +613,8 @@ if($_SESSION['tipoUsuario']==1){
               
               <div class="col-md-12" style = "width:100%;">
                 <div class="alert alert-default botonAgg card1100" style="width: 100%;  background-color: #f1c40f;">
-          <h4>Circular Direccion</h4>
-          <div>este es un mensaje enviar por dirección</div>
+          <h4>Circular Dirección</h4>
+          <div>Este es un mensaje enviar por dirección</div>
 
                 </div>
               </div>        
@@ -626,7 +626,7 @@ if($_SESSION['tipoUsuario']==1){
               <div class="col-md-12"  style = "width:100%">
                 <div class="alert alert-default botonAgg card1100" style=" background-color:#e67e22;">
                 <h4>Circular Docente</h4>
-                <p>este es un mensaje enviar por dirección</p>
+                <p>Este es un mensaje enviar por dirección</p>
 
                 </div>
               </div>        
@@ -638,7 +638,7 @@ if($_SESSION['tipoUsuario']==1){
               <div class="col-md-12"  style = "width:100%">
                 <div class="alert alert-default botonAgg card1100" style=" background-color:#d35400;">
           <h4>Circular para Padres</h4>
-                <p> es un mensaje enviar por direccióneste es un mensaje enviar por dirección</p>
+                <p>Es un mensaje enviar por direcciónEste es un mensaje enviar por dirección</p>
 
                 </div>
               </div>      
@@ -730,8 +730,8 @@ if($_SESSION['tipoUsuario']==1){
               
               <div class="col-md-12" style = "width:100%;">
                 <div class="alert alert-default botonAgg card1100" style="width: 100%;  background-color: #f1c40f;">
-          <h4>Circular Direccion</h4>
-          <div>este es un mensaje enviar por dirección</div>
+          <h4>Circular Dirección</h4>
+          <div>Este es un mensaje enviar por dirección</div>
 
                 </div>
               </div>        
@@ -743,7 +743,7 @@ if($_SESSION['tipoUsuario']==1){
               <div class="col-md-12"  style = "width:100%">
                 <div class="alert alert-default botonAgg card1100" style=" background-color:#e67e22;">
                 <h4>Circular Docente</h4>
-                <p>este es un mensaje enviar por dirección</p>
+                <p>Este es un mensaje enviar por dirección</p>
 
                 </div>
               </div>        
@@ -755,7 +755,7 @@ if($_SESSION['tipoUsuario']==1){
               <div class="col-md-12"  style = "width:100%">
                 <div class="alert alert-default botonAgg card1100" style=" background-color:#d35400;">
           <h4>Circular para Padres</h4>
-                <p> es un mensaje enviar por direccióneste es un mensaje enviar por dirección</p>
+                <p>Es un mensaje enviar por direcciónEste es un mensaje enviar por dirección</p>
 
                 </div>
               </div>      

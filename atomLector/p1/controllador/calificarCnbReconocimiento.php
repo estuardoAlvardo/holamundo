@@ -26,7 +26,6 @@ $verIntentos = $dbConn->prepare($sql2);
 $verIntentos->bindParam(':idLectura',$_POST['idLecturaEnviado'], PDO::PARAM_INT);
 $verIntentos->execute(); 
 $hayIntentos=$verIntentos->rowCount();
-
 $hayIntentos+=1;
 
 

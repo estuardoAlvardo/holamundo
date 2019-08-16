@@ -56,17 +56,52 @@ require("../../conection/conexion.php");
       $buscarIntentosPisa->execute();
       $hayIntentos1=$buscarIntentosPisa->rowCount();
       
- //OBTENEMOS INTENTOS SEGUN CNB  
 
-     $q3 = ("SELECT * FROM registropruebacomprension as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario and registro.nivelObtenido='' ");
+ //OBTENEMOS INTENTOS SEGUN CNB  
+if($_GET['gradoB']==3){
+ $q3 = ("SELECT * FROM registropruebacomprension3p as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario ");
       $buscarIntentosCnb=$dbConn->prepare($q3);
       $buscarIntentosCnb->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
       $buscarIntentosCnb->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);  
       $buscarIntentosCnb->bindParam(':idCuestionario',$_SESSION['idCnb'], PDO::PARAM_STR); 
       $buscarIntentosCnb->execute();
       $hayIntentos2=$buscarIntentosCnb->rowCount();
+      $urlresultado='resultadoCnb3p.php';
+}
 
+if($_GET['gradoB']==4){
+   $q3 = ("SELECT * FROM registropruebacomprension4p as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario ");
+      $buscarIntentosCnb=$dbConn->prepare($q3);
+      $buscarIntentosCnb->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
+      $buscarIntentosCnb->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);  
+      $buscarIntentosCnb->bindParam(':idCuestionario',$_SESSION['idCnb'], PDO::PARAM_STR); 
+      $buscarIntentosCnb->execute();
+      $hayIntentos2=$buscarIntentosCnb->rowCount();
+      $urlresultado='resultadoCnb4p.php';
 
+}
+if($_GET['gradoB']==5){
+   $q3 = ("SELECT * FROM registropruebacomprension5p as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario ");
+      $buscarIntentosCnb=$dbConn->prepare($q3);
+      $buscarIntentosCnb->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
+      $buscarIntentosCnb->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);  
+      $buscarIntentosCnb->bindParam(':idCuestionario',$_SESSION['idCnb'], PDO::PARAM_STR); 
+      $buscarIntentosCnb->execute();
+      $hayIntentos2=$buscarIntentosCnb->rowCount();
+      $urlresultado='resultadoCnb5p.php';
+
+}else{
+
+     $q3 = ("SELECT * FROM registropruebacomprension as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario and registro.nivelObtenido IS NULL ");
+      $buscarIntentosCnb=$dbConn->prepare($q3);
+      $buscarIntentosCnb->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
+      $buscarIntentosCnb->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);  
+      $buscarIntentosCnb->bindParam(':idCuestionario',$_SESSION['idCnb'], PDO::PARAM_STR); 
+      $buscarIntentosCnb->execute();
+      $hayIntentos2=$buscarIntentosCnb->rowCount();
+       $urlresultado='resultadoCnb.php';
+
+}
   //validamos si hay intentos en caso de que no halla mandamos incrementamos 1 
       
 
@@ -168,7 +203,7 @@ require("../../conection/conexion.php");
               <hr>
               <h4>Actividades Lectoras</h4>              
               <a href="pisa1p.php?noLectura=<?php echo $row1['idLectura']; ?>&intento=<?php echo $hayIntentos1; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#3498db; ">Prueba Comprensión - Segun Pisa</a>
-              <a href="<?php echo $rutaCnb;?>?noLectura=<?php echo $row1['idLectura']; ?>&intento=<?php echo $hayIntentos2; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#27ae60; ">Prueba Comprensión - Segun CNB</a>             
+              <a href="<?php echo $rutaCnb;?>?noLectura=<?php echo $row1['idLectura']; ?>&intento=<?php echo $hayIntentos2; ?>&gradoB=<?php echo $_GET['gradoB']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#27ae60; ">Prueba Comprensión - Segun CNB</a>             
               <a href="glosario.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#ff4757; ">Mi vocabulario</a>
                <a href="cuentame.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#e67e22; ">Con tus palabras</a>
               <a href="personajes.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#f1c40f; margin-top: 10px; ">Identificar Personaje</a>
@@ -256,7 +291,7 @@ require("../../conection/conexion.php");
                         <td><?php echo $e; ?></td>
                         <td><?php echo $row3['totalObtenido']; ?></td>
                         <td><?php echo $row3['fechaRegistro']." ".$row3['horaRegistro']; ?></td>
-                        <td><a href="resultadoCnb.php?intentoABuscar=<?php echo $row3['idRegistro'];?>&idLectura=<?php echo $row3['idLectura']; ?>&idUsuario=<?php echo $_SESSION['idUsuario'];?>&intento=<?php echo $e; ?>" class="btn botonAgg-1" style="color: white; background-color: #2ecc71;">Ver</a></td>   
+                        <td><a href="<?php echo $urlresultado; ?>?intentoABuscar=<?php echo $row3['idRegistro'];?>&idLectura=<?php echo $row3['idLectura']; ?>&idUsuario=<?php echo $_SESSION['idUsuario'];?>&intento=<?php echo $e; ?>" class="btn botonAgg-1" style="color: white; background-color: #2ecc71;">Ver</a></td>   
                       </tr>
                     <?php    } }  ?>
                     </tbody>

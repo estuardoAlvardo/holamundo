@@ -471,7 +471,7 @@ $obj2['fluidez']."<br>";
     },
     {
         data: [parseInt(similitudFonetica)],
-        name: 'Similitud a nivel fonetico',
+        name: 'Similitud a nivel fonético',
         showInLegend: true
     }
 

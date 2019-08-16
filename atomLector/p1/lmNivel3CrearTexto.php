@@ -6,7 +6,7 @@ require("../../conection/conexion.php");
   $cnb='cnb';
 
 
-      $q1 = ("SELECT * FROM emNivel4Paso0 where idLectura=:idLectura and idUsuario=:idUsuario");
+      $q1 = ("SELECT * FROM emnivel4paso0 where idLectura=:idLectura and idUsuario=:idUsuario");
       $mostrarDatosPaso0=$dbConn->prepare($q1);
       $mostrarDatosPaso0->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
       $mostrarDatosPaso0->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);  
@@ -15,7 +15,7 @@ require("../../conection/conexion.php");
 
 
 
-      $q2 = ("SELECT * FROM emNivel4Paso1 where idLectura=:idLectura and idUsuario=:idUsuario");
+      $q2 = ("SELECT * FROM emnivel4Paso1 where idLectura=:idLectura and idUsuario=:idUsuario");
       $mostrarDatosPaso2=$dbConn->prepare($q2);
       $mostrarDatosPaso2->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
       $mostrarDatosPaso2->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);  
@@ -26,14 +26,14 @@ require("../../conection/conexion.php");
       $_SESSION['gradoEnviar']=$_GET['idLectura'];
 
       //REVISION consultamos datos para mostrar la revision
-      $q3 = ("SELECT * FROM emNivel4Paso0 where idLectura=:idLectura and idUsuario=:idUsuario");
+      $q3 = ("SELECT * FROM emnivel4Paso0 where idLectura=:idLectura and idUsuario=:idUsuario");
       $mostrarPaso3_1=$dbConn->prepare($q3);
       $mostrarPaso3_1->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
       $mostrarPaso3_1->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);  
       $mostrarPaso3_1->execute();
       $paso3_1=$mostrarPaso3_1->rowCount();  
 
-      $q4 = ("SELECT * FROM emNivel4Paso1 where idLectura=:idLectura and idUsuario=:idUsuario");
+      $q4 = ("SELECT * FROM emnivel4Paso1 where idLectura=:idLectura and idUsuario=:idUsuario");
       $mostrarDatosPaso3_2=$dbConn->prepare($q2);
       $mostrarDatosPaso3_2->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
       $mostrarDatosPaso3_2->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);  
@@ -51,7 +51,7 @@ require("../../conection/conexion.php");
 
       //consultamos todos los parrafos antiguos y modificados para que elija y publique el texto
       //--antiguos
-      $q5 = ("SELECT * FROM emNivel4Paso1 where idLectura=:idLectura and idUsuario=:idUsuario");
+      $q5 = ("SELECT * FROM emnivel4Paso1 where idLectura=:idLectura and idUsuario=:idUsuario");
       $parrafosAntiguos=$dbConn->prepare($q5);
       $parrafosAntiguos->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
       $parrafosAntiguos->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);  
@@ -466,11 +466,11 @@ position: relative;
                        </div>
 
                       <div class="text" style="text-align: left;">
-                        <h3>Para redactar cualquier tipo de texto necesitas desarrollar las habilidades del pensamiento como analisis, síntesis, deducción, inducción, lingüistica entre otras, te apoyaremos dividiendo la escritura en 4 pasos fundamentales:</h3>
+                        <h3>Para redactar cualquier tipo de texto necesitas desarrollar las habilidades del pensamiento como análisis, síntesis, deducción, inducción, lingüística entre otras, te apoyaremos dividiendo la escritura en 4 pasos fundamentales:</h3>
                         <h3>1. Planeación.</h3>
                         <h3>2. Redacción.</h3>
                         <h3>3. Revisión.</h3> 
-                        <h3>Completa todos los pasos y obtendras un texto bién redactado.</h3>
+                        <h3>Completa todos los pasos y obtendrás un texto bien redactado.</h3>
 
                         <div class="" style=" margin-left: 45%; height: 70px; width: 70px; border-radius: 100%; background-color: #3498db;"><img src="../../img/flechaAbajo.png" style="width: 50px; height: 50px; margin-left: 10px; margin-top: 7px; cursor: pointer; "></div>
                       </div>
@@ -487,14 +487,14 @@ position: relative;
 
                       <div class="text" style="text-align: left;">
                         <h3>Redacta los datos del texto que quieres crear. Recuerda que la idea principal depende del tema o Título.</h3><hr>
-                        <h3>En este paso lo que tienes que hacer es planificar,el tema, el titulo y el o los objetivos del texto a redactar.</h3>
+                        <h3>En este paso lo que tienes que hacer es planificar, el tema, el titulo y el o los objetivos del texto a redactar.</h3>
                         
                         <div >
                           <h4 style="text-align: center;">Ayuda</h4>
                           <div class="row">
                             <button  class="btn btn-default botonAgg-1" style="margin-left: 100px; color: white; background-color:#e67e22 ; border:1px solid #e67e22; " onclick="tematica();">¿Qué es Temática?</button>
                           <button class="btn btn-default botonAgg-1" style="color: white; background-color:#1abc9c ; border:1px solid #1abc9c; " onclick="titulo();">¿Para que un título?</button>
-                          <button class="btn btn-default botonAgg-1" onclick="parrafo();" style="color: white; background-color:#2980b9 ; border:1px solid #2980b9; ">¿Cómo se cuantos parrafos tengo que crear?</button>
+                          <button class="btn btn-default botonAgg-1" onclick="parrafo();" style="color: white; background-color:#2980b9 ; border:1px solid #2980b9; ">¿Cómo se cuántos párrafos tengo que crear?</button>
                           </div>
                         </div>
                         <hr>
@@ -517,7 +517,7 @@ position: relative;
 
                           <div class="input-container3" style="margin-top: 35px;">
                               <input style="height: 35px; background-size;" id="name3" class="input3" type="number" pattern=".+" name="cantidadP" required />
-                              <label class="label3" for="name3" style="color:black; text-align: left; background-color:#ffffff;">Cantidad Parrafos</label>
+                              <label class="label3" for="name3" style="color:black; text-align: left; background-color:#ffffff;">Cantidad Párrafos</label>
                           </div>
                           <input style="display: none;" type="text" name="idLectura" value="<?php echo $_GET['idLectura']; ?>">
                           <input style="display: none;"  type="text" name="idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>"><br>
@@ -583,21 +583,21 @@ position: relative;
                       </div>
 
                       <div class="text" style="text-align: left;">
-                        <h3>Redacta un parrafo a la vez hasta completar los parrafos que indicaste en el paso anteior, recuerda el o los objetivos que planteaste.
+                        <h3>Redacta un párrafo a la vez hasta completar los párrafos que indicaste en el paso anterior, recuerda el o los objetivos que planteaste.
                           </h3><hr>
                         <div >
-                          <h4 style="text-align: center;">Redacción Parrafo</h4>
+                          <h4 style="text-align: center;">Redacción Párrafo</h4>
                         </div>
                         <hr>                       
 
                           <?php
-                            if($paso2!=$_SESSION['parrafos']){ ?>
+                            if($paso2!=@$_SESSION['parrafos']){ ?>
                       <form method="post" action="controllador/emNivel3paso1.php">
                         <div class="input-container" style="margin-top: 35px;">
                             <textarea style="height: 205px; border:2px solid #3498db; background-size;" id="name7" class="input7" type="text" pattern=".+" name="parrafo" required /></textarea>
-                              <label class="label7" for="name7" style="color:black; text-align: left; background-color:#ffffff;">Parrafo <?php echo $paso2; ?></label>
+                              <label class="label7" for="name7" style="color:black; text-align: left; background-color:#ffffff;">Párrafo <?php echo $paso2; ?></label>
                           </div>
-                        <input class="btn btn-default botonAgg-1 col-md-12" style=" color:white; border:1px solid #2ecc71; font-size: 17pt; background-color: #2ecc71; height: 50px;"   type="submit" value="Enviar Parrafo">
+                        <input class="btn btn-default botonAgg-1 col-md-12" style=" color:white; border:1px solid #2ecc71; font-size: 17pt; background-color: #2ecc71; height: 50px;"   type="submit" value="Enviar Párrafo">
 
                           <input style="display:none;" type="type" name="idLectura" value="<?php echo $_GET['idLectura']; ?>">
                           <input  style="display:none;" type="type" name="idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>">
@@ -607,16 +607,16 @@ position: relative;
                         
 
                      
-                        <div class="card-style" style=" margin-top:70px; margin-left: 72%; height: 40px; width: 200px; border-radius: 5%; background-color: #9b59b6; color: white;"><h4 style="margin-left: 5px; ">Pendientes <?php $pendiente=$_SESSION['parrafos']-$paso2; echo $pendiente;?>  parrafos por crear </h4></div>
+                        <div class="card-style" style=" margin-top:70px; margin-left: 72%; height: 40px; width: 200px; border-radius: 5%; background-color: #9b59b6; color: white;"><h4 style="margin-left: 5px; ">Pendientes <?php $pendiente=$_SESSION['parrafos']-$paso2; echo $pendiente;?> párrafos por crear </h4></div>
                         
                           <img src="../enviado1.png" style="width:60px; height: 60px; position: absolute; margin-left:85%; margin-top: 40px;">
                          <?php }else if(@$pendiente==0){ ?>
 
                                <div class="input-container" style="margin-top: 35px;">
                             <textarea style="height: 205px; border:2px solid #3498db; background-size;" id="name7" class="input7" type="text" pattern=".+" name="parrafo" disabled /></textarea>
-                              <label class="label7" for="name7" style="color:black; text-align: left; background-color:#ffffff;">Parrafo <?php echo $paso2; ?></label>
+                              <label class="label7" for="name7" style="color:black; text-align: left; background-color:#ffffff;">Párrafo <?php echo $paso2; ?></label>
                         </div>
-                        <input class="btn btn-default botonAgg-1 col-md-12" style=" color:white; border:1px solid #95a5a6; font-size: 17pt; background-color: #95a5a6; height: 50px;"   type="submit" value="Se enviaron los Parrafos" disabled>
+                        <input class="btn btn-default botonAgg-1 col-md-12" style=" color:white; border:1px solid #95a5a6; font-size: 17pt; background-color: #95a5a6; height: 50px;"   type="submit" value="Se enviaron los Párrafos" disabled>
 
                           <input style="display:none;" type="type" name="idTexto" value="<?php echo $_SESSION['idTexto']; ?>">
                            <input style="display:none;" type="type" name="idLectura" value="<?php echo $_GET['idLectura']; ?>">
@@ -639,11 +639,11 @@ position: relative;
                     <div class="card">
 
                       <div class="image" style="background-image: url('../../img/flatWall1.png');">
-                        <h1 style="color: white; width: 300px; background-color: #9b59b6; text-align: left; padding:5px; border-radius: 0 10px 10px 0;">PASO 3: Revición</h1>
+                        <h1 style="color: white; width: 300px; background-color: #9b59b6; text-align: left; padding:5px; border-radius: 0 10px 10px 0;">PASO 3: Revisión</h1>
                       </div>
 
                       <div class="text" style="text-align: left;">
-                        <h3>Auto Evalua tu texto y realiza por lo menos una modificación, para que tus lectores puedan comprender mejor tú texto. Una vez hallas terminado podras publicar tú trabajo.</h3><hr>
+                        <h3>Auto evalúa tu texto y realiza por lo menos una modificación, para que tus lectores puedan comprender mejor tú texto. Una vez hallas terminado podrás publicar tú trabajo.</h3><hr>
                         <div >
                           <h4 style="text-align: center;">Borrador</h4>
                           <div class="row">
@@ -661,8 +661,8 @@ position: relative;
 
                             <?php if($paso3_2<1 or $paso3_2==0){ ?>     
                             <div style="padding:10px; background-image: linear-gradient(45deg, #874da2 0%, #c43a30 100%); color: white; border-radius:5px;">
-                              <h4 class="botonAgg-1 col-md-2" style="background-color: #3498db; color: white;">0 Parrafos</h4><br><br>
-                              <h4 style="">No hay Parrafo..
+                              <h4 class="botonAgg-1 col-md-2" style="background-color: #3498db; color: white;">0 Párrafos</h4><br><br>
+                              <h4 style="">No hay Párrafo...
                                 
                               </h4>
                             </div>
@@ -671,7 +671,7 @@ position: relative;
                                 @$f+=1;
                             ?>
                             <div  style="width:800px; padding:10px; background-image: linear-gradient(45deg, #874da2 0%, #c43a30 100%); color: white; border-radius:5px;">
-                              <h4 class="botonAgg-1 col-md-2" style="background-color: #3498db; color: white;"><?php echo 'Parrafo'.$f; ?></h4><br><br>
+                              <h4 class="botonAgg-1 col-md-2" style="background-color: #3498db; color: white;"><?php echo 'Párrafo'.$f; ?></h4><br><br>
                               <h4 style=""><?php echo $row3['parrafo']; ?><br>
                               <h5>Registro: <?php echo $row3['fecha'].$row3['hora']; ?></h5>
                                 <a class="btn btn-default botonAgg-1" id="<?php echo $row3['idParrafo'];?>" style="border:1px solid #2ecc71; background-color: #2ecc71; color:white; margin-top: 20px; margin-left: 90%;" onclick="modificar_Parrafor(this.id);">Editar</a>
@@ -690,11 +690,11 @@ position: relative;
                             <?php if($hayParrafosMod==0){ ?>
 
 
-                               <h3>Aun no hay Parrafos Modificados</h3>
+                               <h3>Aun no hay Párrafos Modificados</h3>
                             <?php }else{ ?>
 
 
-                            <h3>Parrafos Modificados</h3>
+                            <h3>Párrafos Modificados</h3>
                              <?php  while(@$row4=$mostrarParrafosMod->fetch(PDO::FETCH_ASSOC)){ 
                               @$g+=1;
                               ?>
@@ -718,7 +718,7 @@ position: relative;
 
                         <form action="controllador/emNivel3paso2.php" method="post"  >
                           <div class="input-container" style="margin-top: 35px;">
-                            <h4 class="botonAgg-1 col-md-3" style=" padding:4px; background-color: #9b59b6; color: white;">Aera de corrección</h4> 
+                            <h4 class="botonAgg-1 col-md-3" style=" padding:4px; background-color: #9b59b6; color: white;">Área de corrección</h4> 
 
                             <textarea style="height: 205px; border:2px solid #3498db; background-size;" id="parrafoMod_in" class="input7" type="text" pattern=".+" name="parraNew_save" required />                           
                             </textarea>
@@ -745,7 +745,7 @@ position: relative;
 
                       <div class="image"  style="background-image: url('../../img/flatWall1.png');">
                         <h1 style="color: white; width: 400px; background-color: #9b59b6; text-align: left; padding:5px; border-radius: 0 10px 10px 0;">
-<?php echo $_SESSION['tituloFin']; ?></h1>
+<?php echo @$_SESSION['tituloFin']; ?></h1>
  
                   </div>
  <style type="text/css">
@@ -825,7 +825,7 @@ input:checked + .slider:before {
                       <div class="text" style="text-align: left;">
                        <?php if($hayParrafosAntiguos>=1){
                         while(@$row7=$parrafosAntiguos->fetch(PDO::FETCH_ASSOC)){ ?>
-                        <h5>Parrafo Primer Borrador</h5> 
+                        <h5>Párrafo Primer Borrador</h5> 
                         <h3 id="<?php echo 'parrafo'.$row7['idParrafo']; ?>"><?php echo $row7['parrafo']; ?>
 
                          <ul class="list-group list-group-flush">
@@ -854,11 +854,11 @@ input:checked + .slider:before {
                         <br>
                       <?php }} else{ ?>
 
-                        <h3>No hay parrafos aun.</h3><br>
+                        <h3>No hay párrafos aun.</h3><br>
                       <?php } if($hayParrafosNuevosMod>=1){ 
                         while(@$row8=$parrafosNuevosMod->fetch(PDO::FETCH_ASSOC)){
                         ?>
-                        <h5>Parrafo Segundo Borrador</h5> 
+                        <h5>Párrafo Segundo Borrador</h5> 
                         <h3 id="<?php echo 'new'.$row8['idParrafo_mod']; ?>"><?php echo $row8['parrafo_mod']; ?>
                            <ul class="list-group list-group-flush">
                             
@@ -887,7 +887,7 @@ input:checked + .slider:before {
 
 
                              <div style="text-align: right;">
-                              <h5>Tematica: <?php echo $_SESSION['tematica']; ?> .</h5>
+                              <h5>Temática: <?php echo @$_SESSION['tematica']; ?> .</h5>
                               <h5>Autor: <?php echo  strtoupper($_SESSION['nombre'])." ".strtoupper($_SESSION['apellido']); ?>.</h5>
                               </div> 
 

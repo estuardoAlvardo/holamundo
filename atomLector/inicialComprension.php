@@ -138,21 +138,22 @@ echo '<br>';
               <h4 class="text-left">Cuenta Cuentos</h4><hr>
 
                 <div class="row">
-              <?php while(@$row1=$mostrarLectura->fetch(PDO::FETCH_ASSOC)){ ?>
+              <?php while(@$row1=$mostrarLectura->fetch(PDO::FETCH_ASSOC)){ 
+                @$i+=1;
+                ?>
                <a href="inicial1/lect1inicial.php?idLectura=<?php echo $row1['idLectura'];?>">
-                <div class="col-md-5 estiloProducto" style="min-height:150px; margin-bottom: 20px;">
+                <div class="col-md-5 estiloProducto" style="min-height:175px; margin-bottom: 20px;">
                 <div class="row" style="background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);">
 
-                  <div class="col-md-5" style=" min-height:150px; 
-                  background-image: url(<?php echo '../'.$row1['rutaLectura'].'/1.png'; ?>); background-size: 70%; background-repeat:no-repeat;">
-                                  
+                  <div class="col-md-5" style=" min-height:175px; 
+                  background-image: url(<?php echo '../'.$row1['rutaLectura'].'/1.png'; ?>); background-size: 75%; background-repeat:no-repeat;">                                  
                   </div>
                   <div class="col-md-7" style=" min-height: 150px; color: black;">
                     <h4 style=""><?php echo $row1['nombreLectura']; ?></h4>
                     <h5 style="text-align: left;"><?php echo "Tipo Lectura: ".$row1['tipoLectura']; ?></h5>
                     <h5 style="text-align: left;"><?php echo "Descripción: ".$row1['descripcion']; ?></h5>
                     <h5 style="text-align: left;"><?php echo "Edad: ".$row1['edadLectura']; ?></h5>
-
+                    <h4 style="text-align: left;"><span class="label label-primary" style="position:absolute;"><?php echo 'Semana '.$i; ?></span></h4>
                      <?php 
                        $q3 = ("SELECT idRegistro from registropruebacomprension where idLectura=:idLectura");
                          $buscarIntentos=$dbConn->prepare($q3);

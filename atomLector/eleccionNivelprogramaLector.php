@@ -239,7 +239,7 @@ padding-top: -30px;
 
 
 <div class="col-md-11" style="margin-bottom: 100px;"><br><br>
-  <h3 class="text-left" style="">¿Que grado quieres Observar?</h3><hr>
+  <h3 class="text-left" style="">¿Qué grado quieres Observar?</h3><hr>
   <div class="col-md-12 cajaGrado" style="min-height: 200px;">
      <p>Pre-Escolar</p>
       <div class="row" style="padding-left: 40px;">
@@ -297,11 +297,11 @@ padding-top: -30px;
                     <div class="row">
                       
                       <div class="col-md-2 cajaCards" onclick="pisa();" style="margin-left: 30px;">
-                        <p style="padding-top: 20px;">Test basaddos en el estandar Internacional Pisa</p>
+                        <p style="padding-top: 20px;">Test basados en el estándar Internacional PISA.</p>
                       </div>                                                      
                      <div class="col-md-1" ></div>
                      <div class="col-md-2 cajaCards" onclick="cnb();" style="">
-                      <p>Test basados en el estandar nacional CNB</p>
+                      <p>Test basados en el estándar nacional CNB.</p>
                       </div>                      
                       <div class="col-md-1"></div>
                       <div class="col-md-2 cajaCards" onclick="testPersonajes();" style="">
@@ -309,15 +309,15 @@ padding-top: -30px;
                       </div>
                        <div class="col-md-1"></div>
                       <div class="col-md-2 cajaCards" onclick="vocabulario();" style="">
-                      <p>Actividad para incrementar Vocabulario</p>
+                      <p>Actividad para incrementar Vocabulario.</p>
                       </div>
                       <div class="col-md-1"></div>
                       <div class="col-md-2 cajaCards" onclick="pensamientoCritico();" style="">
-                      <p>Actividad que permite el pensamiento critico</p>
+                      <p>Actividad que permite el pensamiento critico.</p>
                       </div>
                       <div class="col-md-1"></div>
                       <div class="col-md-2 cajaCards" onclick="jeanPeaget();" style="">
-                      <p>Teoría cognitiva del aprendizaje de Jean Piaget </p>
+                      <p>Teoría cognitiva del aprendizaje de Jean Piaget. </p>
                       </div>
 
                       <div class="col-md-1"></div>
@@ -336,9 +336,9 @@ padding-top: -30px;
 
                     <div class="row" style="display: none;" id="siAprendi">
                     <div class="col-md-4"></div>
-                    <button class="col-md-2 btn btn-success" onclick="siAprendi();">Si Aprendi</button>
+                    <button class="col-md-2 btn btn-success" onclick="siAprendi();">Si Aprendí</button>
                     <div class="col-md-1"></div>
-                    <button class="col-md-2 btn btn-danger" onclick="noAprendi();">No Aprendi</button>
+                    <button class="col-md-2 btn btn-danger" onclick="noAprendi();">No Aprendí</button>
                      <div class="col-md-3"></div>
                     </div>
                     </div>     

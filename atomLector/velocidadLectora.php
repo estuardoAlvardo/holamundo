@@ -137,16 +137,17 @@ require("../conection/conexion.php");
                   <div class="col-md-5" style=" min-height:150px; 
                   background-image: url(<?php echo '../'.$row2['rutaLectura'].'/'.$i.'.gif'; ?>); background-size: 70%; background-repeat:no-repeat; ">                                  
                   </div>
-                  <div class="col-md-7" style=" min-height: 150px; color: black;">
-                    <h4 ><?php echo '"'.$row2['nombreLectura'].'"' ?></h4>
-                    <h5 style="text-align: left;"><?php echo "Genero: ".$row2['genero']; ?></h5>
-                    <h5 style="text-align: left;"><?php echo "Descripción: ".$row2['descripcion']; ?></h5>
-                    <h5 style="text-align: left;"><?php echo "Edad".$row2['edadLectura']; ?></h5>
-                                       
+                  <div class="col-md-7" style=" min-height: 175px; color: black;">
+
+                    <h4><?php echo '"'.$row2['nombreLectura'].'"' ?></h4>
+                    <h5 style="text-align: left;"><?php echo "<strong>Genero:</strong> ".$row2['genero']; ?></h5>
+                    <h5 style="text-align: left;"><?php echo "<strong>Descripción:</strong> ".$row2['descripcion']; ?></h5>
+                    <h5 style="text-align: left;"><?php echo "<strong>Edad:</strong> ".$row2['edadLectura']; ?></h5>
+                    <h4 style="text-align: left;"><span class="label label-primary" style="position:absolute;"><?php echo 'Semana '.$i; ?></span></h4>                                  
                   
-                    <img id="<?php echo 'envi1'.$row2['idLectura']; ?>" src="enviado1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:23%;">
+                    <img id="<?php echo 'envi1'.$row2['idLectura']; ?>" src="enviado1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18px; margin-left:23%;">
                   
-                    <img src="leido1.png" id="<?php echo 'lei1'.$row2['idLectura']; ?>" style="display:none; width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:63%;">
+                    <img src="leido1.png" id="<?php echo 'lei1'.$row2['idLectura']; ?>" style="display:none; width: 40px; height: 40px; position:absolute; margin-top: -18px; margin-left:63%;">
 
                   </div>
 

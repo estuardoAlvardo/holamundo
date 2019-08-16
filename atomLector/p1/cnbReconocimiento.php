@@ -3,6 +3,8 @@ session_start();
 require("../../conection/conexion.php");
   $_GET['noLectura'];
   $_GET['intento'];
+  $_GET['gradoB'];
+
   $fundamento="cnb";
   $sq1 = ("SELECT *  FROM atomolector as lectura join cuestionario as cues on lectura.idLectura=cues.idLectura join itemopcionmultiple as item on item.idCuestionario=cues.idCuestionario where lectura.idLectura=:idLectura AND fundamento=:fundamento");
     $obtenerCuestionario = $dbConn->prepare($sq1);
@@ -18,9 +20,26 @@ require("../../conection/conexion.php");
     $obtenerDatosLectura->execute();
     
 
+    if($_GET['gradoB']==3){
+        //url para insertar bd
+      $urlCalificar='controllador/calificarCnbReconocimiento.php';
+    }else{
+       $urlCalificar='controllador/calificarCnb.php';
+    }
+
+    if($_GET['gradoB']==4){
+         //url para insertar bd
+       $urlCalificar='controllador/calificarCnbReconocimiento4p.php';
+    }
+
+    if($_GET['gradoB']==5){
+
+      $urlCalificar='controllador/calificarCnbReconocimiento5p.php';
+    }
+      
 
  ?>
-
+    
 
 <!DOCTYPE html>
 <html lang="es">
@@ -317,7 +336,7 @@ input#fort:checked ~ label  {
   <?php } ?>   
 
    
-<form action="controllador/calificarCnbReconocimiento.php" method="post" id="cuestionarioEnviar">
+<form action="<?php echo $urlCalificar; ?>" method="post" id="cuestionarioEnviar">
 
 <?php while(@$row1=$obtenerCuestionario->fetch(PDO::FETCH_ASSOC)){  
  @$noPregunta+=1;

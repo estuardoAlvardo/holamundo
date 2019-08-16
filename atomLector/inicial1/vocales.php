@@ -3,7 +3,7 @@ session_start();
 
 require("../../conection/conexion.php");
 
-    $q1 = ("SELECT * FROM aprendizajePreescolar where idAprendizaje=:idAprendizaje and grado=:grado");
+    $q1 = ("SELECT * FROM aprendizajepreescolar where idAprendizaje=:idAprendizaje and grado=:grado");
       $mostrarGlosario=$dbConn->prepare($q1);
       $mostrarGlosario->bindParam(':idAprendizaje',$_GET['idObjeto'], PDO::PARAM_INT); 
        $mostrarGlosario->bindParam(':grado',$_GET['gradoB'], PDO::PARAM_INT); 

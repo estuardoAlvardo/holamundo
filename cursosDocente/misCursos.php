@@ -178,7 +178,7 @@ $nivelDiver=3;
 
                       <div class="text">
                         <h3>Lecturas Diarias</h3>
-                        <p style="text-align: left;">Antologia de lecturas, compendio de lecturas adecuadas a la edad cognitiva del alumno.</p>
+                        <p style="text-align: left;">Antología de lecturas, compendio de lecturas adecuadas a la edad cognitiva del alumno.</p>
 
                       </div>
 
@@ -198,7 +198,7 @@ $nivelDiver=3;
                         
                         
                         <h3>Lecturas de Medición</h3>
-                        <p style="text-align: left;">Prueba diseñadas para desarrollar las competencias lectoras, y con ello mejorar el rendimiento academico.</p>
+                        <p style="text-align: left;">Pruebas diseñadas para desarrollar las competencias lectoras, y con ello mejorar el rendimiento académico.</p>
 
                       </div>
 

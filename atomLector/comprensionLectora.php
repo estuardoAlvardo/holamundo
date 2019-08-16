@@ -15,16 +15,17 @@ require("../conection/conexion.php");
         # code...
         break;
     }
-  }
-  
+  } 
 
 
-    $tituloGrad="1ero Primaria";
+    $tituloGrad="";
     if(empty($_SESSION['grado'])){
       $gradoBuscar=$_GET['gradoB'];
     }else{
       $gradoBuscar=$_SESSION['grado'];
     }
+
+
 
     $q1 = ("SELECT * FROM atomolector where grado=:grado and noLecturaDiaria=0");
     $mostrarLectura=$dbConn->prepare($q1);
@@ -36,12 +37,38 @@ require("../conection/conexion.php");
    
     //ver si las lecturas ya fueron leidas y resuelto el cuestionario
 
-      $q3= ("SELECT * FROM atomolector AS lecturas JOIN registropruebacomprension AS registro ON lecturas.idLectura=registro.idLectura WHERE registro.idUsuario=:idUsuario");
+    if($gradoBuscar==3){
+       $q3= ("SELECT * FROM atomolector AS lecturas JOIN registropruebacomprension3p AS registro ON lecturas.idLectura=registro.idLectura WHERE registro.idUsuario=:idUsuario");
       $hizoCuestionario=$dbConn->prepare($q3);
       $hizoCuestionario->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
       $hizoCuestionario->execute();
       $hayRegistroCuestionario=$hizoCuestionario->rowCount();
 
+    }else{
+
+      $q3= ("SELECT * FROM atomolector AS lecturas JOIN registropruebacomprension AS registro ON lecturas.idLectura=registro.idLectura WHERE registro.idUsuario=:idUsuario");
+      $hizoCuestionario=$dbConn->prepare($q3);
+      $hizoCuestionario->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
+      $hizoCuestionario->execute();
+      $hayRegistroCuestionario=$hizoCuestionario->rowCount();
+}
+    if($gradoBuscar==4){
+        $q3= ("SELECT * FROM atomolector AS lecturas JOIN registropruebacomprension4p AS registro ON lecturas.idLectura=registro.idLectura WHERE registro.idUsuario=:idUsuario");
+      $hizoCuestionario=$dbConn->prepare($q3);
+      $hizoCuestionario->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
+      $hizoCuestionario->execute();
+      $hayRegistroCuestionario=$hizoCuestionario->rowCount();
+
+    }
+
+    if($gradoBuscar==5){
+        $q3= ("SELECT * FROM atomolector AS lecturas JOIN registropruebacomprension5p AS registro ON lecturas.idLectura=registro.idLectura WHERE registro.idUsuario=:idUsuario");
+      $hizoCuestionario=$dbConn->prepare($q3);
+      $hizoCuestionario->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
+      $hizoCuestionario->execute();
+      $hayRegistroCuestionario=$hizoCuestionario->rowCount();
+
+    }
    
  ?>
 
@@ -103,24 +130,26 @@ require("../conection/conexion.php");
 
          <div class="col-md-12" style="">
 
-              <h4 class="text-left">Nivel <?php echo $tituloGrad; ?> - Comprensión Lectora </h4><hr>
+              <h4 class="text-left"><?php echo $tituloGrad; ?>Comprensión Lectora </h4><hr>
 
               <div class="row">
-              <?php while(@$row1=$mostrarLectura->fetch(PDO::FETCH_ASSOC)){ ?>
+              <?php while(@$row1=$mostrarLectura->fetch(PDO::FETCH_ASSOC)){ 
+                @$i+=1;
+                ?>
                <a href="p1/lect1p.php?idLectura=<?php echo $row1['idLectura']; ?>&gradoB=<?php echo $gradoBuscar; ?>">
                 <div class="col-md-5 estiloProducto" style="min-height:150px; margin-bottom: 20px;">
                 <div class="row" style="background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);">
 
-                  <div class="col-md-5" style=" min-height:150px; 
+                  <div class="col-md-5" style=" min-height:175px; 
                   background-image: url(<?php echo '../'.$row1['rutaLectura'].'/1.jpg'; ?>); background-size: 70%; background-repeat:no-repeat;">
                                   
                   </div>
-                  <div class="col-md-7" style=" min-height: 150px; color: black;">
+                  <div class="col-md-7" style=" min-height: 175px; color: black;">
                     <h4 style=""><?php echo $row1['nombreLectura']; ?></h4>
                     <h5 style="text-align: left;"><?php echo "Tipo Lectura: ".$row1['tipoLectura']; ?></h5>
                     <h5 style="text-align: left;"><?php echo "Descripción: ".$row1['descripcion']; ?></h5>
                     <h5 style="text-align: left;"><?php echo "Edad: ".$row1['edadLectura']; ?></h5>
-
+                    <h4 style="text-align: left;"><span class="label label-primary" style="position:absolute;"><?php echo 'Semana '.$i; ?></span></h4>
                     
                     <img id="<?php echo 'envi1'.$row1['idLectura']; ?>" src="enviado1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:23%;">
                   

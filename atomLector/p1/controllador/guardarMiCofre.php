@@ -14,7 +14,7 @@ echo $hora_actual."<br>";
 
 
 
-$sql1 = ("INSERT INTO miCofre(idLectura,idUsuario,palabra,definicion,fecha,hora) VALUES (:idLectura,:idUsuario,:palabra,:definicion,:fecha,:hora)");
+$sql1 = ("INSERT INTO micofre(idLectura,idUsuario,palabra,definicion,fecha,hora) VALUES (:idLectura,:idUsuario,:palabra,:definicion,:fecha,:hora)");
 
 $insertarPalabra = $dbConn->prepare($sql1);
 $insertarPalabra->bindParam(':idLectura', $_POST['idLectura'], PDO::PARAM_INT); 

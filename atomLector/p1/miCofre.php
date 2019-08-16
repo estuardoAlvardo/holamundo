@@ -3,7 +3,7 @@ session_start();
 
 require("../../conection/conexion.php");
 
- $q1 = ("SELECT * FROM miCofre where idLectura=:idLectura and idUsuario=:idUsuario");
+ $q1 = ("SELECT * FROM micofre where idLectura=:idLectura and idUsuario=:idUsuario");
       $mostrarPalabra=$dbConn->prepare($q1);
       $mostrarPalabra->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT); 
       $mostrarPalabra->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 

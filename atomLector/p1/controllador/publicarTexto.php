@@ -4,7 +4,7 @@ require("../../../conection/conexion.php");
 $fecha_actual=date("d/m/Y");
 $hora_actual=date('h:i:s');
 
-$sql1 = ("INSERT INTO publicTexto(idUsuario,idLectura,autor,tematica,titulo,texto,fecha,hora) VALUES (:idUsuario,:idLectura,:autor,:tematica,:titulo,:texto,:fecha,:hora)");
+$sql1 = ("INSERT INTO publictexto(idUsuario,idLectura,autor,tematica,titulo,texto,fecha,hora) VALUES (:idUsuario,:idLectura,:autor,:tematica,:titulo,:texto,:fecha,:hora)");
 
 $publicarTexto = $dbConn->prepare($sql1);
 

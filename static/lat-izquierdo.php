@@ -79,9 +79,9 @@ transition: all .2s ease-in-out;
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left">Streaming</h5>
           --->
-          <a href="../apps/bullying.php"><img class="img-responsive" src="../img/alert.png" style="max-width:50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" title="Bullyng"/>           
+          <a href="../apps/bullying.php"><img class="img-responsive" src="../img/alert.png" style="max-width:50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" title="Bullying"/>           
           </a>
-          <h5 style="color: white; margin-left: 60%;" class="text-left" >Bullyng</h5>
+          <h5 style="color: white; margin-left: 60%;" class="text-left" >Bullying</h5>
 
           <!-- 
           <a href="#" data-toggle="modal" data-target="#plataformas"><img class="img-responsive" src="../img/otras.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />            
@@ -110,7 +110,7 @@ transition: all .2s ease-in-out;
           <h5 style="color: white; margin-left: 60%;" class="text-left" >Asistencia</h5>
           <a href="../apps/reportbullying.php"><img class="img-responsive" src="../img/alert.png" style="max-width:50px; max-height: 50px; margin-left:10px; margin-top: 30px;" title="Bullyng"/>           
           </a><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: rgb(54, 171, 203); position: absolute; margin-top: -60px; margin-left: -32px;" ><?php echo @$_SESSION['reporteBullying1']; ?></div>
-          <h5 style="color: white; margin-left: 20px;" class="text-left" >Bullyng</h5>
+          <h5 style="color: white; margin-left: 20px;" class="text-left" >Bullying</h5>
           <!--
           <a href="../apps/streamingCanales.php"><img class="img-responsive" src="../img/streaming.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%; " />           
           </a>
@@ -312,7 +312,7 @@ function datos(){
 
           <a href="../../apps/bullying.php"><img class="img-responsive" src="../../img/alert.png" style="max-width:50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" title="Bullyng"/>           
           </a>
-          <h5 style="color: white; margin-left: 60%;" class="text-left" >Bullyng</h5>
+          <h5 style="color: white; margin-left: 60%;" class="text-left" >Bullying</h5>
 
           <!--
           <a href="#" data-toggle="modal" data-target="#plataformas"><img class="img-responsive" src="../../img/otras.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />            
@@ -352,7 +352,7 @@ function datos(){
         -->
           <a href="../../apps/reportbullying.php"><img class="img-responsive" src="../../img/alert.png" style="max-width:50px; max-height: 50px; margin-left:10px; margin-top: 30px;" title="Bullyng"/>           
           </a><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: rgb(54, 171, 203); position: absolute; margin-top: -60px; margin-left: -32px;" ><?php echo @$_SESSION['reporteBullying1']; ?></div>
-          <h5 style="color: white; margin-left: 20px;" class="text-left" >Bullyng</h5>
+          <h5 style="color: white; margin-left: 20px;" class="text-left" >Bullying</h5>
 
           
 
@@ -581,7 +581,7 @@ function datos(){
 
           <a href="../../../apps/bullying.php"><img class="img-responsive" src="../../../img/alert.png" style="max-width:50px; max-height: 50px; margin-left:10px; margin-top: 30px;" title="Bullyng"/>           
           </a>
-          <h5 style="color: white; margin-left: 20px;" class="text-left" >Bullyng</h5>
+          <h5 style="color: white; margin-left: 20px;" class="text-left" >Bullying</h5>
 
           <a href="#" data-toggle="modal" data-target="#plataformas"><img class="img-responsive" src="../../../img/otras.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />            
           </a>
@@ -621,7 +621,7 @@ function datos(){
 
           <a href="../../../apps/reportbullying.php"><img class="img-responsive" src="../../../img/alert.png" style="max-width:50px; max-height: 50px; margin-left:10px; margin-top: 30px;" title="Bullyng"/>           
           </a><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: rgb(54, 171, 203); position: absolute; margin-top: -60px; margin-left: -32px;" ><?php echo @$_SESSION['reporteBullying1']; ?></div>
-          <h5 style="color: white; margin-left: 20px;" class="text-left" >Bullyng</h5>
+          <h5 style="color: white; margin-left: 20px;" class="text-left" >Bullying</h5>
 
           
 
