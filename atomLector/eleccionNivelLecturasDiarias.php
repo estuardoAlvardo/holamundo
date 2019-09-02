@@ -247,9 +247,9 @@ padding-top: -30px;
     
      <a href="lecturasDiarias.php?gradoB=13" style="color: white;"><div class="col-md-2 btnGrado">Pre-Kinder</div></a>
     <div class="col-md-1"></div>
-    <a href="lecturasDiarias.php?gradoB=14" style="color: white;" ><div class="col-md-2 btnGrado" style="background-color: #95a5a6; border:1px solid #95a5a6; pointer-events:none;">Kinder</div></a>
+    <a href="lecturasDiarias.php?gradoB=14" style="color: white;" ><div class="col-md-2 btnGrado" style="">Kinder</div></a>
     <div class="col-md-1"></div>
-    <a href="lecturasDiarias.php?gradoB=15" style="color: white;"><div class="col-md-2 btnGrado"  style="background-color: #95a5a6; border:1px solid #95a5a6; pointer-events:none;">Preparatoria</div></a>
+    <a href="lecturasDiarias.php?gradoB=15" style="color: white;"><div class="col-md-2 btnGrado"  style="">Preparatoria</div></a>
     <div class="col-md-1"></div>
     </div>
     <p>Primaria</p>
@@ -257,15 +257,15 @@ padding-top: -30px;
     
     <a href="lecturasDiarias.php?gradoB=1" style="color: white;"><div class="col-md-2 btnGrado">1ero Primaria</div></a>
     <div class="col-md-1"></div>
-   <a href="lecturasDiarias.php?gradoB=2" style="color: white;"> <div class="col-md-2 btnGrado" style="background-color: #95a5a6; border:1px solid #95a5a6; pointer-events:none;" >2do Primaria</div></a>
+   <a href="lecturasDiarias.php?gradoB=2" style="color: white;"> <div class="col-md-2 btnGrado" style="" >2do Primaria</div></a>
     <div class="col-md-1"></div>
     <a href="lecturasDiarias.php?gradoB=3" style="color: white;"> <div class="col-md-2 btnGrado">3ero Primaria</div></a>
     <div class="col-md-1"></div>
-    <a href="lecturasDiarias.php?gradoB=4" style="color: white;"> <div class="col-md-2 btnGrado" style="background-color: #95a5a6; border:1px solid #95a5a6; pointer-events:none;">4to Primaria</div></a>
+    <a href="lecturasDiarias.php?gradoB=4" style="color: white;"> <div class="col-md-2 btnGrado" style="">4to Primaria</div></a>
     <div class="col-md-1"></div>
-     <a href="lecturasDiarias.php?gradoB=5" style="color: white;"><div class="col-md-2 btnGrado" style="background-color: #95a5a6; border:1px solid #95a5a6; pointer-events:none;">5to Primaria</div></a>
+     <a href="lecturasDiarias.php?gradoB=5" style="color: white;"><div class="col-md-2 btnGrado" style="">5to Primaria</div></a>
     <div class="col-md-1"></div>
-     <a href="lecturasDiarias.php?gradoB=6" style="color: white;"><div class="col-md-2 btnGrado" style="background-color: #95a5a6; border:1px solid #95a5a6; pointer-events:none;">6to Primaria</div></a>
+     <a href="lecturasDiarias.php?gradoB=6" style="color: white;"><div class="col-md-2 btnGrado" style="">6to Primaria</div></a>
   </div>
      <p>Básicos</p>
   <div class="row" style="padding-left: 40px;">
