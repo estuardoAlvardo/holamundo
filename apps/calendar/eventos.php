@@ -3,7 +3,7 @@
 //header('Content-type: aplication/json');
 
 $databaseHost = 'localhost';
-$databaseName = 'calendar';
+$databaseName = 'atom1';
 $databaseUsername = 'root';
 $databasePassword = '';
 
@@ -23,7 +23,7 @@ try {
 
 		switch ($accion) {
 			case 'agregar':	
-					$sql11 = "INSERT INTO evento(title,descripcion,color,textcolor,start,final) VALUES (:title,:descripcion,:color,:textcolor,:start,:final)";
+					$sql11 = "INSERT INTO evento(title,descripcion,color,textcolor,start,final,visible) VALUES (:title,:descripcion,:color,:textcolor,:start,:final,:visible)";
 					$insertarEvento = $dbConn->prepare($sql11);
 					$insertarEvento->bindparam(':title',$_POST['title'], PDO::PARAM_STR);
 					$insertarEvento->bindparam(':descripcion', $_POST['descripcion'], PDO::PARAM_STR);
@@ -31,6 +31,7 @@ try {
 					$insertarEvento->bindparam(':textcolor',$_POST['textColor'], PDO::PARAM_STR);
 					$insertarEvento->bindparam(':start', $_POST['start'], PDO::PARAM_STR);
 					$insertarEvento->bindparam(':final', $_POST['end'], PDO::PARAM_STR);
+					$insertarEvento->bindparam(':visible', $_POST['visible'], PDO::PARAM_INT);
 					$insertarEvento->execute();
 					$respuesta= true;
 					echo json_encode($respuesta);
@@ -59,7 +60,8 @@ try {
 					color=:color,
 					textcolor=:textColor,
 					start=:start,
-					final=:final
+					final=:final,
+					visible=:visible
 					WHERE id=:id
 					";
 					$modificarEvento= $dbConn->prepare($sql4);
@@ -69,6 +71,7 @@ try {
 					$modificarEvento->bindparam(':textColor',$_POST['textColor'],PDO::PARAM_STR);
 					$modificarEvento->bindparam(':start',$_POST['start'],PDO::PARAM_STR);
 					$modificarEvento->bindparam(':final',$_POST['final'],PDO::PARAM_STR);
+					$modificarEvento->bindparam(':visible',$_POST['visible'],PDO::PARAM_INT);
 					$modificarEvento->bindparam(':id',$_POST['id'],PDO::PARAM_INT);
 					$modificarEvento->execute();
 					$respuesta=true;

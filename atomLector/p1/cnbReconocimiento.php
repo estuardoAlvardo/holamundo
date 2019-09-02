@@ -36,6 +36,11 @@ require("../../conection/conexion.php");
 
       $urlCalificar='controllador/calificarCnbReconocimiento5p.php';
     }
+     if($_GET['gradoB']==6){
+
+      $urlCalificar='controllador/calificarCnbReconocimiento6p.php';
+    }
+      
       
 
  ?>

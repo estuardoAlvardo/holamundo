@@ -2,6 +2,7 @@
 session_start();
 
 require("../../conection/conexion.php");
+
   $pisa='pisa';
   $cnb='cnb';
 
@@ -12,9 +13,6 @@ require("../../conection/conexion.php");
       $mostrarLectura->execute();
 
       $_SESSION['gradoEnviar']=$_GET['idLectura'];
-
-
-
         
  ?>
 

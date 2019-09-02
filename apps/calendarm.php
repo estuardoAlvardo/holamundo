@@ -47,6 +47,7 @@ $_SESSION['tipoUsuario'];
 <script src='calendar/locale/es.js'></script>
 <script>
 
+
   $(document).ready(function() {
   var tipoUsuario= $('#obtenerUsuairio').val();
   
@@ -71,15 +72,13 @@ $_SESSION['tipoUsuario'];
           $('#crearEvento').modal();
 
 
-        },
-        
-        events:'http://localhost/calendar/eventos.php',
+        },       
+        events:'http://localhost/atomolms/apps/calendar/eventos.php',
         
         eventClick:function(calEvent,jsEvent,view){
            $("#btnAgregar").prop('disabled',true);
           $("#btnModificar").prop('disabled',false);
           $("#btnBorrar").prop('disabled',false);
-
 
           $('#id').val(calEvent.id);
           $('#titulo').val(calEvent.title);
@@ -118,7 +117,7 @@ $_SESSION['tipoUsuario'];
           center:'title',
           right: 'month, agendaWeek, agendaDay'
         },
-        events:'http://localhost/calendar/eventos.php',        
+        events:'http://localhost/atomolms/apps/calendar/eventos.php',        
         eventClick:function(calEvent,jsEvent,view){
            $('#myModal').modal();
          // $('#id').val(calEvent.id);
@@ -220,6 +219,7 @@ $_SESSION['tipoUsuario'];
 <div class="col-md-8 col-xs-8 pag-center">
          <div class="col-md-12" style="">
               <h3 class="text-center">Calendario de Actividades</h3>
+              
               <input type="text" id="obtenerUsuairio" name="idUsuario" value="<?php echo $_SESSION['tipoUsuario']; ?>" style="display: none;">
          </div>
         <div class="tabbable-panel" style="margin-top: 100px;">
@@ -314,8 +314,10 @@ $_SESSION['tipoUsuario'];
             </div><br><br> 
 
             <h4>¿Quienes quieres que lo vean?</h4>
-            <select class="form-control" id="vistaEvento">              
-            <option selected value="1">Todos</option>
+
+            <select class="form-control" id="visible" name="visible"> 
+            <option selected value="0">Seleccione</option>             
+            <option value="1">Todos</option>
             <option value="2">Primaria</option>
             <option value="3">Basicos</option>
             <option value="4">Diversificado</option>
@@ -352,9 +354,11 @@ $_SESSION['tipoUsuario'];
   
 <script type="text/javascript">
 
+
 var NuevoEvento;
 
 function datos(){
+
     NuevoEvento = {
         id:$('#id').val(),
         title:$('#titulo').val(),
@@ -362,8 +366,12 @@ function datos(){
         start:$('#fecha').val()+" "+$('#hora').val(),
         color:$('#color').val(),
         textColor:"#ffffff",
-        end:$('#fecha').val()+" "+$('#hora').val()
+        end:$('#fecha').val()+" "+$('#hora').val(),
+        visible:$("#visible option:selected").val()
       }
+
+
+      
 }
 
 
@@ -420,7 +428,8 @@ function datos(){
           $('#titulo').val('');
           $('#descripcion').val(''); 
           $('#vistaEvento').val(1); 
-          $('#hora').val('7:00');      
+          $('#hora').val('7:00');    
+
 
   }
 </script>

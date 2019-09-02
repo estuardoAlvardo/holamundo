@@ -1,7 +1,8 @@
 <?php 
 session_start();
 
-require("../../conection/conexion.php");
+require_once("../../conection/conexion.php") ;
+
   $pisa='pisa';
   $cnb='cnb';
 

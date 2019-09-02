@@ -321,7 +321,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 
          <div class="col-md-12" style="">
 
-              <h4 class="text-left">Nivel <?php echo $tituloGrad; ?> - Comprensión Lectora </h4><hr>
+              <h4 class="text-left">Lecturas Diarias </h4><hr>
          </div>
 
           <div class="container">
@@ -409,7 +409,7 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
               $hayPalabras=$palabrasMiCofre->rowCount();
 
               //verificamos si ya publico un texto 
-              $q7= ("SELECT * FROM publicTexto where idUsuario=:idUsuario and idLectura=:idLectura");
+              $q7= ("SELECT * FROM publictexto where idUsuario=:idUsuario and idLectura=:idLectura");
               $sePublicoTexto=$dbConn->prepare($q7);
               $sePublicoTexto->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
               $sePublicoTexto->bindParam(':idLectura',$row2['idLectura'], PDO::PARAM_INT);

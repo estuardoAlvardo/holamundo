@@ -1,7 +1,55 @@
 <?php
 
+
+
+
 $time = time();
 
+
+
+$q1 = ("SELECT * FROM evento");
+$verEventos=$dbConn->prepare($q1);
+$verEventos->execute();
+
+  while($rownew1=$verEventos->fetch(PDO::FETCH_ASSOC)){
+
+  if($rownew1['visible']==1){
+    @$todos+=1;
+    $_SESSION['todos']=$todos;
+    
+  } 
+
+  if($rownew1['visible']==2){
+    @$primaria+=1;
+    $_SESSION['primaria']=$primaria;
+
+
+  } 
+
+  if($rownew1['visible']==3){
+    @$basicos+=1;
+     $_SESSION['basicos']=$basicos;
+
+  } 
+  if($rownew1['visible']==4){
+    @$diver+=1;
+     $_SESSION['diver']=$diver;
+
+  } 
+  if($rownew1['visible']==5){
+    @$docente+=1;
+    $_SESSION['docente']=$docente;
+
+  }  
+
+  if($rownew1['visible']==6){
+    @$papas+=1;
+     $_SESSION['papas']=$papas;
+    
+  } 
+
+
+  }
 
 
  ?>
@@ -38,6 +86,20 @@ transition: all .2s ease-in-out;
 <p id="tipoUserIa" style="display: none;"><?php echo $_SESSION['tipoUsuario']; ?></p>
 
 <?php function directoriosNiveles($nivel){
+
+  if($nivel==1){
+    require("../conection/conexion.php");
+  }
+
+  if($nivel==2){
+    require("../../conection/conexion.php");
+  }
+if($nivel==3){
+    require("../../../conection/conexion.php");
+  }
+
+
+
   if($nivel==1){ // este nivel es el que todas las paginas tienen si no hay mas directorios
 
  ?>
@@ -91,8 +153,10 @@ transition: all .2s ease-in-out;
            <?php  } if($_SESSION['tipoUsuario']==2){  ?>
 
 
-          <a href="../apps/calendarm.php" ><img class="img-responsive" src="../img/calendario.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 50px;" />           
+          <a href="../apps/calendarm.php" ><img class="img-responsive" src="../img/calendario.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 50px;" /> 
+
           </a>
+          </a><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: rgb(54, 171, 203); position: absolute; margin-top: -60px; margin-left: -32px;" ><?php $notiEvent=@$_SESSION['todos']+@$_SESSION['docente']; echo $notiEvent; ?></div>
           <h5 style="color: white; margin-left: 20px;" class="text-left">Calendario</h5>
 
 

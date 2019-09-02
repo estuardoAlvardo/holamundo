@@ -308,7 +308,8 @@ foreach($_POST as $nombre_campo => $valor){
    $insertarQuiz5p->bindParam(':totalObtenido', @$sumaCorrectas, PDO::PARAM_INT);
 
 $insertarQuiz5p->execute();
-//header("location:../resultadoCnb5p.php?idLectura=".$_POST['idLecturaEnviado']."&idUsuario=".$_POST['idUsuario']);
+
+header("location:../resultadoCnb5p.php?idLectura=".$_POST['idLecturaEnviado']."&idUsuario=".$_POST['idUsuario']);
 
 
 ?>

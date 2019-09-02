@@ -120,7 +120,7 @@ require("../conection/conexion.php");
 
 
          <div class="col-md-12" style="margin-top:40px;">
-              <h4 class="text-left">Velocidad y Fluides Lectora</h4><hr>
+              <h4 class="text-left">Velocidad y Fluidez Lectora</h4><hr>
          </div>
 
          <div class="row" style="margin-bottom: 50px;">
