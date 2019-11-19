@@ -591,7 +591,7 @@ That part is just for the form
         </section> 
 
 
-<!-- TROZO DE CODIGO NOS VA A SERVIR PARA LANZAR LAS NOTIFICACIONES AL USUARIO --->
+<!-- TROZO DE CODIGO NOS VA A SERVIR PARA LANZAR LAS NOTIFICACIONES AL USUARIO ---->
 
    <script type="text/javascript">
     

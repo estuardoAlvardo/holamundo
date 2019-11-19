@@ -1,5 +1,6 @@
 <?php 
 session_start();
+
 //curso 1
 $curso="Matemáticas";
 $curso="";
@@ -91,7 +92,7 @@ $nivelDiver=3;
 
 
       <div class="col-md-8 col-xs-8 pag-center">
-         <div class="col-md-12" style=" margin-bottom: 50px;">
+         <div class="col-md-12" style=" margin-bottom: 50px; margin-top: 30px;">
               <h3 class="text-center">Mis Alumnos</h3>
          </div>
           <div>
@@ -99,7 +100,7 @@ $nivelDiver=3;
                   <div class="form-group">
                     <label class="sr-only" for="filtro-tipo">Nivel</label>
                     <select class="form-control" name="nivel" id="Nivel" style="margin-left: -50px">
-                      <option value="">Elija opción</option>
+                      <option value="">Elija Nivel</option>
                       <option value="1">Primaria</option>
                       <option value="2">Basicos</option>
                       <option value="3">Diversificado</option>
@@ -110,14 +111,14 @@ $nivelDiver=3;
                   <div class="form-group">
                     <label class="sr-only" for="filtro-conta">Grado</label>
                     <select class="form-control" name="grado" id="grado" style="margin-left: 20px">
-                      <option value="">Elija opción</option>
+                      <option value="">Elija Grado</option>
                     </select>
                   </div>
                                    
                   <div class="form-group">
                     <label class="sr-only" for="filtro-tipo">Seccion</label>
                     <select class="form-control" name="seccion" id="seccion" style="margin-left: 20px">
-                      <option value="0">Sección</option>
+                      <option value="0">Elija Sección</option>
                       <option value="1">a</option>
                       <option value="2">b</option>
                       <option value="3">c</option>
@@ -125,37 +126,31 @@ $nivelDiver=3;
                       <option value="5">e</option>
                     </select>
 
+                   
                     <select class="form-control" name="seccion" id="seccion" style="margin-left: 20px">
-                      <option value="0">Materia</option>
-                      <option value="1">Lenguaje</option>
-                      <option value="2">Matematicas</option>
-                      <option value="3">Formacion Ciudadana</option>
-                      <option value="4">Ciencias</option>
-                      <option value="5">Sociales</option>
-                    </select>
-                    <select class="form-control" name="seccion" id="seccion" style="margin-left: 20px">
-                      <option value="0">Enero</option>
-                      <option value="1">Febrero</option>
-                      <option value="2">Marzo</option>
-                      <option value="3">Abril</option>
-                      <option value="4">Mayo</option>
-                      <option value="5">Junio</option>
-                      <option value="5">julio</option>
-                      <option value="5">Agosto</option>
-                      <option value="5">Septiembre</option>
-                      <option value="5">Octubre</option>
-                      <option value="5">Nobiembre</option>
-                      <option value="5">Diciembre</option>
+                    <option value="0">Elija Mes</option>
+                      <option value="1">Enero</option>
+                      <option value="2">Febrero</option>
+                      <option value="3">Marzo</option>
+                      <option value="4">Abril</option>
+                      <option value="5">Mayo</option>
+                      <option value="6">Junio</option>
+                      <option value="7">julio</option>
+                      <option value="8">Agosto</option>
+                      <option value="9">Septiembre</option>
+                      <option value="10">Octubre</option>
+                      <option value="11">Nobiembre</option>
+                      <option value="12">Diciembre</option>
                     </select>
                   </div><br><br>
-                  <div class="form-group" style="margin-left: 92%; margin-top: -100px;">
-                    <button type="button"  class="btn btn-primary"  onclick="enviar()" target="_blank" >Buscar</button>
+                  <div class="form-group" style="margin-left: 62%; margin-top: -10px; ">
+                    <button style="width: 200px; background-color: #3498db; border:1px solid #3498db; color:white;" type="button"  class="btn btn-default botonAgg botonAgg-1"  onclick="enviar()" target="_blank" >Buscar</button>
                   </div>
                 </form>
          </div>
-         <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px;">Reporte Uso Plataforma</div>
-         <button class="btn btn-default botonAgg botonAgg-1" type="button"style="margin-left:510px;background-color: #c0392b; color: white; border:white;">PDF</button>
-         <button class="btn btn-default botonAgg botonAgg-1" type="button"style="background-color: #16a085; color: white; border:white;">EXCEL</button>
+         <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px; margin-top: 50px;">Reporte Uso Plataforma</div>
+         <button class="btn btn-default botonAgg botonAgg-1" type="button" style="margin-top:50px; margin-left:510px;background-color: #c0392b; color: white; border:white;">PDF</button>
+         <button class="btn btn-default botonAgg botonAgg-1" type="button" style="margin-top:50px; background-color: #16a085; color: white; border:white;">EXCEL</button>
 
 
           <div class="col-md-12 sombra" style=" min-height:100px; margin-bottom: 30px; ">
@@ -163,11 +158,11 @@ $nivelDiver=3;
                     <table class="table table-hover" id="ejemplo">
                       <thead>
                         <tr>
-                          <th scope="col">Alumno</th>
+                          <th scope="col">Alumnos</th>
                           <th scope="col">Grado</th>
                           <th scope="col">Sección</th>
                           <th scope="col">Curso</th>
-                          <th scope="col">Ultimo Acceso</th>
+                          <th scope="col">Fecha y Hora Acceso</th>
                           <th scope="col">Navegador</th>
                           <th scope="col">Ip</th>
                         </tr>
@@ -196,55 +191,7 @@ $nivelDiver=3;
                       </tbody>
                     </table>         
           </div> 
-          <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px;">Reporte Asistencia Presencial</div>
-            <button class="btn btn-default botonAgg botonAgg-1" type="button"style="margin-left:510px;background-color: #c0392b; color: white; border:white;">PDF</button>
-            <button class="btn btn-default botonAgg botonAgg-1" type="button"style="background-color: #16a085; color: white; border:white;">EXCEL</button>
-                      <div class="col-md-12 sombra" style=" min-height:100px; margin-bottom: 30px; overflow-x: scroll;   ">
-
-                    <table class="table table-hover col-md-11" id="ejemplo">
-                      <thead>
-                        <tr>
-                          <th scope="col">Alumno</th>
-                          <th scope="col">febrero</th>
-                        </tr>
-                        <tr>
-                          <TH></TH> <?php for($i=1; $i<=31; $i++){
-                          echo "<TH>".$i."</TH>";
-                          }  ?> 
-                         
-                          
-                        </tr>
-                      </thead>
-                      <tbody class="text-left">
-                        <tr>     
-                          <td>Estuardo Alvarado</td>
-                          <td>x</td>
-                          <td>x</td>
-                          <td>x</td>
-                          <td>x</td>
-                          <td>x</td>
-                          <td>x</td>
-                        
-                        </tr>
-                        <tr>     
-                            <td>Estuardo Alvarado</td>
-                          <td>x</td>
-                          <td>x</td>
-                          <td>x</td>
-                          <td>x</td>
-                          <td>x</td>
-                          <td>x</td>
-                       
-                        </tr>
-                      </tbody>
-                    </table>         
-          </div> 
-
-
-         
-
-
-       
+                
      
              
       </div>

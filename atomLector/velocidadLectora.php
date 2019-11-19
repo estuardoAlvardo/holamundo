@@ -1,4 +1,4 @@
-<?php 
+ <?php 
 session_start();
 
 require("../conection/conexion.php");
@@ -26,7 +26,7 @@ require("../conection/conexion.php");
       $gradoBuscar=$_SESSION['grado'];
     }
 
-    
+  
 
 
 
@@ -124,9 +124,11 @@ require("../conection/conexion.php");
          </div>
 
          <div class="row" style="margin-bottom: 50px;">
-              <?php while(@$row2=$mostrarVelocidadLectora->fetch(PDO::FETCH_ASSOC)){
+
+              <?php 
+                             while(@$row2=$mostrarVelocidadLectora->fetch(PDO::FETCH_ASSOC)){
                 @$i+=1;
-                
+              
 
                ?> 
 
@@ -135,7 +137,17 @@ require("../conection/conexion.php");
                 <div class="row" style="background-image:linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); ">
 
                   <div class="col-md-5" style=" min-height:150px; 
-                  background-image: url(<?php echo '../'.$row2['rutaLectura'].'/'.$i.'.gif'; ?>); background-size: 70%; background-repeat:no-repeat; ">                                  
+                  background-image: url(<?php
+
+                    //aqui tratamos extenciones; si grado es <7 sera .gif si grado>=7 sera .png 
+                    if($gradoBuscar>=7){
+                      $extencion='data:image/jpg;base64,';
+                    } 
+                    if($gradoBuscar<7){
+                      $extencion='data:image/gif;base64,';
+                    }
+
+                   echo $extencion.$row2['fichero']; ?>); background-size: 70%; background-repeat:no-repeat; ">                                  
                   </div>
                   <div class="col-md-7" style=" min-height: 175px; color: black;">
 
@@ -262,7 +274,7 @@ require("../conection/conexion.php");
 
         function metodologiaActiva(){
           startArtyom();
-          artyom.say("Hola!! Te dare el concepto de Metodologia Activa, la cual usamos para la enseñanza aprendizaje en atomo(LMS), La enseñanza basada en metodologías activas es una enseñanza centrada en el estudiante, en su capacitación en competencias propias del saber de la disciplina. Estas estrategias conciben el aprendizaje como un proceso constructivo y no receptivo. La psicología cognitiva ha mostrado consistentemente, que una de las estructuras más importantes de la memoria es su estructura asociativa. El conocimiento está estructurado en redes de conceptos relacionados que se denominan redes semánticas. La nueva información se acopla a la red ya existente. Dependiendo de cómo se realice esta conexión la nueva información puede ser utilizada o no, para resolver problemas o reconocer situaciones (Glaser 1991). Esto implica la concepción del aprendizaje como proceso y no únicamente como una recepción y acumulación de información. ¿Quiero saber si aprendiste, responde si aprendí, o no aprendí, porfavor?");
+          artyom.say("Hola!! Te dare el concepto de Metodologia Activa, la cual usamos para la enseñanza aprendizaje en átomo lector, La enseñanza basada en metodologías activas es una enseñanza centrada en el estudiante, en su capacitación en competencias propias del saber de la disciplina. Estas estrategias conciben el aprendizaje como un proceso constructivo y no receptivo. La psicología cognitiva ha mostrado consistentemente, que una de las estructuras más importantes de la memoria es su estructura asociativa. El conocimiento está estructurado en redes de conceptos relacionados que se denominan redes semánticas. La nueva información se acopla a la red ya existente. Dependiendo de cómo se realice esta conexión la nueva información puede ser utilizada o no, para resolver problemas o reconocer situaciones (Glaser 1991). Esto implica la concepción del aprendizaje como proceso y no únicamente como una recepción y acumulación de información. ¿Quiero saber si aprendiste, responde si aprendí, o no aprendí, porfavor?");
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
           document.getElementById("saluda").style.display="block";         

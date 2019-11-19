@@ -28,7 +28,7 @@ $nivelDiver=3;
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
-    <title><?php echo $_SESSION["nombre"]; ?> | Mis Cursos</title>
+    <title><?php echo $_SESSION["nombre"]; ?> | Lecturas Comprensivas</title>
  
     <!-- CSS de Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -174,7 +174,7 @@ padding-top: -30px;
 
 
  			<div class="col-md-8 col-xs-8 pag-center">
-         <div class="col-md-12" style="">
+         <div class="col-md-12" style="margin-top: 100px;">
               <h3 class="text-center"><?php
                if($_GET['curso']==7){
                 echo $_SESSION['curso']="Átomo Lector - Medición Comprensión";

@@ -41,39 +41,6 @@ if(empty($_GET['curso'])){
     $mostrarVocales->execute();
 
 
- 
-// funcion para ver las semanas de un año
-/*
-setlocale(LC_TIME, "es_ES"); 
-
-function WeekToDate ($week, $year) 
-{ 
-$Jan1 = mktime (1, 1, 1, 1, 1, $year); 
-$iYearFirstWeekNum = (int) strftime("%W",mktime (1, 1, 1, 1, 1, $year)); 
-
-if ($iYearFirstWeekNum == 1) 
-{ 
-//$week = $week - 1; 
-} 
-
-$weekdayJan1 = date ('w', $Jan1); 
-$FirstMonday = strtotime(((4-$weekdayJan1)%7-3) . ' days', $Jan1); 
-$CurrentMondayTS = strtotime(($week) . ' weeks', $FirstMonday); 
-return ($CurrentMondayTS); 
-} 
-$iYear = '2019'; 
-for ($i = 1; $i <= 52; $i++) { 
-
-$sStartTS = WeekToDate ($i, $iYear); 
-$sLunes = date ("Y-m-d", $sStartTS); 
-list($year,$mon,$day) = explode('-',$sLunes); 
-$sDomingo = date('Y-m-d',mktime(0,0,0,$mon,$day+6,$year));     
-echo 'Semana: '.$i.'  de  '.$sLunes.' al '.$sDomingo;  
-echo '<br>';    
-} 
-
-
-*/
 
 ?>
 
@@ -84,7 +51,7 @@ echo '<br>';
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
-    <title><?php echo $_SESSION["nombre"]." ".$_SESSION['apellido']; ?> | Programa Comprensión Lectora</title>
+    <title><?php echo $_SESSION["nombre"]; ?> | Lecturas Comprensivas</title>
  
     <!-- CSS de Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -128,7 +95,7 @@ echo '<br>';
 
 
  			<div class="col-md-8 col-xs-8 pag-center">
-         <div class="col-md-12" style="">
+         <div class="col-md-12" style="margin-top: 30px;">
               <h3 class="text-center"><?php echo $_SESSION['curso'];?></h3>
               
          </div>
@@ -140,14 +107,20 @@ echo '<br>';
                 <div class="row">
               <?php while(@$row1=$mostrarLectura->fetch(PDO::FETCH_ASSOC)){ 
                 @$i+=1;
+
+                $query11 = ("SELECT * FROM paginas where idLectura=:idLectura limit 1");
+                $portada2=$dbConn->prepare($query11);
+                $portada2->bindParam(':idLectura',$row1['idLectura'], PDO::PARAM_STR); 
+                $portada2->execute();
                 ?>
                <a href="inicial1/lect1inicial.php?idLectura=<?php echo $row1['idLectura'];?>">
                 <div class="col-md-5 estiloProducto" style="min-height:175px; margin-bottom: 20px;">
                 <div class="row" style="background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);">
 
+                  <?php  while(@$row2=$portada2->fetch(PDO::FETCH_ASSOC)){  ?>
                   <div class="col-md-5" style=" min-height:175px; 
-                  background-image: url(<?php echo '../'.$row1['rutaLectura'].'/1.png'; ?>); background-size: 75%; background-repeat:no-repeat;">                                  
-                  </div>
+                  background-image:url(<?php echo 'data:image/jpg;base64,'.$row2['fichero']; ?>); background-size: 70%; background-repeat:no-repeat;"></div>
+                  <?php } ?>
                   <div class="col-md-7" style=" min-height: 150px; color: black;">
                     <h4 style=""><?php echo $row1['nombreLectura']; ?></h4>
                     <h5 style="text-align: left;"><?php echo "Tipo Lectura: ".$row1['tipoLectura']; ?></h5>
@@ -184,30 +157,7 @@ echo '<br>';
          
 
 
-         <div class="col-md-12" style="margin-top:40px;">
-              <h4 class="text-left">Aprendo las Vocales</h4><hr>
-         </div>
-
-         <div class="row" style="margin-bottom: 50px;">
-             <?php while(@$row2=$mostrarVocales->fetch(PDO::FETCH_ASSOC)){ ?> 
-               <a href="inicial1/vocales.php?gradoB=<?php echo $gradoBuscar; ?>&idObjeto=<?php echo $row2['idAprendizaje']; ?>"><div class="col-md-5 estiloProducto" style="min-height:150px; margin-left: 10px; margin-left: 20px; margin-bottom: 20px;">
-                <div class="row" style="background-image:linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); ">
-
-                  <div class="col-md-5" style=" min-height:150px; 
-                  background-image: url(<?php echo '1in/vocales/'.$row2['objetoAprendizaje'].'/'.$row2['objetoAprendizaje'].'.png' ?>); background-size: 65%; background-repeat:no-repeat; ">                                  
-                  </div>
-                  <div class="col-md-7" style=" min-height: 150px; color: black;">
-                    <h4 style="font-size: 22pt; " ><?php echo 'Vocal '.strtoupper($row2['objetoAprendizaje']).' - '.$row2['objetoAprendizaje']; ?></h4>
-                    <h3 style="text-align: left; font-size: 10pt;"><strong>Descripción:</strong> Aprende la vocal "<?php echo $row2['objetoAprendizaje']; ?>" con los ejercicios y actividades.</h3>
-
-                    <img src="leido1.png" style="width: 40px; height: 40px; position:absolute; margin-top:-2%; margin-left:23%;">             
-                </div>
-
-                </div>
-                 
-               </div></a>
-             <?php } ?>  
-         </div>
+        
 
                   <style type="text/css">
                     .cajaCards{

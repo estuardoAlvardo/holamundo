@@ -33,7 +33,7 @@ $nivelDiver=3;
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
-    <title><?php echo $_SESSION["nombre"]; ?> | Mis Cursos</title>
+    <title><?php echo $_SESSION["nombre"]; ?> | Lecturas Diarias</title>
  
     <!-- CSS de Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -179,7 +179,7 @@ padding-top: -30px;
 
 
  			<div class="col-md-8 col-xs-8 pag-center">
-         <div class="col-md-12" style="">
+         <div class="col-md-12" style="margin-top: 50px;">
               <h3 class="text-center"><?php
                if($_GET['curso']==7){
                 echo $_SESSION['curso']="Átomo Lector - Medición de Fluidez y Velocidad";
@@ -245,7 +245,18 @@ padding-top: -30px;
 <div class="col-md-11" style="margin-bottom: 100px;"><br><br>
   <h3 class="text-left" style="">¿Qué grado quieres Observar?</h3><hr>
   <div class="col-md-12 cajaGrado" style="min-height: 200px;">
-     
+    <p>Preescolar</p>
+    <div class="row" style="padding-left: 40px;">
+    
+    <a href="inicial1/vocales.php?gradoB=13" style="color: white;"><div class="col-md-2 btnGrado">Prekinder</div></a>
+    <div class="col-md-1"></div>
+   <a href="velocidadLectora.php?gradoB=14" style="color: white;"> <div class="col-md-2 btnGrado" >Kinder</div></a>
+    <div class="col-md-1"></div>
+    <a href="velocidadLectora.php?gradoB=15" style="color: white;"> <div class="col-md-2 btnGrado">Preparatoria</div></a>
+    
+    
+  </div>
+
     <p>Primaria</p>
   <div class="row" style="padding-left: 40px;">
     
@@ -266,7 +277,7 @@ padding-top: -30px;
     
     <a href="velocidadLectora.php?gradoB=7" style="color: white;"><div class="col-md-2 btnGrado" >1ero Básicos</div></a>
     <div class="col-md-1"></div>
-     <a href="velocidadLectora.php?gradoB=8" style="color: white;"><div class="col-md-2 btnGrado"  style="background-color: #bdc3c7; pointer-events:none;">2do Básicos</div></a>
+     <a href="velocidadLectora.php?gradoB=8" style="color: white;"><div class="col-md-2 btnGrado"  style="">2do Básicos</div></a>
     <div class="col-md-1"></div>
     <a href="velocidadLectora.php?gradoB=9" style="color: white;"> <div class="col-md-2 btnGrado">3ero Básicos</div></a>
    
@@ -276,9 +287,9 @@ padding-top: -30px;
     
     <a href="velocidadLectora.php?gradoB=10" style="color: white;"> <div class="col-md-2 btnGrado" >4to Diver</div></a>
     <div class="col-md-1"></div>
-     <a href="velocidadLectora.php?gradoB=11" style="color: white;"><div class="col-md-2 btnGrado" style="background-color: #bdc3c7; pointer-events:none;" >5to Diver</div></a>
+     <a href="velocidadLectora.php?gradoB=11" style="color: white;"><div class="col-md-2 btnGrado" style="" >5to Diver</div></a>
     <div class="col-md-1"></div>
-     <a href="velocidadLectora.php?gradoB=12" style="color: white;"><div class="col-md-2 btnGrado" style="background-color: #bdc3c7; pointer-events:none;">6to Diver</div></a>
+     <a href="velocidadLectora.php?gradoB=12" style="color: white;"><div class="col-md-2 btnGrado" style="">6to Diver</div></a>
    
   </div>
 

@@ -96,7 +96,7 @@ $nivelDiver=3;
 
 
  			<div class="col-md-8 col-xs-8 pag-center">
-         <div class="col-md-12" style=" margin-bottom: 50px;">
+         <div class="col-md-12" style=" margin-bottom: 50px; margin-top: 30px;">
               <h3 class="text-center">Atom Reportes</h3>
          </div>
          <div class=" col-xs-12" style="height:50px; margin-bottom: 50px;">
@@ -104,7 +104,7 @@ $nivelDiver=3;
                   <div class="form-group">
                     <label class="sr-only" for="filtro-tipo">Nivel</label>
                     <select class="form-control" name="nivel" id="Nivel" style="margin-left: 20px">
-                      <option value="">Elija opción</option>
+                      <option value="">Elija Nivel</option>
                       <option value="1">Primaria</option>
                       <option value="2">Basicos</option>
                       <option value="3">Diversificado</option>
@@ -115,12 +115,12 @@ $nivelDiver=3;
                   <div class="form-group">
                     <label class="sr-only" for="filtro-conta">Grado</label>
                     <select class="form-control" name="grado" id="grado" style="margin-left: 20px">
-                      <option value="">Elija opción</option>
+                      <option value="">Elija Grado</option>
                     </select>
                   </div>
                                    
                   <div class="form-group">
-                    <label class="sr-only" for="filtro-tipo">Seccion</label>
+                    <label class="sr-only" for="filtro-tipo">Sección</label>
                     <select class="form-control" name="seccion" id="seccion" style="margin-left: 20px">
                       <option value="0">Sección</option>
                       <option value="1">a</option>
@@ -128,6 +128,28 @@ $nivelDiver=3;
                       <option value="3">c</option>
                       <option value="4">d</option>
                       <option value="5">e</option>
+                      <option value="6">f</option>
+                      <option value="7">g</option>
+                      <option value="8">h</option>
+                      <option value="9">i</option>
+                      <option value="10">j</option>
+                      <option value="11">k</option>
+                      <option value="12">l</option>
+                      <option value="13">l</option>
+                      <option value="14">m</option>
+                      <option value="15">n</option>
+                      <option value="16">ñ</option>
+                      <option value="17">o</option>
+                      <option value="18">p</option>
+                      <option value="19">q</option>
+                      <option value="20">r</option>
+                      <option value="21">s</option>
+                      <option value="22">t</option>
+                      <option value="23">u</option>
+                      <option value="24">v</option>
+                      <option value="25">w</option>
+                      <option value="26">z</option>
+
                     </select>
                   </div>
                   <div class="form-group">
@@ -140,15 +162,15 @@ $nivelDiver=3;
                     </select>
                   </div><br><br>
 
-                  <div class="form-group" style="margin-left: 77%; margin-top: -100px;">
-                    <button type="button"  class="btn btn-default botonAgg botonAgg-1" style="background-color: #3498db; border:1px solid #3498db; color:white;"  onclick="enviar()" target="_blank" >Buscar</button>
+                  <div class="form-group" style="margin-left: 77%; margin-top: -20px;">
+                    <button type="button"  class="btn btn-default botonAgg botonAgg-1" style="margin-top:30px; background-color: #3498db; border:1px solid #3498db; color:white; width: 200px;"  onclick="enviar()" target="_blank" >Buscar</button>
                   </div>
                 </form> <br><br>
            
          </div>
-          <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px; background-color: #2980b9; color: white; border-radius: 5px;">Lecturas Diarias</div>
-            <button class="btn btn-default botonAgg botonAgg-1" type="button"style="margin-left:510px;background-color: #c0392b; color: white; border:white;">PDF</button>
-            <button class="btn btn-default botonAgg botonAgg-1" type="button"style="background-color: #16a085; color: white; border:white;">EXCEL</button>
+          <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 25px; margin-top: 50px; background-color: #2980b9; color: white; border-radius: 5px;">Lecturas Diarias</div>
+            <button class="btn btn-default botonAgg botonAgg-1" type="button" style="margin-top:50px;  margin-left:510px;background-color: #c0392b; color: white; border:white;">PDF</button>
+            <button class="btn btn-default botonAgg botonAgg-1" type="button" style="margin-top:50px; background-color: #16a085; color: white; border:white;">EXCEL</button>
 
           <div class="col-md-12 sombra" style=" min-height:100px; margin-bottom: 30px; ">
 
@@ -168,10 +190,10 @@ $nivelDiver=3;
                       <tbody class="text-left">
                         <tr>     
                           <td>Jose Manuel</td>
-                          <td>1
+                          <td>
                             <div class="dropdown botonAgg botonAgg-1" >
                               <a href="reportesDetalles.php">
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">1 Detalle
                         </button></a>
                         
                         </div>
@@ -185,10 +207,10 @@ $nivelDiver=3;
                         </tr>
                         <tr>     
                           <td>Pepe Cadena</td>
-                          <td>1
+                          <td>
                             <div class="dropdown botonAgg botonAgg-1" >
                               <a href="reportesDetalles.php">
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">1 Detalle
                         </button></a>
                         
                         </div>
@@ -202,10 +224,10 @@ $nivelDiver=3;
                         </tr> 
                         <tr>     
                           <td>Milton Jimenez</td>
-                          <td>1
+                          <td>
                             <div class="dropdown botonAgg botonAgg-1" >
                               <a href="reportesDetalles.php">
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">1 Detalle
                         </button></a>
                         
                         </div>
@@ -219,10 +241,10 @@ $nivelDiver=3;
                         </tr>
                         <tr>     
                           <td>Martin Gonzalez</td>
-                          <td>1
+                          <td>
                             <div class="dropdown botonAgg botonAgg-1" >
                               <a href="reportesDetalles.php">
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
+                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">1 Detalle
                         </button></a>
                         
                         </div>
@@ -240,7 +262,7 @@ $nivelDiver=3;
           </div> 
 
           <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px; background-color:#1abc9c; color: white; border-radius: 5px;">Lecturas De Medición</div>
-          <button class="btn btn-default botonAgg botonAgg-1" type="button"style="margin-left:510px;background-color: #c0392b; color: white; border:white;">PDF</button>
+          <button class="btn btn-default botonAgg botonAgg-1" type="button" style="margin-left:510px;background-color: #c0392b; color: white; border:white;">PDF</button>
             <button class="btn btn-default botonAgg botonAgg-1" type="button"style="background-color: #16a085; color: white; border:white;">EXCEL</button>
 
           <div class="col-md-12 sombra" style=" min-height:100px;  margin-bottom: 50px; overflow: auto;">
@@ -266,14 +288,14 @@ $nivelDiver=3;
                           <td>
                             <div class="dropdown botonAgg botonAgg-1" >
                               <a href="../atomLector/p1/resultadoCnb.php?intentoABuscar=33&idLectura=1&idUsuario=1&intento=1" target="_blank">
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">40 Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #e67e22; color: white; border:white;">40 Detalle
                         </button></a>                       
                         </div>
                           </td>
                           <td>
                            <div class="dropdown botonAgg botonAgg-1" >
                               <a href="../atomLector/p1/resultado.php?idLectura=1&idUsuario=1" target="_blank">
-                        <button class="btn btn-default" type="button"style="background-color: #3498db; color: white; border:white;">C1 Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #3498db; color: white; border:white;">C1 Detalle
                         </button></a>
                         
                         </div>
@@ -282,7 +304,7 @@ $nivelDiver=3;
                           <td>
                            <div class="dropdown botonAgg botonAgg-1">
                               <a href="../atomLector/p1/glosario.php?noLectura=1" target="_blank">
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">50 Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #e67e22; color: white; border:white;">50 Detalle
                         </button></a>
                         
                         </div>
@@ -291,7 +313,7 @@ $nivelDiver=3;
                            <td>
                            <div class="dropdown botonAgg botonAgg-1" >
                               <a href="../atomLector/p1/cuentame.php?noLectura=1" target="_blank">
-                        <button class="btn btn-default" type="button"style="background-color: #3498db; color: white; border:white;">Finalizado Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #3498db; color: white; border:white;">Finalizado Detalle 
                         </button></a>
                         
                         </div>
@@ -300,7 +322,7 @@ $nivelDiver=3;
                             <td>
                            <div class="dropdown botonAgg botonAgg-1" >
                               <a href="../atomLector/p1/personajes.php?noLectura=1" target="_blank">
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">60 Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #e67e22; color: white; border:white;">60 Detalle
                         </button></a>
                         
                         </div>
@@ -315,14 +337,14 @@ $nivelDiver=3;
                           <td>
                             <div class="dropdown botonAgg botonAgg-1" >
                               <a href="../atomLector/p1/resultadoCnb.php?intentoABuscar=<?php echo $row1['registroCnb']; ?>&idLectura=<?php echo $row1['idLectura']; ?>&idUsuario=<?php echo $_SESSION['idUsuario']; ?>&intento=<?php echo 1; ?>" target="_blank">
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">70 Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #e67e22; color: white; border:white;">70 Detalle
                         </button></a>                       
                         </div>
                           </td>
                           <td>
                            <div class="dropdown botonAgg botonAgg-1" >
                               <a href="../atomLector/p1/resultado.php?idLectura=<?php echo $row3['idLectura']; ?>&idUsuario=<?php echo $row3['idUsuario']; ?>" target="_blank">
-                        <button class="btn btn-default" type="button"style="background-color: #3498db; color: white; border:white;">C1 Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #3498db; color: white; border:white;">C1 Detalle
                         </button></a>
                         
                         </div>
@@ -331,7 +353,7 @@ $nivelDiver=3;
                           <td>
                            <div class="dropdown botonAgg botonAgg-1">
                               <a href="../atomLector/p1/glosario.php?noLectura=<?php echo $row2['idLectura']; ?>" target="_blank">
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">90 Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #e67e22; color: white; border:white;">90 Detalle
                         </button></a>
                         
                         </div>
@@ -340,7 +362,7 @@ $nivelDiver=3;
                            <td>
                            <div class="dropdown botonAgg botonAgg-1" >
                               <a href="../atomLector/p1/cuentame.php?noLectura=<?php echo $row3['idLectura']; ?>" target="_blank">
-                        <button class="btn btn-default" type="button"style="background-color: #3498db; color: white; border:white;">80 Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #3498db; color: white; border:white;">80 Detalle
                         </button></a>
                         
                         </div>
@@ -349,7 +371,7 @@ $nivelDiver=3;
                             <td>
                            <div class="dropdown botonAgg botonAgg-1" >
                               <a href="../atomLector/p1/personajes.php?noLectura=<?php echo $row2['idLectura']; ?>" target="_blank">
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">90 Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #e67e22; color: white; border:white;">90 Detalle
                         </button></a>
                         
                         </div>
@@ -364,14 +386,14 @@ $nivelDiver=3;
                           <td>
                             <div class="dropdown botonAgg botonAgg-1" >
                               <a href="../atomLector/p1/resultadoCnb.php?intentoABuscar=<?php echo $row1['registroCnb']; ?>&idLectura=<?php echo $row1['idLectura']; ?>&idUsuario=<?php echo $_SESSION['idUsuario']; ?>&intento=<?php echo 1; ?>" target="_blank">
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">70 Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #e67e22; color: white; border:white;">70 Detalle
                         </button></a>                       
                         </div>
                           </td>
                           <td>
                            <div class="dropdown botonAgg botonAgg-1" >
                               <a href="../atomLector/p1/resultado.php?idLectura=<?php echo $row3['idLectura']; ?>&idUsuario=<?php echo $row3['idUsuario']; ?>" target="_blank">
-                        <button class="btn btn-default" type="button"style="background-color: #3498db; color: white; border:white;">C1 Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #3498db; color: white; border:white;">C1 Detalle
                         </button></a>
                         
                         </div>
@@ -380,7 +402,7 @@ $nivelDiver=3;
                           <td>
                            <div class="dropdown botonAgg botonAgg-1">
                               <a href="../atomLector/p1/glosario.php?noLectura=<?php echo $row2['idLectura']; ?>" target="_blank">
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">90 Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #e67e22; color: white; border:white;">90 Detalle
                         </button></a>
                         
                         </div>
@@ -389,7 +411,7 @@ $nivelDiver=3;
                            <td>
                            <div class="dropdown botonAgg botonAgg-1" >
                               <a href="../atomLector/p1/cuentame.php?noLectura=<?php echo $row3['idLectura']; ?>" target="_blank">
-                        <button class="btn btn-default" type="button"style="background-color: #3498db; color: white; border:white;">80 Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #3498db; color: white; border:white;">80 Detalle
                         </button></a>
                         
                         </div>
@@ -398,7 +420,7 @@ $nivelDiver=3;
                             <td>
                            <div class="dropdown botonAgg botonAgg-1" >
                               <a href="../atomLector/p1/personajes.php?noLectura=<?php echo $row2['idLectura']; ?>" target="_blank">
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">90 Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #e67e22; color: white; border:white;">90 Detalle
                         </button></a>
                         
                         </div>
@@ -413,14 +435,14 @@ $nivelDiver=3;
                           <td>
                             <div class="dropdown botonAgg botonAgg-1" >
                               <a href="../atomLector/p1/resultadoCnb.php?intentoABuscar=<?php echo $row1['registroCnb']; ?>&idLectura=<?php echo $row1['idLectura']; ?>&idUsuario=<?php echo $_SESSION['idUsuario']; ?>&intento=<?php echo 1; ?>" target="_blank">
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">70 Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #e67e22; color: white; border:white;">70 Detalle
                         </button></a>                       
                         </div>
                           </td>
                           <td>
                            <div class="dropdown botonAgg botonAgg-1" >
                               <a href="../atomLector/p1/resultado.php?idLectura=<?php echo $row3['idLectura']; ?>&idUsuario=<?php echo $row3['idUsuario']; ?>" target="_blank">
-                        <button class="btn btn-default" type="button"style="background-color: #3498db; color: white; border:white;">C1 Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #3498db; color: white; border:white;">C1 Detalle
                         </button></a>
                         
                         </div>
@@ -429,7 +451,7 @@ $nivelDiver=3;
                           <td>
                            <div class="dropdown botonAgg botonAgg-1">
                               <a href="../atomLector/p1/glosario.php?noLectura=<?php echo $row2['idLectura']; ?>" target="_blank">
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">90 Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #e67e22; color: white; border:white;">90 Detalle
                         </button></a>
                         
                         </div>
@@ -438,7 +460,7 @@ $nivelDiver=3;
                            <td>
                            <div class="dropdown botonAgg botonAgg-1" >
                               <a href="../atomLector/p1/cuentame.php?noLectura=<?php echo $row3['idLectura']; ?>" target="_blank">
-                        <button class="btn btn-default" type="button"style="background-color: #3498db; color: white; border:white;">80 Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #3498db; color: white; border:white;">80 Detalle
                         </button></a>
                         
                         </div>
@@ -447,7 +469,7 @@ $nivelDiver=3;
                             <td>
                            <div class="dropdown botonAgg botonAgg-1" >
                               <a href="../atomLector/p1/personajes.php?noLectura=<?php echo $row2['idLectura']; ?>" target="_blank">
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">90 Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #e67e22; color: white; border:white;">90 Detalle 
                         </button></a>
                         
                         </div>
@@ -464,7 +486,7 @@ $nivelDiver=3;
 
           <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px; background-color: #9b59b6; color: white; border-radius: 5px;">Medición Fluidez Verbal y </div>
           <button class="btn btn-default botonAgg botonAgg-1" type="button"style="margin-left:510px;background-color: #c0392b; color: white; border:white;">PDF</button>
-            <button class="btn btn-default botonAgg botonAgg-1" type="button"style="background-color: #16a085; color: white; border:white;">EXCEL</button>
+            <button class="btn btn-default botonAgg botonAgg-1" type="button" style="background-color: #16a085; color: white; border:white;">EXCEL</button>
 
           <div class="col-md-12 sombra" style=" min-height:100px;  margin-bottom: 50px;">
 
@@ -489,7 +511,7 @@ $nivelDiver=3;
                           <td>98</td>
                           <td> 
                               <div class="dropdown botonAgg botonAgg-1" >
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #e67e22; color: white; border:white;">Detalle
                         </button>
                         
                         </div></td>
@@ -503,7 +525,7 @@ $nivelDiver=3;
                           <td>70</td>
                           <td> 
                               <div class="dropdown botonAgg botonAgg-1" >
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #e67e22; color: white; border:white;">Detalle
                         </button>
                         
                         </div></td>
@@ -517,7 +539,7 @@ $nivelDiver=3;
                           <td>50</td>
                           <td> 
                               <div class="dropdown botonAgg botonAgg-1" >
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #e67e22; color: white; border:white;">Detalle
                         </button>
                         
                         </div></td>
@@ -531,7 +553,7 @@ $nivelDiver=3;
                           <td>60</td>
                           <td> 
                               <div class="dropdown botonAgg botonAgg-1" >
-                        <button class="btn btn-default" type="button"style="background-color: #e67e22; color: white; border:white;">Detalle
+                        <button class="btn btn-default" type="button" style="background-color: #e67e22; color: white; border:white;">Detalle
                         </button>
                         
                         </div></td>

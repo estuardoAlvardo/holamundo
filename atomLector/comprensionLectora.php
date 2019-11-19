@@ -69,6 +69,9 @@ require("../conection/conexion.php");
       $hayRegistroCuestionario=$hizoCuestionario->rowCount();
 
     }
+
+
+  
    
  ?>
 
@@ -135,15 +138,22 @@ require("../conection/conexion.php");
               <div class="row">
               <?php while(@$row1=$mostrarLectura->fetch(PDO::FETCH_ASSOC)){ 
                 @$i+=1;
+
+          $query11 = ("SELECT * FROM paginas where idLectura=:idLectura limit 1");
+          $portada2=$dbConn->prepare($query11);
+          $portada2->bindParam(':idLectura',$row1['idLectura'], PDO::PARAM_STR); 
+          $portada2->execute();
+               
                 ?>
                <a href="p1/lect1p.php?idLectura=<?php echo $row1['idLectura']; ?>&gradoB=<?php echo $gradoBuscar; ?>">
                 <div class="col-md-5 estiloProducto" style="min-height:150px; margin-bottom: 20px;">
                 <div class="row" style="background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);">
-
+                 <?php  while(@$row2=$portada2->fetch(PDO::FETCH_ASSOC)){  ?>
                   <div class="col-md-5" style=" min-height:175px; 
-                  background-image: url(<?php echo '../'.$row1['rutaLectura'].'/1.jpg'; ?>); background-size: 70%; background-repeat:no-repeat;">
-                                  
-                  </div>
+                  background-image:url(<?php echo 'data:image/jpg;base64,'.$row2['fichero']; ?>); background-size: 70%; background-repeat:no-repeat;"></div>
+                  <?php } ?>
+
+
                   <div class="col-md-7" style=" min-height: 175px; color: black;">
                     <h4 style=""><?php echo $row1['nombreLectura']; ?></h4>
                     <h5 style="text-align: left;"><?php echo "Tipo Lectura: ".$row1['tipoLectura']; ?></h5>
@@ -161,7 +171,7 @@ require("../conection/conexion.php");
                </div>
              </a>
              <div class="col-md-1"></div>
-            <?php }  ?>
+            <?php } ?>
                
              </div><br>
 

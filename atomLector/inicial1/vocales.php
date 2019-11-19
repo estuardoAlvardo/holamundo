@@ -3,17 +3,27 @@ session_start();
 
 require("../../conection/conexion.php");
 
-    $q1 = ("SELECT * FROM aprendizajepreescolar where idAprendizaje=:idAprendizaje and grado=:grado");
-      $mostrarGlosario=$dbConn->prepare($q1);
-      $mostrarGlosario->bindParam(':idAprendizaje',$_GET['idObjeto'], PDO::PARAM_INT); 
-       $mostrarGlosario->bindParam(':grado',$_GET['gradoB'], PDO::PARAM_INT); 
-      $mostrarGlosario->execute();
-
+    $q1 = ("SELECT * FROM aprendizajepreescolar where grado=:grado");
+      $mostrarObjetos=$dbConn->prepare($q1);      
+       $mostrarObjetos->bindParam(':grado',$_GET['gradoB'], PDO::PARAM_INT); 
+      $mostrarObjetos->execute();
+/*
     $q2= ("SELECT * FROM palabrasglosario as glo JOIN registroglosario as registro on glo.idPalabras=registro.idPalabra WHERE registro.idUsuario=:idUsuario");
       $yaRealizo=$dbConn->prepare($q2);
       $yaRealizo->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
       $yaRealizo->execute();
       $hayRegistros=$yaRealizo->rowCount();
+
+      //mostramos las vocales
+  $objBuscar='vocal';
+ $q5 = ("SELECT * FROM aprendizajepreescolar where grado=:grado and descripcion=:descripcion");
+    $mostrarVocales=$dbConn->prepare($q5);
+    $mostrarVocales->bindParam(':grado',$_GET['gradoB'], PDO::PARAM_INT); 
+    $mostrarVocales->bindParam(':descripcion',$objBuscar, PDO::PARAM_STR); 
+    $mostrarVocales->execute();
+
+*/
+
  ?>
 
 
@@ -70,6 +80,65 @@ require("../../conection/conexion.php");
 body{
   overflow-x: none;
 }
+
+.cajaCards{
+                      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+                      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+                      border-radius: 5px;
+                      height: 100px; 
+                      margin-bottom: 20px;
+                      padding-top: 10px;
+                    }
+
+                    .cajaCards:hover{
+                       box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+                       background: #642B73;  /* fallback for old browsers */
+                      background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */
+                      background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                      color: white;
+                      font-size: bold;
+                      padding-top: 10px;
+                      cursor: pointer;
+
+                    }
+
+                    .cajaGrado{
+                      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+                       background: #642B73;  /* fallback for old browsers */
+                      background: -webkit-linear-gradient(to right, #C6426E, #642B73);  /* Chrome 10-25, Safari 5.1-6 */
+                      background: linear-gradient(to right, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                      color: white;
+                      font-size: bold;
+                      padding-top: 5px;
+
+
+                    }
+
+                    .btnGrado{
+                       box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+                       transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+                       height:50px; padding-top: 20px; background-color:#2980b9;
+                       margin-bottom: 20px;
+                       border-radius: 10px;
+
+                    }
+                    .btnGrado:hover{
+                      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+                      cursor: pointer;
+                    }
+
+
+                    /* acordion css*/
+  
+                    .estiloProducto{
+                     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+                     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+                    }
+
+                    .estiloProducto:hover{
+                       box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+                    }
+
 .cardGlosario {
  
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -491,88 +560,41 @@ That part is just for the form
 
       <div class="col-md-8 col-xs-8 pag-center">
          <div class="card-style" style="width:60px; height: 60px; border-radius:100px; border:4px solid #f39c12; margin-left: 90%; margin-top: 20px; color: #d35400; cursor:pointer; position: absolute; z-index:6;" onclick="informacion();" title="¿Cómo Funciona?"><h1 style="margin-top:7px;">?</h1></div>
-        <h3 style="margin-top: 50px;">Aprendo las vocales</h4>
+        <h3 style="margin-top: 50px;">Práctica Fonemas</h4>
+          
+              <div class="row" style="margin-bottom: 50px;">
+             <?php  while(@$row1=$mostrarObjetos->fetch(PDO::FETCH_ASSOC)){  ?>
+               <a href="<?php echo 'practica.php?obj='.$row1['idObjetoAprendizaje'].'&grado='.$row1['grado'];?>"><div class="col-md-5 estiloProducto" style="min-height:150px; margin-left: 10px; margin-left: 20px; margin-bottom: 20px;">
+                <div class="row" style="background-image:linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); ">
+
+                  <div class="col-md-5" style=" min-height:150px; 
+                  background-image: url(<?php echo 'data:image/jpg;base64,'.$row1['portada'];  ?>);  background-size: 100%; background-repeat:no-repeat; ">                                  
+                  </div>
+                  <div class="col-md-7" style=" min-height: 150px; color: black;">
+                    <h4 style="font-size: 22pt; " ><?php echo $row1['objetoAprendizaje']; ?></h4>
+                    <h3 style="text-align: left; font-size: 10pt;"><strong>Descripción:</strong> <?php echo $row1['descripcion']; ?></h3>
+
+                    <img src="../enviado1.png" style="width: 40px; height: 40px; position:absolute; margin-top:-2%; margin-left:23%;">             
+                </div>
+
+                </div>
+              
+                 
+               </div></a>
+<?php  }?>
+               
+              
+         </div>
           
           <span class="col-md-10 " id="span-preview1" style="display: none; border:1px solid #3498db; height: 200px; text-align: center;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); border-radius:5px;margin-left:30px; margin-bottom: 40px;"></span> 
 
           <input type="text" name="nombre" id="nombre" value="<?php echo $_SESSION['nombre']; ?>" style="display: none;">
 
          <div class="row">
-         <?php while(@$row1=$mostrarGlosario->fetch(PDO::FETCH_ASSOC)){
-
-            for($i=1;$i<=$row1['cantidadFicheros'];$i++){
-          ?> 
-
-
-
-              <div class="col-md-5 cardGlosario" id="<?php echo 'card'.$row1['idAprendizaje'].$i; ?>" style="background: url(<?php echo $row1['rutaImagen'].$i.'.png'; ?>) no-repeat center ;
-                  height: 100%;
-                   background-size:     cover;                      /* <------ */
-                  background-repeat:   no-repeat;
-                  background-position: center center;
-                  color: white; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-                  height: 350px;
-              ">
-               
-                <div style="width: 100%; height:150; padding: 0px 0px; border-radius: 5px; ">
-                 
-                </div>
-                <div class="recodinggN" id="<?php echo 'on'.$row1['idAprendizaje'].$i; ?>" title="Graba el concepto" style="cursor: pointer; padding-top:3px;  width: 50px; height: 50px; border-radius: 100%; margin-top: 280px; background-color: #e67e22; margin-left: 85%;" onclick="inicio(this.id)"><img src="../../img/micro.png" width="40" height="40" ></div>
-
-                <div id="<?php echo 'ofon'.$row1['idAprendizaje'].$i; ?>" class="recodinggN" title="Graba el concepto" style="cursor: pointer; padding-top:3px;  width: 50px; height: 50px; border-radius: 100%; margin-top: 280px; background-color: #F72626; margin-left: 85%; display: none" onclick="finGrabacion(this.id)"><img src="../../img/microOf.png" width="40" height="40" ></div>
-
-                <div  class="cardGlosario" title="Reproducir" style="cursor: pointer; padding-top:5px;  width: 50px; height: 50px; border-radius: 100%; margin-top:-50px; background-color: #3498db; margin-left: 60%; display: block ;position:absolute; padding-left: 10px;">
-                  <img id="<?php echo 'audio'.$i; ?>" src="../../img/play.png" width="40" height="40" onclick="reproducirAudio(this.id);" >                  
-                </div>
-                <audio id="<?php echo 'reproducir'.$i; ?>" src="<?php echo $row1['audios'].$i.'.mp3'; ?>" preload="auto" controls style="display: none;"></audio>
-
-                <div  class="cardGlosario" title="Reproducir" style="cursor: pointer; padding-top:5px;  width: 50px; height: 50px; border-radius: 100%; margin-top:-50px; background-color: #3498db; margin-left: 60%; display: none ;position:absolute;">
-                  <img src="../../img/pause.png" width="40" height="40" >                  
-                </div>
-
-                <div id="<?php echo 'bloq'.$row1['idAprendizaje']; ?>" class="recodinggN" title="Felicidades!" style="padding-top:3px;  width: 50px; height: 50px; border-radius: 100%; margin-top: 10px; background-color:#9b59b6; margin-left: 40%; display: none"><img src="../../img/star.png" width="40" height="40" ></div>
-
-              </div>
-
-            
-          <?php $_SESSION['idAprendizaje']=$row1['idAprendizaje']; //$_SESSION['lect']=$row1['idLectura'];  
-        }} ?>
+      
          </div>
 
-<!-- AQUI VERIFICAMOS SI YA REALIZO ALGUNA LECTURA Y CAMBIAMOS ESTILOS TARJETAS -->
-
-        <input id="cantidadIteracion" type="text" name="cantidadRealizada" value="<?php echo $hayRegistros; ?>" style="display: none;">
-        <?php while(@$row2=$yaRealizo->fetch(PDO::FETCH_ASSOC)){ @$i+=1; ?>
-
-          <input id="<?php echo "cambiar".$i; ?>" type="text" name="cambiarcolor" value="<?php echo "palabra".$row2['idPalabras']; ?>" style="display: none;">
-        <?php } ?> 
-
-
-<!-- TROZO DE CODIGO NOS VA A SERVIR PARA LANZAR LAS NOTIFICACIONES AL USUARIO --->
-         <section class="colorfulForm" style="display: block;">
-            <label>Title</label>
-            <input type="text" id="title" value="Esto es lo que grabamos ¿Lo deseas Guardar?" class="l2"/><br>
-            <label>Text</label>
-          <textarea id="myText" class="l2" id="palabraAguardar"></textarea><br>
-            <label>Mode</label>
-            <select class="l2" id="mode">
-                <option value="">confirm</option>
-                <option value="alert">alert</option>
-            </select><br>
-            <label>Size</label>
-            <select class="l2" id="size">
-              
-                <option value="m">medium</option>
-              
-            </select><br>
-          <label>Color</label>
-          <button id="activarNoti" class="l1 blue">blue</button> 
-          <button class="l1 green">green</button> 
-          <button class="l1 red">red</button>  
-          <button class="l1 white" style="border: 1px solid #555; color: #555;">white</button>
-          <button class="l1 orange">orange</button> 
-          <button class="l1 purple">purple</button> 
-        </section> 
+     
 
 
 <!-- TROZO DE CODIGO NOS VA A SERVIR PARA LANZAR LAS NOTIFICACIONES AL USUARIO --->

@@ -149,7 +149,7 @@ if($nivel==3){
           <a href="#" data-toggle="modal" data-target="#plataformas"><img class="img-responsive" src="../img/otras.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />            
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left">Plataformas</h5>
-          --->
+          ---->
            <?php  } if($_SESSION['tipoUsuario']==2){  ?>
 
 
@@ -169,12 +169,16 @@ if($nivel==3){
           </a>
           <h5 style="color: white; margin-left: 20px;" class="text-left">Reportes</h5>
 
-          <a href="../apps/misAlumnos.php"><img class="img-responsive" src="../img/alumnos.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" title="Asistencia"/>           
+          <a href="../apps/misAlumnos.php"><img class="img-responsive" src="../img/conexion.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" title="Asistencia"/>           
           </a>
-          <h5 style="color: white; margin-left: 60%;" class="text-left" >Asistencia</h5>
+          <h5 style="color: white; margin-left: 60%;" class="text-left" >Reporte Acceso</h5>
           <a href="../apps/reportbullying.php"><img class="img-responsive" src="../img/alert.png" style="max-width:50px; max-height: 50px; margin-left:10px; margin-top: 30px;" title="Bullyng"/>           
           </a><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: rgb(54, 171, 203); position: absolute; margin-top: -60px; margin-left: -32px;" ><?php echo @$_SESSION['reporteBullying1']; ?></div>
           <h5 style="color: white; margin-left: 20px;" class="text-left" >Bullying</h5>
+
+          <a href="../apps/planificacion.php"><img class="img-responsive" src="../img/planificacion.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" title="Plani"/>           
+          </a>
+          <h5 style="color: white; margin-left: 60%;" class="text-left" >Planificación</h5>
           <!--
           <a href="../apps/streamingCanales.php"><img class="img-responsive" src="../img/streaming.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%; " />           
           </a>
@@ -187,13 +191,7 @@ if($nivel==3){
           </a>
         
           <h5 style="color: white; margin-left: 60%;" class="text-left">Plataformas</h5>
-            --->
-
-          
-
-
-
- 
+            ---->
 
             
 
@@ -218,9 +216,9 @@ if($nivel==3){
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left">Streaming</h5>
 
-          <a href="../apps/misAlumnos.php"><img class="img-responsive" src="../img/alumnos.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 30px;" title="Asistencia"/>           
+          <a href="../apps/misAlumnos.php"><img class="img-responsive" src="../img/conexion.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 30px;" title="Asistencia"/>           
           </a>
-          <h5 style="color: white; margin-left: 20px;" class="text-left" >Asistencia</h5>
+          <h5 style="color: white; margin-left: 20px;" class="text-left" >Reporte de Acceso</h5>
 
           <a href="#" data-toggle="modal" data-target="#plataformas"><img class="img-responsive" src="../img/otras.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />            
           </a>
@@ -231,7 +229,7 @@ if($nivel==3){
 
            <?php  }if($_SESSION['tipoUsuario']==4){ ?>
 
-        <a href="../static/apps/calendarm.php" ><img class="img-responsive" src="img/calendario.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 50px;" />           
+        <a href="../static/apps/calendarm.php" ><img class="img-responsive" src="../img/calendario.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 50px;" />           
           </a>
         	<h5 style="color: white; margin-left: 20px;" class="text-left">Calendario</h5>
 
@@ -251,11 +249,11 @@ if($nivel==3){
         	</a>
         	<h5 style="color: white; margin-left: 60%;" class="text-left">Streaming</h5>
 
-         
+         <!--
           <a href="#" data-toggle="modal" data-target="#plataformas"><img class="img-responsive" src="../img/otras.png" style="max-width: 50px; max-height: 50px; margin-left: 10%; margin-top: 15%;" />            
           </a>
           <h5 style="color: white; margin-left: 10%;" class="text-left">Plataformas</h5>
-
+          ---->
   <?php }?>
           
 
@@ -406,9 +404,9 @@ function datos(){
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left">Streaming</h5>
           -->
-          <a href="../../apps/misAlumnos.php"><img class="img-responsive" src="../../img/alumnos.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" title="Asistencia"/>           
+          <a href="../../apps/misAlumnos.php"><img class="img-responsive" src="../../img/conexion.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" title="Asistencia"/>           
           </a>
-          <h5 style="color: white; margin-left: 60%;" class="text-left" >Asistencia</h5>
+          <h5 style="color: white; margin-left: 60%;" class="text-left" >Reporte Acceso</h5>
           <!--
           <a href="#" data-toggle="modal" data-target="#plataformas"><img class="img-responsive" src="../../img/otras.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />            
           </a>
@@ -673,9 +671,9 @@ function datos(){
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left">Streaming</h5>
             -->
-          <a href="../../../apps/misAlumnos.php"><img class="img-responsive" src="../../../img/alumnos.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 30px;" title="Asistencia"/>           
+          <a href="../../../apps/misAlumnos.php"><img class="img-responsive" src="../../../img/conexion.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 30px;" title="Asistencia"/>           
           </a>
-          <h5 style="color: white; margin-left: 20px;" class="text-left" >Asistencia</h5>
+          <h5 style="color: white; margin-left: 20px;" class="text-left" >Reporte Acceso</h5>
 
           <!--
           <a href="#" data-toggle="modal" data-target="#plataformas"><img class="img-responsive" src="../../../img/otras.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />            
@@ -949,6 +947,7 @@ function iaDocente(){
  //grupo 11 salir de la plataforma
  //grupo 12 ir a lecturas de velocidad
 //gurpo 13 ir a lecturas diarias
+//gurpo 14 descargar planificacion
 
 
 
@@ -1093,7 +1092,19 @@ function iaDocente(){
             artyom.fatality();
 
         }
+      },
+      {
+        //grupo 14
+        indexes:['descargar planificación','planificación','descargar plani','ver planificacion','plani',],
+        action: function(){
+          artyom.say("abriendo las lecturas diarias, elije grado que quieres observar, y empieza a crear el hábito lector.");
+          window.location.replace("http://localhost/atomolms/atomLector/eleccionNivelLecturasDiarias.php?curso=7",'_blank');
+          
+            artyom.fatality();
+
+        }
       }
+
 
 
     ]); 

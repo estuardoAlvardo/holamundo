@@ -67,8 +67,10 @@ require("../../conection/conexion.php");
 
 <style type="text/css">
   .masCentrado{
-    margin-left: 55%;
+    margin-left: 5%;
     margin-top: 36%;
+
+    margin-bottom:200px;
   }
 
   .cajaDescripcion{
@@ -76,14 +78,183 @@ require("../../conection/conexion.php");
                      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
                     }
 
+/*estilos para liston titulo*/
+
+.container {
+  width: 80%;
+  max-width: 1000px;
+  height: 80px;
+  margin: 40px auto; 
+  position: relative;
+}
+
+.one > div {
+  height: 50px;
+}
+
+.main {
+  background: #e67e22; 
+  position: relative;
+  display: block;
+  width: 95%;
+  left: 50%;
+  top: 0;
+  padding: 5px;
+  margin-left: -47%;
+  z-index: 10;
+}
+
+.main > div {
+  border: 1px dashed #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+  height: 40px;
+}
+
+.bk {
+ background:#e67e22;
+ position: absolute;
+ width: 8%;
+ top: 12px;
+}
+
+.bk.l {
+ left: 0;
+}
+
+.bk.r {
+ right: 0;
+}
+
+.skew {
+  position: absolute;
+  background: #e15f41;
+  width: 3%;
+  top: 6px;
+  z-index: 5;
+}
+
+.skew.l {
+  left: 5%;
+  transform: skew(00deg,20deg);
+}
+
+.skew.r {
+  right: 5%;
+  transform: skew(00deg,-20deg);
+}
+
+.bk.l > div {
+  left: -30px;
+}
+
+.bk.r > div {
+  right: -30px;
+}
+
+.arrow {
+  height: 25px !important;
+  position: absolute;
+  z-index: 2;
+  width: 0; 
+  height: 0; 
+}
+
+.arrow.top {
+  top: 0px;
+  border-top: 0px solid transparent;
+  border-bottom: 25px solid transparent;  
+  border-right: 30px solid #e67e22; 
+}
+
+.arrow.bottom {
+  top: 25px;
+  border-top: 25px solid transparent;
+  border-bottom:0px solid transparent;  
+  border-right: 30px solid #e67e22; 
+}
+
+.r .bottom {
+  border-top: 25px solid transparent;
+  border-bottom: 0px solid transparent;   
+  border-left: 30px solid #e67e22; 
+  border-right: none;
+}
+
+.r .top {
+  border-bottom: 25px solid transparent;
+  border-top: 0px solid transparent;  
+  border-left: 30px solid #e67e22; 
+  border-right: none;
+}
+
+@media all and (max-width: 1020px) {
+  .skew.l {
+    left: 5%;
+    transform: skew(00deg,25deg);
+  }
+
+  .skew.r {
+    right: 5%;
+    transform: skew(00deg,-25deg);
+  }
+}
+
+@media all and (max-width: 680px) {
+  .skew.l {
+    left: 5%;
+    transform: skew(00deg,30deg);
+  }
+
+  .skew.r {
+    right: 5%;
+    transform: skew(00deg,-30deg);
+  }
+}
+
+@media all and (max-width: 460px) {
+  .skew.l {
+    left: 5%;
+    transform: skew(00deg,40deg);
+  }
+  .skew.r {
+    right: 5%;
+    transform: skew(00deg,-40deg);
+  }
+}
+
+
 
 </style>
 
       <div class="col-md-8 col-xs-8 pag-center">
 
          <div class="col-md-12" style="margin-top: 30px;">
-          <?php while(@$row1=$mostrarLectura->fetch(PDO::FETCH_ASSOC)){   ?>
-              <h3 class="text-center">Lectura: <?php echo $row1['nombreLectura']; ?></h3><br> 
+          <?php while(@$row1=$mostrarLectura->fetch(PDO::FETCH_ASSOC)){  
+
+            $query1 = ("SELECT * FROM paginas where idLectura=:idLectura; ");
+            $buscarPaginas=$dbConn->prepare($query1);
+            $buscarPaginas->bindParam(':idLectura',$row1['idLectura'], PDO::PARAM_INT);
+            $buscarPaginas->execute();
+            $cantidadPaginas=$buscarPaginas->rowCount();
+
+
+
+           ?>
+            <div class="container one">
+                <div class="bk l">
+                  <div class="arrow top" ></div> 
+                  <div class="arrow bottom"></div>
+                </div>
+                <div class="skew l"></div>
+                <div class="main">
+                  <div style="text-align:center; color: white;"><h3 style="margin-top:6px">Lectura: <?php echo $row1['nombreLectura']; ?></h3></div>   
+                </div>
+                <div class="skew r"></div>                
+                <div class="bk r">
+                  <div class="arrow top"></div> 
+                  <div class="arrow bottom"></div>
+                </div>
+              </div> 
               <hr>
              
          </div>
@@ -130,11 +301,11 @@ require("../../conection/conexion.php");
               <div class="flipbook-viewport">
                 <div class="container">
                   <div class="flipbook">
-                    <div style="background-image:url(<?php echo "../../".$row1['rutaPasta']."/1.jpg"; ?>)"></div>
-                    <?php for($inc=1; $inc<=$row1['cantidadFicheros'];$inc++){ ?>
-                    <div style="background-image:url(<?php echo "../../".$row1['rutaLectura']."/".$inc.".png";  ?>)"></div>
+                     <div style="background-image:url(<?php echo 'data:image/jpg;base64,'.$row1['portada']; ?>)"></div>
+                   <?php while(@$paginas=$buscarPaginas->fetch(PDO::FETCH_ASSOC)){ ?>
+                    <div style="background-image:url(<?php echo 'data:image/jpg;base64,'.$paginas['fichero'];  ?>)"></div>
                   <?php } ?>
-                    <div style="background-image:url(<?php echo "../../".$row1['rutaPasta']."/2.jpg"; ?>)"></div>
+                  <div style="background-image:url(<?php echo 'data:image/jpg;base64,'.$row1['contraportada'];  ?>)"></div>
                   
                   </div>
                 </div>

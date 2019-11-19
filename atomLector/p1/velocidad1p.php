@@ -40,6 +40,201 @@ $columnasEncontradas= $detalleLectura->rowCount();
 }
 
 
+ if($_GET['gradoB']>=7){
+                      $extencion='.png';
+                    } 
+                   
+ if($_GET['gradoB']<7){
+                      $extencion='.gif';
+                    }
+
+
+
+//control de estandares de velocidad--------------------------------------------------------
+
+switch ($_GET['gradoB']) {
+  case 1:
+    //variables 
+    $necesitaMejorar=10; 
+    $cercarEstandar=25;
+    $estandar=45;
+    $avanzado=58;
+
+    //rangos
+    $rango1='0 - '.$necesitaMejorar;
+    $rango2= $necesitaMejorar.' - '.$cercarEstandar;
+    $rango3= $cercarEstandar.' - '.$estandar;
+    $rango4= $estandar.' - '.$avanzado.' o mayor';
+
+    break;
+
+  case 2:
+  //variables 
+    $necesitaMejorar=25; 
+    $cercarEstandar=45;
+    $estandar=65;
+    $avanzado=84;
+
+    //rangos
+    $rango1='0 - '.$necesitaMejorar;
+    $rango2= $necesitaMejorar.' - '.$cercarEstandar;
+    $rango3= $cercarEstandar.' - '.$estandar;
+    $rango4= $estandar.' - '.$avanzado.' o mayor';
+    break;
+
+    case 3: 
+    //variables 
+    $necesitaMejorar=45; 
+    $cercarEstandar=65;
+    $estandar=85;
+    $avanzado=112;
+
+    //rangos
+    $rango1='0 - '.$necesitaMejorar;
+    $rango2= $necesitaMejorar.' - '.$cercarEstandar;
+    $rango3= $cercarEstandar.' - '.$estandar;
+    $rango4= $estandar.' - '.$avanzado.' o mayor';
+    break;
+
+    case 4: 
+    //variables 
+    $necesitaMejorar=70; 
+    $cercarEstandar=84;
+    $estandar=100;
+    $avanzado=140;
+
+    //rangos
+    $rango1='0 - '.$necesitaMejorar;
+    $rango2= $necesitaMejorar.' - '.$cercarEstandar;
+    $rango3= $cercarEstandar.' - '.$estandar;
+    $rango4= $estandar.' - '.$avanzado.' o mayor';
+    break;
+
+    case 5: 
+    //variables 
+    $necesitaMejorar=95; 
+    $cercarEstandar=120;
+    $estandar=140;
+    $avanzado=168;
+
+    //rangos
+    $rango1='0 - '.$necesitaMejorar;
+    $rango2= $necesitaMejorar.' - '.$cercarEstandar;
+    $rango3= $cercarEstandar.' - '.$estandar;
+    $rango4= $estandar.' - '.$avanzado.' o mayor';
+    break;
+
+    case 6: 
+    //variables 
+    $necesitaMejorar=120; 
+    $cercarEstandar=145;
+    $estandar=180;
+    $avanzado=196;
+
+    //rangos
+    $rango1='0 - '.$necesitaMejorar;
+    $rango2= $necesitaMejorar.' - '.$cercarEstandar;
+    $rango3= $cercarEstandar.' - '.$estandar;
+    $rango4= $estandar.' - '.$avanzado.' o mayor';
+    break;
+
+    case 7: 
+    //variables 
+    $necesitaMejorar=170; 
+    $cercarEstandar=180;
+    $estandar=200;
+    $avanzado=224;
+
+    //rangos
+    $rango1='0 - '.$necesitaMejorar;
+    $rango2= $necesitaMejorar.' - '.$cercarEstandar;
+    $rango3= $cercarEstandar.' - '.$estandar;
+    $rango4= $estandar.' - '.$avanzado.' o mayor';
+    break;
+
+     case 8: 
+    //variables 
+    $necesitaMejorar=200; 
+    $cercarEstandar=210;
+    $estandar=225;
+    $avanzado=252;
+
+    //rangos
+    $rango1='0 - '.$necesitaMejorar;
+    $rango2= $necesitaMejorar.' - '.$cercarEstandar;
+    $rango3= $cercarEstandar.' - '.$estandar;
+    $rango4= $estandar.' - '.$avanzado.' o mayor';
+    break;
+
+    case 9: 
+    //variables 
+    $necesitaMejorar=220; 
+    $cercarEstandar=230;
+    $estandar=260;
+    $avanzado=280;
+
+    //rangos
+    $rango1='0 - '.$necesitaMejorar;
+    $rango2= $necesitaMejorar.' - '.$cercarEstandar;
+    $rango3= $cercarEstandar.' - '.$estandar;
+    $rango4= $estandar.' - '.$avanzado.' o mayor';
+    break;
+
+    case 10: 
+    //variables 
+    $necesitaMejorar=240; 
+    $cercarEstandar=260;
+    $estandar=280;
+    $avanzado=308;
+
+    //rangos
+    $rango1='0 - '.$necesitaMejorar;
+    $rango2= $necesitaMejorar.' - '.$cercarEstandar;
+    $rango3= $cercarEstandar.' - '.$estandar;
+    $rango4= $estandar.' - '.$avanzado.' o mayor';
+    break;
+
+     case 11: 
+    //variables 
+    $necesitaMejorar=260; 
+    $cercarEstandar=280;
+    $estandar=300;
+    $avanzado=336;
+
+    //rangos
+    $rango1='0 - '.$necesitaMejorar;
+    $rango2= $necesitaMejorar.' - '.$cercarEstandar;
+    $rango3= $cercarEstandar.' - '.$estandar;
+    $rango4= $estandar.' - '.$avanzado.' o mayor';
+    break;
+
+         case 12: 
+    //variables 
+    $necesitaMejorar=290; 
+    $cercarEstandar=300;
+    $estandar=340;
+    $avanzado=365;
+
+    //rangos
+    $rango1='0 - '.$necesitaMejorar;
+    $rango2= $necesitaMejorar.' - '.$cercarEstandar;
+    $rango3= $cercarEstandar.' - '.$estandar;
+    $rango4= $estandar.' - '.$avanzado.' o mayor';
+    break;
+  default:
+    $necesitaMejorar=0; 
+    $cercarEstandar=0;
+    $estandar=0;
+    $avanzado=0;
+    break;
+}
+
+
+
+
+
+
+
 
  ?>
 
@@ -50,7 +245,7 @@ $columnasEncontradas= $detalleLectura->rowCount();
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
-    <title><?php echo $_SESSION["nombre"]; ?> | Mis Cursos</title>
+    <title><?php echo $_SESSION["nombre"]; ?> | Lecturas Fluidez Verbal</title>
  
     <!-- CSS de Bootstrap -->
     <link href="../../css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -171,7 +366,7 @@ $columnasEncontradas= $detalleLectura->rowCount();
 .card-style{
   
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  
 }
 
 .card-style:hover{
@@ -187,6 +382,152 @@ $columnasEncontradas= $detalleLectura->rowCount();
 #container {
     height: 400px; 
 }
+
+/*estilos para liston titulo*/
+
+.container {
+  width: 80%;
+  max-width: 1000px;
+  height: 80px;
+  margin: 100px auto; 
+  position: relative;
+
+}
+
+.one > div {
+  height: 50px;
+}
+
+.main {
+  background: #2ecc71; 
+  position: relative;
+  display: block;
+  width: 95%;
+  left: 50%;
+  top: 0;
+  padding: 5px;
+  margin-left: -47%;
+  z-index: 10;
+}
+
+.main > div {
+  border: 1px dashed #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+  height: 40px;
+}
+
+.bk {
+ background:#2ecc71;
+ position: absolute;
+ width: 8%;
+ top: 12px;
+}
+
+.bk.l {
+ left: 0;
+}
+
+.bk.r {
+ right: 0;
+}
+
+.skew {
+  position: absolute;
+  background: #27ae60;
+  width: 3%;
+  top: 6px;
+  z-index: 5;
+}
+
+.skew.l {
+  left: 5%;
+  transform: skew(00deg,20deg);
+}
+
+.skew.r {
+  right: 5%;
+  transform: skew(00deg,-20deg);
+}
+
+.bk.l > div {
+  left: -30px;
+}
+
+.bk.r > div {
+  right: -30px;
+}
+
+.arrow {
+  height: 25px !important;
+  position: absolute;
+  z-index: 2;
+  width: 0; 
+  height: 0; 
+}
+
+.arrow.top {
+  top: 0px;
+  border-top: 0px solid transparent;
+  border-bottom: 25px solid transparent;  
+  border-right: 30px solid #2ecc71; 
+}
+
+.arrow.bottom {
+  top: 25px;
+  border-top: 25px solid transparent;
+  border-bottom:0px solid transparent;  
+  border-right: 30px solid #2ecc71; 
+}
+
+.r .bottom {
+  border-top: 25px solid transparent;
+  border-bottom: 0px solid transparent;   
+  border-left: 30px solid #2ecc71; 
+  border-right: none;
+}
+
+.r .top {
+  border-bottom: 25px solid transparent;
+  border-top: 0px solid transparent;  
+  border-left: 30px solid #2ecc71; 
+  border-right: none;
+}
+
+@media all and (max-width: 1020px) {
+  .skew.l {
+    left: 5%;
+    transform: skew(00deg,25deg);
+  }
+
+  .skew.r {
+    right: 5%;
+    transform: skew(00deg,-25deg);
+  }
+}
+
+@media all and (max-width: 680px) {
+  .skew.l {
+    left: 5%;
+    transform: skew(00deg,30deg);
+  }
+
+  .skew.r {
+    right: 5%;
+    transform: skew(00deg,-30deg);
+  }
+}
+
+@media all and (max-width: 460px) {
+  .skew.l {
+    left: 5%;
+    transform: skew(00deg,40deg);
+  }
+  .skew.r {
+    right: 5%;
+    transform: skew(00deg,-40deg);
+  }
+}
+
  </style>
  <script type="text/javascript">
    document.oncontextmenu = function(){return false}
@@ -195,11 +536,30 @@ $columnasEncontradas= $detalleLectura->rowCount();
  			<div class="col-md-8 col-xs-8 pag-center">
         <div class="col-md-12" style="">
           <div class="card-style" style="width:60px; height: 60px; border-radius:100px; border:4px solid #f39c12; margin-left: 90%; margin-top: 20px; color: #d35400; cursor:pointer; position: absolute; z-index:6;" onclick="informacion();" title="¿Cómo Funciona?"><h1 style="margin-top:7px;">?</h1></div></div>
-         <div class="col-md-12" style="margin-top:50px;">
-              <h3 class="text-center">Velocidad y Fluidez Lectora</h3><br>
-              
-         </div>
-         <div class="row" style="margin-bottom: 100px;">
+         
+
+         <?php while($obj1=$obtenerLectura->fetch(PDO::FETCH_ASSOC)){ 
+          $_SESSION['lecturaPatron']=$obj1['lectura'];
+
+
+          ?> 
+          <div class="container one">
+                <div class="bk l">
+                  <div class="arrow top" ></div> 
+                  <div class="arrow bottom"></div>
+                </div>
+                <div class="skew l"></div>
+                <div class="main">
+                  <div style="text-align:center; color: white;"><h3 style="margin-top:6px">Lectura: <?php echo $obj1['nombreLectura'] ?></h3></div>   
+                </div>
+                <div class="skew r"></div>                
+                <div class="bk r">
+                  <div class="arrow top"></div> 
+                  <div class="arrow bottom"></div>
+                </div>
+              </div> 
+              <hr>
+         <div class="row" style="margin-bottom: 30px;">
 
 
           <div style="border:0px  pink; margin-bottom: 30px;">
@@ -213,16 +573,11 @@ $columnasEncontradas= $detalleLectura->rowCount();
 
      
 
-         <?php while($obj1=$obtenerLectura->fetch(PDO::FETCH_ASSOC)){ 
-          $_SESSION['lecturaPatron']=$obj1['lectura'];
-
-
-          ?> 
           <div class="col-md-12" style="margin-top: -20px; margin-bottom: 20px;">
-         <img src="<?php echo "../../".$obj1['rutaLectura']."/".$_GET['numeroLectura']; ?>.gif" style=" box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); border-radius: 20px;">
+         <img src="<?php echo 'data:image/gif;base64,'.$obj1['fichero']; ?>" style=" box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); border-radius: 20px;">
          <p id="numeroLectura" style="display: none;"><?php echo $obj1['idLectura']; ?></p>
          <p id="palabrasLecturabd" style="display: none;"><?php echo $obj1['cantidadPalabras']; ?></p>
-       
+        
          </div>
        <?php } ?>
 
@@ -280,120 +635,99 @@ $columnasEncontradas= $detalleLectura->rowCount();
 <?php if(empty($_GET['intento100'])){ ?>
 
 <?php }else{ ?>
+
+
+
 <!-- MODULO DE REPORTES INICIO -->
 
     <div class="col-md-12" style="margin-top: 50px;">
      
    <?php while($obj2=$detalleLectura->fetch(PDO::FETCH_ASSOC)){  
 
-    if($_GET['gradoB']==9){
-      //si el grado es 3ro basico cambian las tablas y cambia la forma de evaluar
-
-      echo "estoy funcionando";
      ?>
-      <span id="detalleLecturaAqui" style="display: block;"></span>
-           <h3 >Detalle de la Lectura</h3>
-           <button class="btn botonAgg-1" style="color: white; background-color: #3498db;">PDF</button>
-          <a href="velocidad1p.php?idLectura=<?php echo $_GET['idLectura'];?>&numeroLectura=<?php echo $_GET['numeroLectura']; ?>&gradoB=<?php echo $_GET['gradoB'] ?>" class="btn botonAgg-1" style="color: white; background-color: #e74c3c;">Volver</a>
-          <h4 style="font-weight: bold; text-align: left;margin-left: 50px;">No Lectura: <?php echo " ".$obj2['noLectura']; ?></h4>
-         <h4 style="font-weight: bold; text-align: left;margin-left: 50px;">Intento:<?php   echo " ".$obj2['intento'];   ?></h4>
-         <h4 style="font-weight: bold; text-align: left;margin-left: 50px;">Tiempo:<?php
-         if($obj2['tiempoSeg']<=60){ echo " ".$obj2['tiempoSeg']."seg";}else{ echo " ".$obj2['tiempoSeg']."min";}  ?></h4>
-         <h4 style="font-weight: bold;text-align: left;margin-left: 50px;">Palabras por Minuto: <?php echo " ".$obj2['velocidadLectora']; ?></h4>
-
-           <div class="col-md-12">   
-
-        <table class="table table-hover">       
-          <thead>
-            <tr>
-              <th style="text-align: center;">Muy Lento</th>
-              <th style="text-align: center;">Lento</th>
-              <th style="text-align: center;">Media Baja</th>
-              <th style="text-align: center;">Media Alta</th>
-               <th style="text-align: center;">Rapida</th>
-                <th style="text-align: center;">Muy Rapida</th>
-            </tr>
-          </thead>
-           <tbody>
-               <tr>      
-                <td class="card-style" style="background-color: #d63031; color: white;">0-247</td>
-                <td class="card-style" style="background-color: #d35400; color: white;">248-256</td>
-                <td class="card-style" style="background-color: #e67e22; color: white;">257-265</td>
-                <td class="card-style" style="background-color: #f39c12; color: white;">266-274</td>
-                <td class="card-style" style="background-color: #1abc9c; color: white;">275-279</td>
-                <td class="card-style" style="background-color: #2ecc71; color: white;">280</td>
-              </tr>
-    </table>
-</div>  
-<h5 style="font-weight: bold;text-align: left;margin-left: 50px; ">Fluidez de la Lectura</h5>
-
- <span class="col-md-10 " id="span-preview" style="border:1px solid #3498db; height: 200px; text-align: center;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); border-radius:5px;margin-left: 50px;"><?php echo $obj2['fluidez']; ?></span>
-         
-<div class="row">
-            <div class="col-md-3"></div>
-         <div id="container" class="col-md-6" style=""></div>
- </div>
-
-<?php 
 
 
- //calculo de velocidad para graficos
-    if($obj2['velocidadLectora']>=0 and $obj2['velocidadLectora']<=247){ $graficoTiempo=16; ?>
-      <h1 id="graficoVelocidad" style="display:none;"><?php echo $graficoTiempo; ?></h1>
-  <?php }else if($obj2['velocidadLectora']>=248 and $obj2['velocidadLectora']<=256){ $graficoTiempo=32;?>
-    <h1 id="graficoVelocidad"  style="display:none;"><?php echo $graficoTiempo;?></h1>
-     <?php }else if($obj2['velocidadLectora']>=257 and $obj2['velocidadLectora']<=265){$graficoTiempo=48; ?>
-        <h1 id="graficoVelocidad" style="display:none;"><?php echo $graficoTiempo;?></h1>
-       <?php }else if($obj2['velocidadLectora']>=266 and $obj2['velocidadLectora']<=274){$graficoTiempo=64; ?>
- <h1 id="graficoVelocidad" style="display:none;"><?php echo $graficoTiempo;?></h1>
-  <?php }else if($obj2['velocidadLectora']>=266 and $obj2['velocidadLectora']<=274){$graficoTiempo=80; ?>
-<h1 id="graficoVelocidad" style="display:none;"><?php echo $graficoTiempo;?></h1>
- <?php }else if($obj2['velocidadLectora']>=275){$graficoTiempo=100; ?>
-  <h1 id="graficoVelocidad" style="display:none;"><?php echo $graficoTiempo; } ?></h1>
 
-
-<?php // terminar el calculo para 3ero basico ?>
-
-
-       <?php  }else{ ?>
 
           <span id="detalleLecturaAqui" style="display: block;"></span>
            <h3 >Detalle de la Lectura</h3>
            <button class="btn botonAgg-1" style="color: white; background-color: #3498db;">PDF</button>
           <a href="velocidad1p.php?idLectura=<?php echo $_GET['idLectura'];?>&numeroLectura=<?php echo $_GET['numeroLectura']; ?>&gradoB=<?php echo $_GET['gradoB'] ?>" class="btn botonAgg-1" style="color: white; background-color: #e74c3c;">Volver</a>
-          <h4 style="font-weight: bold; text-align: left;margin-left: 50px;">No Lectura: <?php echo " ".$obj2['noLectura']; ?></h4>
-         <h4 style="font-weight: bold; text-align: left;margin-left: 50px;">Intento:<?php   echo " ".$obj2['intento'];   ?></h4>
-         <h4 style="font-weight: bold; text-align: left;margin-left: 50px;">Tiempo:<?php
+          <h3 style="font-weight: bold; text-align: left;margin-left: 50px;">No Lectura: <?php echo " ".$obj2['noLectura']; ?></h3>
+         <h3 style="font-weight: bold; text-align: left;margin-left: 50px;">Intento:<?php   echo " ".$obj2['intento'];   ?></h3>
+         <h3  style="font-weight: bold; text-align: left;margin-left: 50px;">Tiempo:<?php
          if($obj2['tiempoSeg']<=60){ echo " ".$obj2['tiempoSeg']."seg";}else{ echo " ".$obj2['tiempoSeg']."min";}  ?></h4>
-         <h4 style="font-weight: bold;text-align: left;margin-left: 50px;">Palabras por Minuto: <?php echo " ".$obj2['velocidadLectora']; ?></h4>
+          <?php 
+           $estiloRemarcado=" ";
+        
+            $estiloRemarcado='box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); border:4px dashed #ff6b6b';
+
+         if($obj2['velocidadLectora']>=0 and $obj2['velocidadLectora']<=$necesitaMejorar){
+
+          echo '<div class="card-style" style="background-color: #e74c3c; color: white; "><h3 style="font-weight: bold;text-align: left;margin-left: 50px;">Palabras por minuto:'.$obj2['velocidadLectora'].'</h3></div>'; 
+
+            $r1=$estiloRemarcado;
+          
+
+         }
+
+
+         if($obj2['velocidadLectora']>=$necesitaMejorar and $obj2['velocidadLectora']<=$cercarEstandar){
+
+          echo '<div><h3 class="card-style" style="background-color: #f39c12; color: white; font-weight: bold;text-align: left;margin-left: 50px;">Palabras por minuto:'.$obj2['velocidadLectora'].'</h3></div>'; 
+         
+          $r2=$estiloRemarcado;
+         }
+
+         if($obj2['velocidadLectora']>=$cercarEstandar and $obj2['velocidadLectora']<=$estandar){
+
+          echo '<div class="card-style" style="background-color: #1abc9c; color: white; color: white; "><h3 style="font-weight: bold;text-align: left;margin-left: 50px;">Palabras por minuto:'.$obj2['velocidadLectora'].'</h3></div>'; 
+         
+          $r3=$estiloRemarcado;
+         }
+
+          if($obj2['velocidadLectora']>=$estandar or $obj2['velocidadLectora']>=$avanzado){
+
+          echo '<div ><h3  class="card-style" style="background-color: #2ecc71; color: white;  font-weight: bold;text-align: left;margin-left: 50px;">Palabras por minuto: '.$obj2['velocidadLectora'].'</h3></div>'; 
+
+          $r4=$estiloRemarcado;
+          
+
+         }
+
+         //remarcamos en que estandar se encuentra el alumno
+
+
+
+
+
+         ?>
        
 
 
-  <div class="col-md-12">   
+  <div class="col-md-12" style="margin-bottom: 50px;">   
 
         <table class="table table-hover">       
           <thead>
             <tr>
-              <th style="text-align: center;">Muy Lento</th>
-              <th style="text-align: center;">Lento</th>
-              <th style="text-align: center;">Media Baja</th>
-              <th style="text-align: center;">Media Alta</th>
-               <th style="text-align: center;">Rapida</th>
-                <th style="text-align: center;">Muy Rapida</th>
+             
+              <th style="text-align: center;">Necesita Mejorar</th>
+              <th style="text-align: center;">Se acerca al Estándar</th>
+               <th style="text-align: center;">Estándar</th>
+                <th style="text-align: center;">Avanzado</th>
             </tr>
           </thead>
            <tbody>
                <tr>      
-                <td class="card-style" style="background-color: #d63031; color: white;">0-21</td>
-                <td class="card-style" style="background-color: #d35400; color: white;">22-28</td>
-                <td class="card-style" style="background-color: #e67e22; color: white;">29-37</td>
-                <td class="card-style" style="background-color: #f39c12; color: white;">38-46</td>
-                <td class="card-style" style="background-color: #1abc9c; color: white;">47-55</td>
-                <td class="card-style" style="background-color: #2ecc71; color: white;">58..</td>
+
+                <td class="card-style" style="background-color: #e74c3c; color: white; <?php echo $r1; ?>"><?php echo $rango1; ?></td>
+                <td class="card-style" style="background-color: #f39c12; color: white; <?php echo $r2; ?>"><?php echo $rango2; ?></td>
+                <td class="card-style" style="background-color: #1abc9c; color: white; color: white; <?php echo $r3; ?>"><?php echo $rango3; ?></td>
+                <td class="card-style" style="background-color: #2ecc71; color: white; <?php echo $r4; ?>"><?php echo $rango4; ?></td>
               </tr>
     </table>
-</div>   
-<h5 style="font-weight: bold;text-align: left;margin-left: 50px; ">Fluidez de la Lectura</h5>
+</div>  
+<h3 style="font-weight: bold;text-align: left;margin-left: 50px; ">Fluidez de la Lectura</h3>
 
  <span class="col-md-10 " id="span-preview" style="border:1px solid #3498db; height: 200px; text-align: center;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); border-radius:5px;margin-left: 50px;"><?php echo $obj2['fluidez']; ?></span>
          
@@ -406,18 +740,17 @@ $columnasEncontradas= $detalleLectura->rowCount();
 
 
  //calculo de velocidad para graficos
-    if($obj2['velocidadLectora']>=0 and $obj2['velocidadLectora']<=21){ $graficoTiempo=16; ?>
+    if($obj2['velocidadLectora']>=0 and $obj2['velocidadLectora']<=$necesitaMejorar){ $graficoTiempo=25; ?>
       <h1 id="graficoVelocidad" style="display:none;"><?php echo $graficoTiempo; ?></h1>
-  <?php }else if($obj2['velocidadLectora']>=22 and $obj2['velocidadLectora']<=28){ $graficoTiempo=32;?>
+  <?php }else if($obj2['velocidadLectora']>=$necesitaMejorar and $obj2['velocidadLectora']<=$cercarEstandar){ $graficoTiempo=50;?>
     <h1 id="graficoVelocidad"  style="display:none;"><?php echo $graficoTiempo;?></h1>
-     <?php }else if($obj2['velocidadLectora']>=29 and $obj2['velocidadLectora']<=37){$graficoTiempo=48; ?>
+     <?php }else if($obj2['velocidadLectora']>=$cercarEstandar and $obj2['velocidadLectora']<=$estandar){$graficoTiempo=75; ?>
         <h1 id="graficoVelocidad" style="display:none;"><?php echo $graficoTiempo;?></h1>
-       <?php }else if($obj2['velocidadLectora']>=38 and $obj2['velocidadLectora']<=46){$graficoTiempo=64; ?>
+       <?php }else if($obj2['velocidadLectora']>=$estandar or $obj2['velocidadLectora']>=$avanzado){$graficoTiempo=100; ?>
  <h1 id="graficoVelocidad" style="display:none;"><?php echo $graficoTiempo;?></h1>
-  <?php }else if($obj2['velocidadLectora']>=47 and $obj2['velocidadLectora']<=55){$graficoTiempo=80; ?>
 <h1 id="graficoVelocidad" style="display:none;"><?php echo $graficoTiempo;?></h1>
  <?php }else if($obj2['velocidadLectora']>=58){$graficoTiempo=100; ?>
-  <h1 id="graficoVelocidad" style="display:none;"><?php echo $graficoTiempo; } }?></h1>
+  <h1 id="graficoVelocidad" style="display:none;"><?php echo $graficoTiempo; }  ?></h1>
 
 
 
@@ -455,7 +788,7 @@ $obj2['fluidez']."<br>";
         }
     },
     title: {
-        text: 'Grafico Velocidad Fluidez'
+        text: 'Grafico Velocidad y Fluidez'
     },
     plotOptions: {
         series: {

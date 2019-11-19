@@ -29,7 +29,7 @@ $nivelDiver=3;
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
-    <title><?php echo $_SESSION["nombre"]; ?> | Mis Cursos</title>
+    <title><?php echo $_SESSION["nombre"]; ?> | Lecturas Diarias</title>
  
     <!-- CSS de Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -175,18 +175,11 @@ padding-top: -30px;
 
 
  			<div class="col-md-8 col-xs-8 pag-center">
-         <div class="col-md-12" style="">
-              <h3 class="text-center"><?php
+         <div class="col-md-12" style="margin-top: 100px;">
+              <h3 class="text-center" style=""><?php
                if($_GET['curso']==7){
                 echo $_SESSION['curso']="Átomo Lector - Lecturas Diarias";
-              }
-
-              
-
-
-
-
-                ?></h3>
+              }?></h3>
          </div>
 <input type="text" name="" id="userIa" value="<?php echo $_SESSION['nombre']; ?>" style="display: none;"> 
                   <style type="text/css">
@@ -270,9 +263,9 @@ padding-top: -30px;
      <p>Básicos</p>
   <div class="row" style="padding-left: 40px;">
     
-    <a href="lecturasDiarias.php?gradoB=7" style="color: white;"><div class="col-md-2 btnGrado" style="background-color: #95a5a6; border:1px solid #95a5a6; pointer-events:none;">1ero Básicos</div></a>
+    <a href="lecturasDiarias.php?gradoB=7" style="color: white;"><div class="col-md-2 btnGrado" style="">1ero Básicos</div></a>
     <div class="col-md-1"></div>
-     <a href="lecturasDiarias.php?gradoB=8" style="color: white;"><div class="col-md-2 btnGrado"  style="background-color: #95a5a6; border:1px solid #95a5a6; pointer-events:none;">2do Básicos</div></a>
+     <a href="lecturasDiarias.php?gradoB=8" style="color: white;"><div class="col-md-2 btnGrado"  style="">2do Básicos</div></a>
     <div class="col-md-1"></div>
     <a href="lecturasDiarias.php?gradoB=9" style="color: white;"> <div class="col-md-2 btnGrado">3ero Básicos</div></a>
    
@@ -282,9 +275,9 @@ padding-top: -30px;
     
     <a href="lecturasDiarias.php?gradoB=10" style="color: white;"> <div class="col-md-2 btnGrado" >4to Diver</div></a>
     <div class="col-md-1"></div>
-     <a href="lecturasDiarias.php?gradoB=11" style="color: white;"><div class="col-md-2 btnGrado" style="background-color: #95a5a6; border:1px solid #95a5a6; pointer-events:none;">5to Diver</div></a>
+     <a href="lecturasDiarias.php?gradoB=11" style="color: white;"><div class="col-md-2 btnGrado" style="">5to Diver</div></a>
     <div class="col-md-1"></div>
-     <a href="lecturasDiarias.php?gradoB=12" style="color: white;"><div class="col-md-2 btnGrado" style="background-color: #95a5a6; border:1px solid #95a5a6; pointer-events:none;">6to Diver</div></a>
+     <a href="lecturasDiarias.php?gradoB=12" style="color: white;"><div class="col-md-2 btnGrado" style="">6to Diver</div></a>
    
   </div>
 

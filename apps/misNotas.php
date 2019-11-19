@@ -24,7 +24,7 @@ $totalEncontrado=$mostrarLecturas->rowCount();
 SELECT * FROM atomolectorvelocidad JOIN velocidadLectora on atomolectorvelocidad.noLectura=velocidadLectora.idLectura where idUsuario=17 and intento=1 and idLectura=2
 */
 
-$consulta1=("SELECT * FROM atomolectorvelocidad JOIN velocidadLectora on atomolectorvelocidad.noLectura=velocidadLectora.idLectura where idUsuario=1 and intento=1;");
+$consulta1=("SELECT * FROM atomolectorvelocidad JOIN velocidadlectora on atomolectorvelocidad.noLectura=velocidadlectora.idLectura where idUsuario=1 and intento=1;");
 $mostrarVelocidad=$dbConn->prepare($consulta1);
 $mostrarVelocidad->bindParam(':idUsuario', $_SESSION['idUsuario'], PDO::PARAM_INT);
 $mostrarVelocidad->execute();

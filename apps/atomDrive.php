@@ -121,7 +121,6 @@ $compartidocon->execute();
             
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="margin-left:50px;">
               <li "><a href="#" class="btnSubir">subir archivo</a></li>
-              <li><a href="#">Subir Varios Archivos</a></li>              
             </ul>
           </div>
         </div>
