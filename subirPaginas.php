@@ -65,7 +65,7 @@
 						<input type="submit" class="login100-form-btn" value="Subir" >
 						
 					</div>
-
+					<a href="administracion.php" style="margin-top: 100px; background-color: #3498db;" class="login100-form-btn" >Volver</a>
 			
 
 					<div class="text-center p-t-136">

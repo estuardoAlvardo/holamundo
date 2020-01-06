@@ -1,5 +1,14 @@
 <?php 
 session_start();
+
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../../index.html');
+}
+
 require("../../conection/conexion.php");
   $_GET['noLectura'];
   $sq1 = ("SELECT *  FROM atomolector as lectura join cuestionario as cues on lectura.idLectura=cues.idLectura join itemopcionmultiple as item on item.idCuestionario=cues.idCuestionario where lectura.idLectura=:idLectura");

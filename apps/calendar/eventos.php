@@ -47,11 +47,10 @@ try {
 				 	$eliminarEvento->execute();
 				 	$respuesta=true;
 				 }
-				 echo json_encode($respuesta);
-
-
-	
+				 echo json_encode($respuesta);	
 				break;
+
+
 			case 'modificar':
 					
 					$sql4= "UPDATE  evento SET
@@ -62,8 +61,7 @@ try {
 					start=:start,
 					final=:final,
 					visible=:visible
-					WHERE id=:id
-					";
+					WHERE id=:id";
 					$modificarEvento= $dbConn->prepare($sql4);
 					$modificarEvento->bindparam(':title',$_POST['title'],PDO::PARAM_STR);
 					$modificarEvento->bindparam(':descripcion',$_POST['descripcion'],PDO::PARAM_STR);
@@ -71,7 +69,7 @@ try {
 					$modificarEvento->bindparam(':textColor',$_POST['textColor'],PDO::PARAM_STR);
 					$modificarEvento->bindparam(':start',$_POST['start'],PDO::PARAM_STR);
 					$modificarEvento->bindparam(':final',$_POST['final'],PDO::PARAM_STR);
-					$modificarEvento->bindparam(':visible',$_POST['visible'],PDO::PARAM_INT);
+					$modificarEvento->bindparam(':visible',$_POST['visible'],PDO::PARAM_STR);
 					$modificarEvento->bindparam(':id',$_POST['id'],PDO::PARAM_INT);
 					$modificarEvento->execute();
 					$respuesta=true;

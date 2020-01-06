@@ -1,6 +1,13 @@
 <?php 
 session_start();
 
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../index.html');
+}
 
 require("../conection/conexion.php");
 
@@ -153,7 +160,7 @@ transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
           <input style="background-color: white;" class="input-lg inputGeneral"  type="password" disabled  value="<?php echo $_SESSION["password"]; ?>" />
           </div>
 
-          <input  class="btn btn-default botonAgg botonAgg-1" type="submit"style="margin-top: -40px; margin-left:550px;background-color: #c0392b; color: white; border:white;" value="Aplicar Cambios"> 
+          <input  class="btn btn-default botonAgg botonAgg-1" type="submit"style="margin-top: 40px; margin-right:-200px;background-color: #c0392b; color: white; border:white;" value="Aplicar Cambios"> 
           </form>
          </div>
 

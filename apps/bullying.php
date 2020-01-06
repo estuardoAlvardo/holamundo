@@ -1,6 +1,16 @@
 <?php 
 session_start();
-//curso 1
+
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../index.html');
+}
+
+
+
 $curso="Matemáticas";
 $curso="";
 $leccionRealizada=1; // varaiable dependera del uso en la base de datos
@@ -12,45 +22,6 @@ $_SESSION['idUsuario'];
 
 
 
-//$sql1 = ("SELECT * FROM registrocl2p2 where idIntento=:idIntento");
-//$obtenerMatriz=$dbConn->prepare($sql1);
-//$obtenerMatriz->bindParam(':idIntento', $_GET['idIntento'], PDO::PARAM_INT); 
-//$obtenerMatriz->execute();
-
-//variables de niveles
-$nivelPrimaria=1;
-$nivelBasico=2;
-$nivelDiver=3;
-
-//Buscar todos los cursos de este usuario primaria
-
-$q1 = ("SELECT * FROM cursos where idDocente=:idUsuario and nivel=:nivel");
-$cursosPrimaria=$dbConn->prepare($q1);
-$cursosPrimaria->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
-$cursosPrimaria->bindParam(':nivel',$nivelPrimaria, PDO::PARAM_INT); 
-$cursosPrimaria->execute();
-
-//Buscar todos los cursos de este usuario Basicos
-
-$q2= ("SELECT * FROM cursos where idDocente=:idUsuario and nivel=:nivel");
-$cursoBasico=$dbConn->prepare($q2);
-$cursoBasico->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
-$cursoBasico->bindParam(':nivel',$nivelBasico, PDO::PARAM_INT); 
-$cursoBasico->execute();
-
-
-//Buscar todos los cursos de este usuario Diversificado
-
-$q3 = ("SELECT * FROM cursos where idDocente=:idUsuario and nivel=:nivel");
-$cursoDiver=$dbConn->prepare($q3);
-$cursoDiver->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
-$cursoDiver->bindParam(':nivel',$nivelDiver, PDO::PARAM_INT); 
-$cursoDiver->execute();
-
-
-
-//funcion encargada de asignar imagen segun primer letra del nombre del curso
-
  ?>
 
 
@@ -60,7 +31,7 @@ $cursoDiver->execute();
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
-    <title><?php echo $_SESSION["nombre"]; ?> | Mis Cursos</title>
+    <title><?php echo $_SESSION["nombre"]; ?> | Bullyng</title>
  
     <!-- CSS de Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">

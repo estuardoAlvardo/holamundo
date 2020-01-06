@@ -1,5 +1,16 @@
 <?php 
 session_start();
+
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../../index.html');
+}
+
+
+
 $fundamento="cnb";
 require("../../conection/conexion.php");
 $_GET['idLectura'];
@@ -268,7 +279,7 @@ if(empty(@$_SESSION['sumaInter'])){
                 <h4 class="textCajaDetalle">Lectura: <span><?php echo $row4['nombreLectura']; ?></span></h4>
                 <h4 class="textCajaDetalle">Intento: <span><?php echo  $_GET['intento']; ?></span></h4>
                 <h4 class="textCajaDetalle">Alumno: <span><?php echo $_SESSION['nombre']." ".$_SESSION['apellido']; ?></span></h4>
-                <h4 class="textCajaDetalle">Tiempo En la Prueba: <span>Pendiente</span></h4>
+                <h4 class="textCajaDetalle">Tiempo En la Prueba: <span><?php echo $row4['tiempo'].'min'; ?></span></h4>
                 <h4 class="textCajaDetalle">Fecha de Registro: <span><?php echo $row4['fechaRegistro']; ?></span></h4>
                 <h4 class="textCajaDetalle">Hora Registro: <span><?php echo $row4['horaRegistro']; ?></span></h4>
 

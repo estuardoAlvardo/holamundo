@@ -3,10 +3,6 @@
 $_SESSION["imgPerfil"];
 $_SESSION['tipoUsuario'];
 
-
- 
-
-
 ?>
 <style type="text/css">
   
@@ -216,7 +212,16 @@ if($_SESSION['tipoUsuario']==1){
         </div>
       </div>
  <!-- //LATERAL IZQUIERDO CONTENIDO FIJO -->  
-<?php } if($_SESSION['tipoUsuario']==2){ ?>
+<?php } if($_SESSION['tipoUsuario']==2){
+    require("../conection/conexion.php");
+
+  $consu1 = ("SELECT * FROM atomocircular ORDER BY idCircular DESC;");
+  $buscarCircular=$dbConn->prepare($consu1);
+  $buscarCircular->execute();
+
+
+
+ ?>
 
 
 <!--LATERAL DERECHO CONTENIDO FIJO -->
@@ -239,59 +244,107 @@ if($_SESSION['tipoUsuario']==1){
 
           <h5 class="txt-fuente txt-nombre" style="margin-top: 50px;"><?php echo "Nombre: ".$_SESSION["nombre"]; ?></h5>
           <h5 class="txt-fuente txt-nombre" s><?php echo "Apellido: ".$_SESSION["apellido"]; ?></h5> 
-          <h5 class="txt-fuente txt-nombre"><?php echo "Grado: ".@$_SESSION['nombreGrado']." ".@$_SESSION["nivel"]; ?></h5> 
-          <h5 class="txt-fuente txt-nombre"><?php echo "Sección: ".@$_SESSION['seccion']?></h5> 
+          <h5 class="txt-fuente txt-nombre"><?php echo "Rol: ".@$_SESSION['rol']; ?></h5> 
+          
           <a href="../conection/logout.php" id="salirIa"><img class="img-responsive img-logout" src="../img/of.png" title="SALIR" /></a>
 </div>
+  
 
- 
       <div class="carousel slide media-carousel" id="media" style = "width:120%;">
         <div class="carousel-inner" style="margin-top:10px;">
-          <div class="item  active"  >
+
+             <div class="item active">
             <div class="row" >
               
-              <div class="col-md-12" style = "width:100%;">
+              <div class="col-md-12" style = "width:100%;" id="dropdownMenu1" data-toggle="modal" data-target="#verCircular">
                 <div class="alert alert-default botonAgg card1100" style="width: 100%;  background-color: #f1c40f;">
-          <h4>Circular Dirección</h4>
-          <div>Este es un mensaje enviar por dirección</div>
+          <h4></h4>
+          <div>Circulares</div>
 
                 </div>
               </div>        
             </div>
           </div>
-          <div class="item">
-            <div class="row">
-              
-              <div class="col-md-12"  style = "width:100%">
-                <div class="alert alert-default botonAgg card1100" style=" background-color:#e67e22;">
-                <h4>Circular Docente</h4>
-                <p>Este es un mensaje enviar por dirección</p>
 
+
+          <?php  while($mostrarr1=$buscarCircular->fetch(PDO::FETCH_ASSOC)){ 
+            @$i+=1;
+
+            ?>
+          <div class="item">
+            <div class="row" >
+              
+              <div class="col-md-12" style = "width:100%;" id="dropdownMenu1" data-toggle="modal" data-target="<?php echo '#verCircularDocente'.$i; ?>">
+                <div class="alert alert-default botonAgg card1100" style="width: 100%;  background-color: #f1c40f;">
+          <h4><?php echo $mostrarr1['tituloCircular']; ?> </h4>
+          <div><?php echo substr($mostrarr1['cuerpoCircular'],0,20); ?></div>
+          <!----- Datos para mostrar cada circular  !--->
+             
                 </div>
               </div>        
             </div>
           </div>
-          <div class="item">
-            <div class="row">
-              
-              <div class="col-md-12"  style = "width:100%">
-                <div class="alert alert-default botonAgg card1100" style=" background-color:#d35400;">
-          <h4>Circular para Padres</h4>
-                <p> Es un mensaje enviar por dirección Este es un mensaje enviar por dirección.</p>
 
-                </div>
-              </div>      
-            </div>
-          </div>
+
+
+ <!-- Modal Mostrar Circular-->
+  <div class="modal fade" id="<?php echo 'verCircularDocente'.$i; ?>" role="dialog" style="background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" id="getTitulo1"><?php echo $mostrarr1['tituloCircular']; ?></h4>
+          <h5 class="" style="margin-left: 80%;"><?php echo $mostrarr1['fechaCircular']; ?></h5>
+        </div>
+        <div class="modal-body">
+          <h4>Circular:</h4>
+          <h4 style="text-align: left;"><?php echo $mostrarr1['cuerpoCircular']; ?></h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn botonAgg botonAgg-1" data-dismiss="modal" style="background-color: #e67e22; color: white; border:white; float: right; margin-top: 10px; ">Cerrar</button>
+        </div>
+      </div>
+      
+    </div>
+
+
+<script type="text/javascript">
+ 
+  $(document).ready(function() {
+  $('#media').carousel({
+      
+    pause: true,
+    interval: 5500,
+  });
+});
+</script>
+
+        </div>
+
+<?php  } ?>
+
+
         </div>
        
         <a data-slide="prev" href="#media" class="left carousel-control" style="margin-top:30px; margin-left:20%;">‹</a>
         <a data-slide="next" href="#media" class="right carousel-control" style="margin-top:30px; margin-right:35%;">›</a>
         <br>
-         <button class="btn botonAgg botonAgg-1" id="" type="button" id="dropdownMenu1" data-toggle="modal" data-target="#myModal" aria-haspopup="true" aria-expanded="true" style="background-color: rgb(54, 171, 203); color: white; border:white; margin-left: -5px;">Crear Circular</button>
+         
+      </div>  
+ 
+
+        <br>
+         <button class="btn botonAgg botonAgg-1" id="" type="button" id="dropdownMenu1" data-toggle="modal" data-target="#myModal" aria-haspopup="true" aria-expanded="true" style="background-color: rgb(54, 171, 203); color: white; border:white; margin-left: 40px; margin-top: -100px;">Crear Circular</button>
       </div>                          
  
- <!-- Modal -->
+
+
+
+
+
+ <!-- Modal crear circular -->
   <div class="modal fade" id="myModal" role="dialog" style="background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);">
     <div class="modal-dialog">
     
@@ -311,7 +364,7 @@ if($_SESSION['tipoUsuario']==1){
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn botonAgg botonAgg-1" data-dismiss="modal" style="background-color: #e67e22; color: white; border:white; float: right; margin-top: 10px; ">Close</button>
+          <button type="button" class="btn botonAgg botonAgg-1" data-dismiss="modal" style="background-color: #e67e22; color: white; border:white; float: right; margin-top: 10px; ">Cerrar</button>
         </div>
       </div>
       
@@ -355,14 +408,16 @@ if($_SESSION['tipoUsuario']==1){
 
           <h5 class="txt-fuente txt-nombre" style="margin-top: 50px;"><?php echo "Nombre: ".$_SESSION["nombre"]; ?></h5>
           <h5 class="txt-fuente txt-nombre" s><?php echo "Apellido: ".$_SESSION["apellido"]; ?></h5> 
-          <h5 class="txt-fuente txt-nombre"><?php echo "Grado: ".@$_SESSION['nombreGrado']." ".@$_SESSION["nivel"]; ?></h5> 
-          <h5 class="txt-fuente txt-nombre"><?php echo "Sección: ".@$_SESSION['seccion']?></h5> 
+          <h5 class="txt-fuente txt-nombre"><?php echo "Rol: ".@$_SESSION['rol']; ?></h5> 
+          
           <a href="../conection/logout.php" id="salirIa"><img class="img-responsive img-logout" src="../img/of.png" title="SALIR" /></a>
 </div>
 
  
       <div class="carousel slide media-carousel" id="media" style = "width:120%;">
         <div class="carousel-inner" style="margin-top:10px;">
+          
+
           <div class="item  active"  >
             <div class="row" >
               
@@ -375,36 +430,14 @@ if($_SESSION['tipoUsuario']==1){
               </div>        
             </div>
           </div>
-          <div class="item">
-            <div class="row">
-              
-              <div class="col-md-12"  style = "width:100%">
-                <div class="alert alert-default botonAgg card1100" style=" background-color:#e67e22;">
-                <h4>Circular Docente</h4>
-                <p>Este es un mensaje enviar por dirección</p>
 
-                </div>
-              </div>        
-            </div>
-          </div>
-          <div class="item">
-            <div class="row">
-              
-              <div class="col-md-12"  style = "width:100%">
-                <div class="alert alert-default botonAgg card1100" style=" background-color:#d35400;">
-          <h4>Circular para Padres</h4>
-                <p> Es un mensaje enviar por dirección Este es un mensaje enviar por dirección.</p>
-
-                </div>
-              </div>      
-            </div>
-          </div>
+         
         </div>
        
         <a data-slide="prev" href="#media" class="left carousel-control" style="margin-top:30px; margin-left:20%;">‹</a>
         <a data-slide="next" href="#media" class="right carousel-control" style="margin-top:30px; margin-right:35%;">›</a>
         <br>
-         <button class="btn botonAgg botonAgg-1" id="" type="button" id="dropdownMenu1" data-toggle="modal" data-target="#myModal" aria-haspopup="true" aria-expanded="true" style="background-color: rgb(54, 171, 203); color: white; border:white; margin-left: -5px;">Crear Circular</button>
+         <button class="btn botonAgg botonAgg-1" id="" type="button" id="dropdownMenu1" data-toggle="modal" data-target="#myModal" aria-haspopup="true" aria-expanded="true" style="background-color: rgb(54, 171, 203); color: white; border:white; margin-left: -5px; display: none;">Crear Circular</button>
       </div>                          
  
  <!-- Modal -->

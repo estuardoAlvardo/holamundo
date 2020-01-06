@@ -1,5 +1,14 @@
 <?php 
 session_start();
+
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../../index.html');
+}
+
 require("../../conection/conexion.php");
   $_GET['noLectura'];
   $_GET['intento'];
@@ -28,7 +37,7 @@ require("../../conection/conexion.php");
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
-    <title><?php echo $_SESSION["nombre"]; ?> | Mis Cursos</title>
+    <title><?php echo $_SESSION["nombre"]; ?> | Test PISA</title>
  
     <!-- CSS de Bootstrap -->
     <link href="../../css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -296,7 +305,7 @@ input#fort:checked ~ label  {
 
 	<div class="col-md-8 col-xs-8 pag-center">
          <div class="col-md-12" style="margin-top: 60px;">
-              <h3 class="text-center">Evaluación- Comprensión Lectora (PISA)</h3><br>
+              <h3 class="text-center">Evaluación- Estándar PISA</h3><br>
               
          </div>
          <?php while(@$row2=$obtenerDatosLectura->fetch(PDO::FETCH_ASSOC)){  
@@ -313,7 +322,9 @@ input#fort:checked ~ label  {
           </div> 
         
       </div>
-  <?php } ?>   
+  <?php } ?>  
+
+
 
    
 <form action="controllador/calificarOpcionMultiple.php" method="post" id="cuestionarioEnviar">

@@ -1,6 +1,15 @@
 <?php 
 session_start();
 
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../../index.html');
+}
+
+
 require("../../conection/conexion.php");
   $pisa='pisa';
   $cnb='cnb';
@@ -15,7 +24,7 @@ require("../../conection/conexion.php");
 
 
 
-      $q2 = ("SELECT * FROM emnivel4Paso1 where idLectura=:idLectura and idUsuario=:idUsuario");
+      $q2 = ("SELECT * FROM emnivel4paso1 where idLectura=:idLectura and idUsuario=:idUsuario");
       $mostrarDatosPaso2=$dbConn->prepare($q2);
       $mostrarDatosPaso2->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
       $mostrarDatosPaso2->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);  
@@ -26,14 +35,14 @@ require("../../conection/conexion.php");
       $_SESSION['gradoEnviar']=$_GET['idLectura'];
 
       //REVISION consultamos datos para mostrar la revision
-      $q3 = ("SELECT * FROM emnivel4Paso0 where idLectura=:idLectura and idUsuario=:idUsuario");
+      $q3 = ("SELECT * FROM emnivel4paso0 where idLectura=:idLectura and idUsuario=:idUsuario");
       $mostrarPaso3_1=$dbConn->prepare($q3);
       $mostrarPaso3_1->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
       $mostrarPaso3_1->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);  
       $mostrarPaso3_1->execute();
       $paso3_1=$mostrarPaso3_1->rowCount();  
 
-      $q4 = ("SELECT * FROM emnivel4Paso1 where idLectura=:idLectura and idUsuario=:idUsuario");
+      $q4 = ("SELECT * FROM emnivel4paso1 where idLectura=:idLectura and idUsuario=:idUsuario");
       $mostrarDatosPaso3_2=$dbConn->prepare($q2);
       $mostrarDatosPaso3_2->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
       $mostrarDatosPaso3_2->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);  
@@ -51,7 +60,7 @@ require("../../conection/conexion.php");
 
       //consultamos todos los parrafos antiguos y modificados para que elija y publique el texto
       //--antiguos
-      $q5 = ("SELECT * FROM emnivel4Paso1 where idLectura=:idLectura and idUsuario=:idUsuario");
+      $q5 = ("SELECT * FROM emnivel4paso1 where idLectura=:idLectura and idUsuario=:idUsuario");
       $parrafosAntiguos=$dbConn->prepare($q5);
       $parrafosAntiguos->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
       $parrafosAntiguos->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);  
@@ -75,8 +84,7 @@ require("../../conection/conexion.php");
       $publicoTexto->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);  
       $publicoTexto->execute();
       $publicoText=$publicoTexto->rowCount();
-
-      
+   
 
 
         

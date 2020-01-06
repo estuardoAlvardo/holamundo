@@ -7,12 +7,6 @@ include("conexion.php");
 $_POST["txtUsuario"];
 $_POST["txtPassword"];
 
-//constantes de colegio 
-
-$_SESSION['nombreInstitucion']="COLEGIO NUESTRA SEÑORA DEL CARMEN";
-
-
-
 
 $sql1 = ("SELECT * FROM usuarios where usuario=:usuario");
 $obtenerUsuario = $dbConn->prepare($sql1);
@@ -118,10 +112,29 @@ if(strcmp($_SESSION["usuario"], $_POST["txtUsuario"])==0 &&  strcmp($_SESSION["p
 			break;		
 		
 		default:
-			$_SESSION['rol']="Docente";
-			$_SESSION['nombreGrado']="Sin Grado";
+			$_SESSION['rol']="";
+			$_SESSION['nombreGrado']="";
 			break;
 	}
+
+//creamos variables de sesion para 
+
+	switch ($_SESSION['tipoUsuario']) {
+		case 1:
+			$_SESSION['rol']="Estudiante";
+			break;
+		case 2:
+			$_SESSION['rol']="Docente";
+			break;
+		case 4:
+			$_SESSION['rol']="Familia";
+			break;
+		
+		default:
+			# code...
+			break;
+	}
+
 
 //indicamos que pasa cuando no hay seccion si ubiese solo se setea el mismo
 switch ($_SESSION["seccion"]) {
@@ -209,7 +222,96 @@ switch ($_SESSION["tipoUsuario"]) {
 
 
 
+//obtener datos de conexion del cliente
 
+$fechaActual = date('d-m-Y H:i:s');
+
+$user_agent = $_SERVER['HTTP_USER_AGENT'];
+
+function getBrowser($user_agent){
+
+if(strpos($user_agent, 'MSIE') !== FALSE)
+   return 'Internet explorer';
+ elseif(strpos($user_agent, 'Edge') !== FALSE) //Microsoft Edge
+   return 'Microsoft Edge';
+ elseif(strpos($user_agent, 'Trident') !== FALSE) //IE 11
+    return 'Internet explorer';
+ elseif(strpos($user_agent, 'Opera Mini') !== FALSE)
+   return "Opera Mini";
+ elseif(strpos($user_agent, 'Opera') || strpos($user_agent, 'OPR') !== FALSE)
+   return "Opera";
+ elseif(strpos($user_agent, 'Firefox') !== FALSE)
+   return 'Mozilla Firefox';
+ elseif(strpos($user_agent, 'Chrome') !== FALSE)
+   return 'Google Chrome';
+ elseif(strpos($user_agent, 'Safari') !== FALSE)
+   return "Safari";
+ else
+   return 'No hemos podido detectar su navegador';
+
+}
+
+
+// datos para recoger datos de conexion del cliente
+
+function getRealIP() {
+
+        if (!empty($_SERVER['HTTP_CLIENT_IP']))
+            echo  $_SERVER['HTTP_CLIENT_IP'];
+           
+        if (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+            echo $_SERVER['HTTP_X_FORWARDED_FOR'];
+       
+        $_SERVER['REMOTE_ADDR'];
+}
+ 
+
+$navegador = getBrowser($user_agent);
+$ipEnviar= $_SERVER['REMOTE_ADDR'];
+
+
+registroDeActividad($navegador,$fechaActual,$_SESSION['grado'],$_SESSION['seccion'],$_SESSION['rol'],$_SESSION['idUsuario'],$ipEnviar);
+
+
+function registroDeActividad($navegador,$fechaActual,$grado,$seccion,$rol,$idUsuario,$ip){
+	include("conexion.php");
+	
+	//echo $grado;
+
+	$qr1 = ("SELECT * FROM registroAcceso where idUsuario=:idUsuario");
+      $buscarRegistro=$dbConn->prepare($qr1);
+      $buscarRegistro->bindParam(':idUsuario',$idUsuario, PDO::PARAM_INT); 
+      $buscarRegistro->execute();
+      $conteo=$buscarRegistro->rowCount();
+
+      if($conteo>0){
+      	$qr3 = ("UPDATE registroAcceso SET  fechaHora=:fechaHora,navegador=:navegador,ip=:ip WHERE idUsuario=:idUsuario");
+      $actualizarRegistro=$dbConn->prepare($qr3);
+      $actualizarRegistro->bindParam(':fechaHora',$fechaActual, PDO::PARAM_STR); 
+      $actualizarRegistro->bindParam(':navegador',$navegador, PDO::PARAM_STR); 
+      $actualizarRegistro->bindParam(':ip',$ip, PDO::PARAM_STR);  
+      $actualizarRegistro->bindParam(':idUsuario',$idUsuario, PDO::PARAM_INT);
+      $actualizarRegistro->execute();
+
+      }
+
+      if($conteo==0){
+      	$qr2 = ("INSERT INTO registroAcceso(idUsuario,grado,seccion,fechaHora,navegador,ip,rol) VALUES (:idUsuario,:grado,:seccion,:fechaHora,:navegador,:ip,:rol)");
+      $insertarRegistro=$dbConn->prepare($qr2);
+      $insertarRegistro->bindParam(':idUsuario',$idUsuario, PDO::PARAM_INT);
+      $insertarRegistro->bindParam(':grado',$grado, PDO::PARAM_INT); 
+      $insertarRegistro->bindParam(':seccion',$seccion, PDO::PARAM_STR); 
+      $insertarRegistro->bindParam(':fechaHora',$fechaActual, PDO::PARAM_STR); 
+      $insertarRegistro->bindParam(':navegador',$navegador, PDO::PARAM_STR); 
+      $insertarRegistro->bindParam(':ip',$ip, PDO::PARAM_STR);  
+      $insertarRegistro->bindParam(':rol',$rol, PDO::PARAM_STR); 
+      $insertarRegistro->execute();
+      }
+
+
+
+
+}
 
 
 

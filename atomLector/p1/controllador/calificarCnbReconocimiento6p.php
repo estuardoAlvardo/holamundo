@@ -275,11 +275,11 @@ foreach($_POST as $nombre_campo => $valor){
    @$k+=1;
     $insertar='input'.$k;
    //echo $insertar;
-    $_SESSION['almacenar'.$k]=$valor;
+    $_SESSION['almacenarrrr'.$k]=$valor;
     
-    $insertarQuiz6p->bindParam($insertar, $_SESSION['almacenar'.$k], PDO::PARAM_STR);
+    $insertarQuiz6p->bindParam($insertar, $_SESSION['almacenarrrr'.$k], PDO::PARAM_STR);
     //echo 'pregunta '.$insertar.'-----Respuesta ya comparada---'.$_SESSION['resultado'.$k].'<br>';
-     $porcentaje=similar_text($_SESSION['almacenar'.$k], $_SESSION['matriz'.$k]);
+     $porcentaje=similar_text($_SESSION['almacenarrrr'.$k], $_SESSION['matriz'.$k]);
 
       //echo 'Pregunta------'.$k.' =sistema= '. $porcentaje.'<br><br>';
 

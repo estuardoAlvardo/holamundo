@@ -1,10 +1,10 @@
-<?php 
+a<?php 
 session_start();
 require("../conection/conexion.php");
 $destinatario=0;
 
 switch ($_POST['destinatario']) {
-	case '@estudiantes':
+	case '@alumnos':
 		@$destinatario=1;
 		break;
 	case '@docentes':
@@ -49,7 +49,7 @@ $insertarCircular->execute();
 
 
 if($_SESSION['tipoUsuario']==2){
-  header("location:../cursosDocente/miscursos.php");
+  header("location:../cursosDocente/misCursos.php");
 }
 
 

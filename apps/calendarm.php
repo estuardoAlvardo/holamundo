@@ -1,15 +1,24 @@
 <?php 
 session_start();
-//curso 1
-$curso="Matemáticas";
-$curso="";
-$leccionRealizada=1; // varaiable dependera del uso en la base de datos
-$leccionPendiente=4; // variable dependera del uso en la bd 
+
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../index.html');
+}
 
 require("../conection/conexion.php");
 
 $_SESSION['tipoUsuario'];
 
+//se modifica la url para que en produccion funcione de manera correcta
+$urlProduccion='http://localhost/atomolms';
+$urlEstatica='/apps/calendar/eventos.php';
+$urlMaster=$urlProduccion.$urlEstatica;
+
+echo '<p id="urlMaster" style="display:none;">'.$urlMaster.'</p>';
 
  ?>
 
@@ -19,7 +28,7 @@ $_SESSION['tipoUsuario'];
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
-    <title><?php echo $_SESSION["nombre"]; ?> | Mis Actividades</title>
+    <title><?php echo $_SESSION["nombre"]; ?> | Mis Eventos</title>
  
     <!-- CSS de Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -45,11 +54,14 @@ $_SESSION['tipoUsuario'];
 <script src='calendar/lib/jquery.min.js'></script>
 <script src='calendar/fullcalendar.min.js'></script>
 <script src='calendar/locale/es.js'></script>
+
+ <!--- Scrip Ajax para insertar eventos ---->
+
 <script>
-
-
   $(document).ready(function() {
   var tipoUsuario= $('#obtenerUsuairio').val();
+  var urlMaster=$('#urlMaster').text();
+  
   
     if(tipoUsuario==2){
 
@@ -64,8 +76,6 @@ $_SESSION['tipoUsuario'];
           $("#btnAgregar").prop('disabled',false);
           $("#btnModificar").prop('disabled',true);
           $("#btnBorrar").prop('disabled',true);
-
-
           limpiarFormulario();
           $('#fecha').val(date.format());
           
@@ -73,7 +83,7 @@ $_SESSION['tipoUsuario'];
 
 
         },       
-        events:'http://localhost/atomolms/apps/calendar/eventos.php',
+        events:urlMaster,
         
         eventClick:function(calEvent,jsEvent,view){
            $("#btnAgregar").prop('disabled',true);
@@ -99,8 +109,7 @@ $_SESSION['tipoUsuario'];
           $('#fecha').val(fechaHora[0]);
           $('#hora').val(fechaHora[1]);
           $('#color').val(calEvent.color);
-          datos();
-          enviarDatos('modificar',NuevoEvento,true);
+          
 
         }
         
@@ -117,7 +126,7 @@ $_SESSION['tipoUsuario'];
           center:'title',
           right: 'month, agendaWeek, agendaDay'
         },
-        events:'http://localhost/atomolms/apps/calendar/eventos.php',        
+        events:urlMaster,        
         eventClick:function(calEvent,jsEvent,view){
            $('#myModal').modal();
          // $('#id').val(calEvent.id);
@@ -139,8 +148,7 @@ $_SESSION['tipoUsuario'];
           $('#fecha ').val(fechaHora[0]);
           $('#hora').val(fechaHora[1]);
           $('#color').val(calEvent.color);
-          datos();
-          enviarDatos('modificar',NuevoEvento,true);
+          
 
         }
         
@@ -222,34 +230,10 @@ $_SESSION['tipoUsuario'];
               
               <input type="text" id="obtenerUsuairio" name="idUsuario" value="<?php echo $_SESSION['tipoUsuario']; ?>" style="display: none;">
          </div>
-        <div class="tabbable-panel" style="margin-top: 100px;">
-        <div class="tabbable-line">
-          <ul class="nav nav-tabs ">
-            <li class="active">
-              <a href="#tab_default_1" data-toggle="tab">
-               </a>
-            </li>
-            <!--
-            <li>
-              <a href="#tab_default_2" data-toggle="tab">
-              Horarios </a>
-            </li>
-            <li>
-              <a href="#tab_default_3" data-toggle="tab">
-              Horarios de examen </a>
-            </li>
-          -->
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane active" id="tab_default_1">
-               <div id='calendar' class="col-md-11" style="margin-top: 50px;"></div>
-            
-            </div>
-
-          </div>
-        </div>
-      </div> 
   <div/>
+
+<div id='calendar' class="col-md-11" style="margin-top: 50px; margin-bottom: 100px;"></div>
+
     <div id="myModal" class="modal fade" role="dialog" style="background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);">
   <div class="modal-dialog">
 
@@ -331,7 +315,7 @@ $_SESSION['tipoUsuario'];
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success"  id="btnAgregar">Guardar Evento</button>
-        <button type="button" class="btn btn-danger" id="btnModificar">Modificar</button>
+        <button type="button" class="btn btn-danger" id="btnModificar" style="display: none;">Modificar</button>
         <button type="button" class="btn btn-warning" id="btnBorrar">Borar</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
        </form>
@@ -368,12 +352,8 @@ function datos(){
         textColor:"#ffffff",
         end:$('#fecha').val()+" "+$('#hora').val(),
         visible:$("#visible option:selected").val()
+        }
       }
-
-
-      
-}
-
 
 
   $('#btnAgregar').click(function(){
@@ -394,10 +374,10 @@ function datos(){
     $('#btnModificar').click(function(){
     
       datos();
-      enviarDatos('modificar',NuevoEvento);      
+      enviarDatos('modificar',NuevoEvento);
+
        
   });
-
 
 
 

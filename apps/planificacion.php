@@ -1,6 +1,13 @@
 <?php 
 session_start();
 
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../index.html');
+}
 
 require("../conection/conexion.php");
 

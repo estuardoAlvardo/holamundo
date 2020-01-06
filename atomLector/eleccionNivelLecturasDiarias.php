@@ -1,6 +1,14 @@
 <?php 
 session_start();
-//curso 1
+
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../index.html');
+}
+
 
 require("../conection/conexion.php");
 
@@ -232,9 +240,9 @@ padding-top: -30px;
                   </style>
 
 <div class="col-md-11" style="margin-bottom: 100px;"><br><br>
-  <h3 class="text-left" style="">¿Qué grado quieres Observar?</h3><hr>
+  <h3 class="text-left" style="">¿Qué grado quieres observar?</h3><hr>
   <div class="col-md-12 cajaGrado" style="min-height: 200px;">
-     <p>Pre-Escolar</p>
+     <p>Preescolar</p>
       <div class="row" style="padding-left: 40px;">
     
     
@@ -360,7 +368,7 @@ padding-top: -30px;
 
         function gamificacion(){
           startArtyom();
-          artyom.say("La Gamificación es una técnica de aprendizaje que traslada la mecánica de los juegos al ámbito educativo-profesional con el fin de conseguir mejores resultados, ya sea para absorber mejor algunos conocimientos, mejorar alguna habilidad, o bien recompensar acciones concretas, entre otros muchos objetivos.");
+          artyom.say("La Gamificación es una técnica de aprendizaje que traslada la mecánica de los juegos al ámbito educativo,profesional con el fin de conseguir mejores resultados, ya sea para absorber mejor algunos conocimientos, mejorar alguna habilidad, o bien recompensar acciones concretas, entre otros muchos objetivos.");
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
           document.getElementById("saluda").style.display="block";
@@ -370,9 +378,9 @@ padding-top: -30px;
 
         }
 
-        function textosContinuos(){
+        function lecturasContinuas(){
           startArtyom();
-          artyom.say("La Gamificación es una técnica de aprendizaje que traslada la mecánica de los juegos al ámbito educativo-profesional con el fin de conseguir mejores resultados, ya sea para absorber mejor algunos conocimientos, mejorar alguna habilidad, o bien recompensar acciones concretas, entre otros muchos objetivos.");
+          artyom.say("Los textos continuos son aquellos que están compuestos por oraciones, las cuales se organizan en párrafos. Estos párrafos se suceden los unos a los otros para formar un texto de mayor extensión.");
            document.getElementById("enamorada").style.display="none";
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
@@ -381,9 +389,9 @@ padding-top: -30px;
            stopArtyom();      
         }
 
-        function textosDiscontinuos(){
+        function lecturasDiscontinuas(){
           startArtyom();
-          artyom.say("Son  textos discontinuos aquellos que no siguen la estructura secuenciada y progresiva durante su desarrollo; se trata de  listas,cuadros,gráficos,diagramas,tablas,mapas,etc.En estos textos  ,la información se presenta  organizada,pero no necesariamente  secuenciada ni de forma progresiva.La comprensión  de estos textos requiere del uso de estrategias de lectura no lineal que propician  la búsqueda de interpretación de la información  de forma más global e interrelacionada.También algunos de los textos utilizados en las evaluaciones PISA ,PERCE,SERCE Y UMC son de este tipo.");
+          artyom.say("Son textos discontinuos aquellos que no siguen la estructura secuenciada y progresiva durante su desarrollo; se trata de  listas,cuadros,gráficos,diagramas,tablas,mapas,etc.En estos textos  ,la información se presenta  organizada,pero no necesariamente  secuenciada ni de forma progresiva.La comprensión  de estos textos requiere del uso de estrategias de lectura no lineal que propician  la búsqueda de interpretación de la información  de forma más global e interrelacionada.También algunos de los textos utilizados en las evaluaciones PISA ,PERCE,SERCE Y UMC son de este tipo.");
            document.getElementById("enamorada").style.display="none";
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
@@ -394,7 +402,7 @@ padding-top: -30px;
 
          function generosLiterarios(){
           startArtyom();
-          artyom.say("Los géneros literarios son los distintos grupos o categorías en que podemos clasificar las obras literarias atendiendo a su contenido y estructura. La retórica los ha clasificado en tres grupos importantes:narrativo, lírico y dramático, a los que se añade con frecuencia el género didáctico, convirtiéndose en un punto de referencia para el análisis de la literatura.1​ Así mismo, y desde el punto de vista del autor, los géneros literarios son modelos de estructuración formal y temática que le permiten establecer un esquema previo a la creación de su obra.");
+          artyom.say("Los géneros literarios son los distintos grupos o categorías en que podemos clasificar las obras literarias atendiendo a su contenido y estructura. La retórica los ha clasificado en tres grupos importantes:narrativo, lírico y dramático, a los que se añade con frecuencia el género didáctico, convirtiéndose en un punto de referencia para el análisis de la literatura. Así mismo, y desde el punto de vista del autor, los géneros literarios son modelos de estructuración formal y temática que le permiten establecer un esquema previo a la creación de su obra.");
            document.getElementById("enamorada").style.display="none";
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
@@ -416,7 +424,7 @@ padding-top: -30px;
 
         function jeanPeaget(){
           startArtyom();
-          artyom.say("Utilizando como fundamento el estudio de Jean Piaget que nos indica el ser humano aprende en base a su edad cognitiva, y que sí se le da conocimiento que no puede comprender y explicar con sus conocimientos previos, a esto se le conoce como conflicto cognitivo, esto dificultara el aprendizaje, en resumen, las lecturas fueron creadas en base a la edad del estudiante.");
+          artyom.say("Utilizando como fundamento el estudio de Jean Piaget que nos indica el ser humano aprende en base a su edad cognitiva, y que sí se le da conocimiento que no puede comprender y explicar con sus conocimientos previos, a esto se le conoce como conflicto cognitivo, esto dificultará el aprendizaje, en resumen, las lecturas fueron creadas en base a la edad del estudiante.");
            document.getElementById("enamorada").style.display="none";
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";

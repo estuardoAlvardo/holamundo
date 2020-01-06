@@ -1,6 +1,15 @@
 <?php 
 session_start();
 
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../../index.html');
+}
+
+
 require("../../conection/conexion.php");
 
 
@@ -504,8 +513,8 @@ That part is just for the form
          <div class="row">
                <div class="col-md-1"></div>
               <div class="col-md-10 cardGlosario" style="background-color: #ff7979; min-height:100px; margin-top: 50px;">
-                <img src="../../img/mind.png" width="100" height="100">
-                <h4 style="color: white;">Piensa  lo que más te gusta de la lectura y cuéntanos con tus propias palabras que entendiste de ella.</h4>
+                <img src="../../img/piensa.png" width="100" height="100">
+                <h4 style="color: white;">Cuentanos que fué lo que más te gusto de la lectura.</h4>
                
               </div>
              

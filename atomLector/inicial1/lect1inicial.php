@@ -1,6 +1,15 @@
 <?php 
 session_start();
 
+
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../../index.html');
+}
+
 require("../../conection/conexion.php");
 
   
@@ -264,6 +273,8 @@ require("../../conection/conexion.php");
             $buscarPaginas->execute();
             $cantidadPaginas=$buscarPaginas->rowCount();
 
+           
+
             ?>
 
 
@@ -297,7 +308,7 @@ require("../../conection/conexion.php");
          </div>
 
                 <audio controls  style="border-radius: 25px;" class="cajaDescripcion">
-                  <source src="<?php echo $row1['audio']; ?>" type="audio/mp3" />
+                  <source src="<?php echo $row1['audio']; ?>" />
                 </audio> 
 
  

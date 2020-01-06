@@ -1,11 +1,23 @@
 <?php 
 session_start();
 
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../index.html');
+}
+
+
+
 require("../conection/conexion.php");
 
 $q1 = ("SELECT * FROM atomobullying");
 $mostrarReporteBull=$dbConn->prepare($q1);
 $mostrarReporteBull->execute();
+
+
 
  ?>
 
@@ -70,6 +82,135 @@ $mostrarReporteBull->execute();
 .sombra{
    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
+/*estilos material design*/
+.pure-material-switch {
+    z-index: 0;
+    position: relative;
+    display: inline-block;
+    color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.87);
+    font-family: var(--pure-material-font, "Roboto", "Segoe UI", BlinkMacSystemFont, system-ui, -apple-system);
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Input */
+.pure-material-switch > input {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    z-index: -1;
+    position: absolute;
+    right: 6px;
+    top: -8px;
+    display: block;
+    margin: 0;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38);
+    outline: none;
+    opacity: 0;
+    transform: scale(1);
+    pointer-events: none;
+    transition: opacity 0.3s 0.1s, transform 0.2s 0.1s;
+}
+
+/* Span */
+.pure-material-switch > span {
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* Track */
+.pure-material-switch > span::before {
+    content: "";
+    float: right;
+    display: inline-block;
+    margin: 5px 0 5px 10px;
+    border-radius: 7px;
+    width: 36px;
+    height: 14px;
+    background-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38);
+    vertical-align: top;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+
+/* Thumb */
+.pure-material-switch > span::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    right: 16px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(var(--pure-material-onprimary-rgb, 255, 255, 255));
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+/* Checked */
+.pure-material-switch > input:checked {
+    right: -10px;
+    background-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+}
+
+.pure-material-switch > input:checked + span::before {
+    background-color: rgba(var(--pure-material-primary-rgb, 33, 150, 243), 0.6);
+}
+
+.pure-material-switch > input:checked + span::after {
+    background-color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+    transform: translateX(16px);
+}
+
+/* Hover, Focus */
+.pure-material-switch:hover > input {
+    opacity: 0.04;
+}
+
+.pure-material-switch > input:focus {
+    opacity: 0.12;
+}
+
+.pure-material-switch:hover > input:focus {
+    opacity: 0.16;
+}
+
+/* Active */
+.pure-material-switch > input:active {
+    opacity: 1;
+    transform: scale(0);
+    transition: transform 0s, opacity 0s;
+}
+
+.pure-material-switch > input:active + span::before {
+    background-color: rgba(var(--pure-material-primary-rgb, 33, 150, 243), 0.6);
+}
+
+.pure-material-switch > input:checked:active + span::before {
+    background-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38);
+}
+
+/* Disabled */
+.pure-material-switch > input:disabled {
+    opacity: 0;
+}
+
+.pure-material-switch > input:disabled + span {
+    color: rgb(var(--pure-material-onsurface-rgb, 0, 0, 0));
+    opacity: 0.38;
+    cursor: default;
+}
+
+.pure-material-switch > input:disabled + span::before {
+    background-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38);
+}
+
+.pure-material-switch > input:checked:disabled + span::before {
+    background-color: rgba(var(--pure-material-primary-rgb, 33, 150, 243), 0.6);
+}
 
  </style>
 
@@ -91,6 +232,7 @@ $mostrarReporteBull->execute();
         <th>Nombre del agresor</th>
         <th>Grado Sección</th>
         <th>Descripción</th>
+        <th>Resuelto</th>
 
         
       </tr>
@@ -99,6 +241,7 @@ $mostrarReporteBull->execute();
       <?php while($row1=$mostrarReporteBull->fetch(PDO::FETCH_ASSOC)){
 
       ?>
+
       <tr>
         <td><?php echo $row1['fechaAlerta']." ".$row1['horaAlerta']; ?></td>
         <td><?php echo $row1['tipoBullying']; ?></td>
@@ -107,6 +250,11 @@ $mostrarReporteBull->execute();
         <td><?php echo $row1['nombreAgresor']; ?></td>
         <td><?php echo $row1['gradoSeccionAgresor']; ?></td>
         <td><?php echo $row1['descripcion']; ?></td>
+        <td><label class="pure-material-switch">
+  <input type="checkbox" <?php if($row1['resuelto']==1){ echo 'checked'; }else{  } ?> id="<?php echo $row1['idBullyng']; ?>" name="activonew" onclick="funcion1(this.id);">
+  <span></span>
+</label></td>
+
 
      <?php } ?>
      
@@ -114,11 +262,55 @@ $mostrarReporteBull->execute();
   </table>
 
          </div>
-         
+    <script type="text/javascript">
 
 
-       
-     
+
+      function funcion1(clicked_id){
+
+      let activo=$('input:checkbox[name=activonew]:checked').val();
+      let idModificar=clicked_id;
+
+      //alert(activo);
+
+      
+      if(activo=='on'){
+        var estado='activo';
+      $.ajax({
+      type:'POST',
+      url:'../conection/updateEstadoBullyng.php?accion='+estado+'&idMod='+idModificar,
+      success:function(msg){
+       console.log('funciono');
+       location.reload();
+      },
+      error:function(){
+        alert('hay un error');
+      }
+    });
+      }
+
+       if(activo==null){
+
+        var estado='inactivo';
+      $.ajax({
+      type:'POST',
+      url:'../conection/updateEstadoBullyng.php?accion='+estado+'&idMod='+idModificar,
+      success:function(msg){
+       console.log('funciono');
+       location.reload();
+      },
+      error:function(){
+        alert('hay un error');
+      }
+    });
+      }
+
+
+
+
+
+      }
+    </script>  
              
       </div>
 <!--//CENTRANDO CONTENIDO ROL 1 -->

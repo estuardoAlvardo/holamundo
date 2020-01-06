@@ -1,5 +1,16 @@
 <?php 
 session_start();
+
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../../index.html');
+}
+
+
+
 $fundamento="cnb";
 require("../../conection/conexion.php");
 $_GET['idLectura'];
@@ -16,7 +27,9 @@ $_GET['idUsuario'];
 $_SESSION['ultimoIntento']=$_GET['intentoABuscar'];
 
 
-}else if(@$_GET['intentoABuscar']==null){
+}
+
+if(@$_GET['intentoABuscar']==null){
 @$_GET['intento']=1;
 
 //buscar el ultimo intento insertado;
@@ -247,7 +260,7 @@ if(empty($sumaInter)){
                 <h4 class="textCajaDetalle">Lectura: <span><?php echo $row4['nombreLectura']; ?></span></h4>
                 <h4 class="textCajaDetalle">Intento: <span><?php echo  $_GET['intento']; ?></span></h4>
                 <h4 class="textCajaDetalle">Alumno: <span><?php echo $_SESSION['nombre']." ".$_SESSION['apellido']; ?></span></h4>
-                <h4 class="textCajaDetalle">Tiempo En la Prueba: <span>Pendiente</span></h4>
+                <h4 class="textCajaDetalle">Tiempo En la Prueba: <span><?php echo $row4['tiempo'].'min'; ?></span></h4>
                 <h4 class="textCajaDetalle">Fecha de Registro: <span><?php echo $row4['fechaRegistro']; ?></span></h4>
                 <h4 class="textCajaDetalle">Hora Registro: <span><?php echo $row4['horaRegistro']; ?></span></h4>
 
@@ -257,7 +270,7 @@ if(empty($sumaInter)){
 
          <div class="col-md-4 cajaDescripcion" style="min-height: 200px; margin-top: 30px; margin-left: 35%; background:-webkit-gradient(radial, 220 0, 0, 165 173, 468, from(#8E4D61), to(#05455E));
  border-radius: 5px; color:white; margin-bottom: 50px;">
-          <h4>Nivel Obtenido-Estandar CNB</h4>
+          <h4>Nivel Obtenido-Estándar CNB</h4>
 
           <div class="col-md-12 botonAgg-1" style="margin-left:23%; height: 150px; width: 150px; border-radius: 100%; background-color: #2ecc71; padding-top: 15px;">
             <h1 style="font-size: 48pt;"><?php echo $_SESSION['totalObtenido']; ?></h1>
@@ -265,8 +278,14 @@ if(empty($sumaInter)){
          </div> 
          
 
+         <div class="row" style="margin-top: 30px;">
+            <div class="col-md-1"></div>
+         <div id="competencia" class="col-md-9 cajaDescripcion" style="margin-left: 9%; margin-bottom: 30px;"></div>
+         <div id="container" class="col-md-9 cajaDescripcion" style="margin-left: 9%;margin-bottom: 30px;"></div>
+        </div>
+
          <div class="col-md-12 cajaDescripcion" style="margin-bottom: 50px;">
-          <h4>Detalle de Resultado</h4>
+          <h4>Solucionario del test estándarizado</h4>
           <table class="table table-hover">
               <thead>
                 <tr>
@@ -319,11 +338,6 @@ if(empty($sumaInter)){
            
          </div>
 
-         <div class="row" style="margin-top: 30px;">
-            <div class="col-md-1"></div>
-         <div id="container" class="col-md-9 cajaDescripcion" style="margin-bottom: 30px;"></div>
-         <div id="competencia" class="col-md-9 cajaDescripcion" style="margin-left: 9%; margin-bottom: 30px;"></div>
- </div>
          
   
  

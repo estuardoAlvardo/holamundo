@@ -1,12 +1,76 @@
 <?php
 
-
-
-
 $time = time();
 
 
+//buscamos todos los actos de bullyng no resuelto
+$sql3 = ("SELECT * FROM atomobullying where resuelto=0 or resuelto=2");
+$obtenerDrive = $dbConn->prepare($sql3);
+$obtenerDrive->execute();
+$_SESSION['bullyg']=$obtenerDrive->rowCount();
 
+//buscamos ficheros compartidos conmigo
+$sql1 = ("SELECT * FROM atomodrivecompartir where idUsuarioCompartir=:idUsuario");
+$obtenerCompartidos = $dbConn->prepare($sql1);
+$obtenerCompartidos->bindParam(':idUsuario', $_SESSION['idUsuario'], PDO::PARAM_INT); 
+$obtenerCompartidos->execute();
+$_SESSION['notiDrive']=$obtenerCompartidos->rowCount();
+
+
+//datos a modificar para produccion
+
+  $urlComands='http://localhost/atomolms'; //modificar 
+
+
+ ?>
+
+<!-- LATERAL IZQUIERDO CONTENIDO FIJO -->
+  
+    <script src="../js/artyom/artyom.min.js"></script>
+  <script src="../js/artyom/artyom.window.js"></script>
+  <script src="../js/artyom/artyomCommands.js"></script>
+
+<style>
+
+
+
+.recodinggN {
+ 
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+transition: all .2s ease-in-out;
+}
+
+.recodinggN:hover {
+  /*box-shadow: 0 5px 22px 0 rgba(0,0,0,.25);*/
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  
+}
+</style>
+
+
+
+
+ <div class="row cont-page">
+<p id="cajaUrlComandos" style="display: none"><?php echo $urlComands; ?>
+<p id="userIa" style="display: none;"><?php echo $_SESSION['nombre']; ?></p>
+<p id="tipoUserIa" style="display: none;"><?php echo $_SESSION['tipoUsuario']; ?></p>
+<p id="gradoIa" style="display: none;"><?php echo $_SESSION['grado']; ?></p>
+
+<?php function directoriosNiveles($nivel){
+
+  if($nivel==1){
+    require("../conection/conexion.php");
+  }
+
+  if($nivel==2){
+    require("../../conection/conexion.php");
+  }
+if($nivel==3){
+    require("../../../conection/conexion.php");
+  }
+
+
+//buscarmos los eventos e incrementamos en el lateral izquierdo
 $q1 = ("SELECT * FROM evento");
 $verEventos=$dbConn->prepare($q1);
 $verEventos->execute();
@@ -49,53 +113,6 @@ $verEventos->execute();
   } 
 
 
-  }
-
-
- ?>
-
-<!-- LATERAL IZQUIERDO CONTENIDO FIJO -->
-  
-    <script src="../js/artyom/artyom.min.js"></script>
-  <script src="../js/artyom/artyom.window.js"></script>
-  <script src="../js/artyom/artyomCommands.js"></script>
-
-<style>
-
-
-
-.recodinggN {
- 
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-transition: all .2s ease-in-out;
-}
-
-.recodinggN:hover {
-  /*box-shadow: 0 5px 22px 0 rgba(0,0,0,.25);*/
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  
-}
-</style>
-
-
-
-
- <div class="row cont-page">
-
-<p id="userIa" style="display: none;"><?php echo $_SESSION['nombre']; ?></p>
-<p id="tipoUserIa" style="display: none;"><?php echo $_SESSION['tipoUsuario']; ?></p>
-
-<?php function directoriosNiveles($nivel){
-
-  if($nivel==1){
-    require("../conection/conexion.php");
-  }
-
-  if($nivel==2){
-    require("../../conection/conexion.php");
-  }
-if($nivel==3){
-    require("../../../conection/conexion.php");
   }
 
 
@@ -156,11 +173,12 @@ if($nivel==3){
           <a href="../apps/calendarm.php" ><img class="img-responsive" src="../img/calendario.png" style="max-width: 50px; max-height: 50px; margin-left: 20px; margin-top: 50px;" /> 
 
           </a>
+          
           </a><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: rgb(54, 171, 203); position: absolute; margin-top: -60px; margin-left: -32px;" ><?php $notiEvent=@$_SESSION['todos']+@$_SESSION['docente']; echo $notiEvent; ?></div>
           <h5 style="color: white; margin-left: 20px;" class="text-left">Calendario</h5>
 
 
-
+          <div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: rgb(54, 171, 203); position: absolute; margin-top: -100px; margin-left: 52px;" ><?php echo $_SESSION['notiDrive']; ?></div>
           <a href="../apps/atomDrive.php"><img class="img-responsive" src="../img/atomDrive.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" />           
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left">AtomDrive</h5>
@@ -173,7 +191,7 @@ if($nivel==3){
           </a>
           <h5 style="color: white; margin-left: 60%;" class="text-left" >Reporte Acceso</h5>
           <a href="../apps/reportbullying.php"><img class="img-responsive" src="../img/alert.png" style="max-width:50px; max-height: 50px; margin-left:10px; margin-top: 30px;" title="Bullyng"/>           
-          </a><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: rgb(54, 171, 203); position: absolute; margin-top: -60px; margin-left: -32px;" ><?php echo @$_SESSION['reporteBullying1']; ?></div>
+          </a><div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: rgb(54, 171, 203); position: absolute; margin-top: -60px; margin-left: -32px;" ><?php echo @$_SESSION['bullyg']; ?></div>
           <h5 style="color: white; margin-left: 20px;" class="text-left" >Bullying</h5>
 
           <a href="../apps/planificacion.php"><img class="img-responsive" src="../img/planificacion.png" style="max-width: 50px; max-height: 50px; margin-left: 65%; margin-top: -50%;" title="Plani"/>           
@@ -336,6 +354,8 @@ function datos(){
 
         </div>
   </div>
+
+  
 <?php } if($nivel==2){  ?>
        <div class="col-md-2 col-xs-2 lat-izquierdo">
 
@@ -933,7 +953,7 @@ function finGrabacion(clicked_id){
 
 function iaDocente(){
  var nombreUser= $('#userIa').text();
-
+ var urlComandos= $('#cajaUrlComandos').text();
   //grupo 1 conociendo a lola 
  //grupo 2 despedida cortar grabacion
  //grupo 3 ir a lecturas de medicion semanales
@@ -967,7 +987,7 @@ function iaDocente(){
           }
 
           if (i==3) {
-            artyom.say("hola me alegra que estes de buen humor!! ");
+            artyom.say("hola me alegra que estés de buen humor!! ");
           }
            if (i==4) {
             artyom.say("Hola"+nombreUser+", mi nombre es lola y estoy para servirte.");
@@ -991,7 +1011,7 @@ function iaDocente(){
         indexes:['lecturas semanales','lecturas de medición','prueba pisa', 'prueba cnb','ver lecturas semanales','ir a lecturas semanales','abrir lecturas lecturas semanales','lecturas semanales','comprensión lectora',],
         action: function(){
           artyom.say("Abriendo lecturas, por favor tienes que elegir grado por ser docente");
-          window.open("http://localhost/atomolms/atomLector/eleccionNivelprogramaLector.php?curso=7",'_blank')
+          window.open(urlComandos+"/atomLector/eleccionNivelprogramaLector.php?curso=7",'_blank')
 
         }
       },
@@ -1000,7 +1020,7 @@ function iaDocente(){
         indexes:['ver reportes','reportes','reportes de lecturas', 'notas','ver notas','ver avances de lectura','sacar reportes','ir a reportes'],
         action: function(){
           artyom.say("Abriendo área de reportes, elije grado y sección para ver el avance lector");
-          window.open("http://localhost/atomolms/apps/reportes.php",'_blank')
+          window.open(urlComandos+"/apps/reportes.php",'_blank')
 
         }
       },
@@ -1009,7 +1029,7 @@ function iaDocente(){
         indexes:['ver actividades','actividades','mis actividades', 'calendario','ver calendario','ir a calendario','fechas importantes','crear actividad','nueva actividad'],
         action: function(){
           artyom.say("Abriendo calendario de actividades, si quieres ver una actividad dale click, crea una nueva actividad dándole clic al día.");
-          window.open("http://localhost/atomolms/apps/calendarm.php",'_blank')
+          window.open(urlComandos+"/apps/calendarm.php",'_blank')
 
         }
       },
@@ -1018,7 +1038,7 @@ function iaDocente(){
         indexes:['guardar archivos','mis documentos','subir archivo', 'compartir archivo','mis archivos','archivos','compartir archivos','borrar un archivo','atomDrive', 'atomodrive','drive','abrir drive','abrir atomodrive', 'atom drive'],
         action: function(){
           artyom.say("Abriendo AtomDrive, para subir un documento dale clic al botón nuevo y subir archivo, puedes compartir tus archivos, y ver archivos que han compartido contigo.");
-          window.open("http://localhost/atomolms/apps/atomDrive.php",'_blank')
+          window.open(urlComandos+"/apps/atomDrive.php",'_blank')
 
         }
       },
@@ -1027,7 +1047,7 @@ function iaDocente(){
         indexes:['ver asistencia','asistencia','ir a asistencia', 'ver faltas','ver conectividad','reporte de asistencia','ausencia','actividad plataforma','conectiviadad plataforma'],
         action: function(){
           artyom.say("Abriendo reporte de asistencia, elije el grado, sección y mes para ver la asistencia presencial, también podrás ver el reporte de uso de la plataforma.");
-          window.open("http://localhost/atomolms/apps/misAlumnos.php",'_blank')
+          window.open(urlComandos+"/apps/misAlumnos.php",'_blank')
 
         }
       },
@@ -1036,7 +1056,7 @@ function iaDocente(){
         indexes:['bullying','reporte bullying','ver incidencias', 'reporte de agresión','agreciones','controlar bullying','reporte de agreciones'],
         action: function(){
           artyom.say("Abriendo reporte de bullying, encontraras en este apartado, los datos de personas que valientemente reportan las agreciones que suceden en el plantel educativo, con esta información podremos actuar y combatir el bullying.");
-          window.open("http://localhost/atomolms/apps/reportbullying.php",'_blank')
+          window.open(urlComandos+"/apps/reportbullying.php",'_blank')
 
         }
       },
@@ -1054,8 +1074,8 @@ function iaDocente(){
         //grupo 10
         indexes:['editar perfil','perfil','ver perfil','ir a perfil','quiero ver mi perfil'],
         action: function(){
-          artyom.say("Abriendo tú perfil, en el podras editar nombre y apellido, hay datos que están bloqueados por tu seguridad");
-           window.open("http://localhost/atomolms/apps/editarPerfil.php",'_blank')
+          artyom.say("Abriendo tú perfil, en el podrás editar nombre y apellido, hay datos que están bloqueados por tu seguridad");
+           window.open(urlComandos+"/apps/editarPerfil.php",'_blank')
 
 
         }
@@ -1065,7 +1085,7 @@ function iaDocente(){
         indexes:['cerrar sesión','salir de la plataforma','terminar sesión','finalizar sesión','cerrar plataforma'],
         action: function(){
           artyom.say("Saliendo de la plataforma, espero escucharte pronto, hasta luego.");
-          window.location.replace("http://localhost/atomolms/index.html");
+          window.location.replace(urlComandos+"/index.html");
           
             artyom.fatality();
 
@@ -1076,7 +1096,7 @@ function iaDocente(){
         indexes:['abrir lecturas de velocidad','lecturas de velocidad','practicar velocidad','velocidad lectora','ver lecturas de velocidad','lecturas de fluidez'],
         action: function(){
           artyom.say("abriendo las lecturas de velocidad, elije grado que quieres observar");
-          window.location.replace("http://localhost/atomolms/atomLector/eleccionNivelvelocidadLectora.php?curso=7",'_blank');
+          window.location.replace(urlComandos+"/atomLector/eleccionNivelvelocidadLectora.php?curso=7",'_blank');
           
             artyom.fatality();
 
@@ -1087,7 +1107,7 @@ function iaDocente(){
         indexes:['abrir lecturas diarias','ver las lecturas diarias','mis lecturas diarias','quiero leer hoy','lecturas diarias',],
         action: function(){
           artyom.say("abriendo las lecturas diarias, elije grado que quieres observar, y empieza a crear el hábito lector.");
-          window.location.replace("http://localhost/atomolms/atomLector/eleccionNivelLecturasDiarias.php?curso=7",'_blank');
+          window.location.replace(urlComandos+"/atomLector/eleccionNivelLecturasDiarias.php?curso=7",'_blank');
           
             artyom.fatality();
 
@@ -1097,8 +1117,8 @@ function iaDocente(){
         //grupo 14
         indexes:['descargar planificación','planificación','descargar plani','ver planificacion','plani',],
         action: function(){
-          artyom.say("abriendo las lecturas diarias, elije grado que quieres observar, y empieza a crear el hábito lector.");
-          window.location.replace("http://localhost/atomolms/atomLector/eleccionNivelLecturasDiarias.php?curso=7",'_blank');
+          artyom.say("abriendo area de planificación, elije grado que quieres descargar.");
+          window.location.replace(urlComandos+"/atomLector/eleccionNivelLecturasDiarias.php?curso=7",'_blank');
           
             artyom.fatality();
 
@@ -1114,10 +1134,12 @@ function iaDocente(){
 
 function iaEstudiante(){
  var nombreUser= $('#userIa').text();
+ var urlComandos= $('#cajaUrlComandos').text();
+  var grado= $('#gradoIa').text();
 
   //grupo 1 conociendo a lola 
  //grupo 2 despedidad cortar grabacion
- //grupo 3 ir a lecturas comprension y rapides
+ //grupo 3 ir a lecturas comprension
  //grupo 4 ver reportes 
  //grupo 5 ver actividades
  //grupo 6 atomDrive
@@ -1166,10 +1188,10 @@ function iaEstudiante(){
       },
       {
         //grupo 3
-        indexes:['lecturas','quiero leer','ver mis lecturas', 'ver lecturas rápidas','ver lecturas','ir a lecturas','abrir lecturas','lecturas rápidas','comprensión lectora',],
+        indexes:['lecturas de medición','comprensión'],
         action: function(){
-          artyom.say("Abriendo lecturas, elije la lectura que quieres realizar, mejora tú comprensión y tu velocidad.");
-          window.open("http://localhost/atomolms/atomLector/comprensionLectora.php?curso=7&gradoB=1",'_blank')
+          artyom.say("Abriendo lecturas, elije la lectura que quieres realizar, mejora tú comprensión.");
+          window.open(urlComandos+"/atomLector/comprensionLectora.php?curso=7&gradoB="+grado,'_blank')
 
         }
       },
@@ -1178,7 +1200,7 @@ function iaEstudiante(){
         indexes:['ver reportes','reportes','reportes de lecturas', 'notas','ver notas','ver avances de lectura','sacar reportes','ir a reportes'],
         action: function(){
           artyom.say("Abriendo tús notas, en esta área podrás ver tú avance lector ");
-          window.open("http://localhost/atomolms/apps/misNotas.php",'_blank')
+          window.open(urlComandos+"/apps/misNotas.php",'_blank')
 
         }
       },
@@ -1187,7 +1209,7 @@ function iaEstudiante(){
         indexes:['ver actividades','actividades','mis actividades', 'calendario','ver calendario','ir a calendario','fechas importantes','crear actividad','nueva actividad'],
         action: function(){
           artyom.say("Abriendo calendario de actividades, si quieres ver una actividad dale click, crea una nueva actividad dándole clic al día.");
-          window.open("http://localhost/atomolms/apps/calendarm.php",'_blank')
+          window.open(urlComandos+"/apps/calendarm.php",'_blank')
 
         }
       },
@@ -1196,7 +1218,7 @@ function iaEstudiante(){
         indexes:['guardar archivos','mis documentos','subir archivo', 'compartir archivo','mis archivos','archivos','compartir archivos','borrar un archivo','atomDrive', 'atomodrive','drive','abrir drive','abrir atomodrive', 'atom drive'],
         action: function(){
           artyom.say("Abriendo AtomDrive, para subir un documento dale clic al botón nuevo y subir archivo, puedes compartir tus archivos, y ver archivos que han compartido contigo.");
-          window.open("http://localhost/atomolms/apps/atomDrive.php",'_blank')
+          window.open(urlComandos+"/apps/atomDrive.php",'_blank')
 
         }
       },
@@ -1205,7 +1227,7 @@ function iaEstudiante(){
         indexes:['bullying','reportar agresión','agresión','agreciones','controlar bullying','reporte de agreciones'],
         action: function(){
           artyom.say("Abriendo área de bullying, podrás reportar cualquier agresión, ayudanos a tener un centro educativo sano.");
-          window.open("http://localhost/atomolms/apps/bullying.php",'_blank')
+          window.open(urlComandos+"/apps/bullying.php",'_blank')
 
         }
       },
@@ -1214,7 +1236,7 @@ function iaEstudiante(){
         indexes:['editar perfil','perfil','ver perfil','ir a perfil','quiero ver mi perfil'],
         action: function(){
           artyom.say("Abriendo tú perfil, en el podras editar nombre y apellido, hay datos que están bloqueados por tu seguridad");
-           window.open("http://localhost/atomolms/apps/editarPerfil.php",'_blank')
+           window.open(urlComandos+"/apps/editarPerfil.php",'_blank')
 
 
         }
@@ -1224,7 +1246,28 @@ function iaEstudiante(){
         indexes:['cerrar sesión','salir de la plataforma','terminar sesión','finalizar sesión','cerrar plataforma'],
         action: function(){
           artyom.say("Saliendo de la plataforma, espero escucharte pronto, hasta luego.");
-          window.location.replace("http://localhost/atomolms/index.html");
+          window.location.replace(urlComandos+"/index.html");
+          
+            artyom.fatality();
+
+        }
+      },{
+        //grupo 12
+        indexes:['abrir lecturas de velocidad','lecturas de velocidad','practicar velocidad','velocidad lectora','ver lecturas de velocidad','lecturas de fluidez'],
+        action: function(){
+          artyom.say("abriendo las lecturas de velocidad, elije grado que quieres observar");
+          window.location.replace(urlComandos+"/atomLector/velocidadLectora.php?curso=7&gradoB="+grado,'_blank');
+          
+            artyom.fatality();
+
+        }
+      },
+      {
+        //grupo 13
+        indexes:['abrir lecturas diarias','ver las lecturas diarias','mis lecturas diarias','quiero leer hoy','lecturas diarias',],
+        action: function(){
+          artyom.say("abriendo las lecturas diarias, empieza a crear el hábito lector, no olvides que leer es muy importante.");
+          window.location.replace(urlComandos+"/atomLector/lecturasDiarias.php?curso=7&grado="+grado,'_blank');
           
             artyom.fatality();
 

@@ -1,6 +1,14 @@
 <?php 
 session_start();
 
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../index.html');
+}
+
 require("../conection/conexion.php");
     
   if(empty($_GET['curso'])){
@@ -8,7 +16,7 @@ require("../conection/conexion.php");
   }else{
     switch ($_GET['curso']) {
       case '7':
-        $_SESSION['curso']="Programa Lector - Atomo(Lms)";
+        $_SESSION['curso']="Lecturas de medición";
         break;
       
       default:
@@ -71,7 +79,13 @@ require("../conection/conexion.php");
     }
 
 
-  
+  //funciones bloqueante semanal
+
+    //semana prueba 
+$semanaPrueba=1;
+//verificar la semana 
+
+$noSemanaActual = date("W"); //produccion
    
  ?>
 
@@ -137,16 +151,30 @@ require("../conection/conexion.php");
 
               <div class="row">
               <?php while(@$row1=$mostrarLectura->fetch(PDO::FETCH_ASSOC)){ 
-                @$i+=1;
+                @$i+=1;//semana
 
           $query11 = ("SELECT * FROM paginas where idLectura=:idLectura limit 1");
           $portada2=$dbConn->prepare($query11);
           $portada2->bindParam(':idLectura',$row1['idLectura'], PDO::PARAM_STR); 
           $portada2->execute();
+
+
+         if($_SESSION['tipoUsuario']==1){ 
+
+          if($i==$semanaPrueba){
+                  $activo='activo';
+                  $activoOjo='glyphicon glyphicon-eye-open';
+                  $estiloActivo=' ';
+                }else{
+                  $activo='inactivo';
+                  $activoOjo='glyphicon glyphicon-eye-close';
+                  $estiloActivo='cursor: not-allowed;  pointer-events: none; -webkit-filter: grayscale(100%); -moz-filter: grayscale(100%); -ms-filter: grayscale(100%); -o-filter: grayscale(100%); filter: grayscale(100%);';
+                }
+         }
                
                 ?>
-               <a href="p1/lect1p.php?idLectura=<?php echo $row1['idLectura']; ?>&gradoB=<?php echo $gradoBuscar; ?>">
-                <div class="col-md-5 estiloProducto" style="min-height:150px; margin-bottom: 20px;">
+               <a href="p1/lect1p.php?idLectura=<?php echo $row1['idLectura']; ?>&gradoB=<?php echo $gradoBuscar; ?>" >
+                <div class="col-md-5 estiloProducto" style="min-height:150px; margin-bottom: 20px; <?php echo $estiloActivo; ?>">
                 <div class="row" style="background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);">
                  <?php  while(@$row2=$portada2->fetch(PDO::FETCH_ASSOC)){  ?>
                   <div class="col-md-5" style=" min-height:175px; 
@@ -160,8 +188,9 @@ require("../conection/conexion.php");
                     <h5 style="text-align: left;"><?php echo "Descripción: ".$row1['descripcion']; ?></h5>
                     <h5 style="text-align: left;"><?php echo "Edad: ".$row1['edadLectura']; ?></h5>
                     <h4 style="text-align: left;"><span class="label label-primary" style="position:absolute;"><?php echo 'Semana '.$i; ?></span></h4>
+                    <span style="margin-left:50px;" class="<?php echo $activoOjo; ?>"></span>  
                     
-                    <img id="<?php echo 'envi1'.$row1['idLectura']; ?>" src="enviado1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:23%;">
+                    <img id="<?php echo 'envi1'.$row1['idLectura']; ?>" src="enviado1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18%; margin-left:10%;">
                   
                     <img id="<?php echo 'lei1'.$row1['idLectura']; ?>" src="leido1.png" style=" display:none; width: 40px; height: 40px; position:absolute; margin-top: -14%; margin-left:66%;">
                   

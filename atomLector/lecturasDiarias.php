@@ -1,6 +1,15 @@
 <?php 
 session_start();
 
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../index.html');
+}
+
+
 require("../conection/conexion.php");
     
   if(empty($_GET['curso'])){
@@ -8,7 +17,7 @@ require("../conection/conexion.php");
   }else{
     switch ($_GET['curso']) {
       case '7':
-        $_SESSION['curso']="Programa Lector - Atomo(Lms)";
+        $_SESSION['curso']="Lecturas Diarias";
         break;
       
       default:
@@ -18,13 +27,23 @@ require("../conection/conexion.php");
   }
   
 
-
     $tituloGrad="1ero Primaria";
     if(empty($_SESSION['grado'])){
       $gradoBuscar=$_GET['gradoB'];
     }else{
       $gradoBuscar=$_SESSION['grado'];
     }
+
+//funciones para verificar la semanas
+
+    //semana prueba 
+$semanaPrueba=1;
+//verificar la semana 
+setlocale(LC_ALL,"es_ES");
+$dias = array("domingo","lunes","martes","miercoles","jueves","viernes","sabado");;
+$noSemanaActual = date("W"); //produccion
+
+$diaSemanaSet=$dias[date("w")];
 
  
  ?>
@@ -335,7 +354,9 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 
             <?php while(@$mostSemana=$mostrarSemanas->fetch(PDO::FETCH_ASSOC)){  
               
-              @$contador+=1;
+              @$contador+=1;// semana 
+
+              
 
               ?>
       <div class="col-sm-9">
@@ -362,7 +383,57 @@ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 
               
             while(@$rowDatosLecturas=$datosLecturas->fetch(PDO::FETCH_ASSOC)){              
-                @$h+=1;
+                @$h+=1;//dias de la semana 1=lunes, 2=martes,3=miercoles, 4=jueves, 5=viernes
+
+                //convertimos $h en dias de la semana
+
+                switch ($h) {
+                  case 1:
+                    $diaSemanaGet='lunes';
+                    break;
+                  case 2:
+                    $diaSemanaGet='martes';
+                    break;
+                  case 3:
+                    $diaSemanaGet='miercoles';
+                    break;
+                  case 4:
+                    $diaSemanaGet='jueves';
+                    break;
+                  case 5:
+                    $diaSemanaGet='viernes';
+                    break;
+                  case 6:
+                    $diaSemanaGet='sabado';
+                    break;
+                  case 7:
+                    $diaSemanaGet='domingo';
+                    break;
+
+                  default:
+                    # code...
+                    break;
+                }
+
+
+// Trozo de codigo que pone bloqueante el plan lector
+if($_SESSION['tipoUsuario']==1){
+
+
+                if($diaSemanaSet==$diaSemanaGet and $semanaPrueba==$contador){
+
+                  $activo='activo';
+                  $activoOjo='glyphicon glyphicon-eye-open';
+                  $estiloActivo=' ';
+
+
+                }else{
+                   $activo='inactivo';
+                  $activoOjo='glyphicon glyphicon-eye-close';
+                  $estiloActivo='cursor: not-allowed;  pointer-events: none; -webkit-filter: grayscale(100%); -moz-filter: grayscale(100%); -ms-filter: grayscale(100%); -o-filter: grayscale(100%); filter: grayscale(100%);';
+
+                }
+}
 
 
               $query12 = ("SELECT  * FROM paginas where idLectura=:idLectura limit 1");
@@ -482,12 +553,14 @@ if($h==1){ echo "L"; $background="#2980b9";
 
 
        <a href="<?php echo 'p1/mostrarLect1.php?idLectura='.$rowDatosLecturas['idLectura'].'&gradoB='.$gradoBuscar; ?>" style="text-decoration:none; color: black;">
-              <div class="timeline-panel"  style="border:0px; cursor: pointer; margin-left: -70px;">
-                <div class="timeline-heading">
+              <div class="timeline-panel"  style="border:0px; cursor: pointer; margin-left: -70px; <?php echo $estiloActivo; ?>">
+                <div class="timeline-heading" >
                   <h4 class="timeline-title" style="margin-top: 30px;"><?php echo $rowDatosLecturas['nombreLectura']; ?></h4>
                   <p><small class="text-muted"><i class="glyphicon glyphicon-bookmark"></i> <?php echo $rowDatosLecturas['tipoLectura']; ?></small></p>
                    <h5 style="text-align: left;">Descripción: <?php echo $rowDatosLecturas['descripcion']; ?> </h5>
                     <h5 style="text-align: left;">Edad: <?php echo $rowDatosLecturas['edadLectura']; ?></h5>
+                    <span style="margin-left:10px;" class="<?php echo $activoOjo; ?>"></span> 
+                    <span><?php echo $diaSemanaGet; ?></span>
                 </div>
                 <div class="timeline-body" style=" min-height:100px; width: 100px; 
                   background-image: ; background-size: 100%; background-repeat:no-repeat;">

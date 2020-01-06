@@ -1,6 +1,14 @@
 <?php 
 session_start();
 
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../../index.html');
+}
+
 require("../../conection/conexion.php");
 
     $q1 = ("SELECT * FROM objetosPreescolar where idObjeto=:idObjeto");
@@ -515,7 +523,7 @@ function finGrabacion(clicked_id){
                                     .then(respuestaComoTexto => {
                                         // Aquí haz algo con la respuesta ;)
                                         console.log("La respuesta: ", respuestaComoTexto);
-                                        location.reload();
+                                        //location.reload();
                                        
                                     })
                             });

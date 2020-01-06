@@ -1,5 +1,15 @@
 <?php 
 session_start();
+
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../../index.html');
+}
+
+
 $fundamento="cnb";
 require("../../conection/conexion.php");
 $_GET['idLectura'];
@@ -15,8 +25,11 @@ $_GET['idUsuario'];
 
 $_SESSION['ultimoIntento']=$_GET['intentoABuscar'];
 
+//echo $_SESSION['ultimoIntento'];
 
-}else if(@$_GET['intentoABuscar']==null){
+}
+
+if(@$_GET['intentoABuscar']==null){
 @$_GET['intento']=1;
 
 //buscar el ultimo intento insertado;
@@ -143,7 +156,7 @@ if(empty(@$_SESSION['sumaInter'])){
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
-    <title><?php echo $_SESSION["nombre"]; ?> | Mis Cursos</title>
+    <title><?php echo $_SESSION["nombre"]; ?> | Resultado CNB</title>
  
     <!-- CSS de Bootstrap -->
     <link href="../../css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -254,7 +267,7 @@ if(empty(@$_SESSION['sumaInter'])){
 
 
          <div class="col-md-12" style="margin-top: 60px;">
-              <h3 class="text-center">Resultado Prueba según Estándares CNB </h3><br>
+              <h3 class="text-center">Resultado Prueba según Estándares CNB  </h3><br>
               <a href="../comprensionLectora.php?gradoB=<?php echo $_SESSION['gradoEnviar']; ?>" class="btn botonAgg-1" style="color: white; background-color: #3498db;">Mis Lecturas</a>
              
               <div class="col-md-12 cajaDescripcion" style="min-height:200px; margin-top: 20px;">
@@ -268,7 +281,7 @@ if(empty(@$_SESSION['sumaInter'])){
                 <h4 class="textCajaDetalle">Lectura: <span><?php echo $row4['nombreLectura']; ?></span></h4>
                 <h4 class="textCajaDetalle">Intento: <span><?php echo  $_GET['intento']; ?></span></h4>
                 <h4 class="textCajaDetalle">Alumno: <span><?php echo $_SESSION['nombre']." ".$_SESSION['apellido']; ?></span></h4>
-                <h4 class="textCajaDetalle">Tiempo En la Prueba: <span>Pendiente</span></h4>
+                <h4 class="textCajaDetalle">Tiempo En la Prueba: <span><?php echo $row4['tiempo'].'min'; ?></span></h4>
                 <h4 class="textCajaDetalle">Fecha de Registro: <span><?php echo $row4['fechaRegistro']; ?></span></h4>
                 <h4 class="textCajaDetalle">Hora Registro: <span><?php echo $row4['horaRegistro']; ?></span></h4>
 
@@ -291,14 +304,14 @@ if(empty(@$_SESSION['sumaInter'])){
           <table class="table table-hover">
               <thead>
                 <tr>
-                 <th scope="col">No Pregunta</th>
+                 <th scope="col">No.</th>
                   <th scope="col">Pregunta</th>
-                  <th scope="col">Respuesta Correcta o Matriz Comparativa</th>
+                  <th scope="col">R.Correcta</th>
                   <th scope="col">Tú respuesta</th>
                   <th scope="col">Competencia</th>
                   <th scope="col">Indicador de Logro</th>
                   <th scope="col">Taxonomia</th>
-                  <th scope="col">Punteo de la pregunta</th>
+                  <th scope="col">Ponderación</th>
                   <th scope="col">Tus puntos</th>
        
                 </tr>
@@ -325,6 +338,7 @@ if(empty(@$_SESSION['sumaInter'])){
                    <td><?php echo $row3['objetivoItem']; ?></td>
                    <td><?php echo $row3['punteoItem']; ?></td>
                    <td><?php  if($row3['rPregunta'.$p]==$row3['respuestaCorrecta']){ $punteoNew=$row3['punteoItem'];  ?>
+
                    <div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><?php echo  $punteoNew; ?>
 
                      <?php }else{ $punteoNew=0; ?>

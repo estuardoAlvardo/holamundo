@@ -1,6 +1,15 @@
 <?php 
 session_start();
   require("../conection/conexion.php");
+
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../index.html');
+}
+
 //curso 1
 $_SESSION['idUsuario'];
 $_SESSION['grado'];
@@ -12,10 +21,10 @@ $nivelBasico=2;
 $nivelDiver=3;
 $nivelPadre=1;
 
-consultarCursos($nivelPrimaria,$_SESSION['grado'],$_SESSION['seccion']);
+//consultarCursos($nivelPrimaria,$_SESSION['grado'],$_SESSION['seccion']);
 //Buscar todos los cursos de este usuario primaria
 
-
+/*
 function consultarCursos($nivel1,$grado1,$seccion1){
   require("../conection/conexion.php");
 
@@ -649,7 +658,7 @@ section {
  
 
 
-       <?php } ?>
+       <?php  ?>
 
 
 

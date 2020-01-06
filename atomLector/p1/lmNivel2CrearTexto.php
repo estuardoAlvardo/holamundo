@@ -1,6 +1,16 @@
 <?php 
 session_start();
 
+
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../../index.html');
+}
+
+
 require("../../conection/conexion.php");
     
     //buscar Recursos CompletarHistoria
@@ -433,7 +443,7 @@ position: relative;
                      ?>  
                     <h3>Instrucciones: Crea un cuento utilizando como ayuda la imagen, colocale título.
                           </h3><hr> 
-                      <img class="card-style" src="<?php echo $row1['direccionImg']; ?>" style="max-width:400px; max-height: 400px; margin-left: 25%; border-radius: 5px;">        
+                      <img class="card-style" src="<?php echo 'data:image/jpeg;base64,'.$row1['direccionImg']; ?>" style="max-width:400px; max-height: 400px; margin-left: 25%; border-radius: 5px;">     
                       <form method="post" action="controllador/emNivel2paso1.php">
                         <div class="input-container" style="margin-top: 65px;">
                             <input style="height: 35px; background-size;" id="name1" class="input1" type="text" pattern=".+" name="tituloCuento" required />
@@ -465,7 +475,8 @@ position: relative;
                               <label class="label1" for="name1" style="color:black; text-align: left; background-color:#ffffff;"><?php echo $row2['titulo']; ?></label>
                         </div>
                         <h3 style="margin-top: 30px; margin-bottom: 5px;"><?php echo '"'.$row2['cuento']; ?></h3>
-                        <img class="card-style" src="<?php echo $row1['direccionImg']; ?>" style="max-width:400px; max-height: 400px; margin-left: 25%; border-radius: 5px;"> 
+                        
+                        <img class="card-style" src="<?php echo 'data:image/jpeg;base64,'.$row1['direccionImg']; ?>" style="max-width:400px; max-height: 400px; margin-left: 25%; border-radius: 5px;">
                         
                         <input class="btn btn-default botonAgg-1 col-md-12" style=" color:white; border:1px solid #95a5a6; font-size: 17pt; background-color: #95a5a6; height: 50px;margin-top:20px;"   type="submit" value="Ya enviaste el Cuento">
 

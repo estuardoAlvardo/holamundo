@@ -2,16 +2,21 @@
 session_start();
 //curso 1
 
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../index.html');
+}
+
+
 require("../conection/conexion.php");
+
 
 $_SESSION['idUsuario'];
 
 
-
-//$sql1 = ("SELECT * FROM registrocl2p2 where idIntento=:idIntento");
-//$obtenerMatriz=$dbConn->prepare($sql1);
-//$obtenerMatriz->bindParam(':idIntento', $_GET['idIntento'], PDO::PARAM_INT); 
-//$obtenerMatriz->execute();
 
 //variables de niveles
 $nivelPrimaria=1;
@@ -48,6 +53,11 @@ $j='#2ecc71';
 if(date("l")=='Friday'){
 $v='#2ecc71';
 }
+
+
+
+//obtenemos la semana actual
+$noSemanaActual = date("W"); 
 
 
 
@@ -403,7 +413,7 @@ $("i").click(function() {
                           <div class="md-chip-img">
                             <span class="md-chip-span pink">&nbsp;</span>
                           </div>
-                          <span class="md-chip-text">Semana 1</span>
+                          <span class="md-chip-text">Semana  <?php echo $noSemanaActual; ?> </span>
                         </div>
                               <div id="timeline-wrap">
                             <div id="timeline"></div>
@@ -468,7 +478,7 @@ $("i").click(function() {
                           <div class="md-chip-img">
                             <span class="md-chip-span pink">&nbsp;</span>
                           </div>
-                          <span class="md-chip-text">Semana 1</span>
+                          <span class="md-chip-text">Semana <?php echo $noSemanaActual; ?> </span>
                         </div>
 
                     </div>
@@ -491,7 +501,7 @@ $("i").click(function() {
                           <div class="md-chip-img">
                             <span class="md-chip-span pink">&nbsp;</span>
                           </div>
-                          <span class="md-chip-text">Semana 1</span>
+                          <span class="md-chip-text">Semana <?php echo $noSemanaActual; ?> </span>
                         </div>
 
                     </div>
@@ -512,7 +522,7 @@ $("i").click(function() {
                       </div>
 
                       <div class="text">
-                        <h3>Mi Cofre de Palabras</h3>
+                        <h3>Mi glosario</h3>
                         <p style="text-align: left;">Palabras que agrego a mi vocabulario</p>
 
                       </div>
@@ -529,7 +539,7 @@ $("i").click(function() {
                       </div>
 
                       <div class="text">
-                        <h3>Mis Textos</h3>
+                        <h3>Red de escritores</h3>
                         <p style="text-align: left;">Mi creatividad descrita en textos.</p>
 
                       </div>

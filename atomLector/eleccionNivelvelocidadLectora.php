@@ -1,6 +1,16 @@
 <?php 
 session_start();
-//curso 1
+
+
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../index.html');
+}
+
+
 
 require("../conection/conexion.php");
 
@@ -33,7 +43,7 @@ $nivelDiver=3;
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
-    <title><?php echo $_SESSION["nombre"]; ?> | Lecturas Diarias</title>
+    <title><?php echo $_SESSION["nombre"]; ?> | Lecturas velocidad</title>
  
     <!-- CSS de Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -243,7 +253,7 @@ padding-top: -30px;
                
 
 <div class="col-md-11" style="margin-bottom: 100px;"><br><br>
-  <h3 class="text-left" style="">¿Qué grado quieres Observar?</h3><hr>
+  <h3 class="text-left" style="">¿Qué grado quieres observar?</h3><hr>
   <div class="col-md-12 cajaGrado" style="min-height: 200px;">
     <p>Preescolar</p>
     <div class="row" style="padding-left: 40px;">
@@ -301,35 +311,24 @@ padding-top: -30px;
                      <h3 class="text-left" style="">Nuestros Fundamentos Pedagógicos</h3><hr>
                     <div class="row">
                       
-                      <div class="col-md-2 cajaCards" onclick="pisa();" style="margin-left: 30px;">
+                      <div class="col-md-2 cajaCards" onclick="algoritmoR();" style="margin-left: 30px;">
                         <p style="padding-top: 20px;">Algoritmo de Reconocimiento de voz</p>
                       </div>                                                      
                      <div class="col-md-1" ></div>
-                     <div class="col-md-2 cajaCards" onclick="cnb();" style="">
+                     <div class="col-md-2 cajaCards" onclick="fluidezR();" style="">
                       <p>Fluidez Verbal</p>
                       </div>                      
                       <div class="col-md-1"></div>
-                      <div class="col-md-2 cajaCards" onclick="testPersonajes();" style="">
-                      <p>Medición de velocidad Lectora</p>
+                      <div class="col-md-2 cajaCards" onclick="comparacionFonetica();" style="">
+                      <p>Comparación a nivel fonético</p>
                       </div>
                        <div class="col-md-1"></div>
-                      <div class="col-md-2 cajaCards" onclick="vocabulario();" style="">
-                      <p>Actividad para incrementar Vocabulario</p>
+                      <div class="col-md-2 cajaCards" onclick="velocidadR();" style="">
+                      <p>Práctica de velocidad lectora</p>
                       </div>
                       <div class="col-md-1"></div>
-                      <div class="col-md-2 cajaCards" onclick="pensamientoCritico();" style="">
-                      <p>Actividad que permite el pensamiento critico</p>
-                      </div>
-                      <div class="col-md-1"></div>
-                      <div class="col-md-2 cajaCards" onclick="jeanPeaget();" style="">
-                      <p>Teoría cognitiva del aprendizaje de Jean Piaget </p>
-                      </div>
-
-                      <div class="col-md-1"></div>
-                                             
-                       <div class="col-md-2 cajaCards" onclick="servicioIA();" style=" margin-left: 20px;">
-                         <p>Asistente Lola basado en Inteligencia Artificial.</p>                        
-                      </div>
+                                                                   
+                     
                   </div>
                   <div class="col-md-11">
                     <img src="../img/task/dormida.gif" width="200" height="200" id="dormida" onclick="ejecucion();">
@@ -366,13 +365,13 @@ padding-top: -30px;
           artyom.say("Hola"+nombreUsuario+" soy tu asistente, estoy para ayudarte, y me da mucho gusto que estés aquí, arriba de mi se encuentran los fundamentos pedagógicos y tecnológicos que hace posible que el Átomo lector funcione. Si le das clic a las tarjetas te explicare cada fundamento, te pido de favor que presiones solo una a la vez, y que me indiques si aprendiste.");
           document.getElementById("dormida").style.display="none";
           document.getElementById("despierta").style.display="block";
-          
+          stopArtyom(); 
         }
 
 
-        function pisa(){
+        function algoritmoR(){
           startArtyom();
-          artyom.say("El objetivo de esta prueba es medir las competencias lectoras desde las perspectivas siguientes: global. Obtención de información. Interpretación e integración. Reflexión y valoración cada competencia posee una escala de dificultad de 1c a 6 lo cual indica las capacidades lectoras que tiene desarrolladas el alumno. Al realizar cada prueba el alumno estimula cada competencia y con ello mejorar el rendimiento académico.");
+          artyom.say("Soy Lola y utilizo, el reconocimiento de voz para poder captar cuando el alumno lee en voz alta, y procesar el audio en texto, realizar comparativas para el análisis de la entonación, comparativas de velocidad y otras. Indícame si aprendiste");
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
           document.getElementById("saluda").style.display="block";
@@ -382,9 +381,9 @@ padding-top: -30px;
 
         }
 
-        function cnb(){
+        function fluidezR(){
           startArtyom();
-          artyom.say("El objetivo de estás pruebas es desarrollar las competencias: Interpretativa, Argumentativa, Propositiva, Utilizando la taxonomia de marzano en la redacción del test midiendo los niveles literal inferencial y critico. Como resultado tendremos el cumplimiento de los indicadores de logro.");
+          artyom.say("La fluidez verbal consiste en la competencia para emplear palabras de forma correcta, clara y concisa en el contexto adecuado, sin caer en tartamudeos, pausas no deseadas o pronunciación  incoherentes. Las lecturas están diseñadas bajo estándares que permiten el desarrollo de esta habilidad. Indícame si aprendiste");
            document.getElementById("enamorada").style.display="none";
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
@@ -393,9 +392,9 @@ padding-top: -30px;
            stopArtyom();      
         }
 
-        function testPersonajes(){
+        function comparacionFonetica(){
           startArtyom();
-          artyom.say("Mediante un test creado exclusivamente para identificar a los personajes, roles y participación de los mismos en la lectura, desarrollamos en el alumno la habilidad de identificar y reconocer a los participantes involucrados en la misma.");
+          artyom.say("Soy tu asistente y te apoyo en la medición de la entonación de cada palabra o fonema que tus alumnos leen en voz alta, quiero que sepas que las lecturas están estandarizadas, el análisis que realizo es comparar lo que el alumno ha leído en voz alta con la lectura y en base a esto le damos un porcentaje en base a la exactitud en la lectura. Indícame si aprendiste");
            document.getElementById("enamorada").style.display="none";
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
@@ -404,9 +403,9 @@ padding-top: -30px;
            stopArtyom();      
         }
 
-         function vocabulario(){
+         function velocidadR(){
           startArtyom();
-          artyom.say("Haciendo uso de nuestro algoritmo de  reconocimiento de voz capturamos la pronunciación del concepto y la definición de cada palabra que se concidera dificil dentro de la lectura, para una mejor memorización, Almacenamos lo que se grabo en formato texto. Tiene como fundamento la mnemotécnia.");
+          artyom.say("Te apoyo también realizando el análisis de velocidad, comparando el tiempo que útilizo el alumno para dictar toda la lectura, luego muestro en gráficos los resultados.");
            document.getElementById("enamorada").style.display="none";
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
@@ -415,40 +414,7 @@ padding-top: -30px;
            stopArtyom();      
         }
 
-           function pensamientoCritico(){
-          startArtyom();
-          artyom.say("Haciendo uso del reconocimiento de voz capturamos lo que más le gusto al alumno de la lectura, desarrollando el pensamiento crítico.");
-           document.getElementById("enamorada").style.display="none";
-          document.getElementById("despierta").style.display="none";
-          document.getElementById("dormida").style.display="none";
-          document.getElementById("saluda").style.display="block"; 
-           document.getElementById("siAprendi").style.display="block";  
-           stopArtyom();      
-        }
-
-        function jeanPeaget(){
-          startArtyom();
-          artyom.say("Utilizando como fundamento el estudio de Jean Piaget que nos indica el ser humano aprende en base a su edad cognitiva, y que sí se le da conocimiento que no puede comprender y explicar con sus conocimientos previos, a esto se le conoce como conflicto cognitivo, esto dificultara el aprendizaje, en resumen, las lecturas fueron creadas en base a la edad del estudiante.");
-           document.getElementById("enamorada").style.display="none";
-          document.getElementById("despierta").style.display="none";
-          document.getElementById("dormida").style.display="none";
-          document.getElementById("saluda").style.display="block"; 
-           document.getElementById("siAprendi").style.display="block";  
-           stopArtyom();      
-        }
-
-        function servicioIA(){
-          
-          startArtyom();
-          artyom.say("Hola "+nombreUsuario+" mi nombre es lola y soy tu asistente, estoy construida con varias tecnologías entre ella el algoritmo de reconocimiento de voz, que me permite escucharte y poder cumplir tus peticiones, también estoy basada en algoritmos de inteligencia artificial que me permite captar tu voz y ser lo más precisa al momento de apoyarte");
-           document.getElementById("enamorada").style.display="none";
-          document.getElementById("despierta").style.display="none";
-          document.getElementById("dormida").style.display="none";
-          document.getElementById("saluda").style.display="block"; 
-           document.getElementById("siAprendi").style.display="block";  
-           stopArtyom();      
-        }
-
+           
 
 
 

@@ -57,7 +57,7 @@ foreach($_POST as $nombre_campo => $valor){
    $asignacion = "\$" . $nombre_campo . "='" . $valor . "';"; 
 
 
-   echo "Nombre Campo =".$nombre_campo.' ValorObtenido= '.$valor.'<br>';
+   //echo "Nombre Campo =".$nombre_campo.' ValorObtenido= '.$valor.'<br>';
 
    if($nombre_campo=='idLecturaEnviado'){
       $_SESSION['idLectura_g']=$valor; 
@@ -133,10 +133,10 @@ foreach($_POST as $nombre_campo => $valor){
 
 
        if($insertar1=='rPregunta4'){
-        $_SESSION['almacenar4']=$valor;
-         $insertarQuiz4p->bindParam($insertar1, $_SESSION['almacenar4'], PDO::PARAM_INT);
-         //echo 'pregunta= '.$insertar1.' respuesta= '.$_SESSION['almacenar4'].'<br>';
-         if($_SESSION['respuestaCorrecta4']==$_SESSION['almacenar4']){
+        $_SESSION['almacenarrrr4']=$valor;
+         $insertarQuiz4p->bindParam($insertar1, $_SESSION['almacenarrrr4'], PDO::PARAM_INT);
+         echo 'pregunta= '.$insertar1.' respuesta= '.$_SESSION['almacenarrrr4'].'<br>';
+         if($_SESSION['respuestaCorrecta4']==$_SESSION['almacenarrrr4']){
           
              @$sumaCorrectas+=$_SESSION['punteoItem4'];
          }else{
@@ -146,6 +146,8 @@ foreach($_POST as $nombre_campo => $valor){
 
           
       }
+
+
        if($insertar1=='rPregunta5'){
         $_SESSION['almacenar5']=$valor;
          $insertarQuiz4p->bindParam($insertar1, $_SESSION['almacenar5'], PDO::PARAM_INT);
@@ -244,15 +246,21 @@ foreach($_POST as $nombre_campo => $valor){
 
    }
 
-    if(strpos($nombre_campo, 'input')!== false){
+    if(strpos($nombre_campo, 'input') !== false){
      @$o+=1;
     $insertar='input'.$o;
    //echo $insertar;
-    $_SESSION['almacenar'.$o]=$valor;
+    $_SESSION['almacenarIn'.$o]=$valor;
+
+
+    if(empty($valor) and !isset($valor)){
+      $valor='Respuesta Vacia';
+
+    }
     
-    $insertarQuiz4p->bindParam($insertar, $_SESSION['almacenar'.$o], PDO::PARAM_STR);
-    //echo 'pregunta '.$insertar.'-----Respuesta ya comparada---'.$_SESSION['resultado'.$o].'<br>';
-     $porcentaje=similar_text($_SESSION['almacenar'.$o], $_SESSION['matriz'.$o]);
+    $insertarQuiz4p->bindParam($insertar, $_SESSION['almacenarIn'.$o], PDO::PARAM_STR);
+    echo 'pregunta '.$insertar.'-----Respuesta ya comparada---'.$_SESSION['almacenarIn'.$o].'<br>';
+     $porcentaje=similar_text($_SESSION['almacenarIn'.$o], $_SESSION['matriz'.$o]);
 
       //echo 'Pregunta------'.$o.' =sistema= '. $porcentaje.'<br><br>';
 

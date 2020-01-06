@@ -38,14 +38,13 @@ if($extension=='png'){
 
 //este trozo de codigo se comenta para cuando queremos ver las portadas  de lo contrario podemos subir lecturas mucho mas rapido.
 
-/*
+
  $sql1 = ("INSERT INTO paginas(idLectura,fichero) values(:idLectura,:fichero)");
 	$insertarPaginas = $dbConn->prepare($sql1);
 	$insertarPaginas->bindParam(':idLectura',$_POST['idLectura'], PDO::PARAM_INT);
 	$insertarPaginas->bindParam(':fichero',$data, PDO::PARAM_STR);
 	$insertarPaginas->execute();
 
-*/
 
 	
 }

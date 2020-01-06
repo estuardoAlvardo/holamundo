@@ -1,12 +1,17 @@
 <?php 
 session_start();
 
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../index.html');
+}
+
+
 
 require("../conection/conexion.php");
-
-
-
-
 //Buscar todos los cursos de este usuario primaria
 
 $q1 = ("SELECT * FROM atomodrive where idUsuario=:idUsuario");

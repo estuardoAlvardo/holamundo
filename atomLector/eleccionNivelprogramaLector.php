@@ -1,6 +1,15 @@
 <?php 
 session_start();
-//curso 1
+
+
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../index.html');
+}
+
 
 require("../conection/conexion.php");
 
@@ -239,13 +248,13 @@ padding-top: -30px;
 
 
 <div class="col-md-11" style="margin-bottom: 100px;"><br><br>
-  <h3 class="text-left" style="">¿Qué grado quieres Observar?</h3><hr>
+  <h3 class="text-left" style="">¿Qué grado quieres observar?</h3><hr>
   <div class="col-md-12 cajaGrado" style="min-height: 200px;">
-     <p>Pre-Escolar</p>
+     <p>Preescolar</p>
       <div class="row" style="padding-left: 40px;">
     
     
-     <a href="inicialComprension.php?gradoB=13" style="color: white;"><div class="col-md-2 btnGrado">Pre-Kinder</div></a>
+     <a href="inicialComprension.php?gradoB=13" style="color: white;"><div class="col-md-2 btnGrado">Prekinder</div></a>
     <div class="col-md-1"></div>
     <a href="inicialComprension.php?gradoB=14" style="color: white;"><div class="col-md-2 btnGrado">Kinder</div></a>
     <div class="col-md-1"></div>
@@ -366,7 +375,7 @@ padding-top: -30px;
 
         function pisa(){
           startArtyom();
-          artyom.say("El objetivo de esta prueba es medir las competencias lectoras desde las perspectivas siguientes: global. Obtención de información. Interpretación e integración. Reflexión y valoración cada competencia posee una escala de dificultad de 1c a 6 lo cual indica las capacidades lectoras que tiene desarrolladas el alumno. Al realizar cada prueba el alumno estimula cada competencia y con ello mejorar el rendimiento académico.");
+          artyom.say("El objetivo de esta prueba es medir las competencias lectoras desde las perspectivas siguientes: global. Obtención de información. Interpretación e integración. Reflexión y valoración cada competencia posee una escala de dificultad de 1c a 6 lo cual indica las capacidades lectoras que tiene desarrolladas el alumno. Al realizar cada prueba el alumno estimula cada competencia y con ello mejorar el rendimiento académico. Indícame si aprendiste.");
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
           document.getElementById("saluda").style.display="block";
@@ -378,7 +387,7 @@ padding-top: -30px;
 
         function cnb(){
           startArtyom();
-          artyom.say("El objetivo de estás pruebas es desarrollar las competencias: Interpretativa, Argumentativa, Propositiva, Utilizando la taxonomia de marzano en la redacción del test midiendo los niveles literal inferencial y critico. Como resultado tendremos el cumplimiento de los indicadores de logro.");
+          artyom.say("El objetivo de estas pruebas es desarrollar las competencias: Interpretativa, Argumentativa, Propositiva, Utilizando la taxonomia de marzano en la redacción del test midiendo los niveles literal inferencial y critico. Como resultado tendremos el cumplimiento de los indicadores de logro. Indícame si aprendiste.");
            document.getElementById("enamorada").style.display="none";
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
@@ -389,7 +398,7 @@ padding-top: -30px;
 
         function testPersonajes(){
           startArtyom();
-          artyom.say("Mediante un test creado exclusivamente para identificar a los personajes, roles y participación de los mismos en la lectura, desarrollamos en el alumno la habilidad de identificar y reconocer a los participantes involucrados en la misma.");
+          artyom.say("Mediante un test creado exclusivamente para identificar a los personajes, roles y participación de los mismos en la lectura, desarrollamos en el alumno la habilidad de identificar y reconocer a los participantes involucrados en la misma. Indícame si aprendiste.");
            document.getElementById("enamorada").style.display="none";
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
@@ -400,7 +409,7 @@ padding-top: -30px;
 
          function vocabulario(){
           startArtyom();
-          artyom.say("Haciendo uso de nuestro algoritmo de  reconocimiento de voz capturamos la pronunciación del concepto y la definición de cada palabra que se concidera dificil dentro de la lectura, para una mejor memorización, Almacenamos lo que se grabo en formato texto. Tiene como fundamento la mnemotécnia.");
+          artyom.say("Haciendo uso de nuestro algoritmo de  reconocimiento de voz capturamos la pronunciación del concepto y la definición de cada palabra que se concidera dificil dentro de la lectura, para una mejor memorización, Almacenamos lo que se grabo en formato texto. Tiene como fundamento la mnemotécnia. Indícame si aprendiste.");
            document.getElementById("enamorada").style.display="none";
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
@@ -411,7 +420,7 @@ padding-top: -30px;
 
            function pensamientoCritico(){
           startArtyom();
-          artyom.say("Haciendo uso del reconocimiento de voz capturamos lo que más le gusto al alumno de la lectura, desarrollando el pensamiento crítico.");
+          artyom.say("Haciendo uso del reconocimiento de voz capturamos lo que más le gustó al alumno de la lectura, hacemos que el alumno nos de su punto de vista y en niveles avanzados el realizara resúmenes, o síntesis de la lectura, desarrollando el pensamiento crítico y otras habilidades. Indícame si aprendiste");
            document.getElementById("enamorada").style.display="none";
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
@@ -422,7 +431,7 @@ padding-top: -30px;
 
         function jeanPeaget(){
           startArtyom();
-          artyom.say("Utilizando como fundamento el estudio de Jean Piaget que nos indica el ser humano aprende en base a su edad cognitiva, y que sí se le da conocimiento que no puede comprender y explicar con sus conocimientos previos, a esto se le conoce como conflicto cognitivo, esto dificultara el aprendizaje, en resumen, las lecturas fueron creadas en base a la edad del estudiante.");
+          artyom.say("Utilizando como fundamento el estudio de Jean Piaget que nos indica el ser humano aprende en base a su edad cognitiva, y que sí se le da conocimiento que no puede comprender y explicar con sus conocimientos previos, a esto se le conoce como conflicto cognitivo, esto dificultará el aprendizaje, en resumen, las lecturas fueron creadas en base a la edad del estudiante. Indícame si aprendiste");
            document.getElementById("enamorada").style.display="none";
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";
@@ -434,7 +443,7 @@ padding-top: -30px;
         function servicioIA(){
           
           startArtyom();
-          artyom.say("Hola "+nombreUsuario+" mi nombre es lola y soy tu asistente, estoy construida con varias tecnologías entre ella el algoritmo de reconocimiento de voz, que me permite escucharte y poder cumplir tus peticiones, también estoy basada en algoritmos de inteligencia artificial que me permite captar tu voz y ser lo más precisa al momento de apoyarte");
+          artyom.say("Hola "+nombreUsuario+" mi nombre es lola y soy tu asistente, estoy construida con varias tecnologías entre ella el algoritmo de reconocimiento de voz, que me permite escucharte y poder cumplir tus peticiones, también estoy basada en algoritmos de inteligencia artificial que me permite captar tu voz y ser lo más precisa al momento de apoyarte. Indícame si aprendiste");
            document.getElementById("enamorada").style.display="none";
           document.getElementById("despierta").style.display="none";
           document.getElementById("dormida").style.display="none";

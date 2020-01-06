@@ -1,6 +1,15 @@
  <?php 
 session_start();
 
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../index.html');
+}
+
+
 require("../conection/conexion.php");
     
   if(empty($_GET['curso'])){
@@ -8,7 +17,7 @@ require("../conection/conexion.php");
   }else{
     switch ($_GET['curso']) {
       case '7':
-        $_SESSION['curso']="Programa Lector - Atomo(Lms)";
+        $_SESSION['curso']="Lecturas estándarizadas";
         break;
       
       default:
@@ -43,6 +52,17 @@ require("../conection/conexion.php");
       $hizoCuestionario->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
       $hizoCuestionario->execute();
       $hayRegistroCuestionario=$hizoCuestionario->rowCount();
+
+
+
+//semana prueba 
+$semanaPrueba=1;
+//verificar la semana 
+
+$noSemanaActual = date("W"); //produccion
+
+
+
 
    
  ?>
@@ -127,13 +147,25 @@ require("../conection/conexion.php");
 
               <?php 
                              while(@$row2=$mostrarVelocidadLectora->fetch(PDO::FETCH_ASSOC)){
-                @$i+=1;
-              
+                @$i+=1;//semana
+                
 
+
+             if($_SESSION['tipoUsuario']==1){   
+                if($i==$semanaPrueba){
+                  $activo='activo';
+                  $activoOjo='glyphicon glyphicon-eye-open';
+                  $estiloActivo=' ';
+                }else{
+                  $activo='inactivo';
+                  $activoOjo='glyphicon glyphicon-eye-close';
+                  $estiloActivo='cursor: not-allowed;  pointer-events: none; -webkit-filter: grayscale(100%); -moz-filter: grayscale(100%); -ms-filter: grayscale(100%); -o-filter: grayscale(100%); filter: grayscale(100%);';
+                }
+}
                ?> 
 
 
-               <a href="p1/velocidad1p.php?idLectura=<?php echo $row2['idLectura'];?>&numeroLectura=<?php echo $i;?>&gradoB=<?php echo $gradoBuscar; ?>"><div class="col-md-5 estiloProducto" style="min-height:150px; margin-left: 10px; margin-left: 20px; margin-bottom: 20px;">
+               <a href="p1/velocidad1p.php?idLectura=<?php echo $row2['idLectura'];?>&numeroLectura=<?php echo $i;?>&gradoB=<?php echo $gradoBuscar; ?>"><div class="col-md-5 estiloProducto" style="min-height:150px; margin-left: 10px; margin-left: 20px; margin-bottom: 20px; <?php echo $estiloActivo; ?>">
                 <div class="row" style="background-image:linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%); ">
 
                   <div class="col-md-5" style=" min-height:150px; 
@@ -150,14 +182,15 @@ require("../conection/conexion.php");
                    echo $extencion.$row2['fichero']; ?>); background-size: 70%; background-repeat:no-repeat; ">                                  
                   </div>
                   <div class="col-md-7" style=" min-height: 175px; color: black;">
-
+                  
                     <h4><?php echo '"'.$row2['nombreLectura'].'"' ?></h4>
                     <h5 style="text-align: left;"><?php echo "<strong>Genero:</strong> ".$row2['genero']; ?></h5>
                     <h5 style="text-align: left;"><?php echo "<strong>Descripción:</strong> ".$row2['descripcion']; ?></h5>
                     <h5 style="text-align: left;"><?php echo "<strong>Edad:</strong> ".$row2['edadLectura']; ?></h5>
-                    <h4 style="text-align: left;"><span class="label label-primary" style="position:absolute;"><?php echo 'Semana '.$i; ?></span></h4>                                  
+                    <h4 style="text-align: left;"><span class="label label-primary" style="position:absolute;"><?php echo 'Semana '.$i; ?></span></h4>
+                    <span style="margin-left:50px;" class="<?php echo $activoOjo; ?>"></span>                                 
                   
-                    <img id="<?php echo 'envi1'.$row2['idLectura']; ?>" src="enviado1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18px; margin-left:23%;">
+                    <img id="<?php echo 'envi1'.$row2['idLectura']; ?>" src="enviado1.png" style="width: 40px; height: 40px; position:absolute; margin-top: -18px; margin-left:10%;">
                   
                     <img src="leido1.png" id="<?php echo 'lei1'.$row2['idLectura']; ?>" style="display:none; width: 40px; height: 40px; position:absolute; margin-top: -18px; margin-left:63%;">
 

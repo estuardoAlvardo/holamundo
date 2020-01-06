@@ -1,6 +1,91 @@
 <?php 
 session_start();
+
+
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../../index.html');
+}
+
+
 $fundamento="pisa";
+
+if(empty($_SESSION['grado'])){
+
+
+$gradoPisa=$_GET['gradoB'];
+
+}else{
+
+$gradoPisa=$_SESSION['grado'];
+
+}
+
+switch ($gradoPisa) {
+  case 1:
+    
+    $estandarEvaluado='1B';
+    $inicioEstandar=262;
+    $cantidadPreguntas=10;
+    //rangos para verificacion;
+    $rangosinicial=$inicioEstandar;
+       
+   break;
+
+   case 2:
+    
+    $estandarEvaluado='1A';
+    $inicioEstandar=335;
+    $cantidadPreguntas=10;
+    //rangos para verificacion;
+    $rangosinicial=$inicioEstandar;
+    break;
+
+    
+
+    case 3:
+    $estandarEvaluado='2';
+    $inicioEstandar=407;
+    $cantidadPreguntas=10;
+    //rangos para verificacion;
+    $rangosinicial=$inicioEstandar;
+    break;
+
+     case 4:
+    $estandarEvaluado='3';
+    $inicioEstandar=480;
+    $cantidadPreguntas=10;
+    //rangos para verificacion;
+    $rangosinicial=$inicioEstandar;
+    break;
+
+    case 5:
+    $estandarEvaluado='4';
+    $inicioEstandar=553;
+    $cantidadPreguntas=10;
+    //rangos para verificacion;
+    $rangosinicial=$inicioEstandar;
+    break;
+
+    case 6:
+    $estandarEvaluado='5';
+    $inicioEstandar=626;
+    $cantidadPreguntas=10;
+    //rangos para verificacion;
+    $rangosinicial=$inicioEstandar;
+    break;
+  
+  default:
+    # code...
+    break;
+}
+
+
+
+
 require("../../conection/conexion.php");
 $_GET['idLectura'];
 $_GET['idUsuario'];
@@ -52,10 +137,12 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
       $detalleGrafico->execute();
 
    
-
-   
-
-
+      //consulta para ver la escala que corresponde
+        $sq5 = ("SELECT  * from registropruebacomprension as registro join atomolector as lectura on  registro.idLectura=lectura.idLectura join cuestionario as cues on cues.idLectura =registro.idLectura join itemopcionmultiple as preguntas on preguntas.idCuestionario=cues.idCuestionario where registro.idRegistro=:idRegistro and cues.fundamento=:fundamento");
+      $detalleEscala  = $dbConn->prepare($sq5);
+      $detalleEscala->bindparam(':idRegistro',$_SESSION['ultimoIntento'],PDO::PARAM_INT);
+      $detalleEscala->bindparam(':fundamento',$fundamento,PDO::PARAM_STR);   
+      $detalleEscala->execute();
 
 
  ?>
@@ -67,7 +154,7 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0">
-    <title><?php echo $_SESSION["nombre"]; ?> | Mis Cursos</title>
+    <title><?php echo $_SESSION["nombre"]; ?> | Resultados PISA</title>
  
     <!-- CSS de Bootstrap -->
     <link href="../../css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -192,7 +279,7 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
                 <h4 class="textCajaDetalle">Lectura: <span><?php echo $row4['nombreLectura']; ?></span></h4>
                 <h4 class="textCajaDetalle">Intento: <span><?php echo  $_GET['intento']; ?></span></h4>
                 <h4 class="textCajaDetalle">Alumno: <span><?php echo $_SESSION['nombre']." ".$_SESSION['apellido']; ?></span></h4>
-                <h4 class="textCajaDetalle">Tiempo En la Prueba: <span>Pendiente</span></h4>
+                <h4 class="textCajaDetalle">Tiempo En la Prueba: <span><?php echo $row4['tiempo'].'min'; ?></span></h4>
                 <h4 class="textCajaDetalle">Fecha de Registro: <span><?php echo $row4['fechaRegistro']; ?></span></h4>
                 <h4 class="textCajaDetalle">Hora Registro: <span><?php echo $row4['horaRegistro']; ?></span></h4>
 
@@ -202,16 +289,153 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
 
          <div class="col-md-4 cajaDescripcion" style="min-height: 200px; margin-top: 30px; margin-left: 35%; background:-webkit-gradient(radial, 220 0, 0, 165 173, 468, from(#8E4D61), to(#05455E));
  border-radius: 5px; color:white; margin-bottom: 50px;">
-          <h4>Nivel Obtenido-Escala Pisa</h4>
+          <h4>Estándar PISA evaluado</h4>
 
-          <div class="col-md-12 botonAgg-1" style="margin-left:23%; height: 150px; width: 150px; border-radius: 100%; background-color: #2ecc71; padding-top: 15px;">
-            <h1 style="font-size: 48pt;"><?php echo $_SESSION['nivelObtenido']; ?></h1>
+          <div class="col-md-12 botonAgg-1" style="margin-left:23%; height: 150px; width: 150px; border-radius: 100%; background-color: #3498db; padding-top: 15px;">
+            <h1 style="font-size: 48pt;"><?php echo $estandarEvaluado; ?></h1>
           </div>           
          </div> 
          
 
+<!--  NIVEL OBTENIDO DEL ESTÁNDAR EVALUADO INICIO----->
+ <div class="col-md-12" style="margin-bottom: 50px;">   
+
+        <table class="table table-hover">       
+          <thead>
+            <tr>
+              <th colspan="11" style="text-align: center;">Subescala de medición</th>
+            </tr>
+            <tr>
+
+             <th colspan="4" style="text-align: center;"> Necesita mejorar</th>
+             <th colspan="3" style="text-align: center;"> Intermedio</th>
+             <th colspan="3" style="text-align: center;"> Estándar</th>
+                      
+            </tr>
+          </thead>
+           <tbody>
+               <tr> 
+                 <td class="" style="background-color:#B71C1C;color: white;"><?php echo $inicioEstandar; ?></td>
+               <?php 
+               
+                while(@$row5=$detalleEscala->fetch(PDO::FETCH_ASSOC)){ 
+                @$n+=1;
+
+               if($row5['rPregunta'.$n]==$row5['respuestaCorrecta']){ $punteoNew=$row5['punteoItem'];
+               @$sumaEscala+=$row5['punteoItem'];
+               @$porcentaje+=10;
+               }else{
+                @$sumaEscala+=0;
+
+               } 
+                
+                if($n==1){
+                $inicioEstandar+=8 ;
+
+              }
+              if($n>=2 and $n<=5){
+                $inicioEstandar+=8;
+          
+
+              }
+              if($n>=6 and $n<=8){
+                $inicioEstandar+=7;
+              }
+              if($n>=9 and $n<=10){
+                $inicioEstandar+=6;
+              }
+
+                
+                $tSuma=$sumaEscala+$rangosinicial;
+                
+
+
+               
+             
+
+                  //Mandar color en base a nivel de items
+               switch ($n) {
+              
+                 case 1:
+                   $color='#B71C1C';
+                   
+
+                   echo '<td class="" style="background-color:'.$color.';color: white;">'.$inicioEstandar.'</td>';
+
+                   break; 
+                 
+                 case 2:
+                   $color='#C62828';
+                   
+                   echo '<td class="" style="background-color:'.$color.';color: white;'.@$estilos2.'">'.$inicioEstandar.'</td>';
+                   break;
+                 case 3:
+                   $color='#E53935';
+                 
+                   echo '<td class="" style="background-color:'.$color.';color: white;'.@$estilo3.'">'.$inicioEstandar.'</td>';
+                   break;
+                 case 4:
+                   $color='#F57C00';
+                   
+                   echo '<td class="" style="background-color:'.$color.';color: white;'.@$estilo4.'">'.$inicioEstandar.'</td>';
+                   break;
+                 case 5:
+                   $color='#FB8C00';
+                   
+                   echo '<td class="" style="background-color:'.$color.';color: white;'.@$estilo5.'">'.$inicioEstandar.'</td>'; 
+                   break; 
+                 case 6:
+                   $color='#FF9800';
+                  
+                  echo '<td class="" style="background-color:'.$color.';color: white;">'.$inicioEstandar.'</td>'; 
+                   break;
+                case 7:
+                   $color='#42A5F5';
+                  
+                   echo '<td class="" style="background-color:'.$color.';color: white;">'.$inicioEstandar.'</td>'; 
+                   break; 
+                  case 8:
+                   $color='#2196F3';
+                 
+                   echo '<td class="" style="background-color:'.$color.';color: white;">'.$inicioEstandar.'</td>';  
+                   break;
+                 case 9:
+                   $color='#1E88E5';
+                   
+                   echo '<td class="" style="background-color:'.$color.'; color: white;">'.$inicioEstandar.'</td>'; 
+                   break; 
+                  case 10:
+                   $color='#1976D2';
+                   
+                   echo '<td class="" style="background-color:'.$color.'; color: white;">'.$inicioEstandar.'</td>'; 
+                   break;
+
+
+                 default:
+                   # code...
+                   break;
+               }
+
+
+
+
+
+              }
+
+             
+                ?>
+                
+
+                           
+              </tr>
+
+    </table>
+    <div class="progress-bar bg-success" role="progressbar"  style="width: <?php echo $porcentaje.'%'; ?>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php echo 'Mi resultado '.$porcentaje."%"; ?> </div>
+</div>  
+<!--  NIVEL OBTENIDO DEL ESTÁNDAR EVALUADO FIN----->
+
          <div class="col-md-12 cajaDescripcion" style="margin-bottom: 50px;">
-          <h4>Detalle de Resultado</h4>
+          <h4>Solucionario Reactivos PISA</h4>
           <table class="table table-hover">
               <thead>
                 <tr>
@@ -219,36 +443,38 @@ $sq1 = ("SELECT idRegistro  FROM registropruebacomprension where idUsuario=:idUs
                   <th scope="col">Pregunta</th>
                   <th scope="col">Respuesta Correcta</th>
                   <th scope="col">Tú respuesta</th>
+                  <th scope="col">Proceso Evaluado</th>
                   <th scope="col">Capacidad</th>
-                  <th scope="col">Objetivo del Item</th>
-                  <th scope="col">Puntos por pregunta</th>
+                  <th scope="col">Punto de cada pregunta</th>
                   <th scope="col">Tus Puntos</th>
-                  <th scope="col">Nivel Item</th>
+                  
                 </tr>
               </thead>
               <tbody>
           <?php  while(@$row3=$obtenerItems->fetch(PDO::FETCH_ASSOC)){ 
               //variable session sirve para regresar al catalog de lecturas enviarmos como parametro get
-           
-              @$i+=1;
+           @$i+=1;
             ?>
                 <tr>
-                  <td><?php echo $row3['idItem']; ?></td>
+                  <td><?php echo $i; ?></td>
                   <td><?php echo $row3['pregunta']; ?></td>
                   <td><?php $respuestConcatenada="respuesta".$row3['respuestaCorrecta']; echo $row3[$respuestConcatenada]; ?></td>
                   <td><?php if($row3['rPregunta'.@$i]==$row3['respuestaCorrecta']){@$respuestConcatenada="respuesta".@$row3['respuestaCorrecta'];  echo @$row3[$respuestConcatenada]; }else{@$respuestConcatenada="respuesta".@$row3['rPregunta'.@$i]; echo @$row3[$respuestConcatenada];  } ?></td>
                    <td><?php echo $row3['capacidad']; ?></td>
                    <td><?php echo $row3['objetivoItem']; ?></td>
                    <td><?php echo $row3['punteoItem']; ?></td>
-                   <td><?php  if($row3['rPregunta'.$i]==$row3['respuestaCorrecta']){ $punteoNew=$row3['punteoItem'];  echo $punteoNew;  }else{ $punteoNew=0; echo $punteoNew;   }  ?></td>
-                   <th scope="row">
+                   <td><?php  if($row3['rPregunta'.$i]==$row3['respuestaCorrecta']){ $punteoNew=$row3['punteoItem'];     ?> 
 
-                    <?php if($row3['rPregunta'.$i]==$row3['respuestaCorrecta']){  ?>
-                    <div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><?php echo $row3['nivel']; ?>
-                    <?php }else{ ?>
-                       <div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #e74c3c; margin-top:0px; margin-left:0px;" ><?php echo $row3['nivel']; ?>
-                     <?php  } ?>
-                     </th>
+                   <div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #2ecc71; margin-top:0px; margin-left:0px;" ><?php echo $punteoNew; ?>
+
+                   <?php  }else{ $punteoNew=0;     ?>
+                    <div style="display: inline-block; border: 3px solid white; border-radius: 20rem; color: white; text-align: center; padding: 0.5rem; box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px; font-weight: 600; min-width: 4rem; font-size: 2rem; background-color: #e74c3c; margin-top:0px; margin-left:0px;" ><?php echo $punteoNew; ?>
+
+                  <?php } ?>
+
+
+                   </td>
+                   
                 </tr>
 
       <?php } ?>
@@ -286,7 +512,7 @@ Highcharts.chart('container', {
         }
     },
     title: {
-        text: 'Grafico de Capacidades Pisa- Puntos según Preguntas'
+        text: 'Grafico de Proceso PISA'
     },
     subtitle: {
         text: 'Capacidades Lectoras'
@@ -323,12 +549,12 @@ Highcharts.chart('container', {
             "name": "Capacidades Lectoras",
             "colorByPoint": true,
             "data": [
-    <?php while(@$row5=$detalleGrafico->fetch(PDO::FETCH_ASSOC)){
+    <?php while(@$row6=$detalleGrafico->fetch(PDO::FETCH_ASSOC)){
       @$e+=1;
-      if($row5['rPregunta'.$e]==$row5['respuestaCorrecta']){ $punteoNew=100;  }else{ $punteoNew=0; }
+      if($row6['rPregunta'.$e]==$row6['respuestaCorrecta']){ $punteoNew=100;  }else{ $punteoNew=0; }
      
 
-                  echo '{ "name": "'.$row5['capacidad'].'",
+                  echo '{ "name": "'.$row6['capacidad'].'",
                   "y":'.$punteoNew.',
                   "drilldown": "Lectura" },';
                  }

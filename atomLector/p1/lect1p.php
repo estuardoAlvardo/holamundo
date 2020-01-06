@@ -1,10 +1,20 @@
 <?php 
 session_start();
 
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../../index.html');
+}
+
 require_once("../../conection/conexion.php") ;
 
   $pisa='pisa';
   $cnb='cnb';
+
+  
 
 
 
@@ -30,26 +40,27 @@ require_once("../../conection/conexion.php") ;
                   
                 }
 
+
                 //--cnb   
                 $q4= ("SELECT idCuestionario FROM cuestionario WHERE fundamento=:fundamento AND idLectura=:idLectura");
 
-                $idPisa=$dbConn->prepare($q4);
-                $idPisa->bindParam(':fundamento',$cnb, PDO::PARAM_INT);
-                $idPisa->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
-                $idPisa->execute();
+                $idCnb=$dbConn->prepare($q4);
+                $idCnb->bindParam(':fundamento',$cnb, PDO::PARAM_INT);
+                $idCnb->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
+                $idCnb->execute();
                 
-                while(@$fila1=$idPisa->fetch(PDO::FETCH_ASSOC)){ 
+                while(@$fila1=$idCnb->fetch(PDO::FETCH_ASSOC)){ 
                   $_SESSION['idCnb']=$fila1['idCuestionario'];
                   
                 }
 
-
+               
 
    
 
 //OBTENEMOS INTENTOS SEGUN PISA
 
-      $q2 = ("SELECT * FROM registropruebacomprension as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario and registro.nivelObtenido!='' ");
+      $q2 = ("SELECT * FROM registropruebacomprension as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario");
       $buscarIntentosPisa=$dbConn->prepare($q2);
       $buscarIntentosPisa->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT); 
         $buscarIntentosPisa->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);
@@ -58,16 +69,19 @@ require_once("../../conection/conexion.php") ;
       $hayIntentos1=$buscarIntentosPisa->rowCount();
       
 
- //OBTENEMOS INTENTOS SEGUN CNB  
+ //OBTENEMOS INTENTOS SEGUN CNB 
+
+
+
 if($_GET['gradoB']==3){
- $q3 = ("SELECT * FROM registropruebacomprension3p as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario ");
+ $q3 = ("SELECT * FROM registropruebacomprension3p as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario");
       $buscarIntentosCnb=$dbConn->prepare($q3);
       $buscarIntentosCnb->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
       $buscarIntentosCnb->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);  
       $buscarIntentosCnb->bindParam(':idCuestionario',$_SESSION['idCnb'], PDO::PARAM_STR); 
       $buscarIntentosCnb->execute();
       $hayIntentos2=$buscarIntentosCnb->rowCount();
-      $urlresultado='resultadoCnb3p.php';
+
 }
 
 if($_GET['gradoB']==4){
@@ -80,8 +94,9 @@ if($_GET['gradoB']==4){
       $hayIntentos2=$buscarIntentosCnb->rowCount();
       $urlresultado='resultadoCnb4p.php';
 
+
 }
-if($_GET['gradoB']==5){
+if($_GET['gradoB']==5 ){
    $q3 = ("SELECT * FROM registropruebacomprension5p as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario ");
       $buscarIntentosCnb=$dbConn->prepare($q3);
       $buscarIntentosCnb->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
@@ -91,7 +106,10 @@ if($_GET['gradoB']==5){
       $hayIntentos2=$buscarIntentosCnb->rowCount();
       $urlresultado='resultadoCnb5p.php';
 
-}else{
+}
+
+
+if($_GET['gradoB']>=1 and $_GET['gradoB']<=2){
 
      $q3 = ("SELECT * FROM registropruebacomprension as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario and registro.nivelObtenido IS NULL ");
       $buscarIntentosCnb=$dbConn->prepare($q3);
@@ -100,9 +118,32 @@ if($_GET['gradoB']==5){
       $buscarIntentosCnb->bindParam(':idCuestionario',$_SESSION['idCnb'], PDO::PARAM_STR); 
       $buscarIntentosCnb->execute();
       $hayIntentos2=$buscarIntentosCnb->rowCount();
-       $urlresultado='resultadoCnb.php';
+      $urlresultado='resultadoCnb.php';
 
 }
+
+
+if($_GET['gradoB']>=6 and $_GET['gradoB']<=9){
+
+     $q3 = ("SELECT * FROM registropruebacomprension6p as registro left join cuestionario on registro.idLectura=cuestionario.idLectura where cuestionario.idLectura=:idLectura and registro.idUsuario=:idUsuario and cuestionario.idCuestionario=:idCuestionario");
+
+
+      
+
+      $buscarIntentosCnb=$dbConn->prepare($q3);
+      $buscarIntentosCnb->bindParam(':idUsuario',$_SESSION['idUsuario'], PDO::PARAM_INT);
+      $buscarIntentosCnb->bindParam(':idLectura',$_GET['idLectura'], PDO::PARAM_INT);  
+      $buscarIntentosCnb->bindParam(':idCuestionario',$_SESSION['idCnb'], PDO::PARAM_STR); 
+      $buscarIntentosCnb->execute();
+      $hayIntentos2=$buscarIntentosCnb->rowCount();
+      $urlresultado='resultadoCnb.php';
+
+}
+
+
+
+
+
   //validamos si hay intentos en caso de que no halla mandamos incrementamos 1 
       
 
@@ -122,12 +163,36 @@ if($_GET['gradoB']==5){
       }
 
 //cambiamos link para prueba cnb : aqui ya se incluye reconocimiento de voz
-  if($_GET['gradoB']>=3){
+
+
+  if($_GET['gradoB']>=3 or  $_SESSION['grado']<=3){
     $rutaCnb='cnbReconocimiento.php';
+    $urlresultado='resultadoCnb3p.php';
+
   }else{
     $rutaCnb='cnb.php';
-  }    
-      
+
+  }
+
+
+  if($_GET['gradoB']==4 or  $_SESSION['grado']==4){
+
+    $urlresultado='resultadoCnb4p.php';
+
+  }   
+
+  if($_GET['gradoB']==5 or  $_SESSION['grado']==5){
+
+    $urlresultado='resultadoCnb5p.php';
+
+  } 
+  
+
+    if($_GET['gradoB']>=6 and  $_SESSION['grado']<=9){
+
+    $urlresultado='resultadoCnb6p.php';
+
+  }     
  ?>
 
 
@@ -368,11 +433,11 @@ if($_GET['gradoB']==5){
 
               <hr>
               <h4>Actividades Lectoras</h4>              
-              <a href="pisa1p.php?noLectura=<?php echo $row1['idLectura']; ?>&intento=<?php echo $hayIntentos1; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#3498db; ">Prueba Comprensión - Según Pisa</a>
-              <a href="<?php echo $rutaCnb;?>?noLectura=<?php echo $row1['idLectura']; ?>&intento=<?php echo $hayIntentos2; ?>&gradoB=<?php echo $_GET['gradoB']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#27ae60; ">Prueba Comprensión - Según CNB</a>             
-              <a href="glosario.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#ff4757; ">Mi vocabulario</a>
-               <a href="cuentame.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#e67e22; ">Con tus palabras</a>
-              <a href="personajes.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#f1c40f; margin-top: 10px; ">Identificar Personaje</a>
+              <a href="pisa1p.php?noLectura=<?php echo $row1['idLectura']; ?>&intento=<?php echo $hayIntentos1; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#3498db; ">1) Prueba Comprensión - Según Pisa</a>
+              <a href="<?php echo $rutaCnb;?>?noLectura=<?php echo $row1['idLectura']; ?>&intento=<?php echo $hayIntentos2; ?>&gradoB=<?php echo $_GET['gradoB']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#27ae60; ">2) Prueba Comprensión - Según CNB</a>             
+              <a href="glosario.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#ff4757; ">3) Mi vocabulario</a>
+               <a href="cuentame.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#e67e22; ">4) Con tus palabras</a>
+              <a href="personajes.php?noLectura=<?php echo $row1['idLectura']; ?>" class="btn align-center botonAgg-1" style="color: white; background-color:#f1c40f; margin-top: 10px; ">5) Identificar Personaje</a>
               <hr>
          </div>
 
@@ -404,7 +469,6 @@ if($_GET['gradoB']==5){
                     <thead>
                       <tr>
                         <th style="text-align: center;">Intento</th>
-                        <th style="text-align: center;">Nivel Obtenido</th>
                         <th style="text-align: center;">Fecha Registro</th>
                         <th style="text-align: center;">Ver Detalles</th>
                       </tr>
@@ -422,9 +486,8 @@ if($_GET['gradoB']==5){
                         ?>
                       <tr style="text-align: center;">      
                         <td><?php echo $i; ?></td>
-                        <td ><?php echo $row2['nivelObtenido']; ?></td>
                         <td><?php echo $row2['fechaRegistro']." ".$row2['horaRegistro']; ?></td>
-                        <td><a href="resultado.php?intentoABuscar=<?php echo $row2['idRegistro'];?>&idLectura=<?php echo $row2['idLectura']; ?>&idUsuario=<?php echo $_SESSION['idUsuario'];?>&intento=<?php echo $i; ?>" class="btn botonAgg-1" style="color: white; background-color: #2ecc71;">Ver</a></td>   
+                        <td><a href="resultado.php?intentoABuscar=<?php echo $row2['idRegistro'];?>&idLectura=<?php echo $row2['idLectura']; ?>&idUsuario=<?php echo $_SESSION['idUsuario'];?>&intento=<?php echo $i; ?>&gradoB=<?php echo $_GET['gradoB']; ?>" class="btn botonAgg-1" style="color: white; background-color: #2ecc71;">Ver</a></td>   
                       </tr>
                     <?php    } }  ?>
                     </tbody>

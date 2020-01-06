@@ -1,22 +1,25 @@
 <?php 
 session_start();
 
-//curso 1
-$curso="Matemáticas";
-$curso="";
-$leccionRealizada=1; // varaiable dependera del uso en la base de datos
-$leccionPendiente=4; // variable dependera del uso en la bd 
-
 require("../conection/conexion.php");
 
-$_SESSION['idUsuario'];
+
+//validacion session
+header("Cache-control: private");
+header("Cache-control: no-cache, must-revalidate");
+header("Pragma: no-cache");
+if(!isset($_SESSION['idUsuario'])) {
+header('Location: ../index.html');
+}
 
 
-//variables de niveles
-$nivelPrimaria=1;
-$nivelBasico=2;
-$nivelDiver=3;
 
+$qr1 = ("SELECT * FROM registroAcceso");
+      $buscarRegistro=$dbConn->prepare($qr1);
+      $buscarRegistro->execute();
+      
+$fecha_actual=date("d/m/Y");
+$hora_actual=date('h:i:s');
 
 
  ?>
@@ -40,10 +43,9 @@ $nivelDiver=3;
 
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Nunito+Sans|Ubuntu" rel="stylesheet">
  
-    <!-- CDN PARA BOTONES DE EXPORTACION -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css">
+    <!-- CDN PARA EXPORTAR PDF -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+
     
  <!-- jquery funcional -->
     <script src='../js/jquery.min.js'></script>
@@ -92,11 +94,12 @@ $nivelDiver=3;
 
 
       <div class="col-md-8 col-xs-8 pag-center">
+        <p id="fechaPdf" style="display: none;"><?php echo $fecha_actual.' '.$hora_actual; ?></p>
          <div class="col-md-12" style=" margin-bottom: 50px; margin-top: 30px;">
-              <h3 class="text-center">Mis Alumnos</h3>
+              <h3 class="text-center">Control de Acceso a la plataforma</h3>
          </div>
           <div>
-            <form method="post" action="" " class="form-inline form-filtro " id="formulario">
+            <form method="post" action="" class="form-inline form-filtro " id="formulario">
                   <div class="form-group">
                     <label class="sr-only" for="filtro-tipo">Nivel</label>
                     <select class="form-control" name="nivel" id="Nivel" style="margin-left: -50px">
@@ -148,51 +151,43 @@ $nivelDiver=3;
                   </div>
                 </form>
          </div>
-         <div class="col-md-3 sombra text-left" style="height:25px; margin-bottom: 15px; margin-top: 50px;">Reporte Uso Plataforma</div>
-         <button class="btn btn-default botonAgg botonAgg-1" type="button" style="margin-top:50px; margin-left:510px;background-color: #c0392b; color: white; border:white;">PDF</button>
-         <button class="btn btn-default botonAgg botonAgg-1" type="button" style="margin-top:50px; background-color: #16a085; color: white; border:white;">EXCEL</button>
+         <div class="col-md-5 sombra text-left" style="height:25px; margin-bottom:-70px; margin-top: 50px;"> <?php echo 'Reporte Uso Plataforma '.$fecha_actual.' '.$hora_actual; ?></div>
+         <button class="btn btn-default botonAgg botonAgg-1" onclick="demoFromHTML();" type="button" style="margin-top:50px; margin-left:510px;background-color: #c0392b; color: white; border:white;">PDF</button>
+         <button class="btn btn-default botonAgg botonAgg-1" onclick = "exportTableToExcel ('tblData','Accesos a fecha')" type="button" style="margin-top:50px; background-color: #16a085; color: white; border:white;">EXCEL</button>
 
-
-          <div class="col-md-12 sombra" style=" min-height:100px; margin-bottom: 30px; ">
-
-                    <table class="table table-hover" id="ejemplo">
+          <div class="col-md-12 sombra" id="customers" style=" min-height:100px; margin-bottom: 30px; ">
+     
+                    <table class="table table-hover" id="tblData">
                       <thead>
                         <tr>
-                          <th scope="col">Alumnos</th>
+                          <th scope="col">Rol</th>
+                          <th scope="col">Usuario</th>
                           <th scope="col">Grado</th>
                           <th scope="col">Sección</th>
-                          <th scope="col">Curso</th>
-                          <th scope="col">Fecha y Hora Acceso</th>
+                          <th scope="col">Último Acceso</th>
                           <th scope="col">Navegador</th>
-                          <th scope="col">Ip</th>
-                        </tr>
+                          <th scope="col" style="text-align: center;">Ip</th>
+                       </tr>
                       </thead>
                       <tbody class="text-left">
-                        <tr>     
-                          <td>Estuardo Alvarado</td>
-                          <td>1ero Primaria</td>
-                          <td>A</td>
-                          <td>Matematicas</td>
-                          <td>19-20-2018 2:00 pm</td>
-                          <td>Chrome</td>
-                          <td>192.168.2.67</td>
+                        <?php while ($rowAcceso=$buscarRegistro->fetch(PDO::FETCH_ASSOC)){                           ?>
+                        <tr> 
+                          <td><?php echo $rowAcceso['rol']; ?></td>    
+                          <td><?php echo $rowAcceso['idUsuario']; ?></td>
+                          <td><?php if(empty($rowAcceso['grado']) or $rowAcceso['grado']==0){ echo '---';}else{ echo $rowAcceso['grado'];} ?></td>
+                          <td><?php if(empty($rowAcceso['seccion'])){echo '---';} echo $rowAcceso['seccion']; ?></td>
+                          <td><?php echo $rowAcceso['fechaHora']; ?></td>
+                          <td><?php echo $rowAcceso['navegador']; ?></td>
+                          <td><?php echo $rowAcceso['ip']; ?></td>
+                          
                         
                         </tr>
-                        <tr>     
-                            <td>Estuardo Alvarado</td>
-                          <td>1ero Primaria</td>
-                          <td>A</td>
-                          <td>Matematicas</td>
-                          <td>19-20-2018 2:00 pm</td>
-                          <td>Chrome</td>
-                          <td>192.168.2.67</td>
-                       
-                        </tr>
+                       <?php } ?>
                       </tbody>
-                    </table>         
+                    </table>    
           </div> 
-                
-     
+
+
              
       </div>
 <!--//CENTRANDO CONTENIDO ROL 1 -->
@@ -209,7 +204,88 @@ $nivelDiver=3;
          incluir archivos JavaScript individuales de los únicos
          plugins que utilices) -->
     <script src="../js/bootstrap.min.js"></script>
+    <script>
 
+    //funcion para exportar desde excel
+    function exportTableToExcel(tableID, filename = ''){
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+    
+    // Specify file name
+    filename = filename?filename+'.xls':'excel_data.xls';
+    
+    // Create download link element
+    downloadLink = document.createElement("a");
+    
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['\ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+    
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
+}  
+
+
+//funcion para exportar en pdf
+ function demoFromHTML() {
+            var fechaPdf=$('#fechaPdf').text();
+
+            var pdf = new jsPDF('p', 'pt', 'letter');
+            //source can be HTML-formatted string, or a reference
+            //to an actual DOM element from which the text will be scraped.
+            source = $('#customers')[0];
+            pdf.text(50, 50, 'Reporte de acceso a la fecha '+fechaPdf);
+
+
+            //we support special element handlers. Register them with jQuery-style 
+            //ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+            //There is no support for any other type of selectors 
+            //(class, of compound) at this time.
+            specialElementHandlers = {
+                //element with id of "bypass" - jQuery style selector
+                '#bypassme': function(element, renderer) {
+                    //true = "handled elsewhere, bypass text extraction"
+                    return true
+                }
+            };
+            margins = {
+                top: 80,
+                bottom: 60,
+                left: 40,
+                width: 522
+            };
+            //all coords and widths are in jsPDF instance's declared units
+            //'inches' in this case
+            pdf.fromHTML(
+                    source, //HTML string or DOM elem ref.
+                    margins.left, //x coord
+                    margins.top, {//y coord
+                        'width': margins.width, //max width of content on PDF
+                        'elementHandlers': specialElementHandlers
+                    },
+            function(dispose) {
+                //dispose: object with X, Y of the last line add to the PDF 
+                //         this allow the insertion of new lines after html
+                pdf.save('Reporte de Acceso a la fecha.pdf');
+            }
+            , margins);
+        }
+ </script> 
+
+    </script>
   </body>
   <script type="text/javascript">
               var grado=0;
